@@ -11,4 +11,8 @@
     <Design.DataContext>
         <vm:MainWindowViewModel/>
     </Design.DataContext>
+    
+    <Window.Styles>
+        <StyleInclude Source="/Assets/Styles/MainStyle.xaml" />
+    </Window.Styles>
 </Window>
