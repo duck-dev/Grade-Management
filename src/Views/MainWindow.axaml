@@ -6,13 +6,40 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Grade_Management.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
-        Title="Grade_Management">
+        Title="Grade Management">
 
     <Design.DataContext>
         <vm:MainWindowViewModel/>
     </Design.DataContext>
     
     <Window.Styles>
-        <StyleInclude Source="/Assets/Styles/MainStyle.xaml" />
+        <StyleInclude Source="/Assets/Styles/MainStyle.xaml"></StyleInclude>
+        <StyleInclude Source="/Assets/Styles/MainWindowStyle.axaml" />
     </Window.Styles>
+    
+    <DockPanel>
+        <Panel DockPanel.Dock="Top">
+            <Border Classes="topbar-border">
+                <Panel Classes="topbar">
+                    <Grid ColumnDefinitions="Auto,Auto,Auto" VerticalAlignment="Stretch">
+                        <TextBlock Classes="topbar-text topbar-text-pointable topbar-text-year" 
+                                   Grid.Column="0"
+                                   PointerPressed="OnYearPressed">
+                            2021/22
+                        </TextBlock>
+                        <TextBlock Classes="topbar-text topbar-text-symbol" Grid.Column="1">
+                            /
+                        </TextBlock>
+                        <TextBlock Classes="topbar-text topbar-text-pointable topbar-text-subject"
+                                   Grid.Column="2" 
+                                   PointerPressed="OnSubjectPressed">
+                            English
+                        </TextBlock>
+                    </Grid>
+                </Panel>
+            </Border>
+        </Panel>
+        
+        <UserControl Content="{Binding Content}"></UserControl>
+    </DockPanel>
 </Window>

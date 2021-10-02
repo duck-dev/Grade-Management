@@ -1,0 +1,32 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        
+        <Style Selector="Border.topbar-border">
+                <Setter Property="BorderBrush" Value="#808080"/>
+                <Setter Property="BorderThickness" Value="0, 0, 0, 1"></Setter>
+                
+                <Setter Property="Height" Value="115"></Setter>
+                <Setter Property="VerticalAlignment" Value="Top"></Setter>
+        </Style>
+        
+        <Style Selector="TextBlock.topbar-text">
+                <Setter Property="FontSize" Value="50"></Setter>
+                <Setter Property="FontWeight" Value="Bold"></Setter>
+                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                <Setter Property="Margin" Value="5,5"></Setter>
+        </Style>
+
+        <Style Selector="TextBlock.topbar-text-pointable:pointerover">
+                <!-- TODO: Do something "on pointer over" -->
+        </Style>
+        
+        <Style Selector="TextBlock.topbar-text-year">
+                <Setter Property="Foreground" Value="#4295f5"></Setter>
+        </Style>
+        <Style Selector="TextBlock.topbar-text-symbol">
+                <Setter Property="Foreground" Value="#808080"></Setter>
+        </Style>
+        <Style Selector="TextBlock.topbar-text-subject">
+                <Setter Property="Foreground" Value="#ff8400"></Setter>
+        </Style>
+</Styles>
