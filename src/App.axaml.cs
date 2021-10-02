@@ -1,10 +1,10 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using Grade_Management.ViewModels;
-using Grade_Management.Views;
+using GradeManagement.ViewModels;
+using GradeManagement.Views;
 
-namespace Grade_Management
+namespace GradeManagement
 {
     public class App : Application
     {

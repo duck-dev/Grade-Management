@@ -1,6 +1,6 @@
 ﻿using ReactiveUI;
 
-namespace Grade_Management.ViewModels
+namespace GradeManagement.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {

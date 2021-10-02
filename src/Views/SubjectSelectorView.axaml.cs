@@ -1,7 +1,7 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace Grade_Management.Views
+namespace GradeManagement.Views
 {
     public class SubjectSelectorView : UserControl
     {

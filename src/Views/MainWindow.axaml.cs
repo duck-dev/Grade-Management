@@ -2,9 +2,9 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Markup.Xaml;
-using Grade_Management.ViewModels;
+using GradeManagement.ViewModels;
 
-namespace Grade_Management.Views
+namespace GradeManagement.Views
 {
     public partial class MainWindow : Window
     {
