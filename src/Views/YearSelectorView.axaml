@@ -2,10 +2,62 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:GradeManagement.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="GradeManagement.Views.YearSelectorView">
-    
-    <WrapPanel DockPanel.Dock="Bottom" Background="#4295f5">
-        
-    </WrapPanel>
+    <Design.DataContext>
+        <viewModels:YearSelectorViewModel />
+    </Design.DataContext>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                  HorizontalScrollBarVisibility="Disabled">
+        <ItemsControl Items="{Binding Items}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Command="{Binding $parent[Window].DataContext.OpenYear}"
+                            CommandParameter="{Binding}"
+                            Width="500"
+                            Height="300"
+                            Background="#c7cad1"
+                            Margin="30, 30">
+                        <Grid VerticalAlignment="Stretch" RowDefinitions="*,*">
+                            <Panel Grid.Row="0" VerticalAlignment="Stretch">
+                                <Viewbox HorizontalAlignment="Center" VerticalAlignment="Stretch" Height="56">
+                                    <TextBlock Text="{Binding Name}"
+                                               FontWeight="Bold"
+                                               Foreground="Black"
+                                               HorizontalAlignment="Center"
+                                               TextAlignment="Center"
+                                               Margin="10 0 0 0"/>
+                                </Viewbox>
+                            </Panel>
+                            <Panel Grid.Row="1" VerticalAlignment="Stretch">
+                                <Grid ColumnDefinitions="*,*">
+                                    <Panel Grid.Column="0" HorizontalAlignment="Stretch">
+                                        <TextBlock TextAlignment="Center"
+                                                   Text="{Binding Path=Subjects.Length, 
+                                                             StringFormat='≡  {0}'}"
+                                                   Foreground="#878787"
+                                                   FontSize="42"/>
+                                    </Panel>
+                                    <Panel Grid.Column="1" HorizontalAlignment="Stretch">
+                                        <TextBlock TextAlignment="Center"
+                                                   Text="{Binding Path=Average, 
+                                                             StringFormat='Ø  {0}'}"
+                                                   Foreground="#878787"
+                                                   FontSize="42"/>
+                                    </Panel>
+                                </Grid>
+                            </Panel>
+                        </Grid>
+                    </Button>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </ScrollViewer>
 </UserControl>

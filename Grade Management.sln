@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grade Management", "GradeManagement.csproj", "{24F8B115-AEED-452C-BE37-87FD8B1ABD59}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GradeManagement", "GradeManagement.csproj", "{24F8B115-AEED-452C-BE37-87FD8B1ABD59}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
