@@ -2,10 +2,35 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:GradeManagement.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="GradeManagement.Views.SubjectListView">
     
-    <WrapPanel DockPanel.Dock="Bottom" Background="#ff8400">
-        
-    </WrapPanel>
+    <Design.DataContext>
+        <viewModels:SubjectListViewModel />
+    </Design.DataContext>
+    
+    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                  HorizontalScrollBarVisibility="Disabled">
+        <ItemsControl Items="{Binding Items}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Command="{Binding $parent[Window].DataContext.OpenSubject}"
+                            CommandParameter="{Binding}"
+                            Background="{Binding Color}"> <!--TODO: Design element (width, height, margin etc.)-->
+                        <Button.Transitions>
+                            <Transitions>
+                                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
+                            </Transitions>
+                        </Button.Transitions>
+                    </Button>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </ScrollViewer>
 </UserControl>

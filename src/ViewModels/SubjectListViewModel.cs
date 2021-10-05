@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
-using System.Net.Mime;
-using Avalonia.Controls;
 using GradeManagement.Interfaces;
 using GradeManagement.Models;
-using GradeManagement.Views;
 
 namespace GradeManagement.ViewModels
 {
@@ -13,6 +11,10 @@ namespace GradeManagement.ViewModels
     public class SubjectListViewModel : ViewModelBase, IListViewModel<Subject>
     {
         private readonly bool[] _elementsVisibilities = { true, false, false }; 
+        
+        [Obsolete("Do NOT use this constructor, because it leaves the collection of school years uninitialized " +
+                  "and this leads to exceptions and unintended behaviour")]
+        public SubjectListViewModel() { }
 
         public SubjectListViewModel(IEnumerable<Subject> items)
         {

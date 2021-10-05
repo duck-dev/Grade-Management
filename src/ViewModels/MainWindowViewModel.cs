@@ -35,6 +35,11 @@ namespace GradeManagement.ViewModels
             SwitchPage<SubjectListViewModel, Subject>(year.Subjects);
             CurrentYear = year;
         }
+
+        public void OpenSubject(Subject subject)
+        {
+            SwitchPage<GradeListViewModel, Grade>(subject.Grades);
+        }
         
         internal void SwitchPage<T, TItems>(IEnumerable<TItems> items) where T : ViewModelBase, IListViewModel<TItems>
         {
