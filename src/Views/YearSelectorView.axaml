@@ -37,21 +37,19 @@
                                 </Viewbox>
                             </Panel>
                             <Panel Grid.Row="1" VerticalAlignment="Stretch">
-                                <Grid ColumnDefinitions="*,*">
-                                    <Panel Grid.Column="0" HorizontalAlignment="Stretch">
-                                        <TextBlock TextAlignment="Center"
-                                                   Text="{Binding Path=Subjects.Length, 
-                                                             StringFormat='≡  {0}'}"
-                                                   Foreground="#878787"
-                                                   FontSize="42"/>
-                                    </Panel>
-                                    <Panel Grid.Column="1" HorizontalAlignment="Stretch">
-                                        <TextBlock TextAlignment="Center"
-                                                   Text="{Binding Path=Average, 
+                                <Grid ColumnDefinitions="Auto,Auto" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <TextBlock Grid.Column="0" TextAlignment="Center"
+                                               Text="{Binding Path=Subjects.Length, 
+                                                             StringFormat='=  {0}'}"
+                                               Foreground="#878787"
+                                               FontSize="42"
+                                               Margin="0, 0, 35, 0"/>
+                                    <TextBlock Grid.Column="1" TextAlignment="Center"
+                                               Text="{Binding Path=Average, 
                                                              StringFormat='Ø  {0}'}"
-                                                   Foreground="#878787"
-                                                   FontSize="42"/>
-                                    </Panel>
+                                               Foreground="#878787"
+                                               FontSize="42"
+                                               Margin="35, 0, 0, 0"/>
                                 </Grid>
                             </Panel>
                         </Grid>
