@@ -8,7 +8,7 @@
             this.Subjects = subjects;
         }
 
-        internal float Average => Utilities.GetAverage(Subjects);
+        internal float Average => Utilities.GetAverage(Subjects, true);
         internal string Name { get; init; }
         internal Subject[] Subjects { get; init; }
     }

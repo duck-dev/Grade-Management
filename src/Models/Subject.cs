@@ -17,8 +17,8 @@ namespace GradeManagement.Models
         }
 
         internal string Name => _name;
-        public float GradeValue => Utilities.GetAverage(Grades);
-        //internal float RoundedAverage => Utilities.RoundAverage(ExactAverage, roundAccuracy);
+        public float GradeValue => Utilities.GetAverage(_grades, false);
+        internal float RoundedAverage => (float)System.Math.Round(GradeValue, 2);
         public float Weighting => _weighting;
         internal List<Grade> Grades => _grades;
 
