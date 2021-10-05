@@ -16,8 +16,9 @@ namespace GradeManagement.ViewModels
         public MainWindowViewModel()
         {
             GenerateExampleYear(); // TODO: Get rid of this, because it's only temporary to test the behaviour
-            _content = Content = new YearSelectorViewModel(Data.SchoolYears);
+            _content = Content = new YearListViewModel(Data.SchoolYears);
             _views.Add(_content);
+            _content.ChangeTopbar();
         }
 
         internal static SchoolYear? CurrentYear { get; set; }
@@ -29,23 +30,25 @@ namespace GradeManagement.ViewModels
         }
         internal ViewModelBase[] Views => _views.ToArray();
         
-        internal void SwitchPage<T, TItems>(IEnumerable<TItems> items) where T : ViewModelBase, ISelectorViewModel<TItems>
+        public void OpenYear(SchoolYear year)
+        {
+            SwitchPage<SubjectListViewModel, Subject>(year.Subjects);
+            CurrentYear = year;
+        }
+        
+        internal void SwitchPage<T, TItems>(IEnumerable<TItems> items) where T : ViewModelBase, IListViewModel<TItems>
         {
             if (_views.Any(x => x.GetType() == typeof(T)))
             {
                 Content = _views.Find(x => x.GetType() == typeof(T))!;
-                ((ISelectorViewModel<TItems>)Content).Items = new ObservableCollection<TItems>(items);
-                return;
+                ((IListViewModel<TItems>)Content).Items = new ObservableCollection<TItems>(items);
             }
-            
-            Content = (Activator.CreateInstance(typeof(T), items) as T)!;
-            _views.Add(Content);
-        }
-        
-        public void OpenYear(SchoolYear year)
-        {
-            SwitchPage<SubjectSelectorViewModel, Subject>(year.Subjects);
-            CurrentYear = year;
+            else
+            {
+                Content = (Activator.CreateInstance(typeof(T), items) as T)!;
+                _views.Add(Content);
+            }
+            _content.ChangeTopbar();
         }
 
         void GenerateExampleYear() // TODO: Remove this function, it is only used to test the behaviour

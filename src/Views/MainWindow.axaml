@@ -21,7 +21,10 @@
         <Panel DockPanel.Dock="Top">
             <Border Classes="topbar-border">
                 <Panel Classes="topbar">
-                    <Grid ColumnDefinitions="Auto,Auto,Auto" VerticalAlignment="Stretch" Margin="30, 0, 0, 0">
+                    <Grid Name="Topbar-Grid" 
+                          ColumnDefinitions="Auto,Auto,Auto" 
+                          VerticalAlignment="Stretch" 
+                          Margin="30, 0, 0, 0">
                         <TextBlock Classes="topbar-text topbar-text-pointable topbar-text-year" 
                                    Grid.Column="0"
                                    PointerPressed="OnYearPressed">

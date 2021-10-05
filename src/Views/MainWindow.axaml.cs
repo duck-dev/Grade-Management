@@ -4,6 +4,7 @@ using Avalonia.Input;
 using Avalonia.Markup.Xaml;
 using GradeManagement.Models;
 using GradeManagement.ViewModels;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace GradeManagement.Views
 {
@@ -17,7 +18,10 @@ namespace GradeManagement.Views
 #if DEBUG
             this.AttachDevTools();
 #endif
+            Instance = this;
         }
+
+        internal static MainWindow? Instance { get; private set; }
 
         private void InitializeComponent()
         {
@@ -27,14 +31,14 @@ namespace GradeManagement.Views
         private void OnYearPressed(object? sender, PointerPressedEventArgs e)
         {
             _mainWindowModel ??= this.DataContext as MainWindowViewModel;
-            _mainWindowModel!.SwitchPage<YearSelectorViewModel, SchoolYear>(Data.SchoolYears);
+            _mainWindowModel!.SwitchPage<YearListViewModel, SchoolYear>(Data.SchoolYears);
             MainWindowViewModel.CurrentYear = null;
         }
         
         private void OnSubjectPressed(object? sender, PointerPressedEventArgs e)
         {
             _mainWindowModel ??= this.DataContext as MainWindowViewModel;
-            _mainWindowModel!.SwitchPage<SubjectSelectorViewModel, Subject>(MainWindowViewModel.CurrentYear!.Subjects);
+            _mainWindowModel!.SwitchPage<SubjectListViewModel, Subject>(MainWindowViewModel.CurrentYear!.Subjects);
         }
     }
 }

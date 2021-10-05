@@ -4,9 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:GradeManagement.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="GradeManagement.Views.YearSelectorView">
+             x:Class="GradeManagement.Views.YearListView">
     <Design.DataContext>
-        <viewModels:YearSelectorViewModel />
+        <viewModels:YearListViewModel />
     </Design.DataContext>
 
     <ScrollViewer VerticalScrollBarVisibility="Auto"
