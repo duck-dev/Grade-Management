@@ -20,26 +20,24 @@
     <DockPanel>
         <Panel DockPanel.Dock="Top">
             <Border Classes="topbar-border">
-                <Panel>
-                    <Grid Name="Topbar-Grid" 
-                          ColumnDefinitions="Auto,Auto,Auto" 
-                          VerticalAlignment="Stretch" 
-                          Margin="30, 0, 0, 0">
-                        <TextBlock Classes="topbar-text topbar-text-pointable topbar-text-year" 
-                                   Grid.Column="0"
-                                   PointerPressed="OnYearPressed">
-                            2021/22
-                        </TextBlock>
-                        <TextBlock Classes="topbar-text topbar-text-symbol" Grid.Column="1">
-                            /
-                        </TextBlock>
-                        <TextBlock Classes="topbar-text topbar-text-pointable topbar-text-subject"
-                                   Grid.Column="2" 
-                                   PointerPressed="OnSubjectPressed">
-                            English
-                        </TextBlock>
-                    </Grid>
-                </Panel>
+                <Grid Name="Topbar-Grid" 
+                      ColumnDefinitions="Auto,Auto,Auto" 
+                      VerticalAlignment="Stretch" 
+                      Margin="30, 0, 0, 0">
+                    <TextBlock Classes="topbar-text topbar-text-pointable topbar-text-year" 
+                               Grid.Column="0"
+                               PointerPressed="OnYearPressed">
+                        2021/22
+                    </TextBlock>
+                    <TextBlock Classes="topbar-text topbar-text-symbol" Grid.Column="1">
+                        /
+                    </TextBlock>
+                    <TextBlock Classes="topbar-text topbar-text-pointable topbar-text-subject"
+                               Grid.Column="2" 
+                               PointerPressed="OnSubjectPressed">
+                        English
+                    </TextBlock>
+                </Grid>
             </Border>
         </Panel>
         
