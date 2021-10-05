@@ -17,7 +17,8 @@
         </Style>
 
         <Style Selector="TextBlock.topbar-text-pointable:pointerover">
-                <!-- TODO: Do something "on pointer over" -->
+                <Setter Property="Cursor" Value="Hand"></Setter>
+                <!-- TODO: Do something fancy "on pointer over" -->
         </Style>
         
         <Style Selector="TextBlock.topbar-text-year">

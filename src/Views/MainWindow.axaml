@@ -13,8 +13,8 @@
     </Design.DataContext>
     
     <Window.Styles>
-        <StyleInclude Source="/Assets/Styles/MainStyle.xaml"></StyleInclude>
-        <StyleInclude Source="/Assets/Styles/MainWindowStyle.axaml" />
+        <StyleInclude Source="/src/Styles/MainStyle.xaml"></StyleInclude>
+        <StyleInclude Source="/src/Styles/MainWindowStyle.axaml" />
     </Window.Styles>
     
     <DockPanel>
