@@ -1,0 +1,15 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Style Selector="Button.year-button">
+        <Setter Property="RenderTransform" Value="scale(1)"></Setter>
+    </Style>
+    <Style Selector="Button.year-button:pointerover">
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="RenderTransform" Value="scale(0.95)"></Setter>
+    </Style>
+    <Style Selector="Button.year-button:pressed">
+        <!-- TODO: Find out why changes to properties get ignored and change background color to something brighter 
+        than it is right now -->
+    </Style>
+</Styles>

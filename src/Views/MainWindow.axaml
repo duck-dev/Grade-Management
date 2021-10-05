@@ -13,14 +13,14 @@
     </Design.DataContext>
     
     <Window.Styles>
-        <StyleInclude Source="/src/Styles/MainStyle.xaml"></StyleInclude>
-        <StyleInclude Source="/src/Styles/MainWindowStyle.axaml" />
+        <StyleInclude Source="/src/Styles/MainStyle.xaml"/>
+        <StyleInclude Source="/src/Styles/MainWindowStyle.axaml"/>
     </Window.Styles>
     
     <DockPanel>
         <Panel DockPanel.Dock="Top">
             <Border Classes="topbar-border">
-                <Panel Classes="topbar">
+                <Panel>
                     <Grid Name="Topbar-Grid" 
                           ColumnDefinitions="Auto,Auto,Auto" 
                           VerticalAlignment="Stretch" 

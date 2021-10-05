@@ -8,6 +8,10 @@
     <Design.DataContext>
         <viewModels:YearListViewModel />
     </Design.DataContext>
+    
+    <UserControl.Styles>
+        <StyleInclude Source="/src/Styles/YearListViewStyle.axaml"></StyleInclude>
+    </UserControl.Styles>
 
     <ScrollViewer VerticalScrollBarVisibility="Auto"
                   HorizontalScrollBarVisibility="Disabled">
@@ -21,10 +25,16 @@
                 <DataTemplate>
                     <Button Command="{Binding $parent[Window].DataContext.OpenYear}"
                             CommandParameter="{Binding}"
+                            Classes="year-button"
                             Width="500"
                             Height="300"
                             Background="#c7cad1"
                             Margin="30, 30">
+                        <Button.Transitions>
+                            <Transitions>
+                                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
+                            </Transitions>
+                        </Button.Transitions>
                         <Grid VerticalAlignment="Stretch" RowDefinitions="*,*">
                             <Panel Grid.Row="0" VerticalAlignment="Stretch">
                                 <Viewbox HorizontalAlignment="Center" VerticalAlignment="Stretch" Height="56">
