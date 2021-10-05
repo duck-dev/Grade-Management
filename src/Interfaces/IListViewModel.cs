@@ -2,7 +2,7 @@
 
 namespace GradeManagement.Interfaces
 {
-    public interface ISelectorViewModel<T>
+    public interface IListViewModel<T>
     {
         ObservableCollection<T>? Items { get; set; }
     }

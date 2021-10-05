@@ -3,9 +3,9 @@ using Avalonia.Markup.Xaml;
 
 namespace GradeManagement.Views
 {
-    public class YearSelectorView : UserControl
+    public class YearListView : UserControl
     {
-        public YearSelectorView()
+        public YearListView()
         {
             InitializeComponent();
         }
