@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Avalonia.Controls;
+using Avalonia.Media;
 using GradeManagement.Interfaces;
 using GradeManagement.Models;
 using ReactiveUI;
@@ -16,6 +18,7 @@ namespace GradeManagement.ViewModels
         public MainWindowViewModel()
         {
             GenerateExampleYear(); // TODO: Get rid of this, because it's only temporary to test the behaviour
+            InitializeTopbarElements();
             _content = Content = new YearListViewModel(Data.SchoolYears);
             _views.Add(_content);
             _content.ChangeTopbar();
@@ -32,11 +35,18 @@ namespace GradeManagement.ViewModels
         
         public void OpenSubject(Subject subject)
         {
+            if (TopbarTexts?[2] is TextBlock textBlock)
+            {
+                textBlock.Text = subject.Name;
+                textBlock.Foreground = new SolidColorBrush(subject.SubjectColor);
+            }
             SwitchPage<GradeListViewModel, Grade>(subject.Grades);
         }
         
         public void OpenYear(SchoolYear year)
         {
+            if (TopbarTexts?[0] is TextBlock textBlock)
+                textBlock.Text = year.Name;
             SwitchPage<SubjectListViewModel, Subject>(year.Subjects);
             CurrentYear = year;
         }
