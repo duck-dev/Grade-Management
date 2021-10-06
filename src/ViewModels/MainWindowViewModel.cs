@@ -30,17 +30,17 @@ namespace GradeManagement.ViewModels
         }
         internal ViewModelBase[] Views => _views.ToArray();
         
+        public void OpenSubject(Subject subject)
+        {
+            SwitchPage<GradeListViewModel, Grade>(subject.Grades);
+        }
+        
         public void OpenYear(SchoolYear year)
         {
             SwitchPage<SubjectListViewModel, Subject>(year.Subjects);
             CurrentYear = year;
         }
 
-        public void OpenSubject(Subject subject)
-        {
-            SwitchPage<GradeListViewModel, Grade>(subject.Grades);
-        }
-        
         internal void SwitchPage<T, TItems>(IEnumerable<TItems> items) where T : ViewModelBase, IListViewModel<TItems>
         {
             if (_views.Any(x => x.GetType() == typeof(T)))
