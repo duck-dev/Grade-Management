@@ -3,10 +3,7 @@
         
         <Style Selector="Border.topbar-border">
                 <Setter Property="BorderBrush" Value="#808080"/>
-                <Setter Property="BorderThickness" Value="0, 0, 0, 1"></Setter>
-                
                 <Setter Property="Height" Value="115"></Setter>
-                <Setter Property="VerticalAlignment" Value="Top"></Setter>
         </Style>
         
         <Style Selector="TextBlock.topbar-text">

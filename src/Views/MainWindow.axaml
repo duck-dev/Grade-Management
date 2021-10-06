@@ -19,7 +19,7 @@
 
     <DockPanel>
         <Panel DockPanel.Dock="Top">
-            <Border Classes="topbar-border">
+            <Border Classes="topbar-border" BorderThickness="0, 0, 0, 1" VerticalAlignment="Top">
                 <Panel>
                     <!-- <Grid ColumnDefinitions="Auto,Auto" -->
                     <!--       VerticalAlignment="Stretch" -->
@@ -36,7 +36,7 @@
                           ColumnDefinitions="Auto,Auto,Auto"
                           VerticalAlignment="Stretch"
                           HorizontalAlignment="Center"> <!--If this element's HorizontalAlignment is "Left", 
-                                                    set left margin to 30 (Margin: 30, 0, 0, 0)-->
+                                                        set left margin to 30 (Margin: 30, 0, 0, 0)-->
                         <TextBlock Classes="topbar-text topbar-text-pointable topbar-text-year"
                                    Grid.Column="0"
                                    PointerPressed="OnYearPressed">
@@ -51,10 +51,17 @@
                             English
                         </TextBlock>
                     </Grid>
+                    <!-- <Image Source="/Assets/Images/Settings.png" HorizontalAlignment="Right" Margin="0, 0, 30, 0"/> -->
                 </Panel>
             </Border>
         </Panel>
-
-        <UserControl Content="{Binding Content}" />
+        
+        <Panel DockPanel.Dock="Bottom">
+            <Border Classes="topbar-border" BorderThickness="0, 1, 0, 0" VerticalAlignment="Bottom">
+                
+            </Border>
+        </Panel>
+        
+        <UserControl Content="{Binding Content}"/>
     </DockPanel>
 </Window>
