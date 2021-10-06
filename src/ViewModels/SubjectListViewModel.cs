@@ -12,7 +12,7 @@ namespace GradeManagement.ViewModels
     {
         private readonly bool[] _elementsVisibilities = { true, false, false }; 
         
-        [Obsolete("Do NOT use this constructor, because it leaves the collection of school years uninitialized " +
+        [Obsolete("Do NOT use this constructor, because it leaves the collection of subjects uninitialized " +
                   "and this leads to exceptions and unintended behaviour")]
         public SubjectListViewModel() { }
 

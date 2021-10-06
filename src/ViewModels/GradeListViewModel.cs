@@ -9,8 +9,8 @@ namespace GradeManagement.ViewModels
     [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
     public class GradeListViewModel : ViewModelBase, IListViewModel<Grade>
     {
-        [System.Obsolete("Do NOT use this constructor, because it leaves the collection of school years uninitialized " +
-                  "and this leads to exceptions and unintended behaviour")]
+        [System.Obsolete("Do NOT use this constructor, because it leaves the collection of grades uninitialized " +
+                  "and this leads to exceptions and unintended behaviour.")]
         public GradeListViewModel() { }
         
         public GradeListViewModel(IEnumerable<Grade> items)
