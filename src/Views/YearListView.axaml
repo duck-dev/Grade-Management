@@ -29,7 +29,8 @@
                             Width="500"
                             Height="300"
                             Background="#c7cad1"
-                            Margin="30, 30">
+                            Margin="30, 30"
+                            BorderThickness="0">
                         <Button.Transitions>
                             <Transitions>
                                 <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>

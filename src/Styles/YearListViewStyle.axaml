@@ -4,12 +4,14 @@
     <Style Selector="Button.year-button">
         <Setter Property="RenderTransform" Value="scale(1)"></Setter>
     </Style>
+    <Style Selector="Button.year-button /template/ ContentPresenter">
+        <Setter Property="CornerRadius" Value="10"></Setter>
+    </Style>
     <Style Selector="Button.year-button:pointerover">
         <Setter Property="Cursor" Value="Hand"></Setter>
         <Setter Property="RenderTransform" Value="scale(0.95)"></Setter>
     </Style>
-    <Style Selector="Button.year-button:pressed">
-        <!-- TODO: Find out why changes to properties get ignored and change background color to something brighter 
-        than it is right now -->
+    <Style Selector="Button.year-button:pressed /template/ ContentPresenter">
+        <Setter Property="Background" Value="#b8babf"></Setter>
     </Style>
 </Styles>

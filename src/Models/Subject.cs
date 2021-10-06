@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Avalonia.Media;
 using GradeManagement.Interfaces;
 
 namespace GradeManagement.Models
@@ -7,7 +8,7 @@ namespace GradeManagement.Models
     {
         private string _name;
         private float _weighting;
-        private string _subjectColorHex;
+        private readonly string _subjectColorHex;
         private readonly List<Grade> _grades;
 
         /// <summary>
@@ -47,6 +48,18 @@ namespace GradeManagement.Models
         public string SubjectColorHex => _subjectColorHex;
         
         /// <summary>
+        /// The subject-color wrapped in the Avalonia.Media.Color struct. The color of this subject is being used
+        /// as the background color of the button representing this subject in the User Interface.
+        /// </summary>
+        public Color SubjectColor => Color.Parse(_subjectColorHex);
+
+        /// <summary>
+        /// The color of the title, being a bit darker than the <see cref="SubjectColor"/>
+        /// if the background is bright and vice-versa.
+        /// </summary>
+        public Color TitleColor => Utilities.AdjustForegroundBrightness(SubjectColor, DarkColorTint, LightColorTint);
+
+        /// <summary>
         /// The exact average of all grades in this subject (not rounded).
         /// </summary>
         public float GradeValue => Utilities.GetAverage(_grades, false);
@@ -65,6 +78,16 @@ namespace GradeManagement.Models
         /// A collection (list) of all <see cref="Grade">grades</see> in this subject.
         /// </summary>
         internal List<Grade> Grades => _grades;
+
+        /// <summary>
+        /// Darker tint of the <see cref="SubjectColor"/>
+        /// </summary>
+        private Color DarkColorTint => Utilities.DarkenColor(SubjectColor, 0.2f);
+        
+        /// <summary>
+        /// Brighter tint of the <see cref="SubjectColor"/>
+        /// </summary>
+        private Color LightColorTint => Utilities.BrightenColor(SubjectColor, 0.2f);
 
         internal void ChangeData(string newName) => ChangeData(newName, _weighting);
         internal void ChangeData(float newWeighting) => ChangeData(_name, newWeighting);

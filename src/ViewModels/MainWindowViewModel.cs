@@ -63,24 +63,24 @@ namespace GradeManagement.ViewModels
             {
                 new SchoolYear("2020/21 with some additional text", new Subject[]
                 {
-                    new Subject("Biology", 1.0f, new Grade[]
+                    new Subject("Biology", 1.0f, "#009b72", new Grade[]
                     {
                         new Grade("First exam", 5.5f, 1.0f, DateTime.Today, true),
                         new Grade("Second exam", 6f, 1.0f, DateTime.Today, true)
                     }),
-                    new Subject("History", 1.0f, new Grade[]
+                    new Subject("History", 1.0f, "#D64045", new Grade[]
                     {
                         new Grade("First exam History", 6f, 1.0f, DateTime.Today, true)
                     })
                 }),
                 new SchoolYear("2021/22", new Subject[]
                 {
-                    new Subject("English", 1.0f, new Grade[]
+                    new Subject("English", 1.0f, "#009b72", new Grade[]
                     {
                         new Grade("First exam", 5.5f, 1.0f, DateTime.Today, true),
                         new Grade("Second exam", 6f, 1.0f, DateTime.Today, true)
                     }),
-                    new Subject("Math", 1.0f, new Grade[]
+                    new Subject("Math", 1.0f, "#D64045", new Grade[]
                     {
                         new Grade("First exam Math", 6f, 1.0f, DateTime.Today, true)
                     })
