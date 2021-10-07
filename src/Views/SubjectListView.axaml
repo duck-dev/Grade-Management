@@ -56,7 +56,7 @@
                                 <Viewbox HorizontalAlignment="Center" VerticalAlignment="Stretch" Height="46">
                                     <TextBlock Text="{Binding Name}"
                                                FontWeight="Bold"
-                                               Foreground="{Binding TitleColor}"
+                                               Foreground="{Binding TitleBrush}"
                                                HorizontalAlignment="Center"
                                                TextAlignment="Center"
                                                Margin="10 0 0 0"/>

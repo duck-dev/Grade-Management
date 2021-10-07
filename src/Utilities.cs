@@ -33,7 +33,7 @@ namespace GradeManagement.Models
         ///                         Default value: 130</param>
         /// <returns>The adjusted foreground color.</returns>
         public static Color AdjustForegroundBrightness(Color backgroundColor, Color darkColor, Color lightColor, 
-                                                       int threshold = 130)
+                                                       int threshold = 110)
         {
             return ((PerceivedBrightness(backgroundColor) > threshold) ? darkColor : lightColor);
         }

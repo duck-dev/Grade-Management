@@ -11,7 +11,7 @@ namespace GradeManagement.Models
         private readonly string _subjectColorHex;
         private readonly List<Grade> _grades;
         
-        private readonly Color _additionalInfoDark = Color.Parse("#878787");
+        private readonly Color _additionalInfoDark = Color.Parse("#7a7a7a");
         private readonly Color _additionalInfoLight = Color.Parse("#b8b8b8");
 
         /// <summary>
@@ -60,15 +60,15 @@ namespace GradeManagement.Models
         /// The color of the title, being a bit darker than the <see cref="SubjectColor"/>
         /// if the background is bright and vice-versa.
         /// </summary>
-        public Color TitleColor => 
-            Utilities.AdjustForegroundBrightness(SubjectColor, DarkColorTint, LightColorTint);
+        public SolidColorBrush TitleBrush => 
+            new(Utilities.AdjustForegroundBrightness(SubjectColor, DarkSubjectTint, LightSubjectTint));
 
         /// <summary>
         /// The color of the additional information in the User Interface (grades-count and weighting)
         /// with adjusted brightness, based on the background color, being the <see cref="SubjectColor"/>
         /// </summary>
-        public Color AdditionalInfoColor => 
-            Utilities.AdjustForegroundBrightness(SubjectColor, _additionalInfoDark, _additionalInfoLight);
+        public SolidColorBrush AdditionalInfoColor => 
+            new(Utilities.AdjustForegroundBrightness(SubjectColor, _additionalInfoDark, _additionalInfoLight));
 
         /// <summary>
         /// The exact average of all grades in this subject (not rounded).
@@ -93,12 +93,12 @@ namespace GradeManagement.Models
         /// <summary>
         /// Darker tint of the <see cref="SubjectColor"/>
         /// </summary>
-        private Color DarkColorTint => Utilities.DarkenColor(SubjectColor, 0.2f);
+        private Color DarkSubjectTint => Utilities.DarkenColor(SubjectColor, 0.2f);
         
         /// <summary>
         /// Brighter tint of the <see cref="SubjectColor"/>
         /// </summary>
-        private Color LightColorTint => Utilities.BrightenColor(SubjectColor, 0.2f);
+        private Color LightSubjectTint => Utilities.BrightenColor(SubjectColor, 0.2f);
 
         internal void ChangeData(string newName) => ChangeData(newName, _weighting);
         internal void ChangeData(float newWeighting) => ChangeData(_name, newWeighting);
