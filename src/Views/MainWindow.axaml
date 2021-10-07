@@ -62,6 +62,10 @@
             </Border>
         </Panel>
         
-        <UserControl Content="{Binding Content}"/>
+        <Panel>
+            <UserControl Content="{Binding Content}" 
+                         VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+            <Button Classes="AddButton"/> <!-- TODO: Set `Command` property -->
+        </Panel>
     </DockPanel>
 </Window>
