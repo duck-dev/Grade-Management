@@ -14,6 +14,8 @@ namespace GradeManagement.ViewModels
     {
         private ViewModelBase _content;
         private readonly List<ViewModelBase> _views = new();
+
+        private readonly Button _addButton;
         
         public MainWindowViewModel()
         {
@@ -23,6 +25,8 @@ namespace GradeManagement.ViewModels
             _content = Content = new YearListViewModel(Data.SchoolYears);
             _views.Add(_content);
             _content.ChangeTopbar();
+
+            _addButton = MainWindowInstance.Get<Button>("AddButton");
         }
 
         internal static SchoolYear? CurrentYear { get; set; }
@@ -32,9 +36,10 @@ namespace GradeManagement.ViewModels
             get => _content;
             private set => this.RaiseAndSetIfChanged(ref _content, value);
         }
+        
         internal ViewModelBase[] Views => _views.ToArray();
         
-        public void OpenSubject(Subject subject)
+        internal void OpenSubject(Subject subject)
         {
             if (TopbarTexts?[2] is TextBlock textBlock)
             {
@@ -44,12 +49,18 @@ namespace GradeManagement.ViewModels
             SwitchPage<GradeListViewModel, Grade>(subject.Grades);
         }
         
-        public void OpenYear(SchoolYear year)
+        internal void OpenYear(SchoolYear year)
         {
             if (TopbarTexts?[0] is TextBlock textBlock)
                 textBlock.Text = year.Name;
             SwitchPage<SubjectListViewModel, Subject>(year.Subjects);
             CurrentYear = year;
+        }
+
+        internal void OpenAddPage()
+        {
+            Content = _content.AddPage!;
+            _addButton.IsVisible = false;
         }
 
         internal void SwitchPage<T, TItems>(IEnumerable<TItems> items) where T : ViewModelBase, IListViewModel<TItems>
@@ -65,9 +76,10 @@ namespace GradeManagement.ViewModels
                 _views.Add(Content);
             }
             _content.ChangeTopbar();
+            _addButton.IsVisible = true;
         }
 
-        void GenerateExampleYear() // TODO: Remove this function, it is only used to test the behaviour
+        private static void GenerateExampleYear() // TODO: Remove this function, it is only used to test the behaviour
         {
             // Oh yes, this is horribly ugly
             Data.SchoolYears = new SchoolYear[]

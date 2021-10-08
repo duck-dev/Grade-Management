@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using GradeManagement.Interfaces;
@@ -9,11 +10,16 @@ namespace GradeManagement.ViewModels
     [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
     public class GradeListViewModel : ViewModelBase, IListViewModel<Grade>
     {
-        [System.Obsolete("Do NOT use this constructor, because it leaves the collection of grades uninitialized " +
-                  "and this leads to exceptions and unintended behaviour.")]
-        public GradeListViewModel() { }
+        [Obsolete("Do NOT use this constructor, because it leaves the collection of grades uninitialized " +
+                         "and this leads to exceptions and unintended behaviour.")]
+        public GradeListViewModel() 
+        {
+            AddPage = new AddGradeViewModel();
+        }
         
-        public GradeListViewModel(IEnumerable<Grade> items)
+#pragma warning disable 618
+        public GradeListViewModel(IEnumerable<Grade> items) : this()
+#pragma warning restore 618
         {
             Items = new ObservableCollection<Grade>(items);
             InitializeTopbarElements();

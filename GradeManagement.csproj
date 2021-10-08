@@ -24,6 +24,30 @@
         <DependentUpon>App.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+      <Compile Update="src\Views\ListViews\GradeListView.axaml.cs">
+        <DependentUpon>GradeListView.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="src\Views\ListViews\SubjectListView.axaml.cs">
+        <DependentUpon>SubjectListView.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="src\Views\ListViews\YearListView.axaml.cs">
+        <DependentUpon>YearListView.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="src\Views\AddPages\AddYearView.axaml.cs">
+        <DependentUpon>AddYearView.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="src\Views\AddPages\AddSubjectView.axaml.cs">
+        <DependentUpon>AddSubjectView.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="src\Views\AddPages\AddGradeView.axaml.cs">
+        <DependentUpon>AddGradeView.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Assets\Images" />

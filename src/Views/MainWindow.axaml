@@ -9,12 +9,12 @@
         Title="Grade Management">
 
     <Design.DataContext>
-        <vm:MainWindowViewModel />
+        <vm:MainWindowViewModel/>
     </Design.DataContext>
 
     <Window.Styles>
-        <StyleInclude Source="/src/Styles/MainStyle.xaml" />
-        <StyleInclude Source="/src/Styles/MainWindowStyle.axaml" />
+        <StyleInclude Source="/src/Styles/MainStyle.xaml"/>
+        <StyleInclude Source="/src/Styles/MainWindowStyle.axaml"/>
     </Window.Styles>
 
     <DockPanel>
@@ -65,7 +65,7 @@
         <Panel>
             <UserControl Content="{Binding Content}" 
                          VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-            <Button Classes="AddButton"/> <!-- TODO: Set `Command` property -->
+            <Button Classes="add-button" Name="AddButton" Command="{Binding OpenAddPage}"/>
         </Panel>
     </DockPanel>
 </Window>

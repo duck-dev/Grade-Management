@@ -28,7 +28,7 @@
         <Setter Property="Foreground" Value="#ff8400"/>
     </Style>
 
-    <Style Selector="Button.AddButton">
+    <Style Selector="Button.add-button">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -49,7 +49,7 @@
         <Setter Property="HorizontalAlignment" Value="Right"/>
         <Setter Property="Margin" Value="0,0,45,45"/>
     </Style>
-    <Style Selector="Button.AddButton:pointerover">
+    <Style Selector="Button.add-button:pointerover">
         <Setter Property="Cursor" Value="Hand"/>
     </Style>
 </Styles>

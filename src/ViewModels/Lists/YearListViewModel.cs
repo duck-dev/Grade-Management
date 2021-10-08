@@ -10,9 +10,14 @@ namespace GradeManagement.ViewModels
     {
         [Obsolete("Do NOT use this constructor, because it leaves the collection of school years uninitialized " +
                   "and this leads to exceptions and unintended behaviour")]
-        public YearListViewModel() { }
+        public YearListViewModel()
+        {
+            AddPage = new AddYearViewModel();
+        }
         
-        public YearListViewModel(IEnumerable<SchoolYear> years)
+#pragma warning disable 618
+        public YearListViewModel(IEnumerable<SchoolYear> years) : this()
+#pragma warning restore 618
         {
             Items = new ObservableCollection<SchoolYear>(years);
             InitializeTopbarElements();

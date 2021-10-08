@@ -7,7 +7,7 @@
              x:Class="GradeManagement.Views.SubjectListView">
     
     <Design.DataContext>
-        <viewModels:SubjectListViewModel />
+        <viewModels:SubjectListViewModel/>
     </Design.DataContext>
     
     <UserControl.Styles>

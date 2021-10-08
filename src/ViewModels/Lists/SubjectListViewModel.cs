@@ -10,13 +10,18 @@ namespace GradeManagement.ViewModels
     [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
     public class SubjectListViewModel : ViewModelBase, IListViewModel<Subject>
     {
-        private readonly bool[] _elementsVisibilities = { true, false, false }; 
-        
+        private readonly bool[] _elementsVisibilities = { true, false, false };
+
         [Obsolete("Do NOT use this constructor, because it leaves the collection of subjects uninitialized " +
                   "and this leads to exceptions and unintended behaviour")]
-        public SubjectListViewModel() { }
+        public SubjectListViewModel()
+        {
+            AddPage = new AddSubjectViewModel();
+        }
 
-        public SubjectListViewModel(IEnumerable<Subject> items)
+#pragma warning disable 618
+        public SubjectListViewModel(IEnumerable<Subject> items) : this()
+#pragma warning restore 618
         {
             Items = new ObservableCollection<Subject>(items);
             InitializeTopbarElements();
