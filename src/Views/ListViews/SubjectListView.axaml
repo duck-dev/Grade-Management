@@ -39,7 +39,9 @@
                             Width="350"
                             Height="350"
                             Margin="30, 30"
-                            BorderThickness="0">
+                            BorderThickness="0"
+                            DragDrop.AllowDrop="True"
+                            PointerPressed="BeginDrag">
                         <Button.Background>
                             <LinearGradientBrush StartPoint="0%,100%" EndPoint="100%,0%">
                                 <GradientStop Color="{Binding SubjectColor}" Offset="0.0"/>

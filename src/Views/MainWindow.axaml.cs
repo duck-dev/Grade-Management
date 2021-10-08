@@ -4,7 +4,6 @@ using Avalonia.Input;
 using Avalonia.Markup.Xaml;
 using GradeManagement.Models;
 using GradeManagement.ViewModels;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace GradeManagement.Views
 {
@@ -27,7 +26,7 @@ namespace GradeManagement.Views
         {
             AvaloniaXamlLoader.Load(this);
         }
-        
+
         private void OnYearPressed(object? sender, PointerPressedEventArgs e)
         {
             _mainWindowModel ??= this.DataContext as MainWindowViewModel;
