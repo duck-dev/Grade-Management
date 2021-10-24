@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:GradeManagement.ViewModels"
+             xmlns:customControls="clr-namespace:GradeManagement.Views.CustomControls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="GradeManagement.Views.YearListView">
     <Design.DataContext>
@@ -23,19 +24,21 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button Command="{Binding $parent[Window].DataContext.OpenYear}"
+                    <customControls:CustomButton Command="{Binding $parent[Window].DataContext.OpenYear}"
                             CommandParameter="{Binding}"
                             Classes="year-button"
                             Width="500"
                             Height="300"
                             Background="#c7cad1"
                             Margin="30, 30"
-                            BorderThickness="0">
-                        <Button.Transitions>
+                            BorderThickness="0"
+                            DragDrop.AllowDrop="True"
+                            PointerPressedPreview="BeginDrag">
+                        <customControls:CustomButton.Transitions>
                             <Transitions>
                                 <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
                             </Transitions>
-                        </Button.Transitions>
+                        </customControls:CustomButton.Transitions>
                         <Grid VerticalAlignment="Stretch" RowDefinitions="*,*">
                             <Panel Grid.Row="0" VerticalAlignment="Stretch">
                                 <Viewbox HorizontalAlignment="Center" VerticalAlignment="Stretch" Height="56">
@@ -64,7 +67,7 @@
                                 </Grid>
                             </Panel>
                         </Grid>
-                    </Button>
+                    </customControls:CustomButton>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
