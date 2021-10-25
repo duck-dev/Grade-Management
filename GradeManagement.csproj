@@ -36,16 +36,12 @@
         <DependentUpon>YearListView.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-      <Compile Update="src\Views\AddPages\AddYearView.axaml.cs">
-        <DependentUpon>AddYearView.axaml</DependentUpon>
+      <Compile Update="src\Views\AddPages\AddSubjectWindow.axaml.cs">
+        <DependentUpon>AddSubjectWindow.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-      <Compile Update="src\Views\AddPages\AddSubjectView.axaml.cs">
-        <DependentUpon>AddSubjectView.axaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
-      <Compile Update="src\Views\AddPages\AddGradeView.axaml.cs">
-        <DependentUpon>AddGradeView.axaml</DependentUpon>
+      <Compile Update="src\Views\AddPages\AddGradeWindow.axaml.cs">
+        <DependentUpon>AddGradeWindow.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
     </ItemGroup>

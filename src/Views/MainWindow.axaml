@@ -6,7 +6,8 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="GradeManagement.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
-        Title="Grade Management">
+        Title="Grade Management"
+        WindowStartupLocation="CenterScreen">
 
     <Design.DataContext>
         <vm:MainWindowViewModel/>
@@ -65,7 +66,7 @@
         <Panel>
             <UserControl Content="{Binding Content}" 
                          VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-            <Button Classes="add-button" Name="AddButton" Command="{Binding OpenAddPage}"/>
+            <Button Classes="add-button" Name="AddButton" Command="{Binding AddPageCommand}"/>
         </Panel>
     </DockPanel>
 </Window>

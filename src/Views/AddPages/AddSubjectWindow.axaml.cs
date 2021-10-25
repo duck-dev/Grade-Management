@@ -1,13 +1,17 @@
-﻿using Avalonia.Controls;
+using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
 namespace GradeManagement.Views
 {
-    public class AddGradeView : UserControl
+    public class AddSubjectWindow : Window
     {
-        public AddGradeView()
+        public AddSubjectWindow()
         {
             InitializeComponent();
+#if DEBUG
+            this.AttachDevTools();
+#endif
         }
 
         private void InitializeComponent()

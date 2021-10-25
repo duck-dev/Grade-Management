@@ -1,13 +1,17 @@
-﻿using Avalonia.Controls;
+using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace GradeManagement.Views
+namespace GradeManagement.Views.AddPages
 {
-    public class AddYearView : UserControl
+    public class AddYearWindow : Window
     {
-        public AddYearView()
+        public AddYearWindow()
         {
             InitializeComponent();
+#if DEBUG
+            this.AttachDevTools();
+#endif
         }
 
         private void InitializeComponent()
