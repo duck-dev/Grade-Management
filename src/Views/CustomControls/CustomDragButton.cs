@@ -5,7 +5,7 @@ using Avalonia.Styling;
 
 namespace GradeManagement.Views.CustomControls
 {
-    public sealed class CustomButton : Button, IStyleable
+    public sealed class CustomDragButton : Button, IStyleable
     {
         public event EventHandler<PointerPressedEventArgs> PointerPressedPreview = delegate {  };
         

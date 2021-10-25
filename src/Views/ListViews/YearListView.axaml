@@ -32,8 +32,7 @@
                             Background="#c7cad1"
                             Margin="30, 30"
                             BorderThickness="0"
-                            DragDrop.AllowDrop="True"
-                            >
+                            DragDrop.AllowDrop="True">
                         <Button.Transitions>
                             <Transitions>
                                 <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
