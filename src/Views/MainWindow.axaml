@@ -66,7 +66,7 @@
         <Panel>
             <UserControl Content="{Binding Content}" 
                          VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-            <Button Classes="add-button" Name="AddButton" Command="{Binding AddPageCommand}"/>
+            <Button Classes="add-button" Name="AddButton" Command="{Binding OpenAddPage}"/>
         </Panel>
     </DockPanel>
 </Window>

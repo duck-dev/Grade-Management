@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using GradeManagement.Interfaces;
 using GradeManagement.Models;
+using GradeManagement.Views.AddPages;
 
 namespace GradeManagement.ViewModels
 {
@@ -12,7 +13,8 @@ namespace GradeManagement.ViewModels
                   "and this leads to exceptions and unintended behaviour")]
         public YearListViewModel()
         {
-            AddPage = new AddYearViewModel();
+            AddPage = new AddYearWindow();
+            AddPageType = typeof(AddYearWindow);
         }
         
 #pragma warning disable 618

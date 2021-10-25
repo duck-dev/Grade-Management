@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using Avalonia.Controls;
 using Avalonia.Media;
@@ -59,8 +60,20 @@ namespace GradeManagement.ViewModels
 
         internal void OpenAddPage()
         {
-            Content = _content.AddPage!;
             _addButton.IsVisible = false;
+            if (_content.AddPage is null && _content.AddPageType is null)
+                throw new Exception("_content.AddPageType is null.");
+            _content.AddPage ??= (Window)Activator.CreateInstance(_content.AddPageType!)!;
+            _content.AddPage?.ShowDialog(MainWindowInstance);
+
+            EventHandler<CancelEventArgs>? closingDel = null;
+            closingDel = delegate
+            {
+                _addButton.IsVisible = true;
+                _content.AddPage!.Closing -= closingDel;
+                _content.AddPage = null;
+            };
+            _content.AddPage!.Closing += closingDel;
         }
 
         internal void SwitchPage<T, TItems>(IEnumerable<TItems> items) where T : ViewModelBase, IListViewModel<TItems>
