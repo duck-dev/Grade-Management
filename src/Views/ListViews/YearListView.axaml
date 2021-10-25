@@ -24,7 +24,7 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <customControls:CustomButton Command="{Binding $parent[Window].DataContext.OpenYear}"
+                    <Button Command="{Binding $parent[Window].DataContext.OpenYear}"
                             CommandParameter="{Binding}"
                             Classes="year-button"
                             Width="500"
@@ -33,12 +33,12 @@
                             Margin="30, 30"
                             BorderThickness="0"
                             DragDrop.AllowDrop="True"
-                            PointerPressedPreview="BeginDrag">
-                        <customControls:CustomButton.Transitions>
+                            >
+                        <Button.Transitions>
                             <Transitions>
                                 <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
                             </Transitions>
-                        </customControls:CustomButton.Transitions>
+                        </Button.Transitions>
                         <Grid VerticalAlignment="Stretch" RowDefinitions="*,*">
                             <Panel Grid.Row="0" VerticalAlignment="Stretch">
                                 <Viewbox HorizontalAlignment="Center" VerticalAlignment="Stretch" Height="56">
@@ -67,7 +67,7 @@
                                 </Grid>
                             </Panel>
                         </Grid>
-                    </customControls:CustomButton>
+                    </Button>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

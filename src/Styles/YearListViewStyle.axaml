@@ -2,17 +2,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:customControls="clr-namespace:GradeManagement.Views.CustomControls">
     
-    <Style Selector="customControls|CustomButton.year-button">
+    <Style Selector="Button.year-button">
         <Setter Property="RenderTransform" Value="scale(1)"></Setter>
     </Style>
-    <Style Selector="customControls|CustomButton.year-button /template/ ContentPresenter">
+    <Style Selector="Button.year-button /template/ ContentPresenter">
         <Setter Property="CornerRadius" Value="10"></Setter>
     </Style>
-    <Style Selector="customControls|CustomButton.year-button:pointerover">
+    <Style Selector="Button.year-button:pointerover">
         <Setter Property="Cursor" Value="Hand"></Setter>
         <Setter Property="RenderTransform" Value="scale(0.95)"></Setter>
     </Style>
-    <Style Selector="customControls|CustomButton.year-button:pressed /template/ ContentPresenter">
+    <Style Selector="Button.year-button:pressed /template/ ContentPresenter">
         <Setter Property="Background" Value="#b8babf"></Setter>
     </Style>
 </Styles>

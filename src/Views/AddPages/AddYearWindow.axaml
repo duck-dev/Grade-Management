@@ -6,8 +6,25 @@
         x:Class="GradeManagement.Views.AddPages.AddYearWindow"
         Title="Add a new school year"
         WindowStartupLocation="CenterOwner"
-        Width="750"
-        Height="550"
+        Width="800"
+        Height="600"
         CanResize="False">
-    Welcome to Avalonia!
+    
+    <Window.Styles>
+        <StyleInclude Source="/src/Styles/MainStyle.xaml"></StyleInclude>
+        <StyleInclude Source="/src/Styles/AddPagesStyle.axaml"></StyleInclude>
+    </Window.Styles>
+    
+    <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid RowDefinitions="*,*">
+            <TextBlock Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"
+                       Foreground="Black" FontWeight="Bold" FontSize="30">
+                New School Year:
+            </TextBlock>
+            <Button Grid.Row="1" Classes="add-page-button">
+                Create School Year
+            </Button>
+        </Grid>
+        <TextBox Classes="add-page-text-box" Watermark="Name of the School Year" MaxLength="35"/>
+    </Panel>
 </Window>
