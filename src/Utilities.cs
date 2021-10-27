@@ -5,7 +5,7 @@ using System.Linq;
 using Avalonia.Media;
 using GradeManagement.Interfaces;
 
-namespace GradeManagement.Models
+namespace GradeManagement
 {
     public static class Utilities
     {

@@ -15,7 +15,6 @@ namespace GradeManagement.ViewModels
     {
         private ViewModelBase _content;
         private readonly List<ViewModelBase> _views = new();
-
         private readonly Button _addButton;
         
         public MainWindowViewModel()
@@ -63,7 +62,9 @@ namespace GradeManagement.ViewModels
             _addButton.IsVisible = false;
             if (_content.AddPage is null && _content.AddPageType is null)
                 throw new Exception("_content.AddPageType is null.");
+            
             _content.AddPage ??= (Window)Activator.CreateInstance(_content.AddPageType!)!;
+            _content.AddPage.DataContext = new AddGradeViewModel();
             _content.AddPage?.ShowDialog(MainWindowInstance);
 
             EventHandler<CancelEventArgs>? closingDel = null;

@@ -11,16 +11,7 @@
     </Design.DataContext>
     
     <UserControl.Styles>
-        <Style Selector="Button.subject-button /template/ ContentPresenter">
-            <Setter Property="CornerRadius" Value="20"></Setter>
-        </Style>
-        <Style Selector="Button.subject-button:pointerover">
-            <Setter Property="Cursor" Value="Hand"></Setter>
-            <Setter Property="RenderTransform" Value="scale(0.95)"></Setter>
-        </Style>
-        <!-- <Style Selector="Button.subject-button:pressed"> -->
-        <!--     <Setter Property="Background" Value="{Binding}"></Setter> -->
-        <!-- </Style> -->
+        <StyleInclude Source="/src/Styles/SubjectListStyle.axaml"></StyleInclude>
     </UserControl.Styles>
     
     <ScrollViewer VerticalScrollBarVisibility="Auto"

@@ -1,6 +1,19 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
+    <Style Selector="TextBlock.add-page-title-text">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="FontSize" Value="30"/>
+    </Style>
+    
+    <Style Selector="Button.add-page-back-button">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    
     <Style Selector="TextBox.add-page-text-box">
         <Setter Property="Background" Value="White"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -14,6 +27,7 @@
         <Setter Property="AcceptsReturn" Value="False"/>
         <Setter Property="AcceptsTab" Value="False"/>
         <Setter Property="TextWrapping" Value="NoWrap"/>
+        <Setter Property="FontSize" Value="16"/>
     </Style>
     
     <Style Selector="Button.add-page-button">
@@ -47,4 +61,25 @@
         <Setter Property="TextBlock.Foreground" Value="White"/>
         <Setter Property="TextBlock.FontWeight" Value="Bold"/>
     </Style>
+    
+    <Style Selector="DatePicker.add-page-calendar">
+        <Setter Property="RenderTransformOrigin" Value="0.5,0"/>
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+    
+    <Style Selector="TextBox.add-page-date-picker-textbox">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Height" Value="60"/>
+        <Setter Property="BorderBrush" Value="#009b72"/>
+        <Setter Property="BorderThickness" Value="0.75"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="16"/>
+    </Style>
+    <Style Selector="TextBox.add-page-date-picker-textbox /template/ ContentPresenter">
+        <Setter Property="CornerRadius" Value="10"/>
+    </Style>
 </Styles>
+

@@ -2,6 +2,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:GradeManagement.ViewModels"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="GradeManagement.Views.AddGradeWindow"
         Title="Add a new grade"
@@ -9,5 +10,63 @@
         Width="750"
         Height="550"
         CanResize="False">
-    Welcome to Avalonia!
+        
+        <Design.DataContext>
+                <viewModels:AddGradeViewModel/>
+        </Design.DataContext>
+    
+        <Window.Styles>
+                <StyleInclude Source="/src/Styles/MainStyle.xaml"/>
+                <StyleInclude Source="/src/Styles/AddPagesStyle.axaml"/>
+        </Window.Styles>
+        
+        <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid RowDefinitions="*,*,*,*,*,*,*">
+                        <TextBlock Grid.Row="0" Classes="add-page-title-text">
+                                New Grade:
+                        </TextBlock>
+                        <!-- <Button Grid.Row="0" Classes="add-page-back-button"> -->
+                        <!--         <Button.Content> -->
+                        <!--                 <Image Source="/Assets/Images/back-button-arrow.png"/> -->
+                        <!--         </Button.Content> -->
+                        <!-- </Button> TODO: Set up back-button!!!-->
+                        <TextBox Grid.Row="1" Classes="add-page-text-box" 
+                                 Watermark="Name of the Grade" MaxLength="35"/>
+                        <Grid Grid.Row="2" ColumnDefinitions="440,60" Width="500" Height="60">
+                                <Border Grid.Column="0" BorderBrush="#009b72">
+                                        <Panel>
+                                                <Grid ColumnDefinitions="Auto,Auto,Auto" HorizontalAlignment="Center">
+                                                        <!-- TODO: Set values for default texts (selected day/month/year)-->
+                                                        <TextBox Grid.Column="0" 
+                                                                 Classes="add-page-date-picker-textbox" Name="GradeDayTextbox"
+                                                                 Text="" Width="90" MaxLength="2"/>
+                                                        <TextBox Grid.Column="1" 
+                                                                 Classes="add-page-date-picker-textbox" Name="GradeMonthTextbox"
+                                                                 Text="" Width="200"/>
+                                                        <TextBox Grid.Column="2" 
+                                                                 Classes="add-page-date-picker-textbox" Name="GradeYearTextbox"
+                                                                 Text="" Width="150" MaxLength="4"/>   
+                                                </Grid>
+                                        </Panel> 
+                                </Border>
+                                <Button Grid.Column="1" Width="50" Height="60" HorizontalAlignment="Center"
+                                        Command="{Binding OpenCalendar}"></Button>
+                        </Grid>
+                        <Calendar Grid.Row="2" Classes="add-page-calendar" 
+                                  IsEnabled="{Binding CalendarOpen}" 
+                                  IsVisible="{Binding CalendarOpen}"/>
+                        <TextBox Grid.Row="3" Classes="add-page-text-box"
+                                 Width="100" Height="60" Watermark="Grade" MaxLength="5"
+                                 TextAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <TextBox Grid.Row="4" Classes="add-page-text-box" 
+                                 Width="100" Height="60" Watermark="Weighting" MaxLength="5" Text="1.0"
+                                 TextAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <CheckBox Grid.Row="5" Classes="add-page-checkbox" IsChecked="True">
+                                Grade counts?
+                        </CheckBox>
+                        <Button Grid.Row="6" Classes="add-page-button">
+                                Create Grade
+                        </Button>
+                </Grid> 
+        </Panel>
 </Window>
