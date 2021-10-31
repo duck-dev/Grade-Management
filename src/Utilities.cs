@@ -9,6 +9,10 @@ namespace GradeManagement
 {
     public static class Utilities
     {
+        public static int TodaysDay => DateTime.Today.Day;
+        public static string TodaysMonth => DateTime.Today.ToString("MMMM");
+        public static int TodaysYear => DateTime.Today.Year;
+        
         /// <summary>
         /// Calculate the average of several grades with a weighting factor for each grade.
         /// </summary>
