@@ -17,9 +17,9 @@ namespace GradeManagement.Models
         }
         
         public float GradeValue { get; private set; }
-        public float Weighting { get; init; }
-        internal string Name { get; init; }
-        internal DateTime Date { get; init; }
-        internal bool Counts { get; init; }
+        public float Weighting { get; private set; }
+        public bool Counts { get; private set; }
+        internal string Name { get; private set; }
+        internal DateTime Date { get; private set; }
     }
 }

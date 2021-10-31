@@ -10,6 +10,7 @@ namespace GradeManagement.Models
         private float _weighting;
         private readonly string _subjectColorHex;
         private readonly List<Grade> _grades;
+        private bool _counts;
         
         private readonly Color _additionalInfoDark = Color.Parse("#7a7a7a");
         private readonly Color _additionalInfoLight = Color.Parse("#b8b8b8");
@@ -21,7 +22,8 @@ namespace GradeManagement.Models
         /// <param name="name">The name of the subject.</param>
         /// <param name="weighting">The weighting of the subject-average for the final year-average.</param>
         /// <param name="grades">The collection of grades included in this subject.</param>
-        public Subject(string name, float weighting, IEnumerable<Grade> grades) : this(name, weighting, "#c7cad1", grades) {}
+        public Subject(string name, float weighting, IEnumerable<Grade> grades) : this(name, weighting, "#c7cad1", 
+        grades, true) {}
         
         /// <summary>
         /// A constructor with 4 parameters:
@@ -31,12 +33,13 @@ namespace GradeManagement.Models
         /// <param name="color">The color of the subject, being used as the background color of the button, representing
         ///                     this subject in the User Interface.</param>
         /// <param name="grades">The collection of grades included in this subject.</param>
-        public Subject(string name, float weighting, string color, IEnumerable<Grade> grades)
+        public Subject(string name, float weighting, string color, IEnumerable<Grade> grades, bool counts)
         {
             _name = name;
             _weighting = weighting;
             _subjectColorHex = color;
             _grades = new List<Grade>(grades);
+            _counts = counts;
         }
         
         /// <summary>
@@ -74,6 +77,11 @@ namespace GradeManagement.Models
         /// The exact average of all grades in this subject (not rounded).
         /// </summary>
         public float GradeValue => Utilities.GetAverage(_grades, false);
+
+        /// <summary>
+        /// Does the subject's average count for the school-year's average?
+        /// </summary>
+        public bool Counts => _counts;
         
         /// <summary>
         /// The rounded average of all grades in this subject.
@@ -100,18 +108,21 @@ namespace GradeManagement.Models
         /// </summary>
         private Color LightSubjectTint => Utilities.BrightenColor(SubjectColor, 0.2f);
 
-        internal void ChangeData(string newName) => ChangeData(newName, _weighting);
-        internal void ChangeData(float newWeighting) => ChangeData(_name, newWeighting);
+        internal void ChangeData(string newName) => ChangeData(newName, _weighting, _counts);
+        internal void ChangeData(float newWeighting) => ChangeData(_name, newWeighting, _counts);
+        internal void ChangeData(bool counts) => ChangeData(_name, _weighting, counts);
         
         /// <summary>
         /// Change the data of this subject.
         /// </summary>
         /// <param name="newName">The new name of this subject.</param>
         /// <param name="newWeighting">The new weighting of the average.</param>
-        private void ChangeData(string newName, float newWeighting)
+        /// <param name="counts">Determines whether the subject's average counts for the year's average or not.</param>
+        private void ChangeData(string newName, float newWeighting, bool counts)
         {
             _name = newName;
             _weighting = newWeighting;
+            _counts = counts;
         }
     }
 }

@@ -104,11 +104,11 @@ namespace GradeManagement.ViewModels
                     {
                         new Grade("First exam", 5.5f, 1.0f, DateTime.Today, true),
                         new Grade("Second exam", 6f, 1.0f, DateTime.Today, true)
-                    }),
+                    }, true),
                     new Subject("History", 1.0f, "#D64045", new Grade[]
                     {
                         new Grade("First exam History", 6f, 1.0f, DateTime.Today, true)
-                    })
+                    }, true)
                 }),
                 new SchoolYear("2021/22", new Subject[]
                 {
@@ -116,11 +116,11 @@ namespace GradeManagement.ViewModels
                     {
                         new Grade("First exam", 5.5f, 1.0f, DateTime.Today, true),
                         new Grade("Second exam", 6f, 1.0f, DateTime.Today, true)
-                    }),
+                    }, true),
                     new Subject("Math", 1.0f, "#D64045", new Grade[]
                     {
                         new Grade("First exam Math", 6f, 1.0f, DateTime.Today, true)
-                    })
+                    }, true)
                 })
             };
         }

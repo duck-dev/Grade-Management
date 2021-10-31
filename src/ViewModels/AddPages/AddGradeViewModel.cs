@@ -6,6 +6,6 @@
 
         private bool CalendarOpen { get; set; }
 
-        private void OpenCalendar() => CalendarOpen = !CalendarOpen;
+        private void ToggleCalendar() => CalendarOpen = !CalendarOpen;
     }
 }

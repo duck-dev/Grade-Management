@@ -4,5 +4,6 @@
     {
         float GradeValue { get; }
         float Weighting { get; }
+        bool Counts { get; }
     }
 }

@@ -12,12 +12,14 @@ namespace GradeManagement
         /// <summary>
         /// Calculate the average of several grades with a weighting factor for each grade.
         /// </summary>
-        /// <param name="gradables">A collection of <see cref="IGradable"/>, whose grades will be used for the average.</param>
+        /// <param name="gradables">A collection of <see cref="IGradable">IGradables</see>,
+        ///                         whose grades will be used for the average.</param>
         /// <param name="round">Determines whether the returned average should be rounded to 2 decimal digits or not.</param>
         /// <returns>The calculated average, either rounded or exact, based on the passed bool <see cref="round"/></returns>
+        [SuppressMessage("ReSharper", "PossibleMultipleEnumeration")]
         public static float GetAverage(IEnumerable<IGradable> gradables, bool round)
         {
-            var enumerable = gradables as IGradable[] ?? gradables.ToArray();
+            var enumerable = gradables.Where(x => x.Counts) as IGradable[] ?? gradables.ToArray();
             float result = enumerable.Sum(x => x.GradeValue * x.Weighting) / enumerable.Sum(x => x.Weighting);
             return round ? (float)Math.Round(result, 2) : result;
         }
