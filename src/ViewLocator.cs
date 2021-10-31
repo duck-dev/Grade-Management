@@ -11,9 +11,30 @@ namespace GradeManagement
 
         public IControl Build(object data)
         {
-            var name = data.GetType().FullName!.Replace("ViewModel", "View");
-            var type = Type.GetType(name);
+            return BuildStatic(data);
+        }
 
+        internal static IControl BuildStatic(object data)
+        {
+            return BuildStatic(data.GetType());
+        }
+
+        internal static IControl BuildStatic(Type type)
+        {
+            var newType = ReplaceType(type, out string name);
+            return BuildControl(newType, name);
+        }
+
+        private static Type? ReplaceType(Type type, out string name)
+        {
+            name = type.FullName!.Replace("ViewModel", "View");
+            var newType = Type.GetType(name);
+            
+            return newType;
+        }
+
+        private static IControl BuildControl(Type? type, string name)
+        {
             if (type != null)
                 return (Control)Activator.CreateInstance(type)!;
             

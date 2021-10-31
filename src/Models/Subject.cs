@@ -86,7 +86,7 @@ namespace GradeManagement.Models
         /// <summary>
         /// The rounded average of all grades in this subject.
         /// </summary>
-        internal float RoundedAverage => (float)System.Math.Round(GradeValue, 2);
+        internal float RoundedAverage => Utilities.GetAverage(_grades, true);
         
         /// <summary>
         /// The name of this subject.

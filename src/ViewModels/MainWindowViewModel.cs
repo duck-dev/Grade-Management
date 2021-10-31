@@ -22,7 +22,7 @@ namespace GradeManagement.ViewModels
             GenerateExampleYear(); // TODO: Get rid of this, because it's only temporary to test the behaviour
             InitializeTopbarElements();
             
-            _content = Content = new YearListViewModel(Data.SchoolYears);
+            _content = Content = new YearListViewModel(Data.SchoolYears!);
             _views.Add(_content);
             _content.ChangeTopbar();
 
@@ -64,17 +64,17 @@ namespace GradeManagement.ViewModels
                 throw new Exception("_content.AddPageType is null.");
             
             _content.AddPage ??= (Window)Activator.CreateInstance(_content.AddPageType!)!;
-            _content.AddPage.DataContext = new AddGradeViewModel();
-            _content.AddPage?.ShowDialog(MainWindowInstance);
+            _content.AddPage.DataContext = Activator.CreateInstance(_content.AddViewModelType!);
+            _content.AddPage.ShowDialog(MainWindowInstance);
 
             EventHandler<CancelEventArgs>? closingDel = null;
             closingDel = delegate
             {
                 _addButton.IsVisible = true;
-                _content.AddPage!.Closing -= closingDel;
+                _content.AddPage.Closing -= closingDel;
                 _content.AddPage = null;
             };
-            _content.AddPage!.Closing += closingDel;
+            _content.AddPage.Closing += closingDel;
         }
 
         internal void SwitchPage<T, TItems>(IEnumerable<TItems> items) where T : ViewModelBase, IListViewModel<TItems>

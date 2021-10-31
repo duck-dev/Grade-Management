@@ -18,6 +18,7 @@
         <Window.Styles>
                 <StyleInclude Source="/src/Styles/MainStyle.xaml"/>
                 <StyleInclude Source="/src/Styles/AddPagesStyle.axaml"/>
+                <StyleInclude Source="/src/Styles/CalendarStyle.axaml"/>
         </Window.Styles>
         
         <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -50,11 +51,8 @@
                                         </Panel> 
                                 </Border>
                                 <Button Grid.Column="1" Width="50" Height="60" HorizontalAlignment="Center"
-                                        Command="{Binding OpenCalendar}"></Button>
+                                        Command="{Binding ToggleCalendar}"></Button>
                         </Grid>
-                        <Calendar Grid.Row="2" Classes="add-page-calendar" 
-                                  IsEnabled="{Binding CalendarOpen}" 
-                                  IsVisible="{Binding CalendarOpen}"/>
                         <TextBox Grid.Row="3" Classes="add-page-text-box"
                                  Width="100" Height="60" Watermark="Grade" MaxLength="5"
                                  TextAlignment="Center" HorizontalContentAlignment="Center"/>
@@ -68,5 +66,8 @@
                                 Create Grade
                         </Button>
                 </Grid> 
+                <Calendar Classes="add-page-calendar" 
+                          IsEnabled="{Binding CalendarOpen}" 
+                          IsVisible="{Binding CalendarOpen}"/>
         </Panel>
 </Window>

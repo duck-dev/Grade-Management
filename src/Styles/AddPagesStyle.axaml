@@ -39,7 +39,7 @@
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="FontSize" Value="16"/>
         <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="HotKey" Value="Enter"/>
+        <Setter Property="HotKey" Value="Return"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
     </Style>
@@ -60,12 +60,6 @@
         <Setter Property="Fill" Value="#009b72"/>
         <Setter Property="TextBlock.Foreground" Value="White"/>
         <Setter Property="TextBlock.FontWeight" Value="Bold"/>
-    </Style>
-    
-    <Style Selector="DatePicker.add-page-calendar">
-        <Setter Property="RenderTransformOrigin" Value="0.5,0"/>
-        <Setter Property="VerticalAlignment" Value="Bottom"/>
-        <Setter Property="HorizontalAlignment" Value="Center"/>
     </Style>
     
     <Style Selector="TextBox.add-page-date-picker-textbox">

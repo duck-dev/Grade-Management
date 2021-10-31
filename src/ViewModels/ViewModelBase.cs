@@ -11,6 +11,7 @@ namespace GradeManagement.ViewModels
         protected Controls? TopbarTexts { get; private set; }
         protected internal Window? AddPage { get; internal set; }
         protected internal Type? AddPageType { get; protected init; }
+        protected internal Type? AddViewModelType { get; protected init; }
         
         protected void InitializeTopbarElements()
         {

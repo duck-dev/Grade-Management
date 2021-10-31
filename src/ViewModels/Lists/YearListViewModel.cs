@@ -15,6 +15,7 @@ namespace GradeManagement.ViewModels
         {
             AddPage = new AddYearWindow();
             AddPageType = typeof(AddYearWindow);
+            AddViewModelType = typeof(AddYearViewModel);
         }
         
 #pragma warning disable 618
