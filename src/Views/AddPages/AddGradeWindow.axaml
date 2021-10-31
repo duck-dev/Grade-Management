@@ -33,7 +33,8 @@
                         <!-- </Button> TODO: Set up back-button!!!-->
                         <TextBox Grid.Row="1" Classes="add-page-text-box" 
                                  Watermark="Name of the Grade" MaxLength="35"/>
-                        <Grid Grid.Row="2" ColumnDefinitions="440,60" Width="500" Height="60">
+                        <Grid Grid.Row="2" ColumnDefinitions="440,60" 
+                              Width="500" Height="60" VerticalAlignment="Top">
                                 <Border Grid.Column="0" BorderBrush="#009b72">
                                         <Panel>
                                                 <Grid ColumnDefinitions="Auto,Auto,Auto" HorizontalAlignment="Center">
@@ -66,8 +67,10 @@
                                 Create Grade
                         </Button>
                 </Grid> 
-                <Calendar Classes="add-page-calendar" 
-                          IsEnabled="{Binding CalendarOpen}" 
-                          IsVisible="{Binding CalendarOpen}"/>
+                <Panel Opacity="0.6" Background="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                       IsEnabled="{Binding CalendarOpen}" 
+                       IsVisible="{Binding CalendarOpen}">
+                        <Calendar Classes="add-page-calendar"/>
+                </Panel>
         </Panel>
 </Window>
