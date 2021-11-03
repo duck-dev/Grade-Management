@@ -1,4 +1,6 @@
-﻿namespace GradeManagement.Models
+﻿using GradeManagement.UtilityCollection;
+
+namespace GradeManagement.Models
 {
     public class SchoolYear
     {

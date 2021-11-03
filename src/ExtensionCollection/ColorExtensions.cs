@@ -1,6 +1,6 @@
 ﻿using Avalonia.Media;
 
-namespace GradeManagement
+namespace GradeManagement.ExtensionCollection
 {
     public static partial class Extensions
     {

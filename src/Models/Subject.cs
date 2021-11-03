@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Avalonia.Media;
 using GradeManagement.Interfaces;
+using GradeManagement.UtilityCollection;
 
 namespace GradeManagement.Models
 {

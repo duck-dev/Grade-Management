@@ -1,33 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using Avalonia.Media;
-using GradeManagement.Interfaces;
+using GradeManagement.ExtensionCollection;
 
-namespace GradeManagement
+namespace GradeManagement.UtilityCollection
 {
-    public static class Utilities
+    public static partial class Utilities
     {
-        public static int TodaysDay => DateTime.Today.Day;
-        public static string TodaysMonth => DateTime.Today.ToString("MMMM");
-        public static int TodaysYear => DateTime.Today.Year;
-        
-        /// <summary>
-        /// Calculate the average of several grades with a weighting factor for each grade.
-        /// </summary>
-        /// <param name="gradables">A collection of <see cref="IGradable">IGradables</see>,
-        ///                         whose grades will be used for the average.</param>
-        /// <param name="round">Determines whether the returned average should be rounded to 2 decimal digits or not.</param>
-        /// <returns>The calculated average, either rounded or exact, based on the passed bool <see cref="round"/></returns>
-        [SuppressMessage("ReSharper", "PossibleMultipleEnumeration")]
-        public static float GetAverage(IEnumerable<IGradable> gradables, bool round)
-        {
-            var enumerable = gradables.Where(x => x.Counts) as IGradable[] ?? gradables.ToArray();
-            float result = enumerable.Sum(x => x.GradeValue * x.Weighting) / enumerable.Sum(x => x.Weighting);
-            return round ? (float)Math.Round(result, 2) : result;
-        }
-
         /// <summary>
         /// Chooses the specified dark or light tint, based on the background's brightness.
         /// Dark background => Light tint and vice-versa.
@@ -39,7 +18,7 @@ namespace GradeManagement
         ///                         Default value: 130</param>
         /// <returns>The adjusted foreground color.</returns>
         public static Color AdjustForegroundBrightness(Color backgroundColor, Color darkColor, Color lightColor, 
-                                                       int threshold = 110)
+            int threshold = 110)
         {
             return ((PerceivedBrightness(backgroundColor) > threshold) ? darkColor : lightColor);
         }

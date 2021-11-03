@@ -2,8 +2,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewModels="clr-namespace:GradeManagement.ViewModels"
-        xmlns:gradeManagement="clr-namespace:GradeManagement"
+        xmlns:addPages="clr-namespace:GradeManagement.ViewModels.AddPages"
+        xmlns:converter="clr-namespace:GradeManagement.Converter"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="GradeManagement.Views.AddGradeWindow"
         Title="Add a new grade"
@@ -13,7 +13,7 @@
         CanResize="False">
         
         <Design.DataContext>
-                <viewModels:AddGradeViewModel/>
+                <addPages:AddGradeViewModel/>
         </Design.DataContext>
     
         <Window.Styles>
@@ -21,6 +21,11 @@
                 <StyleInclude Source="/src/Styles/AddPagesStyle.axaml"/>
                 <StyleInclude Source="/src/Styles/CalendarStyle.axaml"/>
         </Window.Styles>
+        
+        <Window.Resources>
+                <converter:IntStringConverter x:Key="IntConverter"/>
+                <converter:MonthConverter x:Key="MonthConverter"/>
+        </Window.Resources>
         
         <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid RowDefinitions="*,*,*,*,*,*,*">
@@ -39,21 +44,23 @@
                                 <Border Grid.Column="0" BorderBrush="#009b72">
                                         <Panel>
                                                 <Grid ColumnDefinitions="Auto,Auto,Auto" HorizontalAlignment="Center">
-                                                        <!-- TODO: Set values for default texts (selected day/month/year)-->
                                                         <TextBox Grid.Column="0" 
                                                                  Classes="add-page-date-picker-textbox" Name="GradeDayTextbox"
-                                                                 Text="{Binding Source={x:Static 
-                                                                 gradeManagement:Utilities.TodaysDay}}"
+                                                                 Text="{Binding SelectedDay, 
+                                                                 Converter={StaticResource IntConverter},
+                                                                 ConverterParameter={Binding}}"
                                                                  Width="90" MaxLength="2"/>
                                                         <TextBox Grid.Column="1" 
                                                                  Classes="add-page-date-picker-textbox" Name="GradeMonthTextbox"
-                                                                 Text="{Binding Source={x:Static 
-                                                                 gradeManagement:Utilities.TodaysMonth}}" 
+                                                                 Text="{Binding SelectedMonth, 
+                                                                 Converter={StaticResource MonthConverter},
+                                                                 ConverterParameter={Binding}}"
                                                                  Width="200"/>
                                                         <TextBox Grid.Column="2" 
                                                                  Classes="add-page-date-picker-textbox" Name="GradeYearTextbox"
-                                                                 Text="{Binding Source={x:Static 
-                                                                 gradeManagement:Utilities.TodaysYear}}" 
+                                                                 Text="{Binding SelectedYear, 
+                                                                 Converter={StaticResource IntConverter},
+                                                                 ConverterParameter={Binding}}" 
                                                                  Width="150" MaxLength="4"/>   
                                                 </Grid>
                                         </Panel> 
