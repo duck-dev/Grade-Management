@@ -2,7 +2,7 @@ using System;
 using System.Globalization;
 using Avalonia.Data.Converters;
 
-namespace GradeManagement.Converter
+namespace GradeManagement.Converters
 {
     public class IntStringConverter : IValueConverter
     {

@@ -1,4 +1,4 @@
-using GradeManagement.Converter;
+using GradeManagement.Converters;
 
 namespace GradeManagement.Models
 {

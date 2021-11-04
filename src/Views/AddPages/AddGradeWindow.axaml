@@ -3,7 +3,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:addPages="clr-namespace:GradeManagement.ViewModels.AddPages"
-        xmlns:converter="clr-namespace:GradeManagement.Converter"
+        xmlns:converter="clr-namespace:GradeManagement.Converters"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="GradeManagement.Views.AddGradeWindow"
         Title="Add a new grade"
@@ -45,19 +45,19 @@
                                         <Panel>
                                                 <Grid ColumnDefinitions="Auto,Auto,Auto" HorizontalAlignment="Center">
                                                         <TextBox Grid.Column="0" 
-                                                                 Classes="add-page-date-picker-textbox" Name="GradeDayTextbox"
+                                                                 Classes="add-page-date-picker-textbox"
                                                                  Text="{Binding SelectedDay, 
                                                                  Converter={StaticResource IntConverter},
                                                                  ConverterParameter={Binding}}"
                                                                  Width="90" MaxLength="2"/>
                                                         <TextBox Grid.Column="1" 
-                                                                 Classes="add-page-date-picker-textbox" Name="GradeMonthTextbox"
+                                                                 Classes="add-page-date-picker-textbox"
                                                                  Text="{Binding SelectedMonth, 
                                                                  Converter={StaticResource MonthConverter},
                                                                  ConverterParameter={Binding}}"
                                                                  Width="200"/>
                                                         <TextBox Grid.Column="2" 
-                                                                 Classes="add-page-date-picker-textbox" Name="GradeYearTextbox"
+                                                                 Classes="add-page-date-picker-textbox"
                                                                  Text="{Binding SelectedYear, 
                                                                  Converter={StaticResource IntConverter},
                                                                  ConverterParameter={Binding}}" 
