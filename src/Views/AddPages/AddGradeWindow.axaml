@@ -47,8 +47,7 @@
                                                         <TextBox Grid.Column="0" 
                                                                  Classes="add-page-date-picker-textbox"
                                                                  Text="{Binding SelectedDay, 
-                                                                 Converter={StaticResource IntConverter},
-                                                                 ConverterParameter={Binding}}"
+                                                                 Converter={StaticResource IntConverter}}"
                                                                  Width="90" MaxLength="2"/>
                                                         <TextBox Grid.Column="1" 
                                                                  Classes="add-page-date-picker-textbox"
@@ -59,8 +58,7 @@
                                                         <TextBox Grid.Column="2" 
                                                                  Classes="add-page-date-picker-textbox"
                                                                  Text="{Binding SelectedYear, 
-                                                                 Converter={StaticResource IntConverter},
-                                                                 ConverterParameter={Binding}}" 
+                                                                 Converter={StaticResource IntConverter}}" 
                                                                  Width="150" MaxLength="4"/>   
                                                 </Grid>
                                         </Panel> 
