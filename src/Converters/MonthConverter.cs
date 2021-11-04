@@ -33,12 +33,16 @@ namespace GradeManagement.Converters
                     viewModel.SelectedMonth.Month = monthNumber;
                     return viewModel.SelectedMonth;
                 }
-                case string monthName when TryConvertMonth(monthName, out int monthNumber) &&
-                                           Utilities.ValidateDate(1, monthNumber, Utilities.TodaysYear,
-                                                                    out var protocol):
+                case string monthName:
                 {
-                    viewModel.SelectedMonth.MonthName = monthName;
-                    return viewModel.SelectedMonth;
+                    if (TryConvertMonth(monthName, out int monthNumber) &&
+                        Utilities.ValidateDate(1, monthNumber, Utilities.TodaysYear, out _))
+                    {
+                        viewModel.SelectedMonth.MonthName = monthName;
+                        return viewModel.SelectedMonth;
+                    }
+
+                    goto default;
                 }
                 default:
                 {
