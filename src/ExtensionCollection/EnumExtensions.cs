@@ -7,10 +7,10 @@ namespace GradeManagement.ExtensionCollection
         /// <summary>
         /// Faster version of HasFlag
         /// </summary>
-        /// <param name="enumerator">The extended enum.</param>
+        /// <param name="enumeration">The extended enum.</param>
         /// <param name="value">The flag value.</param>
         /// <returns>Has flag?</returns>
-        public static bool CustomHasFlag(this DateType enumerator, DateType value)
-            => (enumerator & value) == value;
+        public static bool CustomHasFlag(this DateType enumeration, DateType value)
+            => (enumeration & value) == value;
     }
 }
