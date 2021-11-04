@@ -25,26 +25,28 @@ namespace GradeManagement.Converters
             {
                 case int monthNumber:
                 {
-                    if (!Utilities.ValidateDate(1, monthNumber, Utilities.TodaysYear, out var protocol))
+                    if (!Utilities.ValidateDate(1, monthNumber, Utilities.TodaysYear, out var protocol)
+                        && protocol.CustomHasFlag(DateType.Month))
                     {
-                        if (protocol.CustomHasFlag(DateType.Month))
-                            goto default;
+                        goto default;
                     }
                     viewModel.SelectedMonth.Month = monthNumber;
                     return viewModel.SelectedMonth;
                 }
                 case string monthName when TryConvertMonth(monthName, out int monthNumber) &&
                                            Utilities.ValidateDate(1, monthNumber, Utilities.TodaysYear,
-                                               out var protocol):
+                                                                    out var protocol):
                 {
                     viewModel.SelectedMonth.MonthName = monthName;
                     return viewModel.SelectedMonth;
                 }
                 default:
+                {
                     // TODO: Red outline/border around corresponding box in the view
                     System.Diagnostics.Trace.WriteLine("Month is invalid!");
 
                     return value;
+                }
             }
         }
 
