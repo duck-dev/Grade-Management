@@ -40,7 +40,7 @@ namespace GradeManagement.Models
         {
             get
             {
-                return CreateGradientBrush(new RelativePoint(0, 100, RelativeUnit.Relative),
+                return Utilities.CreateLinearGradientBrush(new RelativePoint(0, 100, RelativeUnit.Relative),
                     new RelativePoint(100, 0, RelativeUnit.Relative),
                     new[] {SubjectColor, _lightBackground},
                     new[] {0.0, 0.9});
@@ -51,7 +51,7 @@ namespace GradeManagement.Models
         {
             get
             {
-                return CreateGradientBrush(new RelativePoint(0, 100, RelativeUnit.Relative),
+                return Utilities.CreateLinearGradientBrush(new RelativePoint(0, 100, RelativeUnit.Relative),
                     new RelativePoint(100, 0, RelativeUnit.Relative),
                     new[] {Utilities.DarkenColor(SubjectColor, 0.1f), Utilities.DarkenColor(_lightBackground, 0.1f)},
                     new[] {0.0, 0.9});
@@ -80,29 +80,11 @@ namespace GradeManagement.Models
         internal void ChangeData(string newName) => ChangeData(newName, _weighting, _counts);
         internal void ChangeData(float newWeighting) => ChangeData(_name, newWeighting, _counts);
         internal void ChangeData(bool counts) => ChangeData(_name, _weighting, counts);
-        
         private void ChangeData(string newName, float newWeighting, bool counts)
         {
             _name = newName;
             _weighting = newWeighting;
             _counts = counts;
-        }
-
-        private LinearGradientBrush CreateGradientBrush(RelativePoint startPoint, RelativePoint endPoint, 
-            Color[] colors, double[] offsets)
-        {
-            var gradientStops = new GradientStops();
-            for (int i = 0; i < colors.Length; i++)
-            {
-                gradientStops.Add(new GradientStop(colors[i], offsets[i]));
-            }
-            
-            return new LinearGradientBrush()
-            {
-                StartPoint = startPoint,
-                EndPoint = endPoint,
-                GradientStops = gradientStops
-            };
         }
     }
 }
