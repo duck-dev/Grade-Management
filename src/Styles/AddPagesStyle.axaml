@@ -48,6 +48,10 @@
         <Setter Property="Cursor" Value="Hand"/>
     </Style>
     
+    <Style Selector="Button.add-page-button-grey:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="#707070"></Setter>
+    </Style>
+    
     <Style Selector="CheckBox.add-page-checkbox">
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Top"></Setter>

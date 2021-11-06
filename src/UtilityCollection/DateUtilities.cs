@@ -13,28 +13,47 @@ namespace GradeManagement.UtilityCollection
         /// <summary>
         /// Check whether a specific date (day, month, year) is valid.
         /// </summary>
-        /// <param name="validationProtocol">Returns an enum with a flag of the invalid paramters.</param>
+        /// <param name="validationProtocol">Returns an enum with a flag of the invalid parameters.</param>
         /// <returns>Whether the date is valid or not.</returns>
         [SuppressMessage("ReSharper", "InvalidXmlDocComment")]
         public static bool ValidateDate(int day, int month, int year, out DateType validationProtocol)
         {
-            bool dayValid = (day > 0) && (day <= DateTime.DaysInMonth(year, month));
-            bool monthValid = month is > 0 and <= 12;
-            
             validationProtocol = DateType.None;
-            if (!dayValid)
-                validationProtocol += 1;
-            else if (!monthValid)
-                validationProtocol += 2;
 
-            return dayValid && monthValid;
+            bool monthValid = month is > 0 and <= 12;
+            if (!monthValid)
+            {
+                validationProtocol = DateType.Month;
+                return false;
+            }
+            
+            bool yearValid = year is >= 1 and <= 9999;
+            if (!yearValid)
+            {
+                validationProtocol = DateType.Year;
+                return false;
+            }
+
+            bool dayValid = (day > 0) && (day <= DateTime.DaysInMonth(year, month));
+            if (!dayValid)
+                validationProtocol = DateType.Day;
+
+            return dayValid;
         }
 
         /// <inheritdoc cref="ValidateDate(int,int,int,out GradeManagement.Enums.DateType)"/>
         /// <summary>
         /// Check whether a specific date (DateTime) is valid.
         /// </summary>
-        public static bool ValidateDate(DateTime date, out DateType validationProtocol) 
-            => ValidateDate(date.Day, date.Month, date.Year, out validationProtocol);
+        public static bool ValidateDate(DateTime? date, out DateType validationProtocol)
+        {
+            validationProtocol = DateType.None;
+            
+            if (date is null)
+                return false;
+            
+            var newDate = date.Value;
+            return ValidateDate(newDate.Day, newDate.Month, newDate.Year, out validationProtocol);
+        }
     }
 }

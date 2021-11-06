@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using GradeManagement.ViewModels.AddPages;
 
 namespace GradeManagement.Views
 {
@@ -17,6 +18,12 @@ namespace GradeManagement.Views
         private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
+        }
+
+        private void DisplayDateChanged(object? sender, SelectionChangedEventArgs args)
+        {
+            if(DataContext is AddGradeViewModel viewModel)
+                viewModel.DateChanged(sender, args);
         }
     }
 }

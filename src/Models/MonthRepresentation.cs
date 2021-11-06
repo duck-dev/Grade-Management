@@ -15,7 +15,7 @@ namespace GradeManagement.Models
             get => _month;
             set
             {
-                if (_month is <= 0 or > 12) 
+                if (value is <= 0 or > 12) 
                     return;
                 _month = value;
                 _monthName = MonthConverter.ConvertMonth(value);
@@ -27,8 +27,13 @@ namespace GradeManagement.Models
             get => _monthName!;
             set
             {
-                if (!MonthConverter.TryConvertMonth(value, out int monthNumber)) 
+                if (!MonthConverter.TryConvertMonth(value, out int monthNumber))
+                {
+                    _monthName = string.Empty;
+                    _month = 0;
                     return;
+                }
+                
                 _monthName = value;
                 _month = monthNumber;
             }
