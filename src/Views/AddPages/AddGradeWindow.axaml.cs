@@ -3,7 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using GradeManagement.ViewModels.AddPages;
 
-namespace GradeManagement.Views
+namespace GradeManagement.Views.AddPages
 {
     public class AddGradeWindow : Window
     {

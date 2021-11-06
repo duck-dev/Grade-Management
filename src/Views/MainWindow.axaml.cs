@@ -4,10 +4,11 @@ using Avalonia.Input;
 using Avalonia.Markup.Xaml;
 using GradeManagement.Models;
 using GradeManagement.ViewModels;
+using GradeManagement.ViewModels.Lists;
 
 namespace GradeManagement.Views
 {
-    public partial class MainWindow : Window
+    public class MainWindow : Window
     {
         private MainWindowViewModel? _mainWindowModel;
 

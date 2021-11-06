@@ -4,12 +4,13 @@ using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using GradeManagement.Interfaces;
 using GradeManagement.Models;
-using GradeManagement.Views;
+using GradeManagement.ViewModels.AddPages;
+using GradeManagement.Views.AddPages;
 
-namespace GradeManagement.ViewModels
+namespace GradeManagement.ViewModels.Lists
 {
     [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
-    public class SubjectListViewModel : ViewModelBase, IListViewModel<Subject>
+    public class SubjectListViewModel : ListViewModelBase, IListViewModel<Subject>
     {
         private readonly bool[] _elementsVisibilities = { true, false, false };
 

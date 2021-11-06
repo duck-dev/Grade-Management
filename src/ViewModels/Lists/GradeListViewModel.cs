@@ -5,12 +5,12 @@ using System.Diagnostics.CodeAnalysis;
 using GradeManagement.Interfaces;
 using GradeManagement.Models;
 using GradeManagement.ViewModels.AddPages;
-using GradeManagement.Views;
+using GradeManagement.Views.AddPages;
 
-namespace GradeManagement.ViewModels
+namespace GradeManagement.ViewModels.Lists
 {
     [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
-    public class GradeListViewModel : ViewModelBase, IListViewModel<Grade>
+    public class GradeListViewModel : ListViewModelBase, IListViewModel<Grade>
     {
         [Obsolete("Do NOT use this constructor, because it leaves the collection of grades uninitialized " +
                          "and this leads to exceptions and unintended behaviour.")]
