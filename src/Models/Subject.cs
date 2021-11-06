@@ -43,10 +43,9 @@ namespace GradeManagement.Models
                 return Utilities.CreateLinearGradientBrush(new RelativePoint(0, 100, RelativeUnit.Relative),
                     new RelativePoint(100, 0, RelativeUnit.Relative),
                     new[] {SubjectColor, _lightBackground},
-                    new[] {0.0, 0.9});
+                    new[] {0.0, 90.0});
             }
         }
-
         public LinearGradientBrush BackgroundBrushHover
         {
             get
@@ -54,7 +53,7 @@ namespace GradeManagement.Models
                 return Utilities.CreateLinearGradientBrush(new RelativePoint(0, 100, RelativeUnit.Relative),
                     new RelativePoint(100, 0, RelativeUnit.Relative),
                     new[] {Utilities.DarkenColor(SubjectColor, 0.1f), Utilities.DarkenColor(_lightBackground, 0.1f)},
-                    new[] {0.0, 0.9});
+                    new[] {0.0, 90.0});
             }
         }
         
@@ -62,13 +61,9 @@ namespace GradeManagement.Models
             new(Utilities.AdjustForegroundBrightness(SubjectColor, AdditionalInfoDark, AdditionalInfoLight));
         
         public float GradeValue => Utilities.GetAverage(_grades, false);
-        
         public bool Counts => _counts;
-        
         internal float RoundedAverage => Utilities.GetAverage(_grades, true);
-        
         internal string Name => _name;
-        
         internal List<Grade> Grades => _grades;
         
         private Color DarkSubjectTint => Utilities.DarkenColor(SubjectColor, 0.2f);
