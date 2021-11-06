@@ -39,6 +39,11 @@
                                 <GradientStop Color="#c7cad1" Offset="0.9"/>
                             </LinearGradientBrush>
                         </Button.Background>
+                        <Button.Styles>
+                            <Style Selector="Button:pointerover /template/ ContentPresenter">
+                                <Setter Property="Background" Value="{Binding BackgroundBrushHover}"/>
+                            </Style>
+                        </Button.Styles>
                         <Button.Transitions>
                             <Transitions>
                                 <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
