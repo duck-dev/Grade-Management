@@ -2,7 +2,7 @@
 
 namespace GradeManagement.ViewModels.AddPages
 {
-    public class AddSubjectViewModel : ViewModelBase
+    public class AddSubjectViewModel : AddViewModelBase
     {
         
     }

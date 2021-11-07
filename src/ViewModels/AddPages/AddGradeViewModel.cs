@@ -9,7 +9,7 @@ using ReactiveUI;
 
 namespace GradeManagement.ViewModels.AddPages
 {
-    public class AddGradeViewModel : ViewModelBase
+    public class AddGradeViewModel : AddViewModelBase
     {
         private bool _calendarOpen;
         
