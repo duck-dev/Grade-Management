@@ -26,7 +26,8 @@
                        Foreground="Black" FontWeight="Bold" FontSize="30">
                 New School Year:
             </TextBlock>
-            <Button Grid.Row="1" Classes="add-page-button" Command="{Binding CreateElement}">
+            <Button Grid.Row="1" Classes="add-page-button" Command="{Binding CreateElement}"
+                    IsEnabled="{Binding DataComplete}">
                 Create School Year
             </Button>
         </Grid>

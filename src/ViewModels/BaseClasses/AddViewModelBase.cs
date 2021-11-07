@@ -1,8 +1,19 @@
+using ReactiveUI;
+
 namespace GradeManagement.ViewModels.BaseClasses
 {
     public class AddViewModelBase : ViewModelBase
     {
-        protected string? ElementName { get; set; }
+        private string? _elementName;
+        protected string? ElementName
+        {
+            get => _elementName;
+            set
+            {
+                _elementName = value;
+                this.RaisePropertyChanged(nameof(DataComplete));
+            }
+        }
         protected float ElementWeighting { get; set; }
         protected string? ElementWeightingString
         {
@@ -14,6 +25,7 @@ namespace GradeManagement.ViewModels.BaseClasses
             }
         }
         protected bool ElementCounts { get; set; } = true;
+        protected virtual bool DataComplete { get; }
 
         protected virtual void CreateElement()
         {
