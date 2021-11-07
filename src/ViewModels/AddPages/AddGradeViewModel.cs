@@ -29,12 +29,19 @@ namespace GradeManagement.ViewModels.AddPages
 
         internal static AddGradeViewModel? Instance { get; private set; }
 
+        protected override bool DataComplete => !string.IsNullOrEmpty(ElementName)
+                                                && !float.IsNaN(_elementGrade)
+                                                && !float.IsNaN(ElementWeighting)
+                                                && Utilities.ValidateDate(_selectedDay, _selectedMonth.Month, 
+                                                                            _selectedYear, out _);
+
         internal MonthRepresentation SelectedMonth
         {
             get => _selectedMonth;
             set 
             {
                 this.RaiseAndSetIfChanged(ref _selectedMonth, value); // Important to force the UI to update;
+                this.RaisePropertyChanged(nameof(DataComplete));
 
                 DateType protocol = DateType.None;
                 if (_tempSelectedDate is null || !Utilities.ValidateDate(_selectedDay, value.Month, _selectedYear,
@@ -63,6 +70,7 @@ namespace GradeManagement.ViewModels.AddPages
             set
             {
                 this.RaiseAndSetIfChanged(ref _selectedDay, value); // Important to force the UI to update
+                this.RaisePropertyChanged(nameof(DataComplete));
                 
                 if (Utilities.ValidateDate(value, _selectedMonth.Month, _selectedYear, out DateType protocol))
                 {
@@ -86,6 +94,7 @@ namespace GradeManagement.ViewModels.AddPages
             set
             {
                 this.RaiseAndSetIfChanged(ref _selectedYear, value); // Important to force the UI to update
+                this.RaisePropertyChanged(nameof(DataComplete));
 
                 var validDate = Utilities.ValidateDate(_selectedDay, _selectedMonth.Month, value, out var protocol);
                 if (!validDate)
@@ -95,7 +104,7 @@ namespace GradeManagement.ViewModels.AddPages
                         System.Diagnostics.Trace.WriteLine("Year is invalid!");
                     return;
                 }
-                
+
                 if (_tempSelectedDate is null) 
                     return;
 
@@ -120,8 +129,11 @@ namespace GradeManagement.ViewModels.AddPages
             get => string.Empty;
             set
             {
+                _elementGrade = float.NaN;
                 if (float.TryParse(value, out float grade))
                     _elementGrade = grade;
+                
+                this.RaisePropertyChanged(nameof(DataComplete));
             }
         }
 
