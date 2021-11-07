@@ -1,3 +1,4 @@
+using GradeManagement.Models;
 using ReactiveUI;
 
 namespace GradeManagement.ViewModels.BaseClasses
@@ -14,14 +15,18 @@ namespace GradeManagement.ViewModels.BaseClasses
                 this.RaisePropertyChanged(nameof(DataComplete));
             }
         }
-        protected float ElementWeighting { get; set; }
+
+        protected float ElementWeighting { get; set; } = float.NaN;
         protected string? ElementWeightingString
         {
             get => string.Empty;
             set
             {
+                ElementWeighting = float.NaN;
                 if (float.TryParse(value, out float weighting))
                     ElementWeighting = weighting;
+
+                this.RaisePropertyChanged(nameof(DataComplete));
             }
         }
         protected bool ElementCounts { get; set; } = true;

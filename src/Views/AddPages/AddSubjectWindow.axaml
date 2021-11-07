@@ -41,7 +41,8 @@
                                 IsChecked="{Binding ElementCounts}">
                               Count subject for year's average?
                       </CheckBox>
-                      <Button Grid.Row="4" Classes="add-page-button" Command="{Binding CreateElement}">
+                      <Button Grid.Row="4" Classes="add-page-button" Command="{Binding CreateElement}"
+                              IsEnabled="{Binding DataComplete}">
                               Create Subject
                       </Button>
                 </Grid>
