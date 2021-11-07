@@ -58,9 +58,7 @@
         </Panel>
         
         <Panel DockPanel.Dock="Bottom">
-            <Border Classes="topbar-border" BorderThickness="0, 1, 0, 0" VerticalAlignment="Bottom">
-                
-            </Border>
+            <Border Classes="topbar-border" BorderThickness="0, 1, 0, 0" VerticalAlignment="Bottom"/>
         </Panel>
         
         <Panel>

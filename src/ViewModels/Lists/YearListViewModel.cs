@@ -28,6 +28,7 @@ namespace GradeManagement.ViewModels.Lists
         }
 
         public ObservableCollection<SchoolYear>? Items { get; set; }
+        public bool EmptyCollection => Items?.Count == 0;
 
         internal override void ChangeTopbar()
         {

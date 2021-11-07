@@ -1,11 +1,11 @@
 ﻿using Avalonia.Markup.Xaml;
 using GradeManagement.Models;
 
-namespace GradeManagement.Views
+namespace GradeManagement.Views.Lists
 {
-    public class SubjectListView : DragControl
+    public class YearListView : DragControl
     {
-        public SubjectListView()
+        public YearListView()
         {
             InitializeComponent();
         }

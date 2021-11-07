@@ -1,7 +1,9 @@
-﻿namespace GradeManagement.Models
+﻿using System;
+
+namespace GradeManagement.Models
 {
     public static class Data
     {
-        internal static SchoolYear[]? SchoolYears { get; set; }
+        internal static SchoolYear[]? SchoolYears { get; set; } = Array.Empty<SchoolYear>();
     }
 }

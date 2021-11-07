@@ -1,7 +1,7 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace GradeManagement.Views
+namespace GradeManagement.Views.Lists
 {
     public class GradeListView : UserControl
     {
