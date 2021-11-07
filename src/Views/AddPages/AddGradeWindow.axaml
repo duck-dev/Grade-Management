@@ -37,8 +37,8 @@
                         <!--                 <Image Source="/Assets/Images/back-button-arrow.png"/> -->
                         <!--         </Button.Content> -->
                         <!-- </Button> TODO: Set up back-button!!!-->
-                        <TextBox Grid.Row="1" Classes="add-page-text-box" 
-                                 Watermark="Name of the Grade" MaxLength="35"/>
+                        <TextBox Grid.Row="1" Classes="add-page-text-box" Watermark="Name of the Grade" MaxLength="35" 
+                                 Text="{Binding ElementName}"/>
                         <Grid Grid.Row="2" ColumnDefinitions="440,60" 
                               Width="500" Height="60" VerticalAlignment="Top">
                                 <Border Grid.Column="0" BorderBrush="#009b72">
@@ -47,18 +47,18 @@
                                                         <TextBox Grid.Column="0" 
                                                                  Classes="add-page-date-picker-textbox"
                                                                  Text="{Binding SelectedDay, 
-                                                                 Converter={StaticResource IntConverter}}"
+                                                                        Converter={StaticResource IntConverter}}"
                                                                  Width="90" MaxLength="2"/>
                                                         <TextBox Grid.Column="1" 
                                                                  Classes="add-page-date-picker-textbox"
                                                                  Text="{Binding SelectedMonth, 
-                                                                 Converter={StaticResource MonthConverter},
-                                                                 ConverterParameter={Binding}}"
+                                                                        Converter={StaticResource MonthConverter},
+                                                                        ConverterParameter={Binding}}"
                                                                  Width="200"/>
                                                         <TextBox Grid.Column="2" 
                                                                  Classes="add-page-date-picker-textbox"
                                                                  Text="{Binding SelectedYear, 
-                                                                 Converter={StaticResource IntConverter}}" 
+                                                                        Converter={StaticResource IntConverter}}" 
                                                                  Width="150" MaxLength="4"/>   
                                                 </Grid>
                                         </Panel> 
@@ -68,14 +68,16 @@
                         </Grid>
                         <TextBox Grid.Row="3" Classes="add-page-text-box"
                                  Width="100" Height="60" Watermark="Grade" MaxLength="5"
-                                 TextAlignment="Center" HorizontalContentAlignment="Center"/>
-                        <TextBox Grid.Row="4" Classes="add-page-text-box" 
-                                 Width="100" Height="60" Watermark="Weighting" MaxLength="5" Text="1.0"
-                                 TextAlignment="Center" HorizontalContentAlignment="Center"/>
-                        <CheckBox Grid.Row="5" Classes="add-page-checkbox" IsChecked="True">
+                                 TextAlignment="Center" HorizontalContentAlignment="Center"
+                                 Text="{Binding ElementGradeString}"/>
+                        <TextBox Grid.Row="4" Classes="add-page-text-box"
+                                 Width="100" Height="60" Watermark="Weighting" MaxLength="5"
+                                 TextAlignment="Center" HorizontalContentAlignment="Center"
+                                 Text="{Binding ElementWeightingString}"/>
+                        <CheckBox Grid.Row="5" Classes="add-page-checkbox" IsChecked="{Binding ElementCounts}">
                                 Grade counts?
                         </CheckBox>
-                        <Button Grid.Row="6" Classes="add-page-button">
+                        <Button Grid.Row="6" Classes="add-page-button" Command="{Binding CreateElement}">
                                 Create Grade
                         </Button>
                 </Grid> 

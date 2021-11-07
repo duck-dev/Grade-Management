@@ -1,31 +1,32 @@
 ﻿using System;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 using GradeManagement.Enums;
 using GradeManagement.ExtensionCollection;
 using GradeManagement.Models;
 using GradeManagement.UtilityCollection;
 using GradeManagement.ViewModels.BaseClasses;
 using ReactiveUI;
+using Calendar = Avalonia.Controls.Calendar;
 
 namespace GradeManagement.ViewModels.AddPages
 {
     public class AddGradeViewModel : AddViewModelBase
     {
-        private bool _calendarOpen;
-        
+        // Date
         private int _selectedDay = Utilities.TodaysDay;
         private MonthRepresentation _selectedMonth = new(Utilities.TodaysMonth);
         private int _selectedYear = Utilities.TodaysYear;
         
         private DateTime? _tempSelectedDate = DateTime.Today;
-
         private Calendar? _calendar;
-
-        public AddGradeViewModel()
-        {
-            Instance = this;
-        }
+        private bool _calendarOpen;
         
+        // Grade
+        private float _elementGrade;
+
+        public AddGradeViewModel() => Instance = this;
+
         internal static AddGradeViewModel? Instance { get; private set; }
 
         internal MonthRepresentation SelectedMonth
@@ -113,7 +114,22 @@ namespace GradeManagement.ViewModels.AddPages
                 this.RaiseAndSetIfChanged(ref _tempSelectedDate, value);
             }
         }
-        
+
+        protected string? ElementGradeString
+        {
+            get => string.Empty;
+            set
+            {
+                if (float.TryParse(value, out float grade))
+                    _elementGrade = grade;
+            }
+        }
+
+        protected override void CreateElement()
+        {
+            
+        }
+
         internal void DateChanged(object? sender, SelectionChangedEventArgs args)
         {
             if (sender is not Calendar calendar) 
@@ -121,6 +137,8 @@ namespace GradeManagement.ViewModels.AddPages
             _calendar = calendar;
             TempSelectedDate = calendar.SelectedDate;
         }
+
+        internal void GradeCountsChecked(object? sender, RoutedEventArgs args) => ElementCounts = !ElementCounts;
 
         private void ToggleCalendar()
         {
