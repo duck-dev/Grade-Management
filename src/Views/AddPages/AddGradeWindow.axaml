@@ -77,7 +77,8 @@
                         <CheckBox Grid.Row="5" Classes="add-page-checkbox" IsChecked="{Binding ElementCounts}">
                                 Grade counts?
                         </CheckBox>
-                        <Button Grid.Row="6" Classes="add-page-button" Command="{Binding CreateElement}">
+                        <Button Grid.Row="6" Classes="add-page-button" Command="{Binding CreateElement}"
+                                IsEnabled="{Binding DataComplete}">
                                 Create Grade
                         </Button>
                 </Grid> 
