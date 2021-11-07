@@ -5,6 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 using GradeManagement.Interfaces;
 using GradeManagement.Models;
 using GradeManagement.ViewModels.AddPages;
+using GradeManagement.ViewModels.BaseClasses;
 using GradeManagement.Views.AddPages;
 
 namespace GradeManagement.ViewModels.Lists

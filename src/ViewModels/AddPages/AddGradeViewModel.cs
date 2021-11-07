@@ -4,6 +4,7 @@ using GradeManagement.Enums;
 using GradeManagement.ExtensionCollection;
 using GradeManagement.Models;
 using GradeManagement.UtilityCollection;
+using GradeManagement.ViewModels.BaseClasses;
 using ReactiveUI;
 
 namespace GradeManagement.ViewModels.AddPages

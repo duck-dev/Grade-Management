@@ -7,6 +7,7 @@ using Avalonia.Controls;
 using Avalonia.Media;
 using GradeManagement.Interfaces;
 using GradeManagement.Models;
+using GradeManagement.ViewModels.BaseClasses;
 using GradeManagement.ViewModels.Lists;
 using ReactiveUI;
 

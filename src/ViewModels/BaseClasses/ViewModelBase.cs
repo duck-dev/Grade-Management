@@ -2,7 +2,7 @@
 using GradeManagement.Views;
 using ReactiveUI;
 
-namespace GradeManagement.ViewModels
+namespace GradeManagement.ViewModels.BaseClasses
 {
     public class ViewModelBase : ReactiveObject
     {

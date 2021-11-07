@@ -1,7 +1,7 @@
 using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using GradeManagement.ViewModels;
+using GradeManagement.ViewModels.BaseClasses;
 
 namespace GradeManagement
 {
