@@ -2,6 +2,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:addPages="clr-namespace:GradeManagement.ViewModels.AddPages"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="GradeManagement.Views.AddPages.AddYearWindow"
         Title="Add a new school year"
@@ -9,6 +10,10 @@
         Width="800"
         Height="600"
         CanResize="False">
+    
+    <Design.DataContext>
+        <addPages:AddYearViewModel/>
+    </Design.DataContext>
     
     <Window.Styles>
         <StyleInclude Source="/src/Styles/MainStyle.xaml"></StyleInclude>
@@ -21,10 +26,11 @@
                        Foreground="Black" FontWeight="Bold" FontSize="30">
                 New School Year:
             </TextBlock>
-            <Button Grid.Row="1" Classes="add-page-button">
+            <Button Grid.Row="1" Classes="add-page-button" Command="{Binding CreateElement}">
                 Create School Year
             </Button>
         </Grid>
-        <TextBox Classes="add-page-text-box" Watermark="Name of the School Year" MaxLength="35"/>
+        <TextBox Classes="add-page-text-box" Watermark="Name of the School Year" MaxLength="35"
+                 Text="{Binding ElementName}"/>
     </Panel>
 </Window>
