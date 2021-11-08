@@ -1,5 +1,6 @@
 ﻿using System;
 using GradeManagement.Interfaces;
+using GradeManagement.UtilityCollection;
 
 namespace GradeManagement.Models
 {
@@ -17,6 +18,7 @@ namespace GradeManagement.Models
         }
         
         public float GradeValue { get; private set; }
+        public float RoundedGrade => (float)Math.Round(GradeValue, 2);
         public float Weighting { get; private set; }
         public bool Counts { get; private set; }
         internal string Name { get; private set; }

@@ -7,14 +7,17 @@ using GradeManagement.Models;
 using GradeManagement.ViewModels.AddPages;
 using GradeManagement.ViewModels.BaseClasses;
 using GradeManagement.Views.AddPages;
+using ReactiveUI;
 
 namespace GradeManagement.ViewModels.Lists
 {
     [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
     public class GradeListViewModel : ListViewModelBase, IListViewModel<Grade>
     {
+        private ObservableCollection<Grade>? _items;
+        
         [Obsolete("Do NOT use this constructor, because it leaves the collection of grades uninitialized " +
-                         "and this leads to exceptions and unintended behaviour.")]
+                  "and this leads to exceptions and unintended behaviour.")]
         public GradeListViewModel() 
         {
             AddPage = new AddGradeWindow();
@@ -29,8 +32,12 @@ namespace GradeManagement.ViewModels.Lists
             Items = new ObservableCollection<Grade>(items);
             InitializeTopbarElements();
         }
-        
-        public ObservableCollection<Grade>? Items { get; set; }
+
+        public ObservableCollection<Grade>? Items
+        {
+            get => _items; 
+            set => this.RaiseAndSetIfChanged(ref _items, value);
+        }
         public bool EmptyCollection => Items?.Count == 0;
 
         internal override void ChangeTopbar()

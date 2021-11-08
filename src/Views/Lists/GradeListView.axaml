@@ -10,6 +10,16 @@
         <listViewModels:GradeListViewModel/>
     </Design.DataContext>
     
+    <UserControl.Styles>
+        <Style Selector="Button.grade-button /template/ ContentPresenter">
+            <Setter Property="CornerRadius" Value="20"/>
+        </Style>
+        <Style Selector="Button.grade-button:pointerover">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="RenderTransform" Value="scale(0.95)"/>
+        </Style>
+    </UserControl.Styles>
+    
     <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <TextBlock Foreground="#808080" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"
                    IsEnabled="{Binding EmptyCollection}" IsVisible="{Binding EmptyCollection}">
@@ -29,10 +39,33 @@
                         <Button Classes="grade-button"
                                 Command="{Binding $parent[Window].DataContext.OpenGrade}"
                                 CommandParameter="{Binding}"
+                                Width="500"
+                                Height="300"
+                                Margin="30, 30"
                                 BorderThickness="0"
                                 DragDrop.AllowDrop="True"
                                 PointerPressed="BeginDrag">
-                            
+                            <Grid VerticalAlignment="Stretch" RowDefinitions="*,*,*,*">
+                                <Panel Grid.Row="0" VerticalAlignment="Stretch">
+                                    <Viewbox HorizontalAlignment="Center" VerticalAlignment="Stretch" Height="46">
+                                        <TextBlock Text="{Binding Name}"
+                                                   FontWeight="Bold"
+                                                   Foreground="Black"
+                                                   HorizontalAlignment="Center"
+                                                   TextAlignment="Center"
+                                                   Margin="10 0 0 0"/>
+                                    </Viewbox>
+                                </Panel>
+                                <Panel Grid.Row="3" VerticalAlignment="Stretch">
+                                    <TextBlock Text="{Binding RoundedGrade}"
+                                               TextAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"
+                                               Foreground="Black"
+                                               FontSize="46"
+                                               FontWeight="Bold"></TextBlock>
+                                </Panel>
+                            </Grid>
                         </Button>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
