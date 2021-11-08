@@ -29,7 +29,10 @@ namespace GradeManagement.UtilityCollection
                 validationProtocol += 4;
 
             if (!monthValid || !yearValid)
+            {
+                validationProtocol += 1;
                 return false;
+            }
 
             bool dayValid = (day > 0) && (day <= DateTime.DaysInMonth(year, month));
             if (!dayValid)
