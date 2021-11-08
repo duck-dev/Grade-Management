@@ -55,6 +55,9 @@ namespace GradeManagement.ViewModels.AddPages
             {
                 this.RaiseAndSetIfChanged(ref _selectedMonth, value); // Important to force the UI to update;
                 this.RaisePropertyChanged(nameof(DataComplete));
+                
+                BorderBrushes![2].Color = NormalColor;
+                this.RaisePropertyChanged(nameof(BorderBrushes));
 
                 if (!Utilities.ValidateDate(_selectedDay, value.Month, _selectedYear, out DateType protocol)
                     || _tempSelectedDate is null)
@@ -67,9 +70,6 @@ namespace GradeManagement.ViewModels.AddPages
                     return;
                 }
 
-                BorderBrushes![2].Color = NormalColor;
-                this.RaisePropertyChanged(nameof(BorderBrushes));
-                
                 var newDate = _tempSelectedDate.Value;
                 SetDate(newDate.Day, value.Month, newDate.Year);
             }
@@ -124,7 +124,7 @@ namespace GradeManagement.ViewModels.AddPages
                 if (!validDate)
                 {
                     if (protocol.CustomHasFlag(DateType.Year))
-                        BorderBrushes[3].Color = IncompleteColor;
+                        BorderBrushes![3].Color = IncompleteColor;
                     this.RaisePropertyChanged(nameof(BorderBrushes));
                     
                     return;

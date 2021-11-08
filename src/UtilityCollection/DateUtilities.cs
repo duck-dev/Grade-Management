@@ -21,18 +21,15 @@ namespace GradeManagement.UtilityCollection
             validationProtocol = DateType.None;
 
             bool monthValid = month is > 0 and <= 12;
-            if (!monthValid)
-            {
-                validationProtocol = DateType.Month;
-                return false;
-            }
-            
             bool yearValid = year is >= 1 and <= 9999;
+            
+            if (!monthValid)
+                validationProtocol += 2;
             if (!yearValid)
-            {
-                validationProtocol = DateType.Year;
+                validationProtocol += 4;
+
+            if (!monthValid || !yearValid)
                 return false;
-            }
 
             bool dayValid = (day > 0) && (day <= DateTime.DaysInMonth(year, month));
             if (!dayValid)
