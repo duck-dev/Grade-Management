@@ -26,7 +26,14 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                    
+                        <Button Classes="grade-button"
+                                Command="{Binding $parent[Window].DataContext.OpenGrade}"
+                                CommandParameter="{Binding}"
+                                BorderThickness="0"
+                                DragDrop.AllowDrop="True"
+                                PointerPressed="BeginDrag">
+                            
+                        </Button>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

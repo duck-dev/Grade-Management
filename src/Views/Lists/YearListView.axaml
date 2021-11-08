@@ -11,7 +11,19 @@
     </Design.DataContext>
     
     <UserControl.Styles>
-        <StyleInclude Source="/src/Styles/YearListStyle.axaml"></StyleInclude>
+        <Style Selector="Button.year-button">
+            <Setter Property="RenderTransform" Value="scale(1)"/>
+        </Style>
+        <Style Selector="Button.year-button /template/ ContentPresenter">
+            <Setter Property="CornerRadius" Value="10"/>
+        </Style>
+        <Style Selector="Button.year-button:pointerover">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="RenderTransform" Value="scale(0.95)"/>
+        </Style>
+        <Style Selector="Button.year-button:pressed /template/ ContentPresenter">
+            <Setter Property="Background" Value="#b8babf"/>
+        </Style>
     </UserControl.Styles>
 
     <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
