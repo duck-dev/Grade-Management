@@ -42,6 +42,7 @@ namespace GradeManagement.ViewModels.BaseClasses
             {
                 _elementWeightingStr = value;
                 ElementWeighting = float.NaN;
+                BorderBrushes![WeightingIndex].Color = NormalColor;
 
                 if (float.TryParse(value, out float weighting))
                     ElementWeighting = weighting;
