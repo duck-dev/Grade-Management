@@ -28,9 +28,25 @@ namespace GradeManagement.UtilityCollection
             if (!yearValid)
                 validationProtocol += 4;
 
-            if (!monthValid || !yearValid)
+            if (!monthValid)
             {
-                validationProtocol += 1;
+                if(day is < 1 or > 31)
+                    validationProtocol += 1;
+                return false;
+            }
+
+            if (!yearValid)
+            {
+                if (month == 2)
+                {
+                    if(day is < 1 or > 29)
+                        validationProtocol += 1;
+                }
+                else
+                {
+                    if ((day <= 0) || (day > DateTime.DaysInMonth(2021, month)))
+                        validationProtocol += 1;
+                } 
                 return false;
             }
 
