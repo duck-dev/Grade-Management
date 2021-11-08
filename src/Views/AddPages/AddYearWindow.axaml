@@ -32,6 +32,7 @@
             </Button>
         </Grid>
         <TextBox Classes="add-page-text-box" Watermark="Name of the School Year" MaxLength="35"
-                 Text="{Binding ElementName}"/>
+                 Text="{Binding ElementName}"
+                 BorderBrush="{Binding BorderBrushes[0]}"/>
     </Panel>
 </Window>
