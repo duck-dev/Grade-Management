@@ -1,6 +1,5 @@
 ﻿using System;
 using Avalonia.Controls;
-using Avalonia.Interactivity;
 using Avalonia.Media;
 using GradeManagement.Enums;
 using GradeManagement.ExtensionCollection;
@@ -23,17 +22,23 @@ namespace GradeManagement.ViewModels.AddPages
         private Calendar? _calendar;
         private bool _calendarOpen;
         
-        // Grade
+        // Other parameters
         private float _elementGrade;
-        
-        // Name
-        private string? _elementName;
-        
-        // Colors for border (incomplete/complete selection)
-        private static readonly Color _incompleteColor = Color.Parse("#D64045");
-        private static readonly Color _normalColor = Color.Parse("#009b72");
+        private string? _elementGradeStr;
 
-        public AddGradeViewModel() => Instance = this;
+        public AddGradeViewModel()
+        {
+            Instance = this;
+            BorderBrushes = new SolidColorBrush[]
+            {
+                new(IncompleteColor),
+                new(NormalColor), new(NormalColor), new(NormalColor),
+                new(IncompleteColor),
+                new(IncompleteColor)
+            };
+            NameIndex = 0;
+            WeightingIndex = 5;
+        }
 
         internal static AddGradeViewModel? Instance { get; private set; }
 
@@ -42,30 +47,7 @@ namespace GradeManagement.ViewModels.AddPages
                                                 && !float.IsNaN(ElementWeighting)
                                                 && Utilities.ValidateDate(_selectedDay, _selectedMonth.Month, 
                                                                             _selectedYear, out _);
-
-        protected override SolidColorBrush[] BorderBrushes { get; } =
-        {
-            new(_incompleteColor),
-            new(_normalColor), new(_normalColor), new(_normalColor),
-            new(_incompleteColor),
-            new(_incompleteColor)
-        };
-
-        protected override string? ElementName
-        {
-            get => _elementName;
-            set
-            {
-                _elementName = value;
-                BorderBrushes[0].Color = _normalColor;
-                if (string.IsNullOrEmpty(value))
-                    BorderBrushes[0].Color = _incompleteColor;
-                
-                this.RaisePropertyChanged(nameof(BorderBrushes));
-                this.RaisePropertyChanged(nameof(DataComplete));
-            }
-        }
-
+        
         internal MonthRepresentation SelectedMonth
         {
             get => _selectedMonth;
@@ -74,19 +56,18 @@ namespace GradeManagement.ViewModels.AddPages
                 this.RaiseAndSetIfChanged(ref _selectedMonth, value); // Important to force the UI to update;
                 this.RaisePropertyChanged(nameof(DataComplete));
 
-                DateType protocol = DateType.None;
-                if (!Utilities.ValidateDate(_selectedDay, value.Month, _selectedYear, out protocol)
+                if (!Utilities.ValidateDate(_selectedDay, value.Month, _selectedYear, out DateType protocol)
                     || _tempSelectedDate is null)
                 {
                     if (!protocol.CustomHasFlag(DateType.Month)) 
                         return;
-                    BorderBrushes[2].Color = _incompleteColor;
+                    BorderBrushes![2].Color = IncompleteColor;
                     this.RaisePropertyChanged(nameof(BorderBrushes));
                     
                     return;
                 }
 
-                BorderBrushes[2].Color = _normalColor;
+                BorderBrushes![2].Color = NormalColor;
                 this.RaisePropertyChanged(nameof(BorderBrushes));
                 
                 var newDate = _tempSelectedDate.Value;
@@ -107,7 +88,7 @@ namespace GradeManagement.ViewModels.AddPages
                 this.RaiseAndSetIfChanged(ref _selectedDay, value); // Important to force the UI to update
                 this.RaisePropertyChanged(nameof(DataComplete));
                 
-                BorderBrushes[1].Color = _normalColor;
+                BorderBrushes![1].Color = NormalColor;
                 
                 if (Utilities.ValidateDate(value, _selectedMonth.Month, _selectedYear, out DateType protocol))
                 {
@@ -123,7 +104,7 @@ namespace GradeManagement.ViewModels.AddPages
                 else
                 {
                     if (protocol.CustomHasFlag(DateType.Day))
-                        BorderBrushes[1].Color = _incompleteColor;
+                        BorderBrushes[1].Color = IncompleteColor;
                 }
                 
                 this.RaisePropertyChanged(nameof(BorderBrushes));
@@ -137,13 +118,13 @@ namespace GradeManagement.ViewModels.AddPages
                 this.RaiseAndSetIfChanged(ref _selectedYear, value); // Important to force the UI to update
                 this.RaisePropertyChanged(nameof(DataComplete));
                 
-                BorderBrushes[3].Color = _normalColor;
+                BorderBrushes![3].Color = NormalColor;
 
                 var validDate = Utilities.ValidateDate(_selectedDay, _selectedMonth.Month, value, out var protocol);
                 if (!validDate)
                 {
                     if (protocol.CustomHasFlag(DateType.Year))
-                        BorderBrushes[3].Color = _incompleteColor;
+                        BorderBrushes[3].Color = IncompleteColor;
                     this.RaisePropertyChanged(nameof(BorderBrushes));
                     
                     return;
@@ -170,34 +151,19 @@ namespace GradeManagement.ViewModels.AddPages
             }
         }
 
-        protected string? ElementGradeString
+        private string? ElementGradeString
         {
-            get => string.Empty;
+            get => _elementGradeStr;
             set
             {
+                _elementGradeStr = value;
                 _elementGrade = float.NaN;
-                BorderBrushes[4].Color = _normalColor;
+                BorderBrushes![4].Color = NormalColor;
+                
                 if (float.TryParse(value, out float grade))
                     _elementGrade = grade;
                 else
-                    BorderBrushes[4].Color = _incompleteColor;
-
-                this.RaisePropertyChanged(nameof(BorderBrushes));
-                this.RaisePropertyChanged(nameof(DataComplete));
-            }
-        }
-
-        protected override string? ElementWeightingString
-        {
-            get => string.Empty;
-            set
-            {
-                ElementWeighting = float.NaN;
-                BorderBrushes[5].Color = _normalColor;
-                if (float.TryParse(value, out float weighting))
-                    ElementWeighting = weighting;
-                else
-                    BorderBrushes[5].Color = _incompleteColor;
+                    BorderBrushes[4].Color = IncompleteColor;
 
                 this.RaisePropertyChanged(nameof(BorderBrushes));
                 this.RaisePropertyChanged(nameof(DataComplete));
@@ -216,8 +182,6 @@ namespace GradeManagement.ViewModels.AddPages
             _calendar = calendar;
             TempSelectedDate = calendar.SelectedDate;
         }
-
-        internal void GradeCountsChecked(object? sender, RoutedEventArgs args) => ElementCounts = !ElementCounts;
 
         private void ToggleCalendar()
         {
