@@ -26,7 +26,7 @@
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="RenderTransform" Value="scale(0.95)"/>
         </Style>
-        <Style Selector="Button.year-button:pressed /template/ ContentPresenter">
+        <Style Selector="Button.grade-button:pressed /template/ ContentPresenter">
             <Setter Property="Background" Value="#b8babf"/>
         </Style>
         
