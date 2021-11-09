@@ -97,7 +97,7 @@
                                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         <TextBlock Grid.Column="1" TextAlignment="Center"
                                                    Text="{Binding Date}"
-                                                   Foreground="#999999"
+                                                   Foreground="#878787"
                                                    FontSize="30"
                                                    Margin="8, 0, 25, 0"
                                                    HorizontalAlignment="Center" VerticalAlignment="Center"/> 
@@ -106,7 +106,7 @@
                                     <TextBlock Grid.Column="1" TextAlignment="Center"
                                                Text="{Binding Path=Weighting, 
                                                              StringFormat='W  {0}'}"
-                                               Foreground="#999999"
+                                               Foreground="#878787"
                                                FontSize="30"
                                                Margin="25, 0, 0, 0"
                                                HorizontalAlignment="Center" VerticalAlignment="Top"/>
