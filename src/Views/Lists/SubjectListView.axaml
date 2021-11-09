@@ -12,7 +12,12 @@
     
     <UserControl.Styles>
         <Style Selector="Button.subject-button /template/ ContentPresenter">
+            <Setter Property="RenderTransform" Value="scale(1)"/>
             <Setter Property="CornerRadius" Value="20"/>
+            <Setter Property="Width" Value="350"/>
+            <Setter Property="Height" Value="350"/>
+            <Setter Property="Margin" Value="30,30"/>
+            <Setter Property="BorderThickness" Value="0"/>
         </Style>
         <Style Selector="Button.subject-button:pointerover">
             <Setter Property="Cursor" Value="Hand"/>
@@ -59,10 +64,6 @@
                     <Button Command="{Binding $parent[Window].DataContext.OpenSubject}"
                             CommandParameter="{Binding}"
                             Classes="subject-button"
-                            Width="350"
-                            Height="350"
-                            Margin="30, 30"
-                            BorderThickness="0"
                             DragDrop.AllowDrop="True"
                             PointerPressed="BeginDrag">
                         <Button.Background>

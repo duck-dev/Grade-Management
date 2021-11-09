@@ -11,6 +11,14 @@
     </Design.DataContext>
     
     <UserControl.Styles>
+        <Style Selector="Button.grade-button">
+            <Setter Property="RenderTransform" Value="scale(1)"/>
+            <Setter Property="Width" Value="500"/>
+            <Setter Property="Height" Value="300"/>
+            <Setter Property="Background" Value="#c7cad1"/>
+            <Setter Property="Margin" Value="30,30"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
         <Style Selector="Button.grade-button /template/ ContentPresenter">
             <Setter Property="CornerRadius" Value="20"/>
         </Style>
@@ -59,12 +67,13 @@
                         <Button Classes="grade-button"
                                 Command="{Binding $parent[Window].DataContext.OpenGrade}"
                                 CommandParameter="{Binding}"
-                                Width="500"
-                                Height="300"
-                                Margin="30, 30"
-                                BorderThickness="0"
                                 DragDrop.AllowDrop="True"
                                 PointerPressed="BeginDrag">
+                            <Button.Transitions>
+                                <Transitions>
+                                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
+                                </Transitions>
+                            </Button.Transitions>
                             <Grid VerticalAlignment="Stretch" RowDefinitions="*,*,*">
                                 <Panel Grid.Row="0" VerticalAlignment="Stretch">
                                     <Viewbox HorizontalAlignment="Center" VerticalAlignment="Stretch" Height="46">
