@@ -29,8 +29,9 @@ namespace GradeManagement.Models
             _counts = counts;
         }
         
+        public bool Counts => _counts;
+        public float GradeValue => Utilities.GetAverage(_grades, false);
         public float Weighting => _weighting;
-        
         public string SubjectColorHex => _subjectColorHex;
         public Color SubjectColor => Color.Parse(_subjectColorHex);
         public SolidColorBrush TitleBrush => 
@@ -60,8 +61,6 @@ namespace GradeManagement.Models
         public SolidColorBrush AdditionalInfoColor => 
             new(Utilities.AdjustForegroundBrightness(SubjectColor, AdditionalInfoDark, AdditionalInfoLight));
         
-        public float GradeValue => Utilities.GetAverage(_grades, false);
-        public bool Counts => _counts;
         internal float RoundedAverage => Utilities.GetAverage(_grades, true);
         internal string Name => _name;
         internal List<Grade> Grades => _grades;
