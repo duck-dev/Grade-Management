@@ -6,6 +6,7 @@ using GradeManagement.Models;
 using GradeManagement.ViewModels.AddPages;
 using GradeManagement.ViewModels.BaseClasses;
 using GradeManagement.Views.AddPages;
+using ReactiveUI;
 
 namespace GradeManagement.ViewModels.Lists
 {
@@ -25,6 +26,7 @@ namespace GradeManagement.ViewModels.Lists
 #pragma warning restore 618
         {
             Items = new ObservableCollection<SchoolYear>(years);
+            Items.CollectionChanged += (sender, args) => this.RaisePropertyChanged(nameof(EmptyCollection));
             InitializeTopbarElements();
         }
 

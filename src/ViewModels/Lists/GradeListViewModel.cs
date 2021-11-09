@@ -11,7 +11,6 @@ using ReactiveUI;
 
 namespace GradeManagement.ViewModels.Lists
 {
-    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
     public class GradeListViewModel : ListViewModelBase, IListViewModel<Grade>
     {
         private ObservableCollection<Grade>? _items;
@@ -30,6 +29,7 @@ namespace GradeManagement.ViewModels.Lists
 #pragma warning restore 618
         {
             Items = new ObservableCollection<Grade>(items);
+            Items.CollectionChanged += (sender, args) => this.RaisePropertyChanged(nameof(EmptyCollection));
             InitializeTopbarElements();
         }
 

@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics.CodeAnalysis;
 using GradeManagement.Interfaces;
 using GradeManagement.Models;
 using GradeManagement.ViewModels.AddPages;
 using GradeManagement.ViewModels.BaseClasses;
 using GradeManagement.Views.AddPages;
+using ReactiveUI;
 
 namespace GradeManagement.ViewModels.Lists
 {
-    [SuppressMessage("ReSharper", "ClassNeverInstantiated.Global")]
     public class SubjectListViewModel : ListViewModelBase, IListViewModel<Subject>
     {
         private readonly bool[] _elementsVisibilities = { true, false, false };
@@ -29,6 +28,7 @@ namespace GradeManagement.ViewModels.Lists
 #pragma warning restore 618
         {
             Items = new ObservableCollection<Subject>(items);
+            Items.CollectionChanged += (sender, args) => this.RaisePropertyChanged(nameof(EmptyCollection));
             InitializeTopbarElements();
         }
         
