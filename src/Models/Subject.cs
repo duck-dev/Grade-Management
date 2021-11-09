@@ -53,7 +53,7 @@ namespace GradeManagement.Models
             {
                 return Utilities.CreateLinearGradientBrush(new RelativePoint(0, 100, RelativeUnit.Relative),
                     new RelativePoint(100, 0, RelativeUnit.Relative),
-                    new[] {Utilities.DarkenColor(SubjectColor, 0.1f), Utilities.DarkenColor(_lightBackground, 0.1f)},
+                    new[] {Utilities.DarkenColor(SubjectColor, 0.075f), Utilities.DarkenColor(_lightBackground, 0.075f)},
                     new[] {0.0, 90.0});
             }
         }
