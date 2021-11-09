@@ -15,11 +15,11 @@ namespace GradeManagement.Models
             this.Counts = counts;
         }
         
+        public bool Counts { get; private set; }
         public float GradeValue { get; private set; }
         public float Weighting { get; private set; }
-        public bool Counts { get; private set; }
+        internal float RoundedGrade => (float)Math.Round(GradeValue, 2);
         internal string Name { get; private set; }
         internal string Date { get; private set; }
-        internal float RoundedGrade => (float)Math.Round(GradeValue, 2);
     }
 }
