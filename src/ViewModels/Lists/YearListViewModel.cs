@@ -12,6 +12,8 @@ namespace GradeManagement.ViewModels.Lists
 {
     public class YearListViewModel : ListViewModelBase, IListViewModel<SchoolYear>
     {
+        private ObservableCollection<SchoolYear>? _items;
+        
         [Obsolete("Do NOT use this constructor, because it leaves the collection of school years uninitialized " +
                   "and this leads to exceptions and unintended behaviour")]
         public YearListViewModel()
@@ -30,7 +32,15 @@ namespace GradeManagement.ViewModels.Lists
             InitializeTopbarElements();
         }
 
-        public ObservableCollection<SchoolYear>? Items { get; set; }
+        public ObservableCollection<SchoolYear>? Items
+        {
+            get => _items;
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _items, value);
+                this.RaisePropertyChanged(nameof(EmptyCollection));
+            }
+        }
         public bool EmptyCollection => Items?.Count == 0;
 
         internal override void ChangeTopbar()

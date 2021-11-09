@@ -35,8 +35,12 @@ namespace GradeManagement.ViewModels.Lists
 
         public ObservableCollection<Grade>? Items
         {
-            get => _items; 
-            set => this.RaiseAndSetIfChanged(ref _items, value);
+            get => _items;
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _items, value);
+                this.RaisePropertyChanged(nameof(EmptyCollection));
+            }
         }
         public bool EmptyCollection => Items?.Count == 0;
 

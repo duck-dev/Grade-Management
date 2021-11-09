@@ -13,6 +13,7 @@ namespace GradeManagement.ViewModels.Lists
     public class SubjectListViewModel : ListViewModelBase, IListViewModel<Subject>
     {
         private readonly bool[] _elementsVisibilities = { true, false, false };
+        private ObservableCollection<Subject>? _items;
 
         [Obsolete("Do NOT use this constructor, because it leaves the collection of subjects uninitialized " +
                   "and this leads to exceptions and unintended behaviour")]
@@ -32,7 +33,15 @@ namespace GradeManagement.ViewModels.Lists
             InitializeTopbarElements();
         }
         
-        public ObservableCollection<Subject>? Items { get; set; }
+        public ObservableCollection<Subject>? Items
+        {
+            get => _items;
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _items, value);
+                this.RaisePropertyChanged(nameof(EmptyCollection));
+            }
+        }
         public bool EmptyCollection => Items?.Count == 0;
 
         internal override void ChangeTopbar()
