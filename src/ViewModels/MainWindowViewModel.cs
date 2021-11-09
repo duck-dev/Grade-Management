@@ -7,8 +7,10 @@ using Avalonia.Controls;
 using Avalonia.Media;
 using GradeManagement.Interfaces;
 using GradeManagement.Models;
+using GradeManagement.ViewModels.AddPages;
 using GradeManagement.ViewModels.BaseClasses;
 using GradeManagement.ViewModels.Lists;
+using GradeManagement.Views.AddPages;
 using ReactiveUI;
 
 namespace GradeManagement.ViewModels
@@ -41,49 +43,6 @@ namespace GradeManagement.ViewModels
         
         internal ListViewModelBase[] Views => _views.ToArray();
 
-        internal void OpenGrade(Grade grade)
-        {
-            
-        }
-        
-        internal void OpenSubject(Subject subject)
-        {
-            if (TopbarTexts?[2] is TextBlock textBlock)
-            {
-                textBlock.Text = subject.Name;
-                textBlock.Foreground = new SolidColorBrush(subject.SubjectColor);
-            }
-            SwitchPage<GradeListViewModel, Grade>(subject.Grades);
-        }
-        
-        internal void OpenYear(SchoolYear year)
-        {
-            if (TopbarTexts?[0] is TextBlock textBlock)
-                textBlock.Text = year.Name;
-            SwitchPage<SubjectListViewModel, Subject>(year.Subjects);
-            CurrentYear = year;
-        }
-
-        internal void OpenAddPage()
-        {
-            _addButton.IsVisible = false;
-            if (_content.AddPage is null && _content.AddPageType is null)
-                throw new Exception("_content.AddPageType is null.");
-            
-            _content.AddPage ??= (Window)Activator.CreateInstance(_content.AddPageType!)!;
-            _content.AddPage.DataContext = Activator.CreateInstance(_content.AddViewModelType!);
-            _content.AddPage.ShowDialog(MainWindowInstance);
-
-            EventHandler<CancelEventArgs>? closingDel = null;
-            closingDel = delegate
-            {
-                _addButton.IsVisible = true;
-                _content.AddPage.Closing -= closingDel;
-                _content.AddPage = null;
-            };
-            _content.AddPage.Closing += closingDel;
-        }
-
         internal void SwitchPage<T, TItems>(IEnumerable<TItems> items) where T : ListViewModelBase, 
         IListViewModel<TItems>
         {
@@ -99,6 +58,72 @@ namespace GradeManagement.ViewModels
             }
             _content.ChangeTopbar();
             _addButton.IsVisible = true;
+        }
+        
+        private void OpenGrade(Grade grade)
+        {
+            // TODO: Insert grade-data, change title inside window, change window-title
+            ShowAddPage<AddGradeWindow, AddGradeViewModel>();
+        }
+
+        private void OpenSubject(Subject subject)
+        {
+            if (TopbarTexts?[2] is TextBlock textBlock)
+            {
+                textBlock.Text = subject.Name;
+                textBlock.Foreground = new SolidColorBrush(subject.SubjectColor);
+            }
+            SwitchPage<GradeListViewModel, Grade>(subject.Grades);
+        }
+        
+        private void OpenYear(SchoolYear year)
+        {
+            if (TopbarTexts?[0] is TextBlock textBlock)
+                textBlock.Text = year.Name;
+            SwitchPage<SubjectListViewModel, Subject>(year.Subjects);
+            CurrentYear = year;
+        }
+        
+        private void OpenAddPage()
+        {
+            _addButton.IsVisible = false;
+            ShowAddPage(_content.AddPageType, _content.AddViewModelType);
+        }
+
+        private void ShowAddPage<TWindow, TViewModel>() where TWindow : Window, new() 
+                                                        where TViewModel : AddViewModelBase, new()
+        {
+            var window = new TWindow();
+            _content.AddPage = window;
+            window.DataContext = new TViewModel();
+            window.ShowDialog(MainWindowInstance);
+            
+            CatchClosingWindow(window);
+        }
+
+        private void ShowAddPage(Type? windowType, Type? viewModelType)
+        {
+            if (windowType is null || viewModelType is null)
+                return;
+
+            var window = (Window) Activator.CreateInstance(windowType)!;
+            _content.AddPage = window;
+            window.DataContext = Activator.CreateInstance(viewModelType);
+            window.ShowDialog(MainWindowInstance);
+            
+            CatchClosingWindow(window);
+        }
+
+        private void CatchClosingWindow(Window window)
+        {
+            EventHandler<CancelEventArgs>? closingDel = null;
+            closingDel = delegate
+            {
+                _addButton.IsVisible = true;
+                window.Closing -= closingDel;
+                _content.AddPage = null;
+            };
+            window.Closing += closingDel;
         }
 
         private static void GenerateExampleYear() // TODO: Remove this function, it is only used to test the behaviour
