@@ -45,7 +45,7 @@
                                 BorderThickness="0"
                                 DragDrop.AllowDrop="True"
                                 PointerPressed="BeginDrag">
-                            <Grid VerticalAlignment="Stretch" RowDefinitions="*,*,*,*">
+                            <Grid VerticalAlignment="Stretch" RowDefinitions="*,*,*">
                                 <Panel Grid.Row="0" VerticalAlignment="Stretch">
                                     <Viewbox HorizontalAlignment="Center" VerticalAlignment="Stretch" Height="46">
                                         <TextBlock Text="{Binding Name}"
@@ -56,7 +56,30 @@
                                                    Margin="10 0 0 0"/>
                                     </Viewbox>
                                 </Panel>
-                                <Panel Grid.Row="3" VerticalAlignment="Stretch">
+                                <Grid Grid.Row="1" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center"
+                                      VerticalAlignment="Top">
+                                    <Grid Grid.Column="0" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center"
+                                          VerticalAlignment="Center">
+                                        <Image Grid.Column="0" Source="/Assets/avalonia-logo.ico" 
+                                               Margin="0,0,8,0" Width="30" Height="30"
+                                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <TextBlock Grid.Column="1" TextAlignment="Center"
+                                                   Text="{Binding Date}"
+                                                   Foreground="#999999"
+                                                   FontSize="30"
+                                                   Margin="8, 0, 25, 0"
+                                                   HorizontalAlignment="Center" VerticalAlignment="Center"/> 
+                                                    <!--TODO: Consider culture-->
+                                    </Grid>
+                                    <TextBlock Grid.Column="1" TextAlignment="Center"
+                                               Text="{Binding Path=Weighting, 
+                                                             StringFormat='W  {0}'}"
+                                               Foreground="#999999"
+                                               FontSize="30"
+                                               Margin="25, 0, 0, 0"
+                                               HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                                </Grid>
+                                <Panel Grid.Row="2" VerticalAlignment="Stretch">
                                     <TextBlock Text="{Binding RoundedGrade}"
                                                TextAlignment="Center"
                                                VerticalAlignment="Center"
