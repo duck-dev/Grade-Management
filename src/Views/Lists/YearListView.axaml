@@ -24,13 +24,33 @@
         <Style Selector="Button.year-button:pressed /template/ ContentPresenter">
             <Setter Property="Background" Value="#b8babf"/>
         </Style>
+        
+        <Style Selector="TextBlock.no-elements-text">
+            <Setter Property="Foreground" Value="#808080"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
     </UserControl.Styles>
 
     <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <TextBlock Foreground="#808080" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"
-                   IsEnabled="{Binding EmptyCollection}" IsVisible="{Binding EmptyCollection}">
-            There are no school years yet. You can add a new year by using the green button in the bottom right corner.
-        </TextBlock>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    IsEnabled="{Binding EmptyCollection}" 
+                    IsVisible="{Binding EmptyCollection}">
+            <TextBlock Classes="no-elements-text" Margin="0,0,8,0">
+                This subject doesn't yet contain grades. You can add a new grade with the green button
+            </TextBlock>
+            <Viewbox Width="40" Height="40" VerticalAlignment="Center">
+                <Grid Width="24" Height="24">
+                    <Ellipse Fill="#009B72"/>
+                    <TextBlock Text="+" FontSize="16" FontWeight="Bold" TextAlignment="Center" 
+                               VerticalAlignment="Center" HorizontalAlignment="Center" 
+                               Foreground="White"/>
+                </Grid>
+            </Viewbox>
+            <TextBlock Classes="no-elements-text" Margin="8,0,0,0">
+                in the bottom-right corner.
+            </TextBlock>
+        </StackPanel>
         
         <ScrollViewer VerticalScrollBarVisibility="Auto"
                   HorizontalScrollBarVisibility="Disabled">
