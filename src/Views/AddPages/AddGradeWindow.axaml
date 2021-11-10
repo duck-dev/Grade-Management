@@ -29,10 +29,8 @@
         
         <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid RowDefinitions="*,*,*,*,*,*,*">
-                        <TextBlock Grid.Row="0" Classes="add-page-title-text">
-                                New Grade:
-                        </TextBlock>
-                        <!-- <Button Grid.Row="0" Classes="add-page-back-button"> -->
+                        <TextBlock Grid.Row="0" Classes="add-page-title-text" Text="{Binding Title}"/>
+                                <!-- <Button Grid.Row="0" Classes="add-page-back-button"> -->
                         <!--         <Button.Content> -->
                         <!--                 <Image Source="/Assets/Images/back-button-arrow.png"/> -->
                         <!--         </Button.Content> -->
@@ -84,8 +82,8 @@
                                 Grade counts?
                         </CheckBox>
                         <Button Grid.Row="6" Classes="add-page-button" Command="{Binding CreateElement}"
-                                IsEnabled="{Binding DataComplete}">
-                                Create Grade
+                                IsEnabled="{Binding DataComplete}" 
+                                Content="{Binding ButtonText}">
                         </Button>
                 </Grid> 
                 <Panel Opacity="0.6" Background="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"

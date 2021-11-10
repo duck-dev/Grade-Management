@@ -11,7 +11,7 @@ namespace GradeManagement.Models
             this.Name = name;
             this.GradeValue = value;
             this.Weighting = weighting;
-            this.Date = date.ToString("dd.MM.yyyy", CultureInfo.CurrentCulture); // TODO: Use selected culture
+            this.Date = date;
             this.Counts = counts;
         }
         
@@ -20,6 +20,7 @@ namespace GradeManagement.Models
         public float Weighting { get; private set; }
         internal float RoundedGrade => (float)Math.Round(GradeValue, 2);
         internal string Name { get; private set; }
-        internal string Date { get; private set; }
+        internal DateTime Date { get; private set; }
+        internal string DateString => Date.ToString("dd.MM.yyyy", CultureInfo.CurrentCulture);
     }
 }

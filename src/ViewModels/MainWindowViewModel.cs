@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using Avalonia.Controls;
 using Avalonia.Media;
@@ -63,7 +64,22 @@ namespace GradeManagement.ViewModels
         private void OpenGrade(Grade grade)
         {
             // TODO: Insert grade-data, change title inside window, change window-title
-            ShowAddPage<AddGradeWindow, AddGradeViewModel>();
+            var window = ShowAddPage<AddGradeWindow, AddGradeViewModel>();
+            window.Title = grade.Name;
+
+            if (window.DataContext is not AddGradeViewModel viewModel) 
+                return;
+            
+            viewModel.EditPageText<AddGradeViewModel>(AddPageAction.Edit, grade.Name);
+
+            viewModel.ElementName = grade.Name;
+            viewModel.ElementGradeString = grade.GradeValue.ToString(CultureInfo.CurrentCulture); // TODO: Change culture to selected
+            viewModel.ElementWeightingString = grade.Weighting.ToString(CultureInfo.CurrentCulture); // TODO: Change culture to selected
+            viewModel.ElementCounts = grade.Counts;
+            
+            viewModel.SelectedDay = grade.Date.Day;
+            viewModel.SelectedMonth = new MonthRepresentation(grade.Date.Month);
+            viewModel.SelectedYear = grade.Date.Year;
         }
 
         private void OpenSubject(Subject subject)
@@ -87,31 +103,40 @@ namespace GradeManagement.ViewModels
         private void OpenAddPage()
         {
             _addButton.IsVisible = false;
-            ShowAddPage(_content.AddPageType, _content.AddViewModelType);
+            var window = ShowAddPage(_content.AddPageType, _content.AddViewModelType);
+            if (window?.DataContext is AddViewModelBase viewModel)
+                viewModel.EditPageText(AddPageAction.Create, _content.AddViewModelType!);
         }
 
-        private void ShowAddPage<TWindow, TViewModel>() where TWindow : Window, new() 
+        private TWindow ShowAddPage<TWindow, TViewModel>() where TWindow : Window, new() 
                                                         where TViewModel : AddViewModelBase, new()
         {
             var window = new TWindow();
             _content.AddPage = window;
-            window.DataContext = new TViewModel();
+
+            window.DataContext = _views.Any(x => x.GetType() == typeof(TViewModel))
+                                 ? _views.Find(x => x.GetType() == typeof(TViewModel))
+                                 : new TViewModel();
+
             window.ShowDialog(MainWindowInstance);
-            
             CatchClosingWindow(window);
+            return window;
         }
 
-        private void ShowAddPage(Type? windowType, Type? viewModelType)
+        private Window? ShowAddPage(Type? windowType, Type? viewModelType)
         {
-            if (windowType is null || viewModelType is null)
-                return;
-
-            var window = (Window) Activator.CreateInstance(windowType)!;
-            _content.AddPage = window;
-            window.DataContext = Activator.CreateInstance(viewModelType);
-            window.ShowDialog(MainWindowInstance);
+            if (windowType is null || viewModelType is null || Activator.CreateInstance(windowType) is not Window window)
+                return null;
             
+            _content.AddPage = window;
+            
+            window.DataContext = _views.Any(x => x.GetType() == viewModelType) 
+                                 ? _views.Find(x => x.GetType() == viewModelType) 
+                                 : Activator.CreateInstance(viewModelType);
+            
+            window.ShowDialog(MainWindowInstance);
             CatchClosingWindow(window);
+            return window;
         }
 
         private void CatchClosingWindow(Window window)
@@ -152,7 +177,7 @@ namespace GradeManagement.ViewModels
                     }, true),
                     new Subject("Math", 1.0f, "#D64045", new Grade[]
                     {
-                        new Grade("First exam Math", 6f, 1.0f, DateTime.Today, true)
+                        new Grade("First exam Math", 6f, 1.0f, new DateTime(2010,7,28), true)
                     }, true)
                 })
             };

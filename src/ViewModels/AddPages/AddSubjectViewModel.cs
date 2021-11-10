@@ -9,6 +9,7 @@ namespace GradeManagement.ViewModels.AddPages
         {
             BorderBrushes = new SolidColorBrush[] { new(IncompleteColor), new(IncompleteColor) };
             WeightingIndex = 1;
+            EditPageText(AddPageAction.Create, this.GetType());
         }
 
         protected override bool DataComplete => !string.IsNullOrEmpty(ElementName) 
