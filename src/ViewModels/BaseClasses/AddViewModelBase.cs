@@ -87,7 +87,7 @@ namespace GradeManagement.ViewModels.BaseClasses
         {
             string type = pageType switch
             {
-                { } yearType when yearType == typeof(AddYearViewModel) => "Year",
+                { } yearType when yearType == typeof(AddYearViewModel) => "School Year",
                 { } subjectType when subjectType == typeof(AddSubjectViewModel) => "Subject",
                 { } gradeType when gradeType == typeof(AddGradeViewModel) => "Grade",
                 _ => throw new ArgumentException("The passed `pageType` should be an `AddViewModelBase` inheritor.",

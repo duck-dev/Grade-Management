@@ -22,9 +22,7 @@
         
         <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid RowDefinitions="*,*,*,*,*">
-                      <TextBlock Grid.Row="0" Classes="add-page-title-text">
-                              New Subject:
-                      </TextBlock>
+                      <TextBlock Grid.Row="0" Classes="add-page-title-text" Text="{Binding Title}"/>
                       <!-- <Button Grid.Row="0" Classes="add-page-back-button"> -->
                       <!--         <Button.Content> -->
                       <!--                 <Image Source="/Assets/Images/back-button-arrow.png"/> -->
@@ -44,9 +42,8 @@
                               Count subject for year's average?
                       </CheckBox>
                       <Button Grid.Row="4" Classes="add-page-button" Command="{Binding CreateElement}"
-                              IsEnabled="{Binding DataComplete}">
-                              Create Subject
-                      </Button>
+                              IsEnabled="{Binding DataComplete}"
+                              Content="{Binding ButtonText}"/>
                 </Grid>
         </Panel>
 </Window>
