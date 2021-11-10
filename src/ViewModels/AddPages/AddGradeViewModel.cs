@@ -48,7 +48,10 @@ namespace GradeManagement.ViewModels.AddPages
                                                 && !float.IsNaN(_elementGrade)
                                                 && !float.IsNaN(ElementWeighting)
                                                 && Utilities.ValidateDate(_selectedDay, _selectedMonth.Month, 
-                                                                            _selectedYear, out _);
+                                                                            _selectedYear, out _)
+                                                && DataChanged();
+        
+        internal Grade? EditedGrade { get; set; } // When editing year, overwrite this property with `Grade`
 
         internal int SelectedDay
         {
@@ -174,7 +177,7 @@ namespace GradeManagement.ViewModels.AddPages
 
         protected override void CreateElement()
         {
-            
+            EditedGrade = null;
         }
 
         internal void DateChanged(object? sender, SelectionChangedEventArgs args)
@@ -183,6 +186,25 @@ namespace GradeManagement.ViewModels.AddPages
                 return;
             _calendar = calendar;
             TempSelectedDate = calendar.SelectedDate;
+        }
+        
+        protected internal override void StopEditing()
+        {
+            EditedGrade = null;
+        }
+        
+        private bool DataChanged()
+        {
+            if (EditedGrade is null)
+                return true;
+            
+            var date = EditedGrade.Date;
+            return ElementName is not null && (!ElementName.Trim().Equals(EditedGrade.Name.Trim()) 
+                                               || !ElementWeighting.Equals(EditedGrade.Weighting)
+                                               || !_elementGrade.Equals(EditedGrade.GradeValue)
+                                               || _selectedDay != date.Day || _selectedMonth.Month != date.Month || 
+                                               _selectedYear != date.Year 
+                                               || ElementCounts != EditedGrade.Counts);
         }
 
         private void ToggleCalendar()

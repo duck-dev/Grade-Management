@@ -63,12 +63,13 @@ namespace GradeManagement.ViewModels
         
         private void OpenGrade(Grade grade)
         {
-            // TODO: Insert grade-data, change title inside window, change window-title
             var window = ShowAddPage<AddGradeWindow, AddGradeViewModel>();
             window.Title = grade.Name;
 
             if (window.DataContext is not AddGradeViewModel viewModel) 
                 return;
+
+            viewModel.EditedGrade = grade;
             
             viewModel.EditPageText<AddGradeViewModel>(AddPageAction.Edit, grade.Name);
 
@@ -147,6 +148,8 @@ namespace GradeManagement.ViewModels
                 _addButton.IsVisible = true;
                 window.Closing -= closingDel;
                 _content.AddPage = null;
+                if (window.DataContext is AddViewModelBase viewModel)
+                    viewModel.StopEditing();
             };
             window.Closing += closingDel;
         }

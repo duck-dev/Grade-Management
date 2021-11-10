@@ -111,5 +111,10 @@ namespace GradeManagement.ViewModels.BaseClasses
         {
             
         }
+        
+        protected internal virtual void StopEditing()
+        {
+            
+        }
     }
 }
