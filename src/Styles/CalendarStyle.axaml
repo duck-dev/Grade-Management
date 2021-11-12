@@ -5,6 +5,7 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="Margin" Value="0, 50,0, 0"/>
+        <Setter Property="Background" Value="#e6e6e6"/>
     </Style>
     
     <Style Selector="CalendarDayButton">
