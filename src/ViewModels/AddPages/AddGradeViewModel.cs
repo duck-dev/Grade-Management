@@ -177,6 +177,7 @@ namespace GradeManagement.ViewModels.AddPages
 
         protected override void CreateElement()
         {
+            base.CreateElement();
             EditedGrade = null;
         }
 

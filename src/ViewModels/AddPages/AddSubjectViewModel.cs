@@ -18,6 +18,12 @@ namespace GradeManagement.ViewModels.AddPages
                                                 && DataChanged();
         
         internal Subject? EditedSubject { get; set; } // TODO: When editing year, overwrite this property with `Subject`
+        
+        protected override void CreateElement()
+        {
+            base.CreateElement();
+            EditedSubject = null;
+        }
 
         protected internal override void StopEditing()
         {
