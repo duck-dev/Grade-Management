@@ -23,7 +23,7 @@ namespace GradeManagement.Converters
             //     throw new ArgumentException("The type of the `parameter` argument should be `AddGradeViewModel`.");
 
             if (value is not string monthName) 
-                return ConversionFailed();
+                return ConversionFailed(); // Pass `viewModel` to method
             
             // ReSharper disable once InlineOutVariableDeclaration
             int monthNumber;
@@ -32,21 +32,15 @@ namespace GradeManagement.Converters
                 if (!Utilities.ValidateDate(1, monthNumber, Utilities.TodaysYear, out var protocol)
                     && protocol.CustomHasFlag(DateType.Month))
                 {
-                    return ConversionFailed();
+                    return ConversionFailed(); // Pass `viewModel` to method
                 }
-                // viewModel.SelectedMonth.Month = monthNumber;
-                // return viewModel.SelectedMonth;
                 return new MonthRepresentation(monthNumber);
             } 
             else if (TryConvertMonth(monthName, out monthNumber) &&
                      Utilities.ValidateDate(1, monthNumber, Utilities.TodaysYear, out _))
-            {
-                // viewModel.SelectedMonth.MonthName = monthName;
-                // return viewModel.SelectedMonth;
                 return new MonthRepresentation(monthName);
-            }
 
-            return ConversionFailed();
+            return ConversionFailed(); // Pass `viewModel` to method
         }
 
         internal static string ConvertMonth(int month)
