@@ -8,6 +8,7 @@
         <Setter Property="Background" Value="#e6e6e6"/>
     </Style>
     
+    <!-- CalendarDayButton -->
     <Style Selector="CalendarDayButton">
         <Setter Property="RenderTransform" Value="scale(1)"/>
         <Setter Property="Background" Value="#d4d4d4"/>
@@ -67,5 +68,49 @@
     </Style>
     <Style Selector="CalendarDayButton:inactive:pointerover">
         <Setter Property="Background" Value="#d1d1d1"/>
+    </Style>
+    
+    <!-- CalendarButton (year and month) -->
+    <Style Selector="CalendarButton">
+        <Setter Property="RenderTransform" Value="scale(1)"/>
+        <Setter Property="Background" Value="#d4d4d4"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="CalendarButton">
+                    <Grid>
+                        <Border Background="{TemplateBinding Background}" CornerRadius="5">
+                            <Border.Transitions>
+                                <Transitions>
+                                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
+                                </Transitions>
+                            </Border.Transitions>
+                        </Border>
+                        <ContentControl>
+                            <TextBlock Text="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" 
+                                       FontSize="{TemplateBinding FontSize}"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"/>
+                        </ContentControl>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style Selector="CalendarButton:pointerover">
+        <Setter Property="RenderTransform" Value="scale(0.95)"/>
+        <Setter Property="Background" Value="#dcdcdc"/> <!--If overriden by `CalendarDayButton:state:pointerover`, 
+                                                        this doesn't have any effect for the overriden selectors,
+                                                        but the overriden value will be used.-->
+    </Style>
+    
+    <Style Selector="CalendarButton:selected">
+        <Setter Property="Background" Value="#009B72"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+    <Style Selector="CalendarButton:selected:pointerover">
+        <Setter Property="Background" Value="#08a37a"/>
     </Style>
 </Styles>
