@@ -46,7 +46,13 @@
             <Setter.Value>
                 <ControlTemplate TargetType="CalendarDayButton">
                     <Grid>
-                        <Border Classes="calendar-day-button" BorderBrush="#009B72" BorderThickness="3"/>
+                        <Border Classes="calendar-day-button" BorderBrush="#009B72" BorderThickness="3">
+                            <Border.Transitions>
+                                <Transitions>
+                                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
+                                </Transitions>
+                            </Border.Transitions>
+                        </Border>
                         <ContentControl>
                             <TextBlock Text="{TemplateBinding Content}" Classes="calendar-day-text"/>
                         </ContentControl>
@@ -61,7 +67,13 @@
             <Setter.Value>
                 <ControlTemplate TargetType="CalendarDayButton">
                     <Grid>
-                        <Border Classes="calendar-day-button" Background="#009B72"/>
+                        <Border Classes="calendar-day-button" Background="#009B72">
+                            <Border.Transitions>
+                                <Transitions>
+                                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
+                                </Transitions>
+                            </Border.Transitions>
+                        </Border>
                         <ContentControl>
                             <TextBlock Text="{TemplateBinding Content}" Classes="calendar-day-text" 
                                        Foreground="White" FontWeight="Bold"/>
@@ -77,7 +89,13 @@
             <Setter.Value>
                 <ControlTemplate TargetType="CalendarDayButton">
                     <Grid>
-                        <Border Classes="calendar-day-button" Background="#c9c9c9"/>
+                        <Border Classes="calendar-day-button" Background="#c9c9c9">
+                            <Border.Transitions>
+                                <Transitions>
+                                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
+                                </Transitions>
+                            </Border.Transitions>
+                        </Border>
                         <ContentControl>
                             <TextBlock Text="{TemplateBinding Content}" Classes="calendar-day-text" 
                                        Foreground="#808080"/>
