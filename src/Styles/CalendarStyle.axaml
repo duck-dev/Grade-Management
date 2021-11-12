@@ -9,19 +9,25 @@
     
     <Style Selector="CalendarDayButton">
         <Setter Property="RenderTransform" Value="scale(1)"/>
+        <Setter Property="Background" Value="#d4d4d4"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontSize" Value="16"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="CalendarDayButton">
                     <Grid>
-                        <Border Classes="calendar-day-button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="5"
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}">
                             <Border.Transitions>
                                 <Transitions>
                                     <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
                                 </Transitions>
                             </Border.Transitions>
                         </Border>
-                            <ContentControl>
-                            <TextBlock Text="{TemplateBinding Content}" Foreground="Black" FontSize="16"
+                        <ContentControl>
+                            <TextBlock Text="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" 
+                                       FontSize="{TemplateBinding FontSize}" FontWeight="{TemplateBinding FontWeight}"
                                        HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"/>
                         </ContentControl>
                     </Grid>
@@ -29,84 +35,45 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <Style Selector="Border.calendar-day-button">
+    <Style Selector="CalendarDayButton /template/ ContentPresenter">
         <Setter Property="CornerRadius" Value="5"/>
-        <Setter Property="Background" Value="#d4d4d4"/>
     </Style>
-    <Style Selector="TextBlock.calendar-day-text">
-        <Setter Property="Foreground" Value="Black"/>
-        <Setter Property="FontSize" Value="16"/>
-        <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="TextAlignment" Value="Center"/>
-    </Style>
-    
-    <Style Selector="CalendarDayButton:today">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="CalendarDayButton">
-                    <Grid>
-                        <Border Classes="calendar-day-button" BorderBrush="#009B72" BorderThickness="3">
-                            <Border.Transitions>
-                                <Transitions>
-                                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
-                                </Transitions>
-                            </Border.Transitions>
-                        </Border>
-                        <ContentControl>
-                            <TextBlock Text="{TemplateBinding Content}" Classes="calendar-day-text"/>
-                        </ContentControl>
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    
-    <Style Selector="CalendarDayButton:selected">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="CalendarDayButton">
-                    <Grid>
-                        <Border Classes="calendar-day-button" Background="#009B72">
-                            <Border.Transitions>
-                                <Transitions>
-                                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
-                                </Transitions>
-                            </Border.Transitions>
-                        </Border>
-                        <ContentControl>
-                            <TextBlock Text="{TemplateBinding Content}" Classes="calendar-day-text" 
-                                       Foreground="White" FontWeight="Bold"/>
-                        </ContentControl>
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    
-    <Style Selector="CalendarDayButton:inactive">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="CalendarDayButton">
-                    <Grid>
-                        <Border Classes="calendar-day-button" Background="#c9c9c9">
-                            <Border.Transitions>
-                                <Transitions>
-                                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
-                                </Transitions>
-                            </Border.Transitions>
-                        </Border>
-                        <ContentControl>
-                            <TextBlock Text="{TemplateBinding Content}" Classes="calendar-day-text" 
-                                       Foreground="#808080"/>
-                        </ContentControl>
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+    <!-- <Style Selector="Border.calendar-day-button"> -->
+    <!--     <Setter Property="CornerRadius" Value="5"/> -->
+    <!--     <Setter Property="Background" Value="#d4d4d4"/> -->
+    <!-- </Style> -->
+    <!-- <Style Selector="TextBlock.calendar-day-text"> -->
+    <!--     <Setter Property="Foreground" Value="Black"/> -->
+    <!--     <Setter Property="FontSize" Value="16"/> -->
+    <!--     <Setter Property="HorizontalAlignment" Value="Center"/> -->
+    <!--     <Setter Property="VerticalAlignment" Value="Center"/> -->
+    <!--     <Setter Property="TextAlignment" Value="Center"/> -->
+    <!-- </Style> -->
     
     <Style Selector="CalendarDayButton:pointerover">
         <Setter Property="RenderTransform" Value="scale(0.95)"/>
+        <Setter Property="Background" Value="#dcdcdc"/> <!--If overriden, this doesn't have any effect for the overriden selectors-->
+    </Style>
+    
+    <Style Selector="CalendarDayButton:today">
+        <Setter Property="BorderBrush" Value="#009B72"/>
+        <Setter Property="BorderThickness" Value="3"/>
+    </Style>
+    
+    <Style Selector="CalendarDayButton:selected">
+        <Setter Property="Background" Value="#009B72"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+    <Style Selector="CalendarDayButton:selected:pointerover">
+        <Setter Property="Background" Value="#08a37a"/>
+    </Style>
+    
+    <Style Selector="CalendarDayButton:inactive">
+        <Setter Property="Background" Value="#c9c9c9"/>
+        <Setter Property="Foreground" Value="#808080"/>
+    </Style>
+    <Style Selector="CalendarDayButton:inactive:pointerover">
+        <Setter Property="Background" Value="#d1d1d1"/>
     </Style>
 </Styles>
