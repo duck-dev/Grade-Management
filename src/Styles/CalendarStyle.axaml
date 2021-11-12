@@ -13,7 +13,13 @@
             <Setter.Value>
                 <ControlTemplate TargetType="CalendarDayButton">
                     <Grid>
-                        <Border Classes="calendar-day-button"/>
+                        <Border Classes="calendar-day-button">
+                            <Border.Transitions>
+                                <Transitions>
+                                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
+                                </Transitions>
+                            </Border.Transitions>
+                        </Border>
                             <ContentControl>
                             <TextBlock Text="{TemplateBinding Content}" Foreground="Black" FontSize="16"
                                        HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"/>
