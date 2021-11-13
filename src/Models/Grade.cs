@@ -7,10 +7,11 @@ namespace GradeManagement.Models
 {
     public class Grade : IGradable
     {
-        public Grade(string name, float value, float weighting, DateTime date, bool counts)
+        [JsonConstructor]
+        public Grade(string name, float gradeValue, float weighting, DateTime date, bool counts)
         {
             this.Name = name;
-            this.GradeValue = value;
+            this.GradeValue = gradeValue;
             this.Weighting = weighting;
             this.Date = date;
             this.Counts = counts;

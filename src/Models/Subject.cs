@@ -9,21 +9,20 @@ namespace GradeManagement.Models
 {
     public class Subject : IGradable
     {
-        private readonly string _subjectColorHex;
-
         private readonly Color _additionalInfoColor = Color.Parse("#999999");
         private readonly Color _lightBackground = Color.Parse("#c7cad1");
         
-        public Subject(string name, float weighting, IEnumerable<Grade> grades) : this(name, weighting, "#c7cad1", 
+        public Subject(string name, float weighting, List<Grade> grades) : this(name, weighting, "#c7cad1", 
         grades, true) {}
         
-        public Subject(string name, float weighting, string color, IEnumerable<Grade> grades, bool counts)
+        [JsonConstructor]
+        public Subject(string name, float weighting, string subjectColorHex, List<Grade> grades, bool counts)
         {
             this.Name = name;
             this.Weighting = weighting;
-            this.Grades = new List<Grade>(grades);
+            this.Grades = grades;
             this.Counts = counts;
-            _subjectColorHex = color;
+            this.SubjectColorHex = subjectColorHex;
         }
         
         [JsonInclude]
@@ -39,12 +38,12 @@ namespace GradeManagement.Models
         public bool Counts { get; private set; }
 
         [JsonInclude]
-        public string SubjectColorHex => _subjectColorHex;
+        public string SubjectColorHex { get; init; }
         
         [JsonIgnore]
         public float GradeValue => Utilities.GetAverage(Grades, false);
         
-        internal Color SubjectColor => Color.Parse(_subjectColorHex);
+        internal Color SubjectColor => Color.Parse(SubjectColorHex);
         internal SolidColorBrush TitleBrush => 
             new(Utilities.AdjustForegroundBrightness(SubjectColor, DarkSubjectTint, LightSubjectTint));
 
