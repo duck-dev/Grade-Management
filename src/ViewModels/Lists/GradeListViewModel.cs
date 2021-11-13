@@ -19,7 +19,6 @@ namespace GradeManagement.ViewModels.Lists
                   "and this leads to exceptions and unintended behaviour.")]
         public GradeListViewModel() 
         {
-            AddPage = new AddGradeWindow();
             AddPageType = typeof(AddGradeWindow);
             AddViewModelType = typeof(AddGradeViewModel);
         }

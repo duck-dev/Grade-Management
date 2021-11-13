@@ -112,12 +112,12 @@ namespace GradeManagement.ViewModels
         private TWindow ShowAddPage<TWindow, TViewModel>() where TWindow : Window, new() 
                                                         where TViewModel : AddViewModelBase, new()
         {
-            var window = new TWindow();
-            _content.AddPage = window;
-
-            window.DataContext = _views.Any(x => x.GetType() == typeof(TViewModel))
-                                 ? _views.Find(x => x.GetType() == typeof(TViewModel))
-                                 : new TViewModel();
+            var window = new TWindow
+            {
+                DataContext = _views.Any(x => x.GetType() == typeof(TViewModel))
+                    ? _views.Find(x => x.GetType() == typeof(TViewModel))
+                    : new TViewModel()
+            };
 
             window.ShowDialog(MainWindowInstance);
             CatchClosingWindow(window);
@@ -128,9 +128,7 @@ namespace GradeManagement.ViewModels
         {
             if (windowType is null || viewModelType is null || Activator.CreateInstance(windowType) is not Window window)
                 return null;
-            
-            _content.AddPage = window;
-            
+
             window.DataContext = _views.Any(x => x.GetType() == viewModelType) 
                                  ? _views.Find(x => x.GetType() == viewModelType) 
                                  : Activator.CreateInstance(viewModelType);
@@ -147,7 +145,6 @@ namespace GradeManagement.ViewModels
             {
                 _addButton.IsVisible = true;
                 window.Closing -= closingDel;
-                _content.AddPage = null;
                 if (window.DataContext is AddViewModelBase viewModel)
                     viewModel.StopEditing();
             };
