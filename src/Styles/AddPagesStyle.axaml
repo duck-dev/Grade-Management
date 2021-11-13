@@ -39,7 +39,6 @@
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="FontSize" Value="16"/>
         <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="HotKey" Value="Return"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
     </Style>
