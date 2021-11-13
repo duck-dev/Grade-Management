@@ -44,7 +44,7 @@ namespace GradeManagement.ViewModels.Lists
         }
         public bool EmptyCollection => Items?.Count == 0;
 
-        internal override void ChangeTopbar()
+        protected internal override void ChangeTopbar()
         {
             base.ChangeTopbar();
             foreach (var grade in TopbarTexts!)

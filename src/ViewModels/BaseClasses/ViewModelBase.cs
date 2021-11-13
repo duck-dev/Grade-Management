@@ -4,7 +4,7 @@ using ReactiveUI;
 
 namespace GradeManagement.ViewModels.BaseClasses
 {
-    public class ViewModelBase : ReactiveObject
+    public abstract class ViewModelBase : ReactiveObject
     {
         protected MainWindow? MainWindowInstance { get; private set; }
         protected Controls? TopbarTexts { get; private set; }
@@ -16,12 +16,6 @@ namespace GradeManagement.ViewModels.BaseClasses
             
             this.MainWindowInstance = MainWindow.Instance;
             this.TopbarTexts = this.MainWindowInstance.Get<Grid>("Topbar-Grid").Children;
-        }
-
-        internal virtual void ChangeTopbar()
-        {
-            if (TopbarTexts is null)
-                throw new System.ArgumentNullException();
         }
     }
 }

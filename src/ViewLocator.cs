@@ -9,15 +9,10 @@ namespace GradeManagement
     {
         public bool SupportsRecycling => false;
 
-        public IControl Build(object data)
-        {
-            return BuildStatic(data);
-        }
+        public IControl Build(object data) => BuildStatic(data);
+        public bool Match(object data) => data is ViewModelBase;
 
-        internal static IControl BuildStatic(object data)
-        {
-            return BuildStatic(data.GetType());
-        }
+        internal static IControl BuildStatic(object data) => BuildStatic(data.GetType());
 
         internal static IControl BuildStatic(Type type)
         {
@@ -40,7 +35,5 @@ namespace GradeManagement
             
             return new TextBlock { Text = "Not Found: " + name };
         }
-
-        public bool Match(object data) => data is ViewModelBase;
     }
 }

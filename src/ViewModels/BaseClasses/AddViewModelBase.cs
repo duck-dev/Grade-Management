@@ -11,7 +11,7 @@ namespace GradeManagement.ViewModels.BaseClasses
         Edit
     }
     
-    public class AddViewModelBase : ViewModelBase
+    public abstract class AddViewModelBase : ViewModelBase
     {
         private string? _elementName;
         private string? _elementWeightingStr;
