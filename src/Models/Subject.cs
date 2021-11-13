@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using Avalonia;
 using Avalonia.Media;
 using GradeManagement.Interfaces;
@@ -25,16 +26,29 @@ namespace GradeManagement.Models
             _subjectColorHex = color;
         }
         
+        [JsonInclude]
+        public string Name { get; private set; }
+        
+        [JsonInclude]
+        public List<Grade> Grades { get; }
 
-        public float GradeValue => Utilities.GetAverage(Grades, false);
+        [JsonInclude]
         public float Weighting { get; private set; }
+        
+        [JsonInclude]
         public bool Counts { get; private set; }
 
-        public Color SubjectColor => Color.Parse(_subjectColorHex);
-        public SolidColorBrush TitleBrush => 
+        [JsonInclude]
+        public string SubjectColorHex => _subjectColorHex;
+        
+        [JsonIgnore]
+        public float GradeValue => Utilities.GetAverage(Grades, false);
+        
+        internal Color SubjectColor => Color.Parse(_subjectColorHex);
+        internal SolidColorBrush TitleBrush => 
             new(Utilities.AdjustForegroundBrightness(SubjectColor, DarkSubjectTint, LightSubjectTint));
 
-        public LinearGradientBrush BackgroundBrush
+        internal LinearGradientBrush BackgroundBrush
         {
             get
             {
@@ -44,7 +58,7 @@ namespace GradeManagement.Models
                     new[] {0.0, 90.0});
             }
         }
-        public LinearGradientBrush BackgroundBrushHover
+        internal LinearGradientBrush BackgroundBrushHover
         {
             get
             {
@@ -55,12 +69,10 @@ namespace GradeManagement.Models
             }
         }
         
-        public SolidColorBrush AdditionalInfoColor => 
+        internal SolidColorBrush AdditionalInfoColor => 
             new(Utilities.AdjustForegroundBrightness(SubjectColor, AdditionalInfoDark, AdditionalInfoLight));
         
         internal float RoundedAverage => Utilities.GetAverage(Grades, true);
-        internal string Name { get; private set; }
-        internal List<Grade> Grades { get; }
 
         private Color DarkSubjectTint => Utilities.DarkenColor(SubjectColor, 0.2f);
         private Color LightSubjectTint => Utilities.BrightenColor(SubjectColor, 0.2f);

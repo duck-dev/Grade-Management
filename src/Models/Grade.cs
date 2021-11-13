@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Text.Json.Serialization;
 using GradeManagement.Interfaces;
 
 namespace GradeManagement.Models
@@ -15,12 +16,22 @@ namespace GradeManagement.Models
             this.Counts = counts;
         }
         
-        public bool Counts { get; private set; }
+        [JsonInclude]
+        public string Name { get; private set; }
+        
+        [JsonInclude]
         public float GradeValue { get; private set; }
+        
+        [JsonInclude]
         public float Weighting { get; private set; }
+        
+        [JsonInclude]
+        public DateTime Date { get; private set; }
+        
+        [JsonInclude]
+        public bool Counts { get; private set; }
+
         internal float RoundedGrade => (float)Math.Round(GradeValue, 2);
-        internal string Name { get; private set; }
-        internal DateTime Date { get; private set; }
         internal string DateString => Date.ToString("dd.MM.yyyy", CultureInfo.CurrentCulture);
     }
 }

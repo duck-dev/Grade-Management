@@ -31,7 +31,7 @@ namespace GradeManagement.Views
         private void OnYearPressed(object? sender, PointerPressedEventArgs e)
         {
             _mainWindowModel ??= this.DataContext as MainWindowViewModel;
-            _mainWindowModel!.SwitchPage<YearListViewModel, SchoolYear>(Data.SchoolYears!);
+            _mainWindowModel!.SwitchPage<YearListViewModel, SchoolYear>(DataManager.SchoolYears!);
             MainWindowViewModel.CurrentYear = null;
         }
         

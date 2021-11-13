@@ -24,10 +24,23 @@ namespace GradeManagement.ViewModels
         
         public MainWindowViewModel()
         {
+            var year = new SchoolYear("2021/22", new Subject[]
+            {
+                new Subject("English", 1.0f, "#009b72", new Grade[]
+                {
+                    new Grade("First exam", 5.5f, 1.0f, System.DateTime.Today, true),
+                    new Grade("Second exam", 6f, 1.0f, System.DateTime.Today, true)
+                }, true),
+                new Subject("Math", 1.0f, "#D64045", new Grade[]
+                {
+                    new Grade("First exam Math", 6f, 1.0f, new System.DateTime(2010, 7, 28), true)
+                }, true)
+            });
+            DataManager.SaveData(year);
             GenerateExampleYear(); // TODO: Get rid of this, because it's only temporary to test the behaviour
             InitializeTopbarElements();
             
-            _content = Content = new YearListViewModel(Data.SchoolYears!);
+            _content = Content = new YearListViewModel(DataManager.SchoolYears!);
             _views.Add(_content);
             _content.ChangeTopbar();
 
@@ -154,7 +167,7 @@ namespace GradeManagement.ViewModels
         private static void GenerateExampleYear() // TODO: Remove this function, it is only used to test the behaviour
         {
             // Oh yes, this is horribly ugly
-            Data.SchoolYears = new SchoolYear[]
+            DataManager.SchoolYears = new SchoolYear[]
             {
                 new SchoolYear("2020/21 with some additional text", new Subject[]
                 {
