@@ -13,7 +13,7 @@ namespace GradeManagement.Models
         internal int Month
         {
             get => _month;
-            set
+            private init
             {
                 if (value is <= 0 or > 12) 
                     return;
@@ -25,7 +25,7 @@ namespace GradeManagement.Models
         internal string MonthName
         {
             get => _monthName!;
-            set
+            private init
             {
                 if (!MonthConverter.TryConvertMonth(value, out int monthNumber))
                 {
@@ -39,12 +39,8 @@ namespace GradeManagement.Models
             }
         }
 
+        public override string? ToString() => _monthName;
         internal void Set(string monthName) => _monthName = monthName;
         internal void Set(int monthNum) => _month = monthNum;
-        
-        public override string? ToString()
-        {
-            return _monthName;
-        }
     }
 }
