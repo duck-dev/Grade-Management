@@ -82,6 +82,11 @@ namespace GradeManagement.ViewModels.BaseClasses
             get => _buttonText;
             set => this.RaiseAndSetIfChanged(ref _buttonText, value);
         }
+        
+        protected virtual void CreateElement()
+        {
+            
+        }
 
         internal void EditPageText(AddPageAction action, Type pageType, string suffix = "")
         {
@@ -101,20 +106,15 @@ namespace GradeManagement.ViewModels.BaseClasses
         internal void EditPageText<T>(AddPageAction action, string suffix = "") where T : AddViewModelBase
             => EditPageText(action, typeof(T), suffix);
 
+        protected internal virtual void StopEditing()
+        {
+            
+        }
+
         private void SetButtonAndTitle(string prefix, string type, string suffix = "")
         {
             Title = $"{prefix} {(string.IsNullOrEmpty(suffix) ? type : ($"\"{suffix}\""))}:";
             ButtonText = $"{prefix} {type}";
-        }
-
-        protected virtual void CreateElement()
-        {
-            
-        }
-        
-        protected internal virtual void StopEditing()
-        {
-            
         }
     }
 }
