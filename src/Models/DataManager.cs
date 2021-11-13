@@ -6,14 +6,14 @@ namespace GradeManagement.Models
 {
     public static class DataManager
     {
-        internal static List<SchoolYear>? SchoolYears { get; set; } = new();
+        internal static List<SchoolYear>? SchoolYears { get; private set; } = new();
         
-        private static string? FilePath 
+        private static string FilePath 
             => Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "/SchoolYears.json";
 
         internal static void LoadData()
         {
-            if (FilePath is null || !File.Exists(FilePath))
+            if (!File.Exists(FilePath))
                 return;
 
             string content = File.ReadAllText(FilePath);
@@ -22,9 +22,6 @@ namespace GradeManagement.Models
 
         internal static void SaveData(IEnumerable<SchoolYear> year)
         {
-            if (FilePath is null)
-                return;
-
             var options = new JsonSerializerOptions { WriteIndented = true };
             string jsonString = JsonSerializer.Serialize(year, options);
             File.WriteAllText(FilePath, jsonString);
