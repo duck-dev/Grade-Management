@@ -7,7 +7,7 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="GradeManagement.Views.Lists.YearListView">
     <Design.DataContext>
-        <listViewModels:YearListViewModel />
+        <listViewModels:YearListViewModel/>
     </Design.DataContext>
     
     <UserControl.Styles>
@@ -82,7 +82,7 @@
                                     <MenuItem Header="Remove School Year"
                                               Command="{Binding $parent[UserControl].DataContext.RemoveElement}"
                                               CommandParameter="{Binding}"/>
-                                    <MenuItem Header="Create new Year-Template"/>
+                                    <MenuItem Header="Create Year-Template"/>
                                               <!-- Command="{Binding $parent[UserControl].DataContext.CreateTemplate}" -->
                                               <!-- CommandParameter="{Binding}"/> -->
                                 </ContextMenu>

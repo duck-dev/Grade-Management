@@ -90,12 +90,6 @@ namespace GradeManagement.ViewModels.BaseClasses
         
         protected internal Window? CurrentAddWindow { get; internal set; }
 
-        protected void CloseAddWindow()
-        {
-            CurrentAddWindow?.Close();
-            CurrentAddWindow = null;
-        }
-
         protected void UpdateVisualOnChange<T>(IListViewModel<T>? viewModel, IEnumerable<T> collection) where T : IElement
         {
             if(viewModel is not null)
@@ -130,6 +124,12 @@ namespace GradeManagement.ViewModels.BaseClasses
             ElementName = string.Empty;
             ElementWeightingString = string.Empty;
             ElementCounts = true;
+        }
+        
+        private void CloseAddWindow()
+        {
+            CurrentAddWindow?.Close();
+            CurrentAddWindow = null;
         }
     }
 }
