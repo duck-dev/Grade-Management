@@ -19,7 +19,7 @@ namespace GradeManagement.ViewModels
     public class MainWindowViewModel : ViewModelBase
     {
         private ListViewModelBase _content;
-        private readonly List<ListViewModelBase> _views = new();
+        private readonly List<ViewModelBase> _views = new();
         private readonly Button _addButton;
         
         public MainWindowViewModel()
@@ -35,21 +35,21 @@ namespace GradeManagement.ViewModels
         }
 
         internal static SchoolYear? CurrentYear { get; set; }
+        internal static Subject? CurrentSubject { get; set; }
         
-        internal ListViewModelBase Content
+        private ListViewModelBase Content
         {
             get => _content;
-            private set => this.RaiseAndSetIfChanged(ref _content, value);
+            set => this.RaiseAndSetIfChanged(ref _content, value);
         }
-        
-        internal ListViewModelBase[] Views => _views.ToArray();
 
-        internal void SwitchPage<T, TItems>(IEnumerable<TItems> items) where T : ListViewModelBase, 
-        IListViewModel<TItems>
+        internal void SwitchPage<T, TItems>(IEnumerable<TItems> items) where T : ListViewModelBase, IListViewModel<TItems>
         {
             if (_views.Any(x => x.GetType() == typeof(T)))
             {
-                Content = _views.Find(x => x.GetType() == typeof(T))!;
+                if (_views.Find(x => x.GetType() == typeof(T)) is not ListViewModelBase viewModelBase)
+                    return;
+                Content = viewModelBase;
                 ((IListViewModel<TItems>)Content).Items = new ObservableCollection<TItems>(items);
             }
             else
@@ -91,6 +91,7 @@ namespace GradeManagement.ViewModels
                 textBlock.Foreground = new SolidColorBrush(subject.SubjectColor);
             }
             SwitchPage<GradeListViewModel, Grade>(subject.Grades);
+            CurrentSubject = subject;
         }
         
         private void OpenYear(SchoolYear year)
@@ -112,12 +113,16 @@ namespace GradeManagement.ViewModels
         private TWindow ShowAddPage<TWindow, TViewModel>() where TWindow : Window, new() 
                                                         where TViewModel : AddViewModelBase, new()
         {
-            var window = new TWindow
+            var window = new TWindow();
+
+            if(_views.Any(x => x.GetType() == typeof(TViewModel)))
+                window.DataContext = _views.Find(x => x.GetType() == typeof(TViewModel));
+            else
             {
-                DataContext = _views.Any(x => x.GetType() == typeof(TViewModel))
-                    ? _views.Find(x => x.GetType() == typeof(TViewModel))
-                    : new TViewModel()
-            };
+                var newInstance = new TViewModel();
+                window.DataContext = newInstance;
+                _views.Add(newInstance);
+            }
 
             window.ShowDialog(MainWindowInstance);
             CatchClosingWindow(window);
@@ -129,9 +134,14 @@ namespace GradeManagement.ViewModels
             if (windowType is null || viewModelType is null || Activator.CreateInstance(windowType) is not Window window)
                 return null;
 
-            window.DataContext = _views.Any(x => x.GetType() == viewModelType) 
-                                 ? _views.Find(x => x.GetType() == viewModelType) 
-                                 : Activator.CreateInstance(viewModelType);
+            if(_views.Any(x => x.GetType() == viewModelType))
+                window.DataContext = _views.Find(x => x.GetType() == viewModelType);
+            else
+            {
+                var newInstance = (ViewModelBase)Activator.CreateInstance(viewModelType)!;
+                window.DataContext = newInstance;
+                _views.Add(newInstance);
+            }
             
             window.ShowDialog(MainWindowInstance);
             CatchClosingWindow(window);

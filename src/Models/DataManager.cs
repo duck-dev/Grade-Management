@@ -20,10 +20,10 @@ namespace GradeManagement.Models
             SchoolYears = JsonSerializer.Deserialize<List<SchoolYear>>(content);
         }
 
-        internal static void SaveData(IEnumerable<SchoolYear> year)
+        internal static void SaveData()
         {
             var options = new JsonSerializerOptions { WriteIndented = true };
-            string jsonString = JsonSerializer.Serialize(year, options);
+            string jsonString = JsonSerializer.Serialize(SchoolYears, options);
             File.WriteAllText(FilePath, jsonString);
         }
     }

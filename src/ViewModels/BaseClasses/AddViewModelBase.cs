@@ -1,5 +1,8 @@
 using System;
+using System.Collections.ObjectModel;
 using Avalonia.Media;
+using GradeManagement.Interfaces;
+using GradeManagement.Models;
 using GradeManagement.ViewModels.AddPages;
 using ReactiveUI;
 
@@ -18,6 +21,10 @@ namespace GradeManagement.ViewModels.BaseClasses
         private string? _buttonText;
         private string? _title;
         private bool _elementCounts = true;
+        
+        // Colors for border (incomplete/complete selection)
+        protected static Color IncompleteColor { get; } = Color.Parse("#D64045");
+        protected static Color NormalColor { get; } = Color.Parse("#009b72");
 
         protected virtual bool DataComplete { get; }
         protected SolidColorBrush[]? BorderBrushes { get; init; }
@@ -25,10 +32,18 @@ namespace GradeManagement.ViewModels.BaseClasses
         // Indexes of the elements in the UI
         protected int WeightingIndex { get; init; }
         protected int NameIndex { get; init; }
-        
-        // Colors for border (incomplete/complete selection)
-        protected static Color IncompleteColor { get; } = Color.Parse("#D64045");
-        protected static Color NormalColor { get; } = Color.Parse("#009b72");
+
+        protected string? Title
+        {
+            get => _title;
+            set => this.RaiseAndSetIfChanged(ref _title, value);
+        }
+
+        protected string? ButtonText
+        {
+            get => _buttonText;
+            set => this.RaiseAndSetIfChanged(ref _buttonText, value);
+        }
 
         protected internal string? ElementName
         {
@@ -71,21 +86,15 @@ namespace GradeManagement.ViewModels.BaseClasses
             set => this.RaiseAndSetIfChanged(ref _elementCounts, value);
         }
         
-        protected string? Title
-        {
-            get => _title;
-            set => this.RaiseAndSetIfChanged(ref _title, value);
-        }
+        protected internal IListViewModel<IElement>? ListViewModel { get; protected init; }
 
-        protected string? ButtonText
+        protected virtual void CreateElement(IListViewModel<IElement> viewModel)
         {
-            get => _buttonText;
-            set => this.RaiseAndSetIfChanged(ref _buttonText, value);
-        }
-        
-        protected virtual void CreateElement()
-        {
+            if (DataManager.SchoolYears is null)
+                return;
             
+            viewModel.Items = new ObservableCollection<IElement>(DataManager.SchoolYears);
+            DataManager.SaveData();
         }
 
         internal void EditPageText(AddPageAction action, Type pageType, string suffix = "")

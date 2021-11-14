@@ -7,13 +7,18 @@ using GradeManagement.UtilityCollection;
 
 namespace GradeManagement.Models
 {
-    public class Subject : IGradable
+    public class Subject : IElement, IGradable
     {
         private readonly Color _additionalInfoColor = Color.Parse("#999999");
         private readonly Color _lightBackground = Color.Parse("#c7cad1");
-        
-        public Subject(string name, float weighting, List<Grade> grades) : this(name, weighting, "#c7cad1", 
-        grades, true) {}
+
+        public Subject(string name, float weighting, string subjectColorHex, bool counts)
+        {
+            this.Name = name;
+            this.Weighting = weighting;
+            this.Counts = counts;
+            this.SubjectColorHex = subjectColorHex;
+        }
         
         [JsonConstructor]
         public Subject(string name, float weighting, string subjectColorHex, List<Grade> grades, bool counts)
@@ -27,9 +32,9 @@ namespace GradeManagement.Models
         
         [JsonInclude]
         public string Name { get; private set; }
-        
-        [JsonInclude]
-        public List<Grade> Grades { get; }
+
+        [JsonInclude] 
+        public List<Grade> Grades { get; } = new();
 
         [JsonInclude]
         public float Weighting { get; private set; }
@@ -38,7 +43,7 @@ namespace GradeManagement.Models
         public bool Counts { get; private set; }
 
         [JsonInclude]
-        public string SubjectColorHex { get; init; }
+        public string SubjectColorHex { get; private set; }
         
         [JsonIgnore]
         public float GradeValue => Utilities.GetAverage(Grades, false);
@@ -78,15 +83,13 @@ namespace GradeManagement.Models
         
         private Color AdditionalInfoDark => Utilities.DarkenColor(_additionalInfoColor, 0.3f);
         private Color AdditionalInfoLight => Utilities.BrightenColor(_additionalInfoColor, 0.3f);
-
-        internal void ChangeData(string newName) => ChangeData(newName, Weighting, Counts);
-        internal void ChangeData(float newWeighting) => ChangeData(Name, newWeighting, Counts);
-        internal void ChangeData(bool counts) => ChangeData(Name, Weighting, counts);
-        private void ChangeData(string newName, float newWeighting, bool counts)
+        
+        internal void Edit(string newName, float newWeighting, string newSubjectColorHex, bool counts)
         {
             this.Name = newName;
             this.Weighting = newWeighting;
             this.Counts = counts;
+            this.SubjectColorHex = newSubjectColorHex;
         }
     }
 }

@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Media;
 using GradeManagement.Enums;
 using GradeManagement.ExtensionCollection;
+using GradeManagement.Interfaces;
 using GradeManagement.Models;
 using GradeManagement.UtilityCollection;
 using GradeManagement.ViewModels.BaseClasses;
@@ -175,9 +176,24 @@ namespace GradeManagement.ViewModels.AddPages
             }
         }
 
-        protected override void CreateElement()
+        protected override void CreateElement(IListViewModel<IElement> viewModel)
         {
-            base.CreateElement();
+            if (ElementName is null || _tempSelectedDate is null)
+                return;
+            
+            if (EditedGrade is null)
+            {
+                var currentSubject = MainWindowViewModel.CurrentSubject;
+                if (currentSubject is null)
+                    return;
+
+                var grade = new Grade(ElementName, _elementGrade, ElementWeighting, _tempSelectedDate.Value, ElementCounts);
+                currentSubject.Grades.Add(grade);
+            }
+            else
+                EditedGrade.Edit(ElementName, _elementGrade, ElementWeighting, _tempSelectedDate.Value, ElementCounts);
+            
+            base.CreateElement(viewModel);
             EditedGrade = null;
         }
 
@@ -205,7 +221,8 @@ namespace GradeManagement.ViewModels.AddPages
                                                || !_elementGrade.Equals(EditedGrade.GradeValue)
                                                || _selectedDay != date.Day || _selectedMonth.Month != date.Month || 
                                                _selectedYear != date.Year 
-                                               || ElementCounts != EditedGrade.Counts);
+                                               || ElementCounts != EditedGrade.Counts); 
+            // TODO: Investigate why changing the status of whether it counts or not doesn't return true.
         }
 
         private void ToggleCalendar()

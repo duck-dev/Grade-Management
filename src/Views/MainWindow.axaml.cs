@@ -39,6 +39,7 @@ namespace GradeManagement.Views
         {
             _mainWindowModel ??= this.DataContext as MainWindowViewModel;
             _mainWindowModel!.SwitchPage<SubjectListViewModel, Subject>(MainWindowViewModel.CurrentYear!.Subjects);
+            MainWindowViewModel.CurrentSubject = null;
         }
     }
 }
