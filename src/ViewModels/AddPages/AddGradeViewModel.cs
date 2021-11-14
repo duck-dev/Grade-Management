@@ -211,8 +211,17 @@ namespace GradeManagement.ViewModels.AddPages
             TempSelectedDate = calendar.SelectedDate;
         }
         
-        protected internal override void StopEditing()
+        protected internal override void EraseData()
         {
+            base.EraseData();
+            ElementGradeString = string.Empty;
+
+            var today = DateTime.Today;
+            TempSelectedDate = DateTime.Today;
+            SelectedDay = today.Day;
+            SelectedMonth = new MonthRepresentation(today.Month);
+            SelectedYear = today.Year;
+            
             EditedGrade = null;
         }
         

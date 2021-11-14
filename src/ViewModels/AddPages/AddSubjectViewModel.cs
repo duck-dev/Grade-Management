@@ -47,8 +47,10 @@ namespace GradeManagement.ViewModels.AddPages
             DataManager.SaveData();
         }
 
-        protected internal override void StopEditing()
+        protected internal override void EraseData()
         {
+            base.EraseData();
+            // TODO: Reset color selection
             EditedSubject = null;
         }
 

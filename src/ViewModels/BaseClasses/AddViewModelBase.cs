@@ -110,9 +110,11 @@ namespace GradeManagement.ViewModels.BaseClasses
         internal void EditPageText<T>(AddPageAction action, string suffix = "") where T : AddViewModelBase
             => EditPageText(action, typeof(T), suffix);
 
-        protected internal virtual void StopEditing()
+        protected internal virtual void EraseData()
         {
-            
+            ElementName = string.Empty;
+            ElementWeightingString = string.Empty;
+            ElementCounts = true;
         }
 
         private void SetButtonAndTitle(string prefix, string type, string suffix = "")
