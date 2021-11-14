@@ -17,8 +17,9 @@ namespace GradeManagement.ViewModels.Lists
         
         [Obsolete("Do NOT use this constructor, because it leaves the collection of grades uninitialized " +
                   "and this leads to exceptions and unintended behaviour.")]
-        public GradeListViewModel() 
+        public GradeListViewModel()
         {
+            Instance = this;
             AddPageType = typeof(AddGradeWindow);
             AddViewModelType = typeof(AddGradeViewModel);
         }
@@ -42,6 +43,8 @@ namespace GradeManagement.ViewModels.Lists
             }
         }
         public bool EmptyCollection => Items?.Count == 0;
+        
+        internal static GradeListViewModel? Instance { get; private set; }
 
         protected internal override void ChangeTopbar()
         {

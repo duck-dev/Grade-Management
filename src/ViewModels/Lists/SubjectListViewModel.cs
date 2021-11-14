@@ -19,6 +19,7 @@ namespace GradeManagement.ViewModels.Lists
                   "and this leads to exceptions and unintended behaviour")]
         public SubjectListViewModel()
         {
+            Instance = this;
             AddPageType = typeof(AddSubjectWindow);
             AddViewModelType = typeof(AddSubjectViewModel);
         }
@@ -42,6 +43,8 @@ namespace GradeManagement.ViewModels.Lists
             }
         }
         public bool EmptyCollection => Items?.Count == 0;
+        
+        internal static SubjectListViewModel? Instance { get; private set; }
 
         protected internal override void ChangeTopbar()
         {

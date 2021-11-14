@@ -1,12 +1,13 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using Avalonia.Controls;
 using Avalonia.Media;
 using GradeManagement.Enums;
 using GradeManagement.ExtensionCollection;
-using GradeManagement.Interfaces;
 using GradeManagement.Models;
 using GradeManagement.UtilityCollection;
 using GradeManagement.ViewModels.BaseClasses;
+using GradeManagement.ViewModels.Lists;
 using ReactiveUI;
 using Calendar = Avalonia.Controls.Calendar;
 
@@ -176,7 +177,7 @@ namespace GradeManagement.ViewModels.AddPages
             }
         }
 
-        protected override void CreateElement(IListViewModel<IElement> viewModel)
+        private void CreateElement()
         {
             if (ElementName is null || _tempSelectedDate is null)
                 return;
@@ -189,12 +190,16 @@ namespace GradeManagement.ViewModels.AddPages
 
                 var grade = new Grade(ElementName, _elementGrade, ElementWeighting, _tempSelectedDate.Value, ElementCounts);
                 currentSubject.Grades.Add(grade);
+
+                var viewModel = GradeListViewModel.Instance;
+                if(viewModel is not null)
+                    viewModel.Items = new ObservableCollection<Grade>(currentSubject.Grades);
             }
             else
                 EditedGrade.Edit(ElementName, _elementGrade, ElementWeighting, _tempSelectedDate.Value, ElementCounts);
-            
-            base.CreateElement(viewModel);
+
             EditedGrade = null;
+            DataManager.SaveData();
         }
 
         internal void DateChanged(object? sender, SelectionChangedEventArgs args)

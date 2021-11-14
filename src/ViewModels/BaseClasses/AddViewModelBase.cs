@@ -1,8 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
 using Avalonia.Media;
-using GradeManagement.Interfaces;
-using GradeManagement.Models;
 using GradeManagement.ViewModels.AddPages;
 using ReactiveUI;
 
@@ -84,17 +81,6 @@ namespace GradeManagement.ViewModels.BaseClasses
         {
             get => _elementCounts;
             set => this.RaiseAndSetIfChanged(ref _elementCounts, value);
-        }
-        
-        protected internal IListViewModel<IElement>? ListViewModel { get; protected init; }
-
-        protected virtual void CreateElement(IListViewModel<IElement> viewModel)
-        {
-            if (DataManager.SchoolYears is null)
-                return;
-            
-            viewModel.Items = new ObservableCollection<IElement>(DataManager.SchoolYears);
-            DataManager.SaveData();
         }
 
         internal void EditPageText(AddPageAction action, Type pageType, string suffix = "")

@@ -1,7 +1,8 @@
-﻿using Avalonia.Media;
-using GradeManagement.Interfaces;
+﻿using System.Collections.ObjectModel;
+using Avalonia.Media;
 using GradeManagement.Models;
 using GradeManagement.ViewModels.BaseClasses;
+using GradeManagement.ViewModels.Lists;
 
 namespace GradeManagement.ViewModels.AddPages
 {
@@ -17,7 +18,7 @@ namespace GradeManagement.ViewModels.AddPages
 
         internal SchoolYear? EditedYear { get; set; } // TODO: When editing year, overwrite this property with `SchoolYear`
         
-        protected override void CreateElement(IListViewModel<IElement> viewModel)
+        private void CreateElement()
         {
             if(ElementName is null)
                 return;
@@ -29,12 +30,16 @@ namespace GradeManagement.ViewModels.AddPages
                 
                 var year = new SchoolYear(ElementName);
                 DataManager.SchoolYears.Add(year);
+
+                var viewModel = YearListViewModel.Instance;
+                if(viewModel is not null)
+                    viewModel.Items = new ObservableCollection<SchoolYear>(DataManager.SchoolYears);
             }
             else
                 EditedYear.Edit(ElementName);
             
-            base.CreateElement(viewModel);
             EditedYear = null;
+            DataManager.SaveData();
         }
         
         protected internal override void StopEditing()
