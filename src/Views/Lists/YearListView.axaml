@@ -76,6 +76,19 @@
                                     <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
                                 </Transitions>
                             </Button.Transitions>
+                            <Button.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Edit School Year" 
+                                              Command="{Binding $parent[Window].DataContext.EditYear}"
+                                              CommandParameter="{Binding}"/>
+                                    <MenuItem Header="Remove School Year"
+                                              Command="{Binding $parent[UserControl].DataContext.RemoveElement}"
+                                              CommandParameter="{Binding}"/>
+                                    <MenuItem Header="Create new Year-Template"/>
+                                              <!-- Command="{Binding $parent[UserControl].DataContext.CreateTemplate}" -->
+                                              <!-- CommandParameter="{Binding}"/> -->
+                                </ContextMenu>
+                            </Button.ContextMenu>
                             <Grid VerticalAlignment="Stretch" RowDefinitions="*,*">
                                 <Panel Grid.Row="0" VerticalAlignment="Stretch">
                                     <Viewbox HorizontalAlignment="Center" VerticalAlignment="Stretch" Height="56">

@@ -61,26 +61,29 @@ namespace GradeManagement.ViewModels
             _addButton.IsVisible = true;
         }
         
-        private void OpenGrade(Grade grade)
+        private static void EditElement(IElement element, Window window) // I wish I could use a generic method here :(
+        {
+            window.Title = element.Name;
+            if (window.DataContext is IAddViewModel<IElement> viewModel)
+                viewModel.EditElement(element);
+        }
+        
+        private void EditGrade(Grade grade) // I wish I could use a generic method here :(
         {
             var window = ShowAddPage<AddGradeWindow, AddGradeViewModel>();
-            window.Title = grade.Name;
+            EditElement(grade, window);
+        }
 
-            if (window.DataContext is not AddGradeViewModel viewModel) 
-                return;
+        private void EditSubject(Subject subject) // I wish I could use a generic method here :(
+        {
+            var window = ShowAddPage<AddSubjectWindow, AddSubjectViewModel>();
+            EditElement(subject, window);
+        }
 
-            viewModel.EditedGrade = grade;
-            
-            viewModel.EditPageText<AddGradeViewModel>(AddPageAction.Edit, grade.Name);
-
-            viewModel.ElementName = grade.Name;
-            viewModel.ElementGradeString = grade.GradeValue.ToString(CultureInfo.CurrentCulture); // TODO: Change culture to selected
-            viewModel.ElementWeightingString = grade.Weighting.ToString(CultureInfo.CurrentCulture); // TODO: Change culture to selected
-            viewModel.ElementCounts = grade.Counts;
-            
-            viewModel.SelectedDay = grade.Date.Day;
-            viewModel.SelectedMonth = new MonthRepresentation(grade.Date.Month);
-            viewModel.SelectedYear = grade.Date.Year;
+        private void EditYear(SchoolYear year) // I wish I could use a generic method here :(
+        {
+            var window = ShowAddPage<AddYearWindow, AddYearViewModel>();
+            EditElement(year, window);
         }
 
         private void OpenSubject(Subject subject)
@@ -101,7 +104,7 @@ namespace GradeManagement.ViewModels
             SwitchPage<SubjectListViewModel, Subject>(year.Subjects);
             CurrentYear = year;
         }
-        
+
         private void OpenAddPage()
         {
             _addButton.IsVisible = false;

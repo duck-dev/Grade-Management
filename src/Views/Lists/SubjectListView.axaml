@@ -82,6 +82,16 @@
                                 <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
                             </Transitions>
                         </Button.Transitions>
+                        <Button.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Edit Subject" 
+                                          Command="{Binding $parent[Window].DataContext.EditSubject}"
+                                          CommandParameter="{Binding}"/>
+                                <MenuItem Header="Remove Subject"
+                                          Command="{Binding $parent[UserControl].DataContext.RemoveElement}"
+                                          CommandParameter="{Binding}"/>
+                            </ContextMenu>
+                        </Button.ContextMenu>
                         <Grid VerticalAlignment="Stretch" RowDefinitions="*,*,*">
                             <Panel Grid.Row="0" VerticalAlignment="Stretch">
                                 <Viewbox HorizontalAlignment="Center" VerticalAlignment="Stretch" Height="46">

@@ -115,25 +115,21 @@ namespace GradeManagement.ViewModels.BaseClasses
                 _ => throw new ArgumentException("The passed `pageType` should be an `AddViewModelBase` inheritor.",
                     nameof(pageType))
             };
-            
-            string prefix = action.ToString();
-            SetButtonAndTitle(prefix, type, suffix);
+            EditPageText(action, type, suffix);
         }
 
-        internal void EditPageText<T>(AddPageAction action, string suffix = "") where T : AddViewModelBase
-            => EditPageText(action, typeof(T), suffix);
+        internal void EditPageText(AddPageAction action, string type, string suffix = "")
+        {
+            string prefix = action.ToString();
+            Title = $"{prefix} {(string.IsNullOrEmpty(suffix) ? type : ($"\"{suffix}\""))}:";
+            ButtonText = $"{prefix} {type}";
+        }
 
         protected internal virtual void EraseData()
         {
             ElementName = string.Empty;
             ElementWeightingString = string.Empty;
             ElementCounts = true;
-        }
-
-        private void SetButtonAndTitle(string prefix, string type, string suffix = "")
-        {
-            Title = $"{prefix} {(string.IsNullOrEmpty(suffix) ? type : ($"\"{suffix}\""))}:";
-            ButtonText = $"{prefix} {type}";
         }
     }
 }

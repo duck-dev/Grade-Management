@@ -1,18 +1,20 @@
-﻿using Avalonia.Media;
+﻿using System.Globalization;
+using Avalonia.Media;
 using GradeManagement.ExtensionCollection;
+using GradeManagement.Interfaces;
 using GradeManagement.Models;
 using GradeManagement.ViewModels.BaseClasses;
 using GradeManagement.ViewModels.Lists;
 
 namespace GradeManagement.ViewModels.AddPages
 {
-    public class AddSubjectViewModel : AddViewModelBase
+    public class AddSubjectViewModel : AddViewModelBase, IAddViewModel<Subject>
     {
         public AddSubjectViewModel()
         {
             BorderBrushes = new SolidColorBrush[] { new(IncompleteColor), new(IncompleteColor) };
             WeightingIndex = 1;
-            EditPageText(AddPageAction.Create, this.GetType());
+            EditPageText(AddPageAction.Create, "Subject");
         }
 
         protected override bool DataComplete => !string.IsNullOrEmpty(ElementName) 
@@ -20,6 +22,16 @@ namespace GradeManagement.ViewModels.AddPages
                                                 && DataChanged();
         
         internal Subject? EditedSubject { get; set; } // TODO: When editing year, overwrite this property with `Subject`
+
+        public void EditElement(Subject subject)
+        {
+            EditedSubject = subject;
+            EditPageText(AddPageAction.Edit, "Subject", subject.Name);
+
+            ElementName = subject.Name;
+            ElementWeightingString = subject.Weighting.ToString(CultureInfo.CurrentCulture);
+            ElementCounts = subject.Counts;
+        }
         
         protected internal override void EraseData()
         {

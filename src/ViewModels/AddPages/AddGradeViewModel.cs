@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using Avalonia.Controls;
 using Avalonia.Media;
 using GradeManagement.Enums;
 using GradeManagement.ExtensionCollection;
+using GradeManagement.Interfaces;
 using GradeManagement.Models;
 using GradeManagement.UtilityCollection;
 using GradeManagement.ViewModels.BaseClasses;
@@ -13,7 +15,7 @@ using Calendar = Avalonia.Controls.Calendar;
 
 namespace GradeManagement.ViewModels.AddPages
 {
-    public class AddGradeViewModel : AddViewModelBase
+    public class AddGradeViewModel : AddViewModelBase, IAddViewModel<Grade>
     {
         // Date
         private int _selectedDay = Utilities.TodaysDay;
@@ -41,7 +43,7 @@ namespace GradeManagement.ViewModels.AddPages
             NameIndex = 0;
             WeightingIndex = 5;
             
-            EditPageText(AddPageAction.Create, this.GetType());
+            EditPageText(AddPageAction.Create, "Grade");
         }
 
         internal static AddGradeViewModel? Instance { get; private set; }
@@ -197,6 +199,21 @@ namespace GradeManagement.ViewModels.AddPages
                     return;
                 this.RaiseAndSetIfChanged(ref _tempSelectedDate, value);
             }
+        }
+        
+        public void EditElement(Grade grade)
+        {
+            EditedGrade = grade;
+            EditPageText(AddPageAction.Edit, "Grade", grade.Name);
+
+            ElementName = grade.Name;
+            ElementGradeString = grade.GradeValue.ToString(CultureInfo.CurrentCulture); // TODO: Change culture to selected
+            ElementWeightingString = grade.Weighting.ToString(CultureInfo.CurrentCulture); // TODO: Change culture to selected
+            ElementCounts = grade.Counts;
+            
+            SelectedDay = grade.Date.Day;
+            SelectedMonth = new MonthRepresentation(grade.Date.Month);
+            SelectedYear = grade.Date.Year;
         }
 
         private void CreateElement()
