@@ -26,23 +26,20 @@ namespace GradeManagement.ViewModels.AddPages
         
         private void CreateElement()
         {
-            if(ElementName is null)
+            if(ElementName is null || DataManager.SchoolYears is null)
                 return;
             
             if (EditedYear is null)
             {
-                if (DataManager.SchoolYears is null)
-                    return;
-                
                 var year = new SchoolYear(ElementName);
                 DataManager.SchoolYears.Add(year);
-
-                var viewModel = YearListViewModel.Instance;
-                if(viewModel is not null)
-                    viewModel.Items = new ObservableCollection<SchoolYear>(DataManager.SchoolYears);
             }
             else
                 EditedYear.Edit(ElementName);
+            
+            var viewModel = YearListViewModel.Instance;
+            if(viewModel is not null)
+                viewModel.Items = new ObservableCollection<SchoolYear>(DataManager.SchoolYears);
             
             EditedYear = null;
             CloseAddWindow();

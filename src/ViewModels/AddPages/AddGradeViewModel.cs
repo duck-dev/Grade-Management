@@ -201,24 +201,21 @@ namespace GradeManagement.ViewModels.AddPages
 
         private void CreateElement()
         {
-            if (ElementName is null || _tempSelectedDate is null)
+            var currentSubject = MainWindowViewModel.CurrentSubject;
+            if (ElementName is null || _tempSelectedDate is null || currentSubject is null)
                 return;
             
             if (EditedGrade is null)
             {
-                var currentSubject = MainWindowViewModel.CurrentSubject;
-                if (currentSubject is null)
-                    return;
-
                 var grade = new Grade(ElementName, _elementGrade, ElementWeighting, _tempSelectedDate.Value, ElementCounts);
                 currentSubject.Grades.Add(grade);
-
-                var viewModel = GradeListViewModel.Instance;
-                if(viewModel is not null)
-                    viewModel.Items = new ObservableCollection<Grade>(currentSubject.Grades);
             }
             else
                 EditedGrade.Edit(ElementName, _elementGrade, ElementWeighting, _tempSelectedDate.Value, ElementCounts);
+            
+            var viewModel = GradeListViewModel.Instance;
+            if(viewModel is not null)
+                viewModel.Items = new ObservableCollection<Grade>(currentSubject.Grades);
 
             EditedGrade = null;
             CloseAddWindow();

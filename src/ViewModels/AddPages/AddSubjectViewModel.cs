@@ -30,24 +30,21 @@ namespace GradeManagement.ViewModels.AddPages
         
         private void CreateElement()
         {
-            if (ElementName is null)
+            var currentYear = MainWindowViewModel.CurrentYear;
+            if (ElementName is null || currentYear is null)
                 return;
-            
+
             if (EditedSubject is null)
             {
-                var currentYear = MainWindowViewModel.CurrentYear;
-                if (currentYear is null)
-                    return;
-                
                 var subject = new Subject(ElementName, ElementWeighting, "#fcba03", ElementCounts); // TODO: Use selected color
                 currentYear.Subjects.Add(subject);
-
-                var viewModel = SubjectListViewModel.Instance;
-                if(viewModel is not null)
-                    viewModel.Items = new ObservableCollection<Subject>(currentYear.Subjects);
             }
             else
                 EditedSubject.Edit(ElementName, ElementWeighting, "#fcba03", ElementCounts); // TODO: Use selected color
+            
+            var viewModel = SubjectListViewModel.Instance;
+            if(viewModel is not null)
+                viewModel.Items = new ObservableCollection<Subject>(currentYear.Subjects);
             
             EditedSubject = null;
             CloseAddWindow();
