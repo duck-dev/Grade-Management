@@ -68,9 +68,7 @@
                     <DataTemplate>
                         <Button Command="{Binding $parent[Window].DataContext.OpenYear}"
                                 CommandParameter="{Binding}"
-                                Classes="year-button"
-                                DragDrop.AllowDrop="True"
-                                PointerPressed="BeginDrag">
+                                Classes="year-button">
                             <Button.Transitions>
                                 <Transitions>
                                     <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
