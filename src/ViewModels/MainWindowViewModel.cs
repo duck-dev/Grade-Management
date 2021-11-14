@@ -61,10 +61,10 @@ namespace GradeManagement.ViewModels
             _addButton.IsVisible = true;
         }
         
-        private static void EditElement(IElement element, Window window) // I wish I could use a generic method here :(
+        private static void EditElement<T>(T element, Window window) where T : IElement
         {
             window.Title = element.Name;
-            if (window.DataContext is IAddViewModel<IElement> viewModel)
+            if (window.DataContext is IAddViewModel<T> viewModel)
                 viewModel.EditElement(element);
         }
         
