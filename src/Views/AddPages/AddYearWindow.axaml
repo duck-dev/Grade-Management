@@ -16,8 +16,8 @@
     </Design.DataContext>
     
     <Window.Styles>
-        <StyleInclude Source="/src/Styles/MainStyle.xaml"></StyleInclude>
-        <StyleInclude Source="/src/Styles/AddPagesStyle.axaml"></StyleInclude>
+        <StyleInclude Source="/src/Styles/MainStyle.xaml"/>
+        <StyleInclude Source="/src/Styles/AddPagesStyle.axaml"/>
     </Window.Styles>
     
     <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">

@@ -1,5 +1,5 @@
-﻿using System.Collections.ObjectModel;
-using Avalonia.Media;
+﻿using Avalonia.Media;
+using GradeManagement.ExtensionCollection;
 using GradeManagement.Models;
 using GradeManagement.ViewModels.BaseClasses;
 using GradeManagement.ViewModels.Lists;
@@ -26,7 +26,7 @@ namespace GradeManagement.ViewModels.AddPages
         
         private void CreateElement()
         {
-            if(ElementName is null || DataManager.SchoolYears is null)
+            if(ElementName is null)
                 return;
             
             if (EditedYear is null)
@@ -38,12 +38,15 @@ namespace GradeManagement.ViewModels.AddPages
                 EditedYear.Edit(ElementName);
             
             var viewModel = YearListViewModel.Instance;
-            if(viewModel is not null)
-                viewModel.Items = new ObservableCollection<SchoolYear>(DataManager.SchoolYears);
-            
+            UpdateVisualOnChange(viewModel, DataManager.SchoolYears);
             EditedYear = null;
-            CloseAddWindow();
-            DataManager.SaveData();
+        }
+
+        private void RemoveElement(SchoolYear year)
+        {
+            DataManager.SchoolYears.SafeRemove(year);
+            var viewModel = YearListViewModel.Instance;
+            UpdateVisualOnChange(viewModel, DataManager.SchoolYears);
         }
 
         private bool DataChanged()

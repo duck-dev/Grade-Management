@@ -1,5 +1,5 @@
-﻿using System.Collections.ObjectModel;
-using Avalonia.Media;
+﻿using Avalonia.Media;
+using GradeManagement.ExtensionCollection;
 using GradeManagement.Models;
 using GradeManagement.ViewModels.BaseClasses;
 using GradeManagement.ViewModels.Lists;
@@ -37,18 +37,25 @@ namespace GradeManagement.ViewModels.AddPages
             if (EditedSubject is null)
             {
                 var subject = new Subject(ElementName, ElementWeighting, "#fcba03", ElementCounts); // TODO: Use selected color
-                currentYear.Subjects.Add(subject);
+                currentYear.Subjects.SafeAdd(subject);
             }
             else
                 EditedSubject.Edit(ElementName, ElementWeighting, "#fcba03", ElementCounts); // TODO: Use selected color
             
             var viewModel = SubjectListViewModel.Instance;
-            if(viewModel is not null)
-                viewModel.Items = new ObservableCollection<Subject>(currentYear.Subjects);
-            
+            UpdateVisualOnChange(viewModel, currentYear.Subjects);
             EditedSubject = null;
-            CloseAddWindow();
-            DataManager.SaveData();
+        }
+
+        private void RemoveElement(Subject subject)
+        {
+            var currentYear = MainWindowViewModel.CurrentYear;
+            if (currentYear is null)
+                return;
+
+            currentYear.Subjects.SafeRemove(subject);
+            var viewModel = SubjectListViewModel.Instance;
+            UpdateVisualOnChange(viewModel, currentYear.Subjects);
         }
 
         private bool DataChanged()

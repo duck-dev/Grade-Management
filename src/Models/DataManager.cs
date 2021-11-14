@@ -6,7 +6,7 @@ namespace GradeManagement.Models
 {
     public static class DataManager
     {
-        internal static List<SchoolYear>? SchoolYears { get; private set; } = new();
+        internal static List<SchoolYear> SchoolYears { get; private set; } = new();
         
         private static string FilePath 
             => Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "/SchoolYears.json";
@@ -17,7 +17,9 @@ namespace GradeManagement.Models
                 return;
 
             string content = File.ReadAllText(FilePath);
-            SchoolYears = JsonSerializer.Deserialize<List<SchoolYear>>(content);
+            var deserializedList = JsonSerializer.Deserialize<List<SchoolYear>>(content);
+            if(deserializedList is not null)
+                SchoolYears = deserializedList;
         }
 
         internal static void SaveData()

@@ -214,12 +214,19 @@ namespace GradeManagement.ViewModels.AddPages
                 EditedGrade.Edit(ElementName, _elementGrade, ElementWeighting, _tempSelectedDate.Value, ElementCounts);
             
             var viewModel = GradeListViewModel.Instance;
-            if(viewModel is not null)
-                viewModel.Items = new ObservableCollection<Grade>(currentSubject.Grades);
-
+            UpdateVisualOnChange(viewModel, currentSubject.Grades);
             EditedGrade = null;
-            CloseAddWindow();
-            DataManager.SaveData();
+        }
+
+        private void RemoveElement(Grade grade)
+        {
+            var currentSubject = MainWindowViewModel.CurrentSubject;
+            if (currentSubject is null)
+                return;
+            
+            currentSubject.Grades.SafeRemove(grade);
+            var viewModel = GradeListViewModel.Instance;
+            UpdateVisualOnChange(viewModel, currentSubject.Grades);
         }
 
         private bool DataChanged()

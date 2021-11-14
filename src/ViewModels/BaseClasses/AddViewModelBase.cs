@@ -1,6 +1,10 @@
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Avalonia.Controls;
 using Avalonia.Media;
+using GradeManagement.Interfaces;
+using GradeManagement.Models;
 using GradeManagement.ViewModels.AddPages;
 using ReactiveUI;
 
@@ -90,6 +94,15 @@ namespace GradeManagement.ViewModels.BaseClasses
         {
             CurrentAddWindow?.Close();
             CurrentAddWindow = null;
+        }
+
+        protected void UpdateVisualOnChange<T>(IListViewModel<T>? viewModel, IEnumerable<T> collection) where T : IElement
+        {
+            if(viewModel is not null)
+                viewModel.Items = new ObservableCollection<T>(collection);
+            
+            CloseAddWindow();
+            DataManager.SaveData();
         }
 
         internal void EditPageText(AddPageAction action, Type pageType, string suffix = "")
