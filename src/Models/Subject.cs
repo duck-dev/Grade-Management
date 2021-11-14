@@ -47,7 +47,10 @@ namespace GradeManagement.Models
         
         [JsonIgnore]
         public float GradeValue => Utilities.GetAverage(Grades, false);
-        
+
+        [JsonIgnore]
+        public int ElementCount => Grades.Count;
+
         internal Color SubjectColor => Color.Parse(SubjectColorHex);
         internal SolidColorBrush TitleBrush => 
             new(Utilities.AdjustForegroundBrightness(SubjectColor, DarkSubjectTint, LightSubjectTint));

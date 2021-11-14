@@ -20,7 +20,7 @@ namespace GradeManagement.UtilityCollection
         {
             if (!gradables.Any())
                 return 0;
-            var enumerable = gradables.Where(x => x.Counts) as IGradable[] ?? gradables.ToArray();
+            var enumerable = gradables.Where(x => x.Counts && x.ElementCount > 0) as IGradable[] ?? gradables.ToArray();
             float result = enumerable.Sum(x => x.GradeValue * x.Weighting) / enumerable.Sum(x => x.Weighting);
             return round ? (float)Math.Round(result, 2) : result;
         }
