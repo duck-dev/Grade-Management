@@ -1,4 +1,5 @@
 using System;
+using Avalonia.Controls;
 using Avalonia.Media;
 using GradeManagement.ViewModels.AddPages;
 using ReactiveUI;
@@ -81,6 +82,14 @@ namespace GradeManagement.ViewModels.BaseClasses
         {
             get => _elementCounts;
             set => this.RaiseAndSetIfChanged(ref _elementCounts, value);
+        }
+        
+        protected internal Window? CurrentAddWindow { get; internal set; }
+
+        protected void CloseAddWindow()
+        {
+            CurrentAddWindow?.Close();
+            CurrentAddWindow = null;
         }
 
         internal void EditPageText(AddPageAction action, Type pageType, string suffix = "")

@@ -114,19 +114,25 @@ namespace GradeManagement.ViewModels
                                                         where TViewModel : AddViewModelBase, new()
         {
             var window = new TWindow();
-
-            if(_views.Any(x => x.GetType() == typeof(TViewModel)))
-                window.DataContext = _views.Find(x => x.GetType() == typeof(TViewModel));
+            
+            TViewModel? viewModel;
+            if (_views.Any(x => x.GetType() == typeof(TViewModel)))
+            {
+                var viewModelBase = _views.Find(x => x.GetType() == typeof(TViewModel));
+                window.DataContext = viewModelBase;
+                viewModel = viewModelBase as TViewModel;
+            }
             else
             {
-                var newInstance = new TViewModel();
-                window.DataContext = newInstance;
-                _views.Add(newInstance);
+                viewModel = new TViewModel();
+                window.DataContext = viewModel;
+                _views.Add(viewModel);
             }
 
-            window.ShowDialog(MainWindowInstance);
-            CatchClosingWindow(window);
-            return window;
+            if(viewModel is not null)
+                viewModel.CurrentAddWindow = window;
+
+            return ShowDialog(window);
         }
 
         private Window? ShowAddPage(Type? windowType, Type? viewModelType)
@@ -134,15 +140,28 @@ namespace GradeManagement.ViewModels
             if (windowType is null || viewModelType is null || Activator.CreateInstance(windowType) is not Window window)
                 return null;
 
-            if(_views.Any(x => x.GetType() == viewModelType))
-                window.DataContext = _views.Find(x => x.GetType() == viewModelType);
+            AddViewModelBase? viewModel;
+            if (_views.Any(x => x.GetType() == viewModelType))
+            {
+                var viewModelBase = _views.Find(x => x.GetType() == viewModelType);
+                viewModel = viewModelBase as AddViewModelBase;
+                window.DataContext = viewModelBase;
+            }
             else
             {
-                var newInstance = (ViewModelBase)Activator.CreateInstance(viewModelType)!;
-                window.DataContext = newInstance;
-                _views.Add(newInstance);
+                viewModel = (AddViewModelBase)Activator.CreateInstance(viewModelType)!;
+                window.DataContext = viewModel;
+                _views.Add(viewModel);
             }
             
+            if(viewModel is not null)
+                viewModel.CurrentAddWindow = window;
+
+            return ShowDialog(window);
+        }
+
+        private T ShowDialog<T>(T window) where T : Window
+        {
             window.ShowDialog(MainWindowInstance);
             CatchClosingWindow(window);
             return window;

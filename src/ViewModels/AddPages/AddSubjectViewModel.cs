@@ -43,6 +43,7 @@ namespace GradeManagement.ViewModels.AddPages
                 EditedSubject.Edit(ElementName, ElementWeighting, "#fcba03", ElementCounts); // TODO: Use selected color
             
             EditedSubject = null;
+            CloseAddWindow();
             DataManager.SaveData();
         }
 
