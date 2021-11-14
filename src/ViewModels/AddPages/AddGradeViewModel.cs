@@ -235,17 +235,6 @@ namespace GradeManagement.ViewModels.AddPages
             EditedGrade = null;
         }
 
-        private void RemoveElement(Grade grade)
-        {
-            var currentSubject = MainWindowViewModel.CurrentSubject;
-            if (currentSubject is null)
-                return;
-            
-            currentSubject.Grades.SafeRemove(grade);
-            var viewModel = GradeListViewModel.Instance;
-            UpdateVisualOnChange(viewModel, currentSubject.Grades);
-        }
-
         private bool DataChanged()
         {
             if (EditedGrade is null)

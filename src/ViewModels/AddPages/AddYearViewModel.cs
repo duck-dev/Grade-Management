@@ -50,13 +50,6 @@ namespace GradeManagement.ViewModels.AddPages
             EditedYear = null;
         }
 
-        private void RemoveElement(SchoolYear year)
-        {
-            DataManager.SchoolYears.SafeRemove(year);
-            var viewModel = YearListViewModel.Instance;
-            UpdateVisualOnChange(viewModel, DataManager.SchoolYears);
-        }
-
         private bool DataChanged()
         {
             if (EditedYear is null)

@@ -59,17 +59,6 @@ namespace GradeManagement.ViewModels.AddPages
             EditedSubject = null;
         }
 
-        private void RemoveElement(Subject subject)
-        {
-            var currentYear = MainWindowViewModel.CurrentYear;
-            if (currentYear is null)
-                return;
-
-            currentYear.Subjects.SafeRemove(subject);
-            var viewModel = SubjectListViewModel.Instance;
-            UpdateVisualOnChange(viewModel, currentYear.Subjects);
-        }
-
         private bool DataChanged()
         {
             if (EditedSubject is null)

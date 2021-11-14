@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using GradeManagement.ExtensionCollection;
 using GradeManagement.Interfaces;
 using GradeManagement.Models;
 using GradeManagement.ViewModels.AddPages;
@@ -50,6 +51,12 @@ namespace GradeManagement.ViewModels.Lists
             base.ChangeTopbar();
             foreach (var control in TopbarTexts!)
                 control.IsVisible = false;
+        }
+        
+        private void RemoveElement(SchoolYear year)
+        {
+            DataManager.SchoolYears.SafeRemove(year);
+            UpdateVisualOnChange(this, DataManager.SchoolYears);
         }
     }
 }
