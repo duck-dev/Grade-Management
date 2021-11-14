@@ -159,6 +159,28 @@ namespace GradeManagement.ViewModels.AddPages
                 this.RaisePropertyChanged(nameof(DataComplete));
             }
         }
+        
+        internal void DateChanged(object? sender, SelectionChangedEventArgs args)
+        {
+            if (sender is not Calendar calendar) 
+                return;
+            _calendar = calendar;
+            TempSelectedDate = calendar.SelectedDate;
+        }
+        
+        protected internal override void EraseData()
+        {
+            base.EraseData();
+            ElementGradeString = string.Empty;
+
+            var today = DateTime.Today;
+            TempSelectedDate = DateTime.Today;
+            SelectedDay = today.Day;
+            SelectedMonth = new MonthRepresentation(today.Month);
+            SelectedYear = today.Year;
+            
+            EditedGrade = null;
+        }
 
         private bool CalendarOpen
         {
@@ -203,28 +225,6 @@ namespace GradeManagement.ViewModels.AddPages
             DataManager.SaveData();
         }
 
-        internal void DateChanged(object? sender, SelectionChangedEventArgs args)
-        {
-            if (sender is not Calendar calendar) 
-                return;
-            _calendar = calendar;
-            TempSelectedDate = calendar.SelectedDate;
-        }
-        
-        protected internal override void EraseData()
-        {
-            base.EraseData();
-            ElementGradeString = string.Empty;
-
-            var today = DateTime.Today;
-            TempSelectedDate = DateTime.Today;
-            SelectedDay = today.Day;
-            SelectedMonth = new MonthRepresentation(today.Month);
-            SelectedYear = today.Year;
-            
-            EditedGrade = null;
-        }
-        
         private bool DataChanged()
         {
             if (EditedGrade is null)

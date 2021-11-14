@@ -18,6 +18,12 @@ namespace GradeManagement.ViewModels.AddPages
 
         internal SchoolYear? EditedYear { get; set; } // TODO: When editing year, overwrite this property with `SchoolYear`
         
+        protected internal override void EraseData()
+        {
+            base.EraseData();
+            EditedYear = null;
+        }
+        
         private void CreateElement()
         {
             if(ElementName is null)
@@ -41,12 +47,6 @@ namespace GradeManagement.ViewModels.AddPages
             EditedYear = null;
             CloseAddWindow();
             DataManager.SaveData();
-        }
-        
-        protected internal override void EraseData()
-        {
-            base.EraseData();
-            EditedYear = null;
         }
 
         private bool DataChanged()

@@ -21,6 +21,13 @@ namespace GradeManagement.ViewModels.AddPages
         
         internal Subject? EditedSubject { get; set; } // TODO: When editing year, overwrite this property with `Subject`
         
+        protected internal override void EraseData()
+        {
+            base.EraseData();
+            // TODO: Reset color selection
+            EditedSubject = null;
+        }
+        
         private void CreateElement()
         {
             if (ElementName is null)
@@ -45,13 +52,6 @@ namespace GradeManagement.ViewModels.AddPages
             EditedSubject = null;
             CloseAddWindow();
             DataManager.SaveData();
-        }
-
-        protected internal override void EraseData()
-        {
-            base.EraseData();
-            // TODO: Reset color selection
-            EditedSubject = null;
         }
 
         private bool DataChanged()
