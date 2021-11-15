@@ -11,6 +11,7 @@
     </Design.DataContext>
     
     <UserControl.Styles>
+        <StyleInclude Source="/src/Styles/ContextMenuStyle.axaml"/>
         <Style Selector="Button.grade-button">
             <Setter Property="RenderTransform" Value="scale(1)"/>
             <Setter Property="Width" Value="500"/>

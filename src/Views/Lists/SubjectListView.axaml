@@ -11,6 +11,7 @@
     </Design.DataContext>
     
     <UserControl.Styles>
+        <StyleInclude Source="/src/Styles/ContextMenuStyle.axaml"/>
         <Style Selector="Button.subject-button /template/ ContentPresenter">
             <Setter Property="RenderTransform" Value="scale(1)"/>
             <Setter Property="CornerRadius" Value="20"/>
