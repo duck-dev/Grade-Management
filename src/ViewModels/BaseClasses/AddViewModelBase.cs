@@ -85,7 +85,11 @@ namespace GradeManagement.ViewModels.BaseClasses
         protected internal bool ElementCounts
         {
             get => _elementCounts;
-            set => this.RaiseAndSetIfChanged(ref _elementCounts, value);
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _elementCounts, value);
+                this.RaisePropertyChanged(nameof(DataComplete));
+            }
         }
         
         protected internal Window? CurrentAddWindow { get; internal set; }

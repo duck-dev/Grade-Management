@@ -65,7 +65,8 @@ namespace GradeManagement.ViewModels.AddPages
                 return true;
 
             return ElementName is not null && (!ElementName.Trim().Equals(EditedSubject.Name.Trim()) 
-                                               || !ElementWeighting.Equals(EditedSubject.Weighting));
+                                               || !ElementWeighting.Equals(EditedSubject.Weighting)
+                                               || ElementCounts != EditedSubject.Counts);
         }
     }
 }
