@@ -12,5 +12,6 @@ Global
 		{24F8B115-AEED-452C-BE37-87FD8B1ABD59}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24F8B115-AEED-452C-BE37-87FD8B1ABD59}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24F8B115-AEED-452C-BE37-87FD8B1ABD59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24F8B115-AEED-452C-BE37-87FD8B1ABD59}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

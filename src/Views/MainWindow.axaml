@@ -22,44 +22,61 @@
         <Panel DockPanel.Dock="Top">
             <Border Classes="topbar-border" BorderThickness="0, 0, 0, 1" VerticalAlignment="Top">
                 <Panel>
-                    <!-- <Grid ColumnDefinitions="Auto,Auto" -->
-                    <!--       VerticalAlignment="Stretch" -->
-                    <!--       HorizontalAlignment="Left" -->
-                    <!--       Margin="30, 0, 0, 0"> -->
-                    <!--     <Image Grid.Column="0" Source="/Assets/Images/Arrow.png"> -->
-                    <!--         <Image.RenderTransform> -->
-                    <!--             <RotateTransform Angle="90"/> -->
-                    <!--         </Image.RenderTransform> -->
-                    <!--     </Image> -->
-                    <!--     <Image Grid.Column="1" Source="/Assets/Images/Arrow.png"/> -->
-                    <!-- </Grid> -->
-                    <Grid Name="Topbar-Grid"
-                          ColumnDefinitions="Auto,Auto,Auto"
+                    <Grid ColumnDefinitions="Auto,Auto"
                           VerticalAlignment="Stretch"
-                          HorizontalAlignment="Center"> <!--If this element's HorizontalAlignment is "Left", 
-                                                        set left margin to 30 (Margin: 30, 0, 0, 0)-->
-                        <TextBlock Classes="topbar-text topbar-text-pointable topbar-text-year"
-                                   Grid.Column="0"
-                                   PointerPressed="OnYearPressed">
-                            2021/22
-                        </TextBlock>
-                        <TextBlock Classes="topbar-text topbar-text-symbol" Grid.Column="1">
-                            /
-                        </TextBlock>
-                        <TextBlock Classes="topbar-text topbar-text-pointable topbar-text-subject"
-                                   Grid.Column="2"
-                                   PointerPressed="OnSubjectPressed">
-                            English
-                        </TextBlock>
+                          HorizontalAlignment="Left"
+                          Margin="30, 0, 0, 0">
+                        <!-- <Button Grid.Column="0" Width="80" Height="80" Margin="0,0,5,0"> -->
+                        <!--     ~1~This is not the right way to embed an image into a button, just a placeholder@1@ -->
+                        <!--     <Image Source="/Assets/Images/Arrow.png"> -->
+                        <!--         <Image.RenderTransform> -->
+                        <!--             <RotateTransform Angle="90"/> -->
+                        <!--         </Image.RenderTransform> -->
+                        <!--     </Image> -->
+                        <!-- </Button> -->
+                        <!-- <Button Grid.Column="1" Width="80" Height="80" Margin="5,0,0,0"> -->
+                        <!--     ~1~This is not the right way to embed an image into a button, just a placeholder@1@ -->
+                        <!--     <Image Source="/Assets/Images/Arrow.png"/> -->
+                        <!-- </Button> -->
                     </Grid>
-                    <!-- <Image Source="/Assets/Images/Settings.png" HorizontalAlignment="Right" Margin="0, 0, 30, 0"/> -->
+                    <Viewbox HorizontalAlignment="Center" VerticalAlignment="Center" Width="1500" Height="80">
+                        <Grid Name="Topbar-Grid"
+                              ColumnDefinitions="Auto,Auto,Auto"
+                              VerticalAlignment="Stretch"
+                              HorizontalAlignment="Center"> <!--If this element's HorizontalAlignment is "Left", 
+                                                        set left margin to 30 (Margin: 30, 0, 0, 0)-->
+                            <TextBlock Classes="topbar-text topbar-text-pointable topbar-text-year"
+                                       Grid.Column="0"
+                                       PointerPressed="OnYearPressed"/>
+                            <TextBlock Classes="topbar-text topbar-text-symbol" Grid.Column="1">/</TextBlock>
+                            <TextBlock Classes="topbar-text topbar-text-pointable topbar-text-subject"
+                                       Grid.Column="2"
+                                       PointerPressed="OnSubjectPressed"/>
+                        </Grid>
+                    </Viewbox>
+                    <!-- <Button Width="80" Height="80" HorizontalAlignment="Right" Margin="0,0,60,0"> -->
+                    <!--     ~1~This is not the right way to embed an image into a button, just a placeholder@1@ -->
+                    <!--     <Image Source="/Assets/Images/Settings.png" HorizontalAlignment="Right" Margin="0, 0, 30, 0"/> -->
+                    <!-- </Button> -->
                 </Panel>
             </Border>
         </Panel>
         
-        <Panel DockPanel.Dock="Bottom">
-            <Border Classes="topbar-border" BorderThickness="0, 1, 0, 0" VerticalAlignment="Bottom"/>
-        </Panel>
+        <Border DockPanel.Dock="Bottom" Classes="topbar-border" BorderThickness="0, 1, 0, 0" 
+                VerticalAlignment="Bottom">
+            <!-- <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch"> -->
+            <!--     <Button Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="60,0,0,0"/> -->
+            <!--     <Grid ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center" VerticalAlignment="Center"> -->
+            <!--         <Border Grid.Column="0" Margin="0,0,10,0"> -->
+            <!--             <Button Width="150" Height="80" VerticalAlignment="Center"/> -->
+            <!--         </Border> -->
+            <!--         <Border Grid.Column="1" Margin="10, 0, 0, 0"> -->
+            <!--             <Button Width="150" Height="80" VerticalAlignment="Center"/> -->
+            <!--         </Border> -->
+            <!--     </Grid> -->
+            <!--     <Button Width="80" Height="80" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,60,0"/> -->
+            <!-- </Panel> -->
+        </Border>
         
         <Panel>
             <UserControl Content="{Binding Content}" 

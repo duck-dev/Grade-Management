@@ -29,7 +29,7 @@
                     IsEnabled="{Binding DataComplete}"
                     Content="{Binding ButtonText}"/>
         </Grid>
-        <TextBox Classes="add-page-text-box" Watermark="Name of the School Year" MaxLength="35"
+        <TextBox Classes="add-page-text-box" Watermark="Name of the School Year" MaxLength="25"
                  Text="{Binding ElementName}"
                  BorderBrush="{Binding BorderBrushes[0]}"/>
     </Panel>

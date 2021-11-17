@@ -29,7 +29,7 @@
                       <!--         </Button.Content> -->
                       <!-- </Button> TODO: Set up back-button!!!-->
                       <TextBox Grid.Row="1" Classes="add-page-text-box" 
-                               Watermark="Name of the Subject" MaxLength="35" 
+                               Watermark="Name of the Subject" MaxLength="25" 
                                Text="{Binding ElementName}"
                                BorderBrush="{Binding BorderBrushes[0]}"/>
                       <TextBox Grid.Row="2" Classes="add-page-text-box" 
