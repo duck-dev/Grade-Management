@@ -11,14 +11,18 @@ namespace GradeManagement.ViewModels.BaseClasses
         protected internal Type? AddPageType { get; protected init; }
         protected internal Type? AddViewModelType { get; protected init; }
         
-        protected void UpdateVisualOnChange<T>(IListViewModel<T>? viewModel, IEnumerable<T> collection) where T : IElement
+        protected void DuplicateElement<T>(IElement element) where T : IElement
         {
-            if(viewModel is not null)
-                viewModel.Items = new ObservableCollection<T>(collection);
+            var instance = MainWindowViewModel.Instance;
+            if (instance is null)
+                return;
             
-            DataManager.SaveData();
+            var content = instance.Content;
+            var collection = element.Duplicate<T>();
+            var viewModel = content as IListViewModel<T>;
+            content.UpdateVisualOnChange(viewModel, collection);
         }
-        
+
         protected internal virtual void ChangeTopbar()
         {
             if (TopbarTexts is null)

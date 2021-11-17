@@ -86,6 +86,10 @@
                                     <MenuItem Header="Edit Subject" 
                                               Command="{Binding $parent[Window].DataContext.EditSubject}"
                                               CommandParameter="{Binding}"/>
+                                    <MenuItem Header="Duplicate Subject"
+                                              Command="{Binding $parent[UserControl].DataContext.Duplicate}"
+                                              CommandParameter="{Binding}">
+                                    </MenuItem>
                                     <MenuItem Header="Remove Subject"
                                               Command="{Binding $parent[UserControl].DataContext.RemoveElement}"
                                               CommandParameter="{Binding}"/>

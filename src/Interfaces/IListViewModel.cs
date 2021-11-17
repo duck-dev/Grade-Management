@@ -6,5 +6,7 @@ namespace GradeManagement.Interfaces
     {
         ObservableCollection<T>? Items { get; set; }
         bool EmptyCollection { get; }
+        
+        void Duplicate(IElement element);
     }
 }

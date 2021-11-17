@@ -9,6 +9,7 @@ using Avalonia.Controls;
 using Avalonia.Media;
 using GradeManagement.Interfaces;
 using GradeManagement.Models;
+using GradeManagement.UtilityCollection;
 using GradeManagement.ViewModels.AddPages;
 using GradeManagement.ViewModels.BaseClasses;
 using GradeManagement.ViewModels.Lists;
@@ -25,6 +26,8 @@ namespace GradeManagement.ViewModels
         
         public MainWindowViewModel()
         {
+            Instance = this;
+            
             DataManager.LoadData();
             InitializeTopbarElements();
             
@@ -35,13 +38,14 @@ namespace GradeManagement.ViewModels
             _addButton = MainWindowInstance.Get<Button>("AddButton");
         }
 
+        internal static MainWindowViewModel? Instance { get; private set; }
         internal static SchoolYear? CurrentYear { get; set; }
         internal static Subject? CurrentSubject { get; set; }
         
-        private ListViewModelBase Content
+        internal ListViewModelBase Content
         {
             get => _content;
-            set => this.RaiseAndSetIfChanged(ref _content, value);
+            private set => this.RaiseAndSetIfChanged(ref _content, value);
         }
 
         internal void SwitchPage<T, TItems>(IEnumerable<TItems> items) where T : ListViewModelBase, IListViewModel<TItems>
@@ -110,6 +114,13 @@ namespace GradeManagement.ViewModels
                 textBlock.Text = year.Name;
             SwitchPage<SubjectListViewModel, Subject>(year.Subjects);
             CurrentYear = year;
+        }
+
+        private void DuplicateElement<T>(IElement element) where T : IElement
+        {
+            var collection = element.Duplicate<T>();
+            var viewModel = _content as IListViewModel<T>;
+            _content.UpdateVisualOnChange(viewModel, collection);
         }
 
         private void OpenAddPage()

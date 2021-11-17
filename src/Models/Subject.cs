@@ -1,13 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using Avalonia;
 using Avalonia.Media;
 using GradeManagement.Interfaces;
 using GradeManagement.UtilityCollection;
+using GradeManagement.ViewModels;
 
 namespace GradeManagement.Models
 {
-    public class Subject : IElement, IGradable
+    public class Subject : IElement, IGradable, ICloneable
     {
         private readonly Color _additionalInfoColor = Color.Parse("#999999");
         private readonly Color _lightBackground = Color.Parse("#c7cad1");
@@ -86,7 +88,19 @@ namespace GradeManagement.Models
         
         private Color AdditionalInfoDark => Utilities.DarkenColor(_additionalInfoColor, 0.3f);
         private Color AdditionalInfoLight => Utilities.BrightenColor(_additionalInfoColor, 0.3f);
-        
+
+        public IEnumerable<T>? Duplicate<T>() where T : IElement
+        {
+            if (Clone() is not Subject duplicate)
+                return null;
+            var currentYear = MainWindowViewModel.CurrentYear;
+            currentYear?.Subjects.Add(duplicate);
+
+            return currentYear?.Subjects as IEnumerable<T>;
+        }
+
+        public object Clone() => this.MemberwiseClone();
+
         internal void Edit(string newName, float newWeighting, string newSubjectColorHex, bool counts)
         {
             this.Name = newName;

@@ -46,6 +46,8 @@ namespace GradeManagement.ViewModels.Lists
         
         internal static GradeListViewModel? Instance { get; private set; }
 
+        public void Duplicate(IElement element) => DuplicateElement<Grade>(element);
+
         protected internal override void ChangeTopbar()
         {
             base.ChangeTopbar();

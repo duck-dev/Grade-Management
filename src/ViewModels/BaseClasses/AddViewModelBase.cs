@@ -91,17 +91,6 @@ namespace GradeManagement.ViewModels.BaseClasses
                 this.RaisePropertyChanged(nameof(DataComplete));
             }
         }
-        
-        protected internal Window? CurrentAddWindow { get; internal set; }
-
-        protected void UpdateVisualOnChange<T>(IListViewModel<T>? viewModel, IEnumerable<T> collection) where T : IElement
-        {
-            if(viewModel is not null)
-                viewModel.Items = new ObservableCollection<T>(collection);
-            
-            CloseAddWindow();
-            DataManager.SaveData();
-        }
 
         internal void EditPageText(AddPageAction action, Type pageType, string suffix = "")
         {
@@ -128,12 +117,6 @@ namespace GradeManagement.ViewModels.BaseClasses
             ElementName = string.Empty;
             ElementWeightingString = string.Empty;
             ElementCounts = true;
-        }
-        
-        private void CloseAddWindow()
-        {
-            CurrentAddWindow?.Close();
-            CurrentAddWindow = null;
         }
     }
 }
