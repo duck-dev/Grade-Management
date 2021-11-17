@@ -5,11 +5,14 @@ using GradeManagement.Interfaces;
 using GradeManagement.Models;
 using GradeManagement.ViewModels.BaseClasses;
 using GradeManagement.ViewModels.Lists;
+using ReactiveUI;
 
 namespace GradeManagement.ViewModels.AddPages
 {
     public class AddSubjectViewModel : AddViewModelBase, IAddViewModel<Subject>
     {
+        private bool _wishGradeEnabled;
+        
         public AddSubjectViewModel()
         {
             BorderBrushes = new SolidColorBrush[] { new(IncompleteColor), new(IncompleteColor) };
@@ -21,7 +24,13 @@ namespace GradeManagement.ViewModels.AddPages
                                                 && !float.IsNaN(ElementWeighting)
                                                 && DataChanged();
         
-        internal Subject? EditedSubject { get; set; } // TODO: When editing year, overwrite this property with `Subject`
+        internal bool WishGradeEnabled
+        {
+            get => _wishGradeEnabled; 
+            set => this.RaiseAndSetIfChanged(ref _wishGradeEnabled, value);
+        }
+        
+        private Subject? EditedSubject { get; set; } // TODO: When editing year, overwrite this property with `Subject`
 
         public void EditElement(Subject subject)
         {

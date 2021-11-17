@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
+using System.Reactive;
 using Avalonia.Controls;
 using Avalonia.Media;
 using GradeManagement.Interfaces;
@@ -61,29 +62,35 @@ namespace GradeManagement.ViewModels
             _addButton.IsVisible = true;
         }
         
-        private static void EditElement<T>(T element, Window window) where T : IElement
+        private static void EditElement<TElement, TViewModel>(TElement element, TViewModel? viewModel, Window window) 
+            where TElement : IElement where TViewModel : AddViewModelBase, IAddViewModel<TElement>
         {
             window.Title = element.Name;
-            if (window.DataContext is IAddViewModel<T> viewModel)
-                viewModel.EditElement(element);
+            if (viewModel is null)
+            {
+                if (window.DataContext is IAddViewModel<TElement> viewModelDataContext)
+                    viewModelDataContext.EditElement(element);
+                return;
+            }
+            viewModel.EditElement(element);
         }
         
         private void EditGrade(Grade grade) // I wish I could use a generic method here :(
         {
-            var window = ShowAddPage<AddGradeWindow, AddGradeViewModel>();
-            EditElement(grade, window);
+            var window = ShowAddPage<AddGradeWindow, AddGradeViewModel>(out var viewModel);
+            EditElement(grade, viewModel, window);
         }
 
         private void EditSubject(Subject subject) // I wish I could use a generic method here :(
         {
-            var window = ShowAddPage<AddSubjectWindow, AddSubjectViewModel>();
-            EditElement(subject, window);
+            var window = ShowAddPage<AddSubjectWindow, AddSubjectViewModel>(out var viewModel);
+            EditElement(subject, viewModel, window);
         }
 
         private void EditYear(SchoolYear year) // I wish I could use a generic method here :(
         {
-            var window = ShowAddPage<AddYearWindow, AddYearViewModel>();
-            EditElement(year, window);
+            var window = ShowAddPage<AddYearWindow, AddYearViewModel>(out var viewModel);
+            EditElement(year, viewModel, window);
         }
 
         private void OpenSubject(Subject subject)
@@ -113,12 +120,11 @@ namespace GradeManagement.ViewModels
                 viewModel.EditPageText(AddPageAction.Create, _content.AddViewModelType!);
         }
 
-        private TWindow ShowAddPage<TWindow, TViewModel>() where TWindow : Window, new() 
+        private TWindow ShowAddPage<TWindow, TViewModel>(out TViewModel? viewModel) where TWindow : Window, new() 
                                                         where TViewModel : AddViewModelBase, new()
         {
             var window = new TWindow();
             
-            TViewModel? viewModel;
             if (_views.Any(x => x.GetType() == typeof(TViewModel)))
             {
                 var viewModelBase = _views.Find(x => x.GetType() == typeof(TViewModel));

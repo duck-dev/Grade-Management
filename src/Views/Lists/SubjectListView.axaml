@@ -54,84 +54,87 @@
         
         <ScrollViewer VerticalScrollBarVisibility="Auto"
                   HorizontalScrollBarVisibility="Disabled">
-        <ItemsControl Items="{Binding Items}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Button Command="{Binding $parent[Window].DataContext.OpenSubject}"
-                            CommandParameter="{Binding}"
-                            Classes="subject-button">
-                        <Button.Background>
-                            <LinearGradientBrush StartPoint="0%,100%" EndPoint="100%,0%">
-                                <GradientStop Color="{Binding SubjectColor}" Offset="0.0"/>
-                                <GradientStop Color="#c7cad1" Offset="0.9"/>
-                            </LinearGradientBrush>
-                        </Button.Background>
-                        <Button.Styles>
-                            <Style Selector="Button:pointerover /template/ ContentPresenter">
-                                <Setter Property="Background" Value="{Binding BackgroundBrushHover}"/>
-                            </Style>
-                        </Button.Styles>
-                        <Button.Transitions>
-                            <Transitions>
-                                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
-                            </Transitions>
-                        </Button.Transitions>
-                        <Button.ContextMenu>
-                            <ContextMenu>
-                                <MenuItem Header="Edit Subject" 
-                                          Command="{Binding $parent[Window].DataContext.EditSubject}"
-                                          CommandParameter="{Binding}"/>
-                                <MenuItem Header="Remove Subject"
-                                          Command="{Binding $parent[UserControl].DataContext.RemoveElement}"
-                                          CommandParameter="{Binding}"/>
-                            </ContextMenu>
-                        </Button.ContextMenu>
-                        <Grid VerticalAlignment="Stretch" RowDefinitions="*,*,*">
-                            <Panel Grid.Row="0" VerticalAlignment="Stretch">
-                                <Viewbox HorizontalAlignment="Center" VerticalAlignment="Stretch" Height="46">
-                                    <TextBlock Text="{Binding Name}"
-                                               FontWeight="Bold"
-                                               Foreground="{Binding TitleBrush}"
-                                               HorizontalAlignment="Center"
+            <ItemsControl Items="{Binding Items}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Command="{Binding $parent[Window].DataContext.OpenSubject}"
+                                CommandParameter="{Binding}"
+                                Classes="subject-button">
+                            <Button.Background>
+                                <LinearGradientBrush StartPoint="0%,100%" EndPoint="100%,0%">
+                                    <GradientStop Color="{Binding SubjectColor}" Offset="0.0"/>
+                                    <GradientStop Color="#c7cad1" Offset="0.9"/>
+                                </LinearGradientBrush>
+                            </Button.Background>
+                            <Button.Styles>
+                                <Style Selector="Button:pointerover /template/ ContentPresenter">
+                                    <Setter Property="Background" Value="{Binding BackgroundBrushHover}"/>
+                                </Style>
+                            </Button.Styles>
+                            <Button.Transitions>
+                                <Transitions>
+                                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
+                                </Transitions>
+                            </Button.Transitions>
+                            <Button.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Edit Subject" 
+                                              Command="{Binding $parent[Window].DataContext.EditSubject}"
+                                              CommandParameter="{Binding}"/>
+                                    <MenuItem Header="Remove Subject"
+                                              Command="{Binding $parent[UserControl].DataContext.RemoveElement}"
+                                              CommandParameter="{Binding}"/>
+                                </ContextMenu>
+                            </Button.ContextMenu>
+                            <Grid VerticalAlignment="Stretch" RowDefinitions="*,*,*">
+                                <Panel Grid.Row="0" VerticalAlignment="Stretch">
+                                    <Viewbox HorizontalAlignment="Center" VerticalAlignment="Stretch" Height="46">
+                                        <TextBlock Text="{Binding Name}"
+                                                   FontWeight="Bold"
+                                                   Foreground="{Binding TitleBrush}"
+                                                   HorizontalAlignment="Center"
+                                                   TextAlignment="Center"
+                                                   Margin="10 0 0 0"/>
+                                    </Viewbox>
+                                </Panel>
+                                <Panel Grid.Row="1" VerticalAlignment="Stretch">
+                                    <Grid ColumnDefinitions="Auto,Auto" VerticalAlignment="Top" HorizontalAlignment="Center">
+                                        <TextBlock Grid.Column="0" TextAlignment="Center"
+                                                   Text="{Binding Path=Grades.Count,
+                                                                 StringFormat='=  {0}'}"
+                                                   Foreground="{Binding AdditionalInfoColor}"
+                                                   FontSize="30"
+                                                   Margin="0, 0, 25, 0"/>
+                                        <TextBlock Grid.Column="1" TextAlignment="Center"
+                                                   Text="{Binding Path=Weighting, 
+                                                                 StringFormat='W  {0}'}"
+                                                   Foreground="{Binding AdditionalInfoColor}"
+                                                   FontSize="30"
+                                                   Margin="25, 0, 0, 0"/>
+                                    </Grid>
+                                </Panel>
+                                <Panel Grid.Row="2" VerticalAlignment="Stretch">
+                                    <TextBlock Text="{Binding RoundedAverage}"
                                                TextAlignment="Center"
-                                               Margin="10 0 0 0"/>
-                                </Viewbox>
-                            </Panel>
-                            <Panel Grid.Row="1" VerticalAlignment="Stretch">
-                                <Grid ColumnDefinitions="Auto,Auto" VerticalAlignment="Top" HorizontalAlignment="Center">
-                                    <TextBlock Grid.Column="0" TextAlignment="Center"
-                                               Text="{Binding Path=Grades.Count,
-                                                             StringFormat='=  {0}'}"
-                                               Foreground="{Binding AdditionalInfoColor}"
-                                               FontSize="30"
-                                               Margin="0, 0, 25, 0"/>
-                                    <TextBlock Grid.Column="1" TextAlignment="Center"
-                                               Text="{Binding Path=Weighting, 
-                                                             StringFormat='W  {0}'}"
-                                               Foreground="{Binding AdditionalInfoColor}"
-                                               FontSize="30"
-                                               Margin="25, 0, 0, 0"/>
-                                </Grid>
-                            </Panel>
-                            <Panel Grid.Row="2" VerticalAlignment="Stretch">
-                                <TextBlock Text="{Binding RoundedAverage}"
-                                           TextAlignment="Center"
-                                           VerticalAlignment="Center"
-                                           HorizontalAlignment="Center"
-                                           Foreground="Black"
-                                           FontSize="46"
-                                           FontWeight="Bold"></TextBlock>
-                            </Panel>
-                        </Grid>
-                    </Button>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-    </ScrollViewer>
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"
+                                               Foreground="Black"
+                                               FontSize="46"
+                                               FontWeight="Bold"/>
+                                </Panel>
+                            </Grid>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        
+        <Button HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="57.5, 0, 0, 45"
+                Width="150" Height="175"/>
     </Panel>
 </UserControl>
