@@ -28,6 +28,13 @@ namespace GradeManagement.ExtensionCollection
                 list.Remove(element);
         }
 
+        /// <summary>
+        /// Create a deep copy of a <see cref="IEnumerable{T}"/> collection.
+        /// </summary>
+        /// <param name="list">The list to be cloned.</param>
+        /// <typeparam name="T">The type of the elements inside the collection. All of them ought to inherit <see cref="ICloneable"/>
+        /// </typeparam>
+        /// <returns>The cloned collection.</returns>
         public static IEnumerable<T> Clone<T>(this IEnumerable<T> list) where T : ICloneable 
             => list.Select(x => (T)x.Clone());
     }
