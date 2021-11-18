@@ -1,10 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using Avalonia.Controls;
 using Avalonia.Media;
-using GradeManagement.Interfaces;
-using GradeManagement.Models;
 using GradeManagement.ViewModels.AddPages;
 using ReactiveUI;
 
@@ -112,7 +107,7 @@ namespace GradeManagement.ViewModels.BaseClasses
             ButtonText = $"{prefix} {type}";
         }
 
-        protected internal virtual void EraseData()
+        protected override void EraseData()
         {
             ElementName = string.Empty;
             ElementWeightingString = string.Empty;

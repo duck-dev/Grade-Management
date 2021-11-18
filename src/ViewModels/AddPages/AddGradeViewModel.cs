@@ -169,7 +169,7 @@ namespace GradeManagement.ViewModels.AddPages
             TempSelectedDate = calendar.SelectedDate;
         }
         
-        protected internal override void EraseData()
+        protected override void EraseData()
         {
             base.EraseData();
             ElementGradeString = string.Empty;

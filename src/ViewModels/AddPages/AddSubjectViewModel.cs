@@ -42,7 +42,7 @@ namespace GradeManagement.ViewModels.AddPages
             ElementCounts = subject.Counts;
         }
         
-        protected internal override void EraseData()
+        protected override void EraseData()
         {
             base.EraseData();
             // TODO: Reset color selection
