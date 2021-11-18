@@ -116,13 +116,6 @@ namespace GradeManagement.ViewModels
             CurrentYear = year;
         }
 
-        private void DuplicateElement<T>(IElement element) where T : IElement
-        {
-            var collection = element.Duplicate<T>();
-            var viewModel = _content as IListViewModel<T>;
-            _content.UpdateVisualOnChange(viewModel, collection);
-        }
-
         private void OpenAddPage()
         {
             _addButton.IsVisible = false;

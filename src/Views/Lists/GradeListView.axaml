@@ -81,6 +81,10 @@
                                     <MenuItem Header="Edit Grade" 
                                               Command="{Binding $parent[Window].DataContext.EditGrade}"
                                               CommandParameter="{Binding}"/>
+                                    <MenuItem Header="Duplicate Grade"
+                                              Command="{Binding $parent[UserControl].DataContext.Duplicate}"
+                                              CommandParameter="{Binding}">
+                                    </MenuItem>
                                     <MenuItem Header="Remove Grade"
                                               Command="{Binding $parent[UserControl].DataContext.RemoveElement}"
                                               CommandParameter="{Binding}"/>

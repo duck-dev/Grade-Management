@@ -80,6 +80,10 @@
                                     <MenuItem Header="Edit School Year" 
                                               Command="{Binding $parent[Window].DataContext.EditYear}"
                                               CommandParameter="{Binding}"/>
+                                    <MenuItem Header="Duplicate School Year"
+                                              Command="{Binding $parent[UserControl].DataContext.Duplicate}"
+                                              CommandParameter="{Binding}">
+                                    </MenuItem>
                                     <MenuItem Header="Remove School Year"
                                               Command="{Binding $parent[UserControl].DataContext.RemoveElement}"
                                               CommandParameter="{Binding}"/>
