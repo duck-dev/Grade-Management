@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json.Serialization;
 using Avalonia;
 using Avalonia.Media;
+using GradeManagement.ExtensionCollection;
 using GradeManagement.Interfaces;
 using GradeManagement.UtilityCollection;
 using GradeManagement.ViewModels;
@@ -36,7 +38,7 @@ namespace GradeManagement.Models
         public string Name { get; private set; }
 
         [JsonInclude] 
-        public List<Grade> Grades { get; } = new();
+        public List<Grade> Grades { get; private set; } = new();
 
         [JsonInclude]
         public float Weighting { get; private set; }
@@ -93,6 +95,8 @@ namespace GradeManagement.Models
         {
             if (Clone() is not Subject duplicate)
                 return null;
+            duplicate.Grades = duplicate.Grades.Clone().ToList();
+            
             var currentYear = MainWindowViewModel.CurrentYear;
             currentYear?.Subjects.Add(duplicate);
 
