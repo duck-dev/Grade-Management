@@ -5,7 +5,7 @@
         xmlns:viewModels="clr-namespace:GradeManagement.ViewModels"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="GradeManagement.Views.TargetGrade.TargetGradeWindow"
-        Title="Target Grade Calculator"
+        Title="{Binding WindowTitle}"
         WindowStartupLocation="CenterOwner"
         Width="750"
         Height="550"
@@ -22,6 +22,9 @@
                         <Setter Property="Height" Value="50"/>
                         <Setter Property="BorderThickness" Value="2"/>
                         <Setter Property="BorderBrush" Value="#009B72"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="Command" Value="{Binding SwitchCalculator}"/>
                 </Style>
                 <Style Selector="Button.target-grade-button /template/ ContentPresenter">
                         <Setter Property="CornerRadius" Value="10"/>
@@ -33,11 +36,15 @@
                       HorizontalAlignment="Center">
                         <Button Grid.Column="0" Classes="target-grade-button" Margin="0,0,20,0" 
                                 Background="{Binding ButtonColors[0]}"
-                                Command="{Binding SwitchCalculator}"
+                                Foreground="{Binding ButtonTextColors[0]}"
+                                FontWeight="{Binding FontWeights[0]}"
+                                Content="Calculate Target Grade"
                                 CommandParameter="0"/>
                         <Button Grid.Column="1" Classes="target-grade-button" Margin="20,0,0,0"
                                 Background="{Binding ButtonColors[1]}"
-                                Command="{Binding SwitchCalculator}" 
+                                Foreground="{Binding ButtonTextColors[1]}"
+                                FontWeight="{Binding FontWeights[1]}"
+                                Content="Calculate Average"
                                 CommandParameter="1"/>
                 </Grid>
                 <Grid DockPanel.Dock="Bottom" RowDefinitions="*">
