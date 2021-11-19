@@ -1,5 +1,4 @@
 using Avalonia.Media;
-using Avalonia.VisualTree;
 using GradeManagement.ViewModels.BaseClasses;
 using ReactiveUI;
 
@@ -7,31 +6,24 @@ namespace GradeManagement.ViewModels
 {
     public class TargetGradeViewModel : ViewModelBase
     {
-        private IVisual? _currentButton;
-        
-        private Color GreenColor { get; } = new(255,0,155,114);
-        private SolidColorBrush[] ButtonColors 
-            => new [] { new SolidColorBrush(GreenColor), new SolidColorBrush(GreenColor) };
+        private int _currentButton;
 
-        private SolidColorBrush ButtonC => new SolidColorBrush(GreenColor, 1);
+        private static Color GreenColor { get; } = new(255,0,155,114);
+        private SolidColorBrush[] ButtonColors { get; } = { new(GreenColor), new(GreenColor,0) };
 
         protected override void EraseData()
         {
             // TODO: Erase data
         }
 
-        private void SwitchCalculator(IVisual button)
+        private void SwitchCalculator(int selectedButton)
         {
-            if (_currentButton == button)
+            if (_currentButton == selectedButton)
                 return;
-            _currentButton = button;
-            
-            var secondElement = ButtonColors[1];
-            var opacity = secondElement.Opacity;
+            _currentButton = selectedButton;
 
-            // Doesn't work yet, will be functional in the next commit
-            ButtonColors[0].Opacity = opacity;
-            secondElement.Opacity = opacity == 0 ? 1 : 0;
+            ButtonColors[selectedButton].Opacity = 1;
+            ButtonColors[selectedButton == 0 ? 1 : 0].Opacity = 0;
 
             this.RaisePropertyChanged(nameof(ButtonColors));
         }
