@@ -2,7 +2,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewModels="clr-namespace:GradeManagement.ViewModels"
+        xmlns:targetGrade="clr-namespace:GradeManagement.ViewModels.TargetGrade"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="GradeManagement.Views.TargetGrade.TargetGradeWindow"
         Title="{Binding WindowTitle}"
@@ -12,7 +12,7 @@
         CanResize="False">
     
         <Design.DataContext>
-                <viewModels:TargetGradeViewModel/>
+                <targetGrade:TargetGradeWindowModel/>
         </Design.DataContext>
         
         <Window.Styles>
@@ -48,7 +48,8 @@
                                 CommandParameter="1"/>
                 </Grid>
                 <Grid DockPanel.Dock="Bottom" RowDefinitions="*">
-                        
+                       <UserControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                                    Content="{Binding Content}"/>
                 </Grid>
         </DockPanel>
 </Window>
