@@ -6,9 +6,7 @@ using GradeManagement.Interfaces;
 using GradeManagement.Models;
 using GradeManagement.ViewModels.AddPages;
 using GradeManagement.ViewModels.BaseClasses;
-using GradeManagement.ViewModels.TargetGrade;
 using GradeManagement.Views.AddPages;
-using GradeManagement.Views.TargetGrade;
 using ReactiveUI;
 
 namespace GradeManagement.ViewModels.Lists
