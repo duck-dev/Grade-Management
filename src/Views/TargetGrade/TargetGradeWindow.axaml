@@ -47,7 +47,7 @@
                                 Content="Calculate Average"
                                 CommandParameter="1"/>
                 </Grid>
-                <Grid DockPanel.Dock="Bottom" RowDefinitions="*">
+                <Grid DockPanel.Dock="Bottom">
                        <UserControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
                                     Content="{Binding Content}"/>
                 </Grid>

@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using GradeManagement.Interfaces;
 using GradeManagement.Models;
@@ -10,29 +12,52 @@ namespace GradeManagement.ViewModels.TargetGrade
 {
     public class TargetGradeViewModel : ViewModelBase, ITargetGrade
     {
-        private float _targetAverage;
-        private float _weighting;
+        private string _targetAverageString = string.Empty;
+        private float _targetAverage = float.NaN;
+        private string _weightingString = string.Empty;
+        private float _weighting = float.NaN;
 
         public IEnumerable<Grade> Grades { get; set; } = null!;
         
-        private float TargetAverage
+        [Obsolete("Do NOT use this constructor, because it leaves the collection of grades uninitialized " +
+                  "and this leads to exceptions and unintended behaviour.")]
+        public TargetGradeViewModel() { }
+
+        public TargetGradeViewModel(IEnumerable<Grade> grades) 
+            => this.Grades = grades;
+
+        private string TargetAverageString
         {
-            get => _targetAverage;
-            set => this.RaiseAndSetIfChanged(ref _targetAverage, value);
+            get => _targetAverageString;
+            set
+            {
+                _targetAverage = float.TryParse(value, out float average) ? average : float.NaN;
+                this.RaiseAndSetIfChanged(ref _targetAverageString, value);
+                this.RaisePropertyChanged(nameof(NeededGrade));
+            }
         }
         
-        private float Weighting
+        private string WeightingString
         {
-            get => _weighting;
-            set => this.RaiseAndSetIfChanged(ref _weighting, value);
+            get => _weightingString;
+            set
+            {
+                _weighting = float.TryParse(value, out float weighting) ? weighting : float.NaN;
+                this.RaiseAndSetIfChanged(ref _weightingString, value);
+                this.RaisePropertyChanged(nameof(NeededGrade));
+            }
         }
 
-        private float NeededGrade
+        private string NeededGrade
         {
             get
             {
+                if (float.IsNaN(_targetAverage) || float.IsNaN(_weighting))
+                    return "-";
+                
                 var previousGradesAverage = Utilities.GetAverage(Grades, false);
-                return (_targetAverage * (Grades.Count() + 1) - previousGradesAverage) / _weighting;
+                var result = (_targetAverage * (Grades.Count() + 1) - previousGradesAverage) / _weighting;
+                return float.IsNaN(result) ? "-" : result.ToString(CultureInfo.InvariantCulture);
             }
         }
 

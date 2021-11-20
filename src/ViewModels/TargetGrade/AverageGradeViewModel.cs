@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using GradeManagement.Interfaces;
 using GradeManagement.Models;
 using GradeManagement.UtilityCollection;
@@ -10,32 +11,55 @@ namespace GradeManagement.ViewModels.TargetGrade
 {
     public class AverageGradeViewModel : ViewModelBase, ITargetGrade
     {
-        private float _grade;
-        private float _weighting;
+        private string _gradeString = string.Empty;
+        private float _grade = float.NaN;
+        private string _weightingString = string.Empty;
+        private float _weighting = float.NaN;
 
+        [Obsolete("Do NOT use this constructor, because it leaves the collection of grades uninitialized " +
+                  "and this leads to exceptions and unintended behaviour.")]
+        public AverageGradeViewModel() { }
+        
+        public AverageGradeViewModel(IEnumerable<Grade> grades)
+            => this.Grades = grades;
+        
         public IEnumerable<Grade> Grades { get; set; } = null!;
 
-        private float Grade
+        private string GradeString
         {
-            get => _grade;
-            set => this.RaiseAndSetIfChanged(ref _grade, value);
+            get => _gradeString;
+            set
+            {
+                _grade = float.TryParse(value, out float grade) ? grade : float.NaN;
+                this.RaiseAndSetIfChanged(ref _gradeString, value);
+                this.RaisePropertyChanged(nameof(CalculatedAverage));
+            }
         }
 
-        private float Weighting
+        private string WeightingString
         {
-            get => _weighting;
-            set => this.RaiseAndSetIfChanged(ref _weighting, value);
+            get => _weightingString;
+            set
+            {
+                _weighting = float.TryParse(value, out float weighting) ? weighting : float.NaN;
+                this.RaiseAndSetIfChanged(ref _weightingString, value);
+                this.RaisePropertyChanged(nameof(CalculatedAverage));
+            }
         }
 
-        private float CalculatedAverage
+        private string CalculatedAverage
         {
             get
             {
+                if (float.IsNaN(_grade) || float.IsNaN(_weighting))
+                    return "-";
+                
                 var newGrades = new List<Grade>(Grades)
                 {
                     new Grade("[TempGrade]", _grade, _weighting, DateTime.Today, true)
                 };
-                return Utilities.GetAverage(newGrades, true);
+                var result = Utilities.GetAverage(newGrades, true);
+                return float.IsNaN(result) ? "-" : result.ToString(CultureInfo.InvariantCulture);
             }
         }
 

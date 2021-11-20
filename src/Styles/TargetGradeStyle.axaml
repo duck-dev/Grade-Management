@@ -3,7 +3,7 @@
     
     <Style Selector="TextBox.target-grade-textbox">
         <Setter Property="Background" Value="White"/>
-        <Setter Property="Width" Value="100"/>
+        <Setter Property="Width" Value="300"/>
         <Setter Property="Height" Value="60"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="MaxLength" Value="5"/>
@@ -15,5 +15,13 @@
         <Setter Property="AcceptsTab" Value="False"/>
         <Setter Property="TextWrapping" Value="NoWrap"/>
         <Setter Property="FontSize" Value="16"/>
+    </Style>
+    
+    <Style Selector="TextBlock.result-text">
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontSize" Value="26"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="TextAlignment" Value="Center"/>
     </Style>
 </Styles>

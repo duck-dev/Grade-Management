@@ -24,9 +24,10 @@ namespace GradeManagement.ViewModels.TargetGrade
 
         public TargetGradeWindowModel(IEnumerable<Grade> grades)
         {
-            _content = Content = new TargetGradeViewModel();
+            var enumerable = grades as Grade[] ?? grades.ToArray();
+            _content = Content = new TargetGradeViewModel(enumerable);
             _viewModels.SafeAdd(_content);
-            Grades = grades;
+            Grades = enumerable;
         }
         
         internal IEnumerable<Grade> Grades { get; set; }
@@ -79,17 +80,20 @@ namespace GradeManagement.ViewModels.TargetGrade
         private void ToggleControl(int selected)
         {
             var type = selected == 0 ? typeof(TargetGradeViewModel) : typeof(AverageGradeViewModel);
+            ViewModelBase viewModel;
             if (_viewModels.Any(x => x.GetType() == type))
-                Content = _viewModels.Find(x => x.GetType() == type)!;
+                viewModel = _viewModels.Find(x => x.GetType() == type)!;
             else
             {
-                Content = (ViewModelBase)Activator.CreateInstance(type)!;
-                _viewModels.Add(_content);
+                viewModel = (ViewModelBase)Activator.CreateInstance(type, this.Grades)!;
+                _viewModels.Add(viewModel);
             }
-            _content.EraseData();
 
-            if (_content is ITargetGrade viewModel)
-                viewModel.Grades = this.Grades;
+            if (viewModel is ITargetGrade viewModelInterface)
+                viewModelInterface.Grades = this.Grades;
+
+            Content = viewModel;
+            _content.EraseData();
         }
     }
 }
