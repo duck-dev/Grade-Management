@@ -74,6 +74,7 @@ namespace GradeManagement.ViewModels.Lists
                 return;
             var window = new TargetGradeWindow();
             _targetGradeViewModel ??= new TargetGradeWindowModel(Items);
+            _targetGradeViewModel.Grades = Items;
             window.DataContext = _targetGradeViewModel;
             
             ShowDialog(window, MainWindowInstance, this, 0);
