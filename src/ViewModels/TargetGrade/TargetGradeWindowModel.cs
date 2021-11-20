@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Avalonia.Media;
 using GradeManagement.ExtensionCollection;
+using GradeManagement.Interfaces;
+using GradeManagement.Models;
 using GradeManagement.ViewModels.BaseClasses;
 using ReactiveUI;
 
@@ -20,11 +22,14 @@ namespace GradeManagement.ViewModels.TargetGrade
         private string _windowTitle = TargetGradeTitle;
         private int _currentButton;
 
-        public TargetGradeWindowModel()
+        public TargetGradeWindowModel(IEnumerable<Grade> grades)
         {
             _content = Content = new TargetGradeViewModel();
             _viewModels.SafeAdd(_content);
+            Grades = grades;
         }
+        
+        internal IEnumerable<Grade> Grades { get; set; }
 
         private string WindowTitle
         {
@@ -82,6 +87,9 @@ namespace GradeManagement.ViewModels.TargetGrade
                 _viewModels.Add(_content);
             }
             _content.EraseData();
+
+            if (_content is ITargetGrade viewModel)
+                viewModel.Grades = this.Grades;
         }
     }
 }
