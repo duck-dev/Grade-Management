@@ -137,8 +137,5 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
-        
-        <Button HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="57.5, 0, 0, 45"
-                Width="150" Height="175" Command="{Binding OpenTargetGradeCalc}"/>
     </Panel>
 </UserControl>

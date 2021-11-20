@@ -6,7 +6,9 @@ using GradeManagement.Interfaces;
 using GradeManagement.Models;
 using GradeManagement.ViewModels.AddPages;
 using GradeManagement.ViewModels.BaseClasses;
+using GradeManagement.ViewModels.TargetGrade;
 using GradeManagement.Views.AddPages;
+using GradeManagement.Views.TargetGrade;
 using ReactiveUI;
 
 namespace GradeManagement.ViewModels.Lists
@@ -14,6 +16,7 @@ namespace GradeManagement.ViewModels.Lists
     public class GradeListViewModel : ListViewModelBase, IListViewModel<Grade>
     {
         private ObservableCollection<Grade>? _items;
+        private TargetGradeWindowModel? _targetGradeViewModel;
         
         [Obsolete("Do NOT use this constructor, because it leaves the collection of grades uninitialized " +
                   "and this leads to exceptions and unintended behaviour.")]
@@ -63,6 +66,15 @@ namespace GradeManagement.ViewModels.Lists
             
             currentSubject.Grades.SafeRemove(grade);
             UpdateVisualOnChange(this, currentSubject.Grades);
+        }
+        
+        private void OpenTargetGradeCalc()
+        {
+            var window = new TargetGradeWindow();
+            _targetGradeViewModel ??= new TargetGradeWindowModel();
+            window.DataContext = _targetGradeViewModel;
+            
+            ShowDialog(window, MainWindowInstance, this, 0);
         }
     }
 }
