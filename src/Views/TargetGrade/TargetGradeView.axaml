@@ -9,4 +9,16 @@
     <Design.DataContext>
         <targetGrade:TargetGradeViewModel/>
     </Design.DataContext>
+    
+    <UserControl.Styles>
+        <StyleInclude Source="/src/Styles/TargetGradeStyle.axaml"/>
+    </UserControl.Styles>
+    
+    <Grid RowDefinitions="*,*,*" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBox Grid.Row="0" Classes="target-grade-textbox" Watermark="Target Average"/>
+        <TextBox Grid.Row="1" Classes="target-grade-textbox" Watermark="Weighting"/>
+        <TextBlock Grid.Row="2" Foreground="Black" FontWeight="Bold" FontSize="26"
+                   Text="{Binding Path=NeededGrade, 
+                                  StringFormat='Needed Average {0}'}"/>
+    </Grid>
 </UserControl>
