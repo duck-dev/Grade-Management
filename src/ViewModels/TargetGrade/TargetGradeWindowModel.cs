@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Avalonia.Media;
 using GradeManagement.ExtensionCollection;
@@ -39,9 +40,13 @@ namespace GradeManagement.ViewModels.TargetGrade
         }
         
         private static Color GreenColor { get; } = new(255,0,155,114);
-        private SolidColorBrush[] ButtonColors { get; } = { new(GreenColor), new(GreenColor,0) };
-        private SolidColorBrush[] ButtonTextColors { get; } = { new(_whiteColor), new(_blackColor) };
-        private FontWeight[] FontWeights { get; } = { FontWeight.Bold, FontWeight.Normal };
+        private ObservableCollection<SolidColorBrush> ButtonColors { get; } 
+            = new() { new SolidColorBrush(GreenColor), new SolidColorBrush(GreenColor,0) };
+        private ObservableCollection<SolidColorBrush> ButtonTextColors { get; } 
+            = new() { new SolidColorBrush(_whiteColor), new SolidColorBrush(_blackColor) };
+        // ReSharper disable once CollectionNeverQueried.Local
+        private ObservableCollection<FontWeight> FontWeights { get; } 
+            = new() { FontWeight.Bold, FontWeight.Normal };
 
         private ViewModelBase Content
         {
@@ -68,13 +73,6 @@ namespace GradeManagement.ViewModels.TargetGrade
             FontWeights[otherButton] = FontWeight.Normal;
 
             ToggleControl(selectedButton);
-        }
-
-        private void UpdateButtonVisual()
-        {
-            this.RaisePropertyChanged(nameof(ButtonColors));
-            this.RaisePropertyChanged(nameof(ButtonTextColors));
-            this.RaisePropertyChanged(nameof(FontWeights));
         }
 
         private void ToggleControl(int selected)
