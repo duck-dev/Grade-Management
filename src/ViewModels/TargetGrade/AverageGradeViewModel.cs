@@ -33,7 +33,7 @@ namespace GradeManagement.ViewModels.TargetGrade
             {
                 var newGrades = new List<Grade>(Grades)
                 {
-                    new Grade("[TempGrade]", this.Grade, this.Weighting, DateTime.Today, true)
+                    new Grade("[TempGrade]", _grade, _weighting, DateTime.Today, true)
                 };
                 return Utilities.GetAverage(newGrades, true);
             }
