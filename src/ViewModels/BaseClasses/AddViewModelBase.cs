@@ -107,7 +107,7 @@ namespace GradeManagement.ViewModels.BaseClasses
             ButtonText = $"{prefix} {type}";
         }
 
-        protected override void EraseData()
+        protected internal override void EraseData()
         {
             ElementName = string.Empty;
             ElementWeightingString = string.Empty;
