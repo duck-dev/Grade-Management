@@ -53,8 +53,6 @@ namespace GradeManagement.ViewModels.AddPages
                                                 && Utilities.ValidateDate(_selectedDay, _selectedMonth.Month, 
                                                                             _selectedYear, out _)
                                                 && DataChanged();
-        
-        internal Grade? EditedGrade { get; set; } // When editing year, overwrite this property with `Grade`
 
         internal int SelectedDay
         {
@@ -165,6 +163,8 @@ namespace GradeManagement.ViewModels.AddPages
             }
         }
         
+        private Grade? EditedGrade { get; set; }
+        
         internal void DateChanged(object? sender, SelectionChangedEventArgs args)
         {
             if (sender is not Calendar calendar) 
@@ -249,8 +249,7 @@ namespace GradeManagement.ViewModels.AddPages
                                                || !_elementGrade.Equals(EditedGrade.GradeValue)
                                                || _selectedDay != date.Day || _selectedMonth.Month != date.Month || 
                                                _selectedYear != date.Year 
-                                               || ElementCounts != EditedGrade.Counts); 
-            // TODO: Investigate why changing the status of whether it counts or not doesn't return true.
+                                               || ElementCounts != EditedGrade.Counts);
         }
 
         private void ToggleCalendar()

@@ -17,7 +17,7 @@ namespace GradeManagement.ViewModels.AddPages
 
         protected override bool DataComplete => !string.IsNullOrEmpty(ElementName) && DataChanged();
 
-        internal SchoolYear? EditedYear { get; set; } // TODO: When editing year, overwrite this property with `SchoolYear`
+        private SchoolYear? EditedYear { get; set; }
 
         public void EditElement(SchoolYear year)
         {
