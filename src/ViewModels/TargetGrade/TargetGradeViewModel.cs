@@ -55,10 +55,10 @@ namespace GradeManagement.ViewModels.TargetGrade
                 if (float.IsNaN(_targetAverage) || float.IsNaN(_weighting) || this.Grades is null)
                     return "-";
                 
-                var previousGradesAverage = Utilities.GetAverage(Grades, false);
+                var previousGrades = Grades.Sum(x => x.GradeValue * x.Weighting);
                 var weightingSum = Grades.Sum(x => x.Weighting);
-                var result = (_targetAverage * (weightingSum + _weighting) - previousGradesAverage) / _weighting;
-                return float.IsNaN(result) ? "-" : result.ToString(CultureInfo.InvariantCulture);
+                var result = (_targetAverage * (weightingSum + _weighting) - previousGrades) / _weighting;
+                return float.IsNaN(result) ? "-" : result.ToString("F2");
             }
         }
 
