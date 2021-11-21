@@ -91,7 +91,7 @@ namespace GradeManagement.ViewModels.AddPages
             get => _selectedMonth;
             set 
             {
-                this.RaiseAndSetIfChanged(ref _selectedMonth, value); // Important to force the UI to update;
+                this.RaiseAndSetIfChanged(ref _selectedMonth, value); // Important to force the UI to update
                 this.RaisePropertyChanged(nameof(DataComplete));
                 
                 BorderBrushes![2].Color = NormalColor;
@@ -100,6 +100,7 @@ namespace GradeManagement.ViewModels.AddPages
                 if (!Utilities.ValidateDate(_selectedDay, value.Month, _selectedYear, out DateType protocol)
                     || _tempSelectedDate is null)
                 {
+                    SelectedDay = _selectedDay; // Update Day, due to different amount of days in months (possibly valid/invalid day)
                     if (!protocol.CustomHasFlag(DateType.Month)) 
                         return;
                     BorderBrushes![2].Color = IncompleteColor;
@@ -107,6 +108,8 @@ namespace GradeManagement.ViewModels.AddPages
                     
                     return;
                 }
+                
+                SelectedDay = _selectedDay; // Update Day, due to different amount of days in months (possibly valid/invalid day)
 
                 var newDate = _tempSelectedDate.Value;
                 SetDate(newDate.Day, value.Month, newDate.Year);
@@ -133,7 +136,8 @@ namespace GradeManagement.ViewModels.AddPages
                 }
                 
                 this.RaisePropertyChanged(nameof(BorderBrushes));
-                
+                SelectedDay = _selectedDay; // Update Day, because of leap year (possibly valid/invalid day)
+
                 if (_tempSelectedDate is null) 
                     return;
 
