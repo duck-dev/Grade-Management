@@ -32,6 +32,10 @@
                 <Style Selector="Button.target-grade-button:pointerover">
                         <Setter Property="Cursor" Value="Hand"/>
                 </Style>
+                <Style Selector="Button.target-grade-button:pointerover /template/ ContentPresenter">
+                        <Setter Property="BorderThickness" Value="2"/>
+                        <Setter Property="BorderBrush" Value="#009B72"/>
+                </Style>
         </Window.Styles>
         
         <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -47,8 +51,8 @@
                                         <Style Selector="Button:pointerover /template/ ContentPresenter">
                                                 <Setter Property="Background" 
                                                         Value="{Binding ButtonColorsHover[0]}"/>
-                                                <Setter Property="BorderThickness" Value="2"/>
-                                                <Setter Property="BorderBrush" Value="#009B72"/>
+                                                <Setter Property="TextBlock.Foreground" 
+                                                        Value="{Binding ButtonTextColors[0]}"/>
                                         </Style>
                                 </Button.Styles>
                         </Button>
@@ -62,8 +66,8 @@
                                         <Style Selector="Button:pointerover /template/ ContentPresenter">
                                                 <Setter Property="Background" 
                                                         Value="{Binding ButtonColorsHover[1]}"/>
-                                                <Setter Property="BorderThickness" Value="2"/>
-                                                <Setter Property="BorderBrush" Value="#009B72"/>
+                                                <Setter Property="TextBlock.Foreground" 
+                                                        Value="{Binding ButtonTextColors[1]}"/>
                                         </Style>
                                 </Button.Styles>
                         </Button>
