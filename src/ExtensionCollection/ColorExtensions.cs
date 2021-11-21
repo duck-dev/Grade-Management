@@ -22,6 +22,31 @@ namespace GradeManagement.ExtensionCollection
             return Color.FromArgb(a, r, g, b);
         }
 
+        /// <summary>
+        /// Darkens the specified color by <see cref="amount"/>
+        /// </summary>
+        /// <param name="color">The color to be darkened.</param>
+        /// <param name="amount">How much darker should the color become?</param>
+        /// <returns>The adjusted color.</returns>
+        public static Color DarkenColor(this Color color, float amount) => AdjustTint(color, Colors.Black, amount);
+        
+        /// <summary>
+        /// Brightens the specified color by <see cref="amount"/>
+        /// </summary>
+        /// <param name="color">The color to be brightened.</param>
+        /// <param name="amount">How much brighter should the color become?</param>
+        /// <returns>The adjusted color.</returns>
+        public static Color BrightenColor(this Color color, float amount) => AdjustTint(color, Colors.White, amount);
+        
+        /// <summary>
+        /// Adjust the specified color by <see cref="amount"/> to be closer to the <see cref="goal"/> color.
+        /// </summary>
+        /// <param name="color">The color to be adjusted.</param>
+        /// <param name="goal">The goal color, to which the <see cref="color"/> tends to go.</param>
+        /// <param name="amount">How close should the <see cref="color"/> be to the <see cref="goal"/> color?</param>
+        /// <returns>The adjusted color.</returns>
+        public static Color AdjustTint(this Color color, Color goal, float amount) => color.Lerp(goal, amount);
+
         public static Color WithR(this Color color, byte r) => 
             new (color.A, r, color.G, color.B);
 

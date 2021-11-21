@@ -22,8 +22,8 @@ namespace GradeManagement.ViewModels.TargetGrade
         
         public AverageGradeViewModel(IEnumerable<Grade> grades)
             => this.Grades = grades;
-        
-        public IEnumerable<Grade> Grades { get; set; } = null!;
+
+        public IEnumerable<Grade>? Grades { get; set; }
 
         private string GradeString
         {
@@ -51,7 +51,7 @@ namespace GradeManagement.ViewModels.TargetGrade
         {
             get
             {
-                if (float.IsNaN(_grade) || float.IsNaN(_weighting))
+                if (float.IsNaN(_grade) || float.IsNaN(_weighting) || this.Grades is null)
                     return "-";
                 
                 var newGrades = new List<Grade>(Grades)

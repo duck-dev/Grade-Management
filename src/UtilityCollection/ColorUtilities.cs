@@ -92,9 +92,5 @@ namespace GradeManagement.UtilityCollection
                 GradientStops = gradientStops
             };
         }
-
-        public static Color DarkenColor(Color color, float amount) => AdjustTint(color, Colors.Black, amount);
-        public static Color BrightenColor(Color color, float amount) => AdjustTint(color, Colors.White, amount);
-        public static Color AdjustTint(Color color, Color goal, float amount) => color.Lerp(goal, amount);
     }
 }

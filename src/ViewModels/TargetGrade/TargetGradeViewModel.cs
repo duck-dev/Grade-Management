@@ -17,7 +17,7 @@ namespace GradeManagement.ViewModels.TargetGrade
         private string _weightingString = string.Empty;
         private float _weighting = float.NaN;
 
-        public IEnumerable<Grade> Grades { get; set; } = null!;
+        public IEnumerable<Grade>? Grades { get; set; }
         
         [Obsolete("Do NOT use this constructor, because it leaves the collection of grades uninitialized " +
                   "and this leads to exceptions and unintended behaviour.")]
@@ -52,7 +52,7 @@ namespace GradeManagement.ViewModels.TargetGrade
         {
             get
             {
-                if (float.IsNaN(_targetAverage) || float.IsNaN(_weighting))
+                if (float.IsNaN(_targetAverage) || float.IsNaN(_weighting) || this.Grades is null)
                     return "-";
                 
                 var previousGradesAverage = Utilities.GetAverage(Grades, false);

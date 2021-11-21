@@ -5,6 +5,6 @@ namespace GradeManagement.Interfaces
 {
     public interface ITargetGrade
     {
-        IEnumerable<Grade> Grades { get; set; }
+        IEnumerable<Grade>? Grades { get; set; }
     }
 }

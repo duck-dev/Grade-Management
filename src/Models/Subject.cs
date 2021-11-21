@@ -75,7 +75,7 @@ namespace GradeManagement.Models
             {
                 return Utilities.CreateLinearGradientBrush(new RelativePoint(0, 100, RelativeUnit.Relative),
                     new RelativePoint(100, 0, RelativeUnit.Relative),
-                    new[] {Utilities.DarkenColor(SubjectColor, 0.075f), Utilities.DarkenColor(_lightBackground, 0.075f)},
+                    new[] {SubjectColor.DarkenColor(0.075f), SubjectColor.DarkenColor(0.075f)},
                     new[] {0.0, 90.0});
             }
         }
@@ -85,11 +85,11 @@ namespace GradeManagement.Models
         
         internal float RoundedAverage => Utilities.GetAverage(Grades, true);
 
-        private Color DarkSubjectTint => Utilities.DarkenColor(SubjectColor, 0.2f);
-        private Color LightSubjectTint => Utilities.BrightenColor(SubjectColor, 0.2f);
+        private Color DarkSubjectTint => SubjectColor.DarkenColor(0.2f);
+        private Color LightSubjectTint => SubjectColor.BrightenColor(0.2f);
         
-        private Color AdditionalInfoDark => Utilities.DarkenColor(_additionalInfoColor, 0.3f);
-        private Color AdditionalInfoLight => Utilities.BrightenColor(_additionalInfoColor, 0.3f);
+        private Color AdditionalInfoDark => _additionalInfoColor.DarkenColor(0.3f);
+        private Color AdditionalInfoLight => _additionalInfoColor.BrightenColor(0.3f);
 
         public IEnumerable<T>? Duplicate<T>() where T : IElement
         {
