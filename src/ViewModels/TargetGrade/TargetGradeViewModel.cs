@@ -56,7 +56,8 @@ namespace GradeManagement.ViewModels.TargetGrade
                     return "-";
                 
                 var previousGradesAverage = Utilities.GetAverage(Grades, false);
-                var result = (_targetAverage * (Grades.Count() + 1) - previousGradesAverage) / _weighting;
+                var weightingSum = Grades.Sum(x => x.Weighting);
+                var result = (_targetAverage * (weightingSum + _weighting) - previousGradesAverage) / _weighting;
                 return float.IsNaN(result) ? "-" : result.ToString(CultureInfo.InvariantCulture);
             }
         }
