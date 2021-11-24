@@ -70,6 +70,14 @@ namespace GradeManagement.ViewModels.TargetGrade
             set => this.RaiseAndSetIfChanged(ref _content, value);
         }
 
+        internal void ClearData()
+        {
+            if(GetViewModel(typeof(TargetGradeViewModel)) is TargetGradeViewModel targetGrade)
+                targetGrade.EraseData();
+            if(GetViewModel(typeof(TargetGradeViewModel)) is AverageGradeViewModel averageGrade)
+                averageGrade.EraseData();
+        }
+
         private void SwitchCalculator(int selectedButton)
         {
             if (_currentButton == selectedButton)
@@ -110,12 +118,15 @@ namespace GradeManagement.ViewModels.TargetGrade
                 viewModel = (ViewModelBase)Activator.CreateInstance(type, this.Grades)!;
                 _viewModels.Add(viewModel);
             }
+            
+            Content = viewModel;
+            _content?.EraseData();
 
             if (viewModel is ITargetGrade viewModelInterface)
                 viewModelInterface.Grades = this.Grades;
-
-            Content = viewModel;
-            _content?.EraseData();
         }
+        
+        private ViewModelBase? GetViewModel(Type type)
+            => _viewModels.FirstOrDefault(x => x.GetType() == type);
     }
 }

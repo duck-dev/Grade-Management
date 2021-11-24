@@ -65,7 +65,9 @@ namespace GradeManagement.ViewModels.TargetGrade
 
         protected internal override void EraseData()
         {
-            // TODO: Erase data
+            Grades = null;
+            GradeString = string.Empty;
+            WeightingString = string.Empty;
         }
     }
 }
