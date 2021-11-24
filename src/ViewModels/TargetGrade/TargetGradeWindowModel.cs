@@ -6,6 +6,7 @@ using Avalonia.Media;
 using GradeManagement.ExtensionCollection;
 using GradeManagement.Interfaces;
 using GradeManagement.Models;
+using GradeManagement.UtilityCollection;
 using GradeManagement.ViewModels.BaseClasses;
 using ReactiveUI;
 
@@ -34,9 +35,14 @@ namespace GradeManagement.ViewModels.TargetGrade
         public TargetGradeWindowModel(IEnumerable<Grade> grades)
         {
             var enumerable = grades as Grade[] ?? grades.ToArray();
-            _content = Content = new TargetGradeViewModel(enumerable);
+            var viewModel = new TargetGradeViewModel(enumerable);
+            _content = Content = viewModel;
             _viewModels.SafeAdd(_content);
+            
+            ClearData();
+            
             Grades = enumerable;
+            viewModel.Grades = this.Grades;
         }
         
         internal IEnumerable<Grade>? Grades { get; set; }
@@ -70,11 +76,20 @@ namespace GradeManagement.ViewModels.TargetGrade
             set => this.RaiseAndSetIfChanged(ref _content, value);
         }
 
+        internal void ConfigureViewModels(IEnumerable<Grade> grades)
+        {
+            this.Grades = grades;
+            if(GetViewModel(typeof(TargetGradeViewModel)) is TargetGradeViewModel targetGrade)
+                targetGrade.Grades = grades;
+            if(GetViewModel(typeof(AverageGradeViewModel)) is AverageGradeViewModel averageGrade)
+                averageGrade.Grades = grades;
+        }
+
         internal void ClearData()
         {
             if(GetViewModel(typeof(TargetGradeViewModel)) is TargetGradeViewModel targetGrade)
                 targetGrade.EraseData();
-            if(GetViewModel(typeof(TargetGradeViewModel)) is AverageGradeViewModel averageGrade)
+            if(GetViewModel(typeof(AverageGradeViewModel)) is AverageGradeViewModel averageGrade)
                 averageGrade.EraseData();
         }
 
@@ -121,7 +136,7 @@ namespace GradeManagement.ViewModels.TargetGrade
             
             Content = viewModel;
             _content?.EraseData();
-
+            
             if (viewModel is ITargetGrade viewModelInterface)
                 viewModelInterface.Grades = this.Grades;
         }

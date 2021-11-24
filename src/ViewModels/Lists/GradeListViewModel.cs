@@ -16,7 +16,7 @@ namespace GradeManagement.ViewModels.Lists
     public class GradeListViewModel : ListViewModelBase, IListViewModel<Grade>
     {
         private ObservableCollection<Grade>? _items;
-        private TargetGradeWindowModel? _targetGradeViewModel;
+        private TargetGradeWindowModel? _targetGradeWindowModel;
         
         [Obsolete("Do NOT use this constructor, because it leaves the collection of grades uninitialized " +
                   "and this leads to exceptions and unintended behaviour.")]
@@ -73,10 +73,10 @@ namespace GradeManagement.ViewModels.Lists
             if (Items is null)
                 return;
             var window = new TargetGradeWindow();
-            _targetGradeViewModel ??= new TargetGradeWindowModel(Items);
-            _targetGradeViewModel.Grades = Items;
-            _targetGradeViewModel.ClearData();
-            window.DataContext = _targetGradeViewModel;
+            _targetGradeWindowModel ??= new TargetGradeWindowModel(Items);
+            _targetGradeWindowModel.ClearData();
+            _targetGradeWindowModel.ConfigureViewModels(Items);
+            window.DataContext = _targetGradeWindowModel;
             
             ShowDialog(window, MainWindowInstance, this, 0);
         }
