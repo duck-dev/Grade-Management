@@ -12,17 +12,22 @@
     
     <UserControl.Styles>
         <StyleInclude Source="/src/Styles/ContextMenuStyle.axaml"/>
-        <Style Selector="Button.subject-button-grid /template/ ContentPresenter">
+        <Style Selector="Button.subject-button">
             <Setter Property="RenderTransform" Value="scale(1)"/>
-            <Setter Property="CornerRadius" Value="20"/>
-            <Setter Property="Width" Value="350"/>
-            <Setter Property="Height" Value="350"/>
             <Setter Property="Margin" Value="30,30"/>
             <Setter Property="BorderThickness" Value="0"/>
         </Style>
-        <Style Selector="Button.subject-button-grid:pointerover">
+        <Style Selector="Button.subject-button /template/ ContentPresenter">
+            <Setter Property="CornerRadius" Value="20"/>
+        </Style>
+        <Style Selector="Button.subject-button:pointerover">
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="RenderTransform" Value="scale(0.95)"/>
+        </Style>
+        
+        <Style Selector="Button.subject-button-grid">
+            <Setter Property="Width" Value="350"/>
+            <Setter Property="Height" Value="350"/>
         </Style>
         
         <Style Selector="TextBlock.no-elements-text">
@@ -64,7 +69,7 @@
                     <DataTemplate>
                         <Button Command="{Binding $parent[Window].DataContext.OpenSubject}"
                                 CommandParameter="{Binding}"
-                                Classes="subject-button-grid">
+                                Classes="subject-button subject-button-grid">
                             <Button.Background>
                                 <LinearGradientBrush StartPoint="0%,100%" EndPoint="100%,0%">
                                     <GradientStop Color="{Binding SubjectColor}" Offset="0.0"/>
