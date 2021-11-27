@@ -1,0 +1,31 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Style Selector="Button.element-button">
+        <Setter Property="Background" Value="#c7cad1"/>
+        <Setter Property="Margin" Value="30,30"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="RenderTransform" Value="scale(1)"/>
+    </Style>
+    <Style Selector="Button.element-button /template/ ContentPresenter">
+        <Setter Property="CornerRadius" Value="20"/>
+    </Style>
+    <Style Selector="Button.element-button:pointerover">
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="RenderTransform" Value="scale(0.95)"/>
+    </Style>
+    <Style Selector="Button.element-button:pressed /template/ ContentPresenter">
+        <Setter Property="Background" Value="#b8babf"/>
+    </Style>
+    
+    <Style Selector="Button.element-button-grid">
+        <Setter Property="Width" Value="500"/>
+        <Setter Property="Height" Value="300"/>
+    </Style>
+        
+    <Style Selector="TextBlock.no-elements-text">
+        <Setter Property="Foreground" Value="#808080"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+</Styles>

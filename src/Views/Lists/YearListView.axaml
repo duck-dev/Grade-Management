@@ -12,30 +12,7 @@
     
     <UserControl.Styles>
         <StyleInclude Source="/src/Styles/ContextMenuStyle.axaml"/>
-        <Style Selector="Button.year-button">
-            <Setter Property="RenderTransform" Value="scale(1)"/>
-            <Setter Property="Width" Value="500"/>
-            <Setter Property="Height" Value="300"/>
-            <Setter Property="Background" Value="#c7cad1"/>
-            <Setter Property="Margin" Value="30,30"/>
-            <Setter Property="BorderThickness" Value="0"/>
-        </Style>
-        <Style Selector="Button.year-button /template/ ContentPresenter">
-            <Setter Property="CornerRadius" Value="20"/>
-        </Style>
-        <Style Selector="Button.year-button:pointerover">
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="RenderTransform" Value="scale(0.95)"/>
-        </Style>
-        <Style Selector="Button.year-button:pressed /template/ ContentPresenter">
-            <Setter Property="Background" Value="#b8babf"/>
-        </Style>
-        
-        <Style Selector="TextBlock.no-elements-text">
-            <Setter Property="Foreground" Value="#808080"/>
-            <Setter Property="FontSize" Value="24"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-        </Style>
+        <StyleInclude Source="/src/Styles/WideListViewStyle.axaml"/>
     </UserControl.Styles>
 
     <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -69,7 +46,7 @@
                     <DataTemplate>
                         <Button Command="{Binding $parent[Window].DataContext.OpenYear}"
                                 CommandParameter="{Binding}"
-                                Classes="year-button">
+                                Classes="element-button element-button-grid">
                             <Button.Transitions>
                                 <Transitions>
                                     <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>

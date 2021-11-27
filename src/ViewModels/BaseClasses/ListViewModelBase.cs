@@ -1,16 +1,15 @@
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using Avalonia.Controls;
 using GradeManagement.Interfaces;
-using GradeManagement.Models;
 
 namespace GradeManagement.ViewModels.BaseClasses
 {
     public abstract class ListViewModelBase : ViewModelBase
     {
+        protected Classes ButtonClasses = new();
         protected internal Type? AddPageType { get; protected init; }
         protected internal Type? AddViewModelType { get; protected init; }
-        
+
         protected void DuplicateElement<T>(IElement element) where T : IElement
         {
             var instance = MainWindowViewModel.Instance;
