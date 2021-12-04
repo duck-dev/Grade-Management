@@ -12,7 +12,11 @@
     
     <UserControl.Styles>
         <StyleInclude Source="/src/Styles/ContextMenuStyle.axaml"/>
-        <StyleInclude Source="/src/Styles/WideListViewStyle.axaml"/>
+        <StyleInclude Source="/src/Styles/ListViewStyle.axaml"/>
+        
+        <Style Selector="Button.element-button:pressed /template/ ContentPresenter">
+            <Setter Property="Background" Value="#b8babf"/>
+        </Style>
     </UserControl.Styles>
     
     <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -47,7 +51,8 @@
                     <DataTemplate>
                         <Button Classes="element-button element-button-grid"
                                 Command="{Binding $parent[Window].DataContext.EditGrade}"
-                                CommandParameter="{Binding}">
+                                CommandParameter="{Binding}"
+                                Width="500" Height="300">
                             <Button.Transitions>
                                 <Transitions>
                                     <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>

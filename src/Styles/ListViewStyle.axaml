@@ -14,14 +14,6 @@
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="RenderTransform" Value="scale(0.95)"/>
     </Style>
-    <Style Selector="Button.element-button:pressed /template/ ContentPresenter">
-        <Setter Property="Background" Value="#b8babf"/>
-    </Style>
-    
-    <Style Selector="Button.element-button-grid">
-        <Setter Property="Width" Value="500"/>
-        <Setter Property="Height" Value="300"/>
-    </Style>
         
     <Style Selector="TextBlock.no-elements-text">
         <Setter Property="Foreground" Value="#808080"/>
