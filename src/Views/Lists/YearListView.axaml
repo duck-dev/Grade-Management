@@ -50,7 +50,7 @@
                     <DataTemplate>
                         <Button Command="{Binding $parent[Window].DataContext.OpenYear}"
                                 CommandParameter="{Binding}"
-                                Classes="element-button element-button-grid"
+                                Classes="element-button"
                                 Width="500" Height="300">
                             <Button.Transitions>
                                 <Transitions>
@@ -74,34 +74,8 @@
                                               <!-- CommandParameter="{Binding}"/> -->
                                 </ContextMenu>
                             </Button.ContextMenu>
-                            <Grid VerticalAlignment="Stretch" RowDefinitions="*,*">
-                                <Panel Grid.Row="0" VerticalAlignment="Stretch">
-                                    <Viewbox HorizontalAlignment="Center" VerticalAlignment="Stretch" Height="56">
-                                        <TextBlock Text="{Binding Name}"
-                                                   FontWeight="Bold"
-                                                   Foreground="Black"
-                                                   HorizontalAlignment="Center"
-                                                   TextAlignment="Center"
-                                                   Margin="10 0 0 0"/>
-                                    </Viewbox>
-                                </Panel>
-                                <Panel Grid.Row="1" VerticalAlignment="Stretch">
-                                    <Grid ColumnDefinitions="Auto,Auto" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                        <TextBlock Grid.Column="0" TextAlignment="Center"
-                                                   Text="{Binding Path=Subjects.Count, 
-                                                                 StringFormat='=  {0}'}"
-                                                   Foreground="#878787"
-                                                   FontSize="42"
-                                                   Margin="0, 0, 35, 0"/>
-                                        <TextBlock Grid.Column="1" TextAlignment="Center"
-                                                   Text="{Binding Path=Average, 
-                                                                 StringFormat='Ø  {0}'}"
-                                                   Foreground="#878787"
-                                                   FontSize="42"
-                                                   Margin="35, 0, 0, 0"/>
-                                    </Grid>
-                                </Panel>
-                            </Grid>
+                            <UserControl Content="{Binding ButtonContentTemplate}" 
+                                         DataContext="{Binding}"/>
                         </Button>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

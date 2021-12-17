@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
+using Avalonia.Controls;
 using GradeManagement.ExtensionCollection;
 using GradeManagement.Interfaces;
 using GradeManagement.UtilityCollection;
@@ -10,6 +11,8 @@ namespace GradeManagement.Models
 {
     public class SchoolYear : IElement, ICloneable
     {
+        private UserControl? _buttonContentTemplate;
+        
         public SchoolYear(string name) => this.Name = name;
 
         [JsonConstructor]
@@ -26,6 +29,12 @@ namespace GradeManagement.Models
         public List<Subject> Subjects { get; private set; } = new();
         
         internal float Average => Utilities.GetAverage(Subjects, true);
+
+        internal UserControl? ButtonControlTemplate
+        {
+            get => _buttonContentTemplate;
+            set => _buttonContentTemplate = value;
+        } 
 
         public IEnumerable<T>? Duplicate<T>() where T : IElement
         {

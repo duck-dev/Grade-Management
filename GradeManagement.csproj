@@ -51,5 +51,6 @@
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Assets\Images" />
+      <Folder Include="src\Views\Lists\ElementButtonControls\List" />
     </ItemGroup>
 </Project>
