@@ -5,9 +5,47 @@
              xmlns:models="clr-namespace:GradeManagement.Models"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="GradeManagement.Views.Lists.ElementButtonControls.Grid.GridSubjectButton">
-    
+
     <Design.DataContext>
         <!-- ReSharper disable once Xaml.ConstructorWarning -->
-        <models:Subject/>
+        <models:Subject />
     </Design.DataContext>
+
+    <Grid VerticalAlignment="Stretch" RowDefinitions="*,*,*">
+        <Panel Grid.Row="0" VerticalAlignment="Stretch">
+            <Viewbox HorizontalAlignment="Center" VerticalAlignment="Stretch" Height="46">
+                <TextBlock Text="{Binding Name}"
+                           FontWeight="Bold"
+                           Foreground="{Binding TitleBrush}"
+                           HorizontalAlignment="Center"
+                           TextAlignment="Center"
+                           Margin="10 0 0 0" />
+            </Viewbox>
+        </Panel>
+        <Panel Grid.Row="1" VerticalAlignment="Stretch">
+            <Grid ColumnDefinitions="Auto,Auto" VerticalAlignment="Top" HorizontalAlignment="Center">
+                <TextBlock Grid.Column="0" TextAlignment="Center"
+                           Text="{Binding Path=Grades.Count,
+                                                                  StringFormat='=  {0}'}"
+                           Foreground="{Binding AdditionalInfoColor}"
+                           FontSize="30"
+                           Margin="0, 0, 25, 0" />
+                <TextBlock Grid.Column="1" TextAlignment="Center"
+                           Text="{Binding Path=Weighting, 
+                                                                  StringFormat='W  {0}'}"
+                           Foreground="{Binding AdditionalInfoColor}"
+                           FontSize="30"
+                           Margin="25, 0, 0, 0" />
+            </Grid>
+        </Panel>
+        <Panel Grid.Row="2" VerticalAlignment="Stretch">
+            <TextBlock Text="{Binding RoundedAverage}"
+                       TextAlignment="Center"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Foreground="Black"
+                       FontSize="46"
+                       FontWeight="Bold" />
+        </Panel>
+    </Grid>
 </UserControl>

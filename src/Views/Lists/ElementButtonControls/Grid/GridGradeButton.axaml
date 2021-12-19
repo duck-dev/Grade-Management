@@ -5,9 +5,55 @@
              xmlns:models="clr-namespace:GradeManagement.Models"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="GradeManagement.Views.Lists.ElementButtonControls.Grid.GridGradeButton">
-    
+
     <Design.DataContext>
         <!-- ReSharper disable once Xaml.ConstructorWarning -->
-        <models:Grade/>
+        <models:Grade />
     </Design.DataContext>
+
+    <Grid VerticalAlignment="Stretch" RowDefinitions="*,*,*">
+        <Panel Grid.Row="0" VerticalAlignment="Stretch">
+            <Viewbox HorizontalAlignment="Center" VerticalAlignment="Stretch" Height="46">
+                <TextBlock Text="{Binding Name}"
+                           FontWeight="Bold"
+                           Foreground="Black"
+                           HorizontalAlignment="Center"
+                           TextAlignment="Center"
+                           Margin="10 0 0 0" />
+            </Viewbox>
+        </Panel>
+        <Grid Grid.Row="1" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center"
+              VerticalAlignment="Top">
+            <Grid Grid.Column="0" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center"
+                  VerticalAlignment="Center">
+                <Image Grid.Column="0" Source="/Assets/avalonia-logo.ico"
+                       Margin="0,0,8,0" Width="30" Height="30"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock Grid.Column="1" TextAlignment="Center"
+                           Text="{Binding DateString}"
+                           Foreground="#878787"
+                           FontSize="30"
+                           Margin="8, 0, 25, 0"
+                           HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <!--TODO: Consider culture-->
+            </Grid>
+            <TextBlock Grid.Column="1" TextAlignment="Center"
+                       Text="{Binding Path=Weighting, 
+                                                             StringFormat='W  {0}'}"
+                       Foreground="#878787"
+                       FontSize="30"
+                       Margin="25, 0, 0, 0"
+                       HorizontalAlignment="Center" VerticalAlignment="Top" />
+        </Grid>
+        <Panel Grid.Row="2" VerticalAlignment="Stretch">
+            <TextBlock Text="{Binding RoundedGrade}"
+                       TextAlignment="Center"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Foreground="Black"
+                       FontSize="46"
+                       FontWeight="Bold">
+            </TextBlock>
+        </Panel>
+    </Grid>
 </UserControl>

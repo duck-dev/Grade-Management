@@ -47,7 +47,7 @@
                     <DataTemplate>
                         <Button Command="{Binding $parent[Window].DataContext.OpenSubject}"
                                 CommandParameter="{Binding}"
-                                Classes="subject-button subject-button-grid">
+                                Classes="element-button">
                             <Button.Background>
                                 <LinearGradientBrush StartPoint="0%,100%" EndPoint="100%,0%">
                                     <GradientStop Color="{Binding SubjectColor}" Offset="0.0"/>
@@ -78,43 +78,8 @@
                                               CommandParameter="{Binding}"/>
                                 </ContextMenu>
                             </Button.ContextMenu>
-                            <Grid VerticalAlignment="Stretch" RowDefinitions="*,*,*">
-                                <Panel Grid.Row="0" VerticalAlignment="Stretch">
-                                    <Viewbox HorizontalAlignment="Center" VerticalAlignment="Stretch" Height="46">
-                                        <TextBlock Text="{Binding Name}"
-                                                   FontWeight="Bold"
-                                                   Foreground="{Binding TitleBrush}"
-                                                   HorizontalAlignment="Center"
-                                                   TextAlignment="Center"
-                                                   Margin="10 0 0 0"/>
-                                    </Viewbox>
-                                </Panel>
-                                <Panel Grid.Row="1" VerticalAlignment="Stretch">
-                                    <Grid ColumnDefinitions="Auto,Auto" VerticalAlignment="Top" HorizontalAlignment="Center">
-                                        <TextBlock Grid.Column="0" TextAlignment="Center"
-                                                   Text="{Binding Path=Grades.Count,
-                                                                  StringFormat='=  {0}'}"
-                                                   Foreground="{Binding AdditionalInfoColor}"
-                                                   FontSize="30"
-                                                   Margin="0, 0, 25, 0"/>
-                                        <TextBlock Grid.Column="1" TextAlignment="Center"
-                                                   Text="{Binding Path=Weighting, 
-                                                                  StringFormat='W  {0}'}"
-                                                   Foreground="{Binding AdditionalInfoColor}"
-                                                   FontSize="30"
-                                                   Margin="25, 0, 0, 0"/>
-                                    </Grid>
-                                </Panel>
-                                <Panel Grid.Row="2" VerticalAlignment="Stretch">
-                                    <TextBlock Text="{Binding RoundedAverage}"
-                                               TextAlignment="Center"
-                                               VerticalAlignment="Center"
-                                               HorizontalAlignment="Center"
-                                               Foreground="Black"
-                                               FontSize="46"
-                                               FontWeight="Bold"/>
-                                </Panel>
-                            </Grid>
+                            <UserControl Content="{Binding ButtonControlTemplate}" 
+                                         DataContext="{Binding}"/>
                         </Button>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
