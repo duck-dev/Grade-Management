@@ -13,7 +13,11 @@ namespace GradeManagement.Models
     {
         private UserControl? _buttonContentTemplate;
         
-        public SchoolYear(string name) => this.Name = name;
+        public SchoolYear(string name)
+        {
+            this.Name = name;
+            //this.ButtonControlTemplate = new TEMPLATE(); TODO: Create new Template according to the saved style
+        }
 
         [JsonConstructor]
         public SchoolYear(string name, List<Subject> subjects)
@@ -34,7 +38,7 @@ namespace GradeManagement.Models
         {
             get => _buttonContentTemplate;
             set => _buttonContentTemplate = value;
-        } 
+        }
 
         public IEnumerable<T>? Duplicate<T>() where T : IElement
         {

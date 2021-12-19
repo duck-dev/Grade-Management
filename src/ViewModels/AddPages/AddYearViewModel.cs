@@ -1,5 +1,4 @@
 ﻿using Avalonia.Media;
-using GradeManagement.ExtensionCollection;
 using GradeManagement.Interfaces;
 using GradeManagement.Models;
 using GradeManagement.ViewModels.BaseClasses;
