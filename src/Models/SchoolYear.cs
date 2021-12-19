@@ -25,9 +25,8 @@ namespace GradeManagement.Models
         }
 
         [JsonConstructor]
-        public SchoolYear(string name, List<Subject> subjects)
+        public SchoolYear(string name, List<Subject> subjects) : this(name)
         {
-            this.Name = name;
             this.Subjects = subjects;
         }
         

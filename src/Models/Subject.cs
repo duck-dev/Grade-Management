@@ -34,13 +34,10 @@ namespace GradeManagement.Models
         }
         
         [JsonConstructor]
-        public Subject(string name, float weighting, string subjectColorHex, List<Grade> grades, bool counts)
+        public Subject(string name, float weighting, string subjectColorHex, List<Grade> grades, bool counts) 
+            : this(name, weighting, subjectColorHex, counts)
         {
-            this.Name = name;
-            this.Weighting = weighting;
             this.Grades = grades;
-            this.Counts = counts;
-            this.SubjectColorHex = subjectColorHex;
         }
         
         [JsonInclude]
