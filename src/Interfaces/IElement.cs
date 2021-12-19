@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace GradeManagement.Interfaces
@@ -6,5 +7,6 @@ namespace GradeManagement.Interfaces
     {
         string Name { get; }
         IEnumerable<T>? Duplicate<T>() where T : IElement;
+        void ChangeButtonStyle(Type styleType);
     }
 }

@@ -25,7 +25,7 @@ namespace GradeManagement.ViewModels.BaseClasses
             this.TopbarTexts = this.MainWindowInstance.Get<Grid>("Topbar-Grid").Children;
         }
         
-        protected void UpdateVisualOnChange<T>(IListViewModel<T>? viewModel, IEnumerable<T>? collection) 
+        protected internal void UpdateVisualOnChange<T>(IListViewModel<T>? viewModel, IEnumerable<T>? collection) 
             where T : IElement
         {
             if(viewModel is not null && collection is not null)

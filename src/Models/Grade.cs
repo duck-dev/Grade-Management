@@ -6,11 +6,14 @@ using Avalonia.Controls;
 using GradeManagement.Interfaces;
 using GradeManagement.Models.Settings;
 using GradeManagement.ViewModels;
+using GradeManagement.ViewModels.Lists;
 
 namespace GradeManagement.Models
 {
-    public class Grade : ElementBase, IElement, IGradable, ICloneable
+    public class Grade : IElement, IGradable, ICloneable
     {
+        private UserControl? _buttonControlTemplate;
+        
         [JsonConstructor]
         public Grade(string name, float gradeValue, float weighting, DateTime date, bool counts)
         {
@@ -45,6 +48,17 @@ namespace GradeManagement.Models
 
         internal float RoundedGrade => (float)Math.Round(GradeValue, 2);
         internal string DateString => Date.ToString("dd.MM.yyyy", CultureInfo.CurrentCulture);
+        
+        private UserControl? ButtonControlTemplate
+        {
+            get => _buttonControlTemplate;
+            set
+            {
+                _buttonControlTemplate = value;
+                var viewModel = GradeListViewModel.Instance;
+                viewModel?.UpdateVisualOnChange(viewModel, MainWindowViewModel.CurrentSubject?.Grades);
+            }
+        }
 
         public IEnumerable<T>? Duplicate<T>() where T : IElement
         {
@@ -57,6 +71,12 @@ namespace GradeManagement.Models
         }
 
         public object Clone() => this.MemberwiseClone();
+        
+        public void ChangeButtonStyle(Type styleType)
+        {
+            if (Activator.CreateInstance(styleType) is UserControl control)
+                ButtonControlTemplate = control;
+        }
 
         internal void Edit(string newName, float newGrade, float newWeighting, DateTime newDate, bool counts)
         {

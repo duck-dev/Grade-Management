@@ -7,11 +7,14 @@ using GradeManagement.ExtensionCollection;
 using GradeManagement.Interfaces;
 using GradeManagement.Models.Settings;
 using GradeManagement.UtilityCollection;
+using GradeManagement.ViewModels.Lists;
 
 namespace GradeManagement.Models
 {
-    public class SchoolYear : ElementBase, IElement, ICloneable
+    public class SchoolYear : IElement, ICloneable
     {
+        private UserControl? _buttonControlTemplate;
+        
         public SchoolYear(string name)
         {
             this.Name = name;
@@ -36,6 +39,17 @@ namespace GradeManagement.Models
         
         internal float Average => Utilities.GetAverage(Subjects, true);
 
+        private UserControl? ButtonControlTemplate
+        {
+            get => _buttonControlTemplate;
+            set
+            {
+                _buttonControlTemplate = value;
+                var viewModel = YearListViewModel.Instance;
+                viewModel?.UpdateVisualOnChange(viewModel, DataManager.SchoolYears);
+            }
+        }
+
         public IEnumerable<T>? Duplicate<T>() where T : IElement
         {
             if (Clone() is not SchoolYear duplicate)
@@ -48,6 +62,12 @@ namespace GradeManagement.Models
         }
 
         public object Clone() => this.MemberwiseClone();
+        
+        public void ChangeButtonStyle(Type styleType)
+        {
+            if (Activator.CreateInstance(styleType) is UserControl control)
+                ButtonControlTemplate = control;
+        }
 
         internal void Edit(string newName) => this.Name = newName;
     }
