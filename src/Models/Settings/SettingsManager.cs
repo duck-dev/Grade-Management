@@ -9,7 +9,7 @@ namespace GradeManagement.Models.Settings
         internal static Preferences? Settings { get; private set; }
         private static string FilePath => Utilities.FilesParentPath + "/Settings.json";
 
-        internal static void LoadData()
+        internal static void LoadSettings()
         {
             if (!File.Exists(FilePath))
                 return;
@@ -18,7 +18,7 @@ namespace GradeManagement.Models.Settings
             Settings = JsonSerializer.Deserialize<Preferences>(content);
         }
 
-        internal static void SaveData()
+        internal static void SaveSettings()
         {
             var options = new JsonSerializerOptions { WriteIndented = true };
             string jsonString = JsonSerializer.Serialize(Settings, options);
