@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
 using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Media;
 using GradeManagement.ExtensionCollection;
 using GradeManagement.Interfaces;
+using GradeManagement.Models.Settings;
 using GradeManagement.UtilityCollection;
 using GradeManagement.ViewModels;
 
 namespace GradeManagement.Models
 {
-    public class Subject : IElement, IGradable, ICloneable
+    public class Subject : ElementBase, IElement, IGradable, ICloneable
     {
         private readonly Color _additionalInfoColor = Color.Parse("#999999");
         private readonly Color _lightBackground = Color.Parse("#c7cad1");
@@ -22,6 +24,10 @@ namespace GradeManagement.Models
             this.Weighting = weighting;
             this.Counts = counts;
             this.SubjectColorHex = subjectColorHex;
+            
+            var type = SettingsManager.Settings?.SubjectButtonStyle;
+            if(type is not null && Activator.CreateInstance(type) is UserControl control)
+                ButtonControlTemplate = control;
         }
         
         [JsonConstructor]

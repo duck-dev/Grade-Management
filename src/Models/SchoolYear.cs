@@ -5,18 +5,20 @@ using System.Text.Json.Serialization;
 using Avalonia.Controls;
 using GradeManagement.ExtensionCollection;
 using GradeManagement.Interfaces;
+using GradeManagement.Models.Settings;
 using GradeManagement.UtilityCollection;
 
 namespace GradeManagement.Models
 {
-    public class SchoolYear : IElement, ICloneable
+    public class SchoolYear : ElementBase, IElement, ICloneable
     {
-        private UserControl? _buttonContentTemplate;
-        
         public SchoolYear(string name)
         {
             this.Name = name;
-            //this.ButtonControlTemplate = new TEMPLATE(); TODO: Create new Template according to the saved style
+
+            var type = SettingsManager.Settings?.YearButtonStyle;
+            if(type is not null && Activator.CreateInstance(type) is UserControl control)
+                ButtonControlTemplate = control;
         }
 
         [JsonConstructor]
@@ -33,12 +35,6 @@ namespace GradeManagement.Models
         public List<Subject> Subjects { get; private set; } = new();
         
         internal float Average => Utilities.GetAverage(Subjects, true);
-
-        internal UserControl? ButtonControlTemplate
-        {
-            get => _buttonContentTemplate;
-            set => _buttonContentTemplate = value;
-        }
 
         public IEnumerable<T>? Duplicate<T>() where T : IElement
         {

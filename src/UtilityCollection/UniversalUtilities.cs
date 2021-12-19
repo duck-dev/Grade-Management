@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.Linq;
 using GradeManagement.Interfaces;
 
@@ -8,6 +9,12 @@ namespace GradeManagement.UtilityCollection
 {
     public static partial class Utilities
     {
+        /// <summary>
+        /// The parent path of all settings- and data-files
+        /// </summary>
+        public static string? FilesParentPath 
+            => Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+        
         /// <summary>
         /// Calculate the average of several grades with a weighting factor for each grade.
         /// </summary>

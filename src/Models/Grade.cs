@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text.Json.Serialization;
+using Avalonia.Controls;
 using GradeManagement.Interfaces;
+using GradeManagement.Models.Settings;
 using GradeManagement.ViewModels;
 
 namespace GradeManagement.Models
 {
-    public class Grade : IElement, IGradable, ICloneable
+    public class Grade : ElementBase, IElement, IGradable, ICloneable
     {
         [JsonConstructor]
         public Grade(string name, float gradeValue, float weighting, DateTime date, bool counts)
@@ -17,6 +19,10 @@ namespace GradeManagement.Models
             this.Weighting = weighting;
             this.Date = date;
             this.Counts = counts;
+            
+            var type = SettingsManager.Settings?.GradeButtonStyle;
+            if(type is not null && Activator.CreateInstance(type) is UserControl control)
+                this.ButtonControlTemplate = control;
         }
         
         [JsonInclude]
