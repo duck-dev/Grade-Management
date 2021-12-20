@@ -25,14 +25,12 @@
         <Panel Grid.Row="1" VerticalAlignment="Stretch">
             <Grid ColumnDefinitions="Auto,Auto" VerticalAlignment="Top" HorizontalAlignment="Center">
                 <TextBlock Grid.Column="0" TextAlignment="Center"
-                           Text="{Binding Path=Grades.Count,
-                                                                  StringFormat='=  {0}'}"
+                           Text="{Binding Path=Grades.Count, StringFormat='=  {0}'}"
                            Foreground="{Binding AdditionalInfoColor}"
                            FontSize="30"
                            Margin="0, 0, 25, 0" />
                 <TextBlock Grid.Column="1" TextAlignment="Center"
-                           Text="{Binding Path=Weighting, 
-                                                                  StringFormat='W  {0}'}"
+                           Text="{Binding Path=Weighting, StringFormat='W  {0}'}"
                            Foreground="{Binding AdditionalInfoColor}"
                            FontSize="30"
                            Margin="25, 0, 0, 0" />
