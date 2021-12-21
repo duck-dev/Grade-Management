@@ -52,4 +52,10 @@
     <Style Selector="Button.add-button:pointerover">
         <Setter Property="Cursor" Value="Hand"/>
     </Style>
+    
+    <Style Selector="Button.change-view-button">
+        <Setter Property="Width" Value="150"/>
+        <Setter Property="Height" Value="80"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
 </Styles>

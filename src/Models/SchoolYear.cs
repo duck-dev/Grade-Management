@@ -8,11 +8,14 @@ using GradeManagement.Interfaces;
 using GradeManagement.Models.Settings;
 using GradeManagement.UtilityCollection;
 using GradeManagement.Views.Lists.ElementButtonControls;
+using ReactiveUI;
 
 namespace GradeManagement.Models
 {
-    public class SchoolYear : IElement, ICloneable
+    public class SchoolYear : ReactiveObject, IElement, ICloneable
     {
+        private ButtonStyleBase? _buttonStyle;
+        
         public SchoolYear(string name)
         {
             this.Name = name;
@@ -33,8 +36,12 @@ namespace GradeManagement.Models
         [JsonInclude] 
         public List<Subject> Subjects { get; private set; } = new();
 
-        [JsonIgnore] 
-        public ButtonStyleBase? ButtonStyle { get; internal set; }
+        [JsonIgnore]
+        public ButtonStyleBase? ButtonStyle
+        {
+            get => _buttonStyle;
+            internal set => this.RaiseAndSetIfChanged(ref _buttonStyle, value);
+        }
 
         internal float Average => Utilities.GetAverage(Subjects, true);
 

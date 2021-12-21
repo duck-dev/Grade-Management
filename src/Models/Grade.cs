@@ -7,11 +7,14 @@ using GradeManagement.Interfaces;
 using GradeManagement.Models.Settings;
 using GradeManagement.ViewModels;
 using GradeManagement.Views.Lists.ElementButtonControls;
+using ReactiveUI;
 
 namespace GradeManagement.Models
 {
-    public class Grade : IElement, IGradable, ICloneable
+    public class Grade : ReactiveObject, IElement, IGradable, ICloneable
     {
+        private ButtonStyleBase? _buttonStyle;
+        
         [JsonConstructor]
         public Grade(string name, float gradeValue, float weighting, DateTime date, bool counts)
         {
@@ -42,9 +45,13 @@ namespace GradeManagement.Models
 
         [JsonIgnore] 
         public int ElementCount => 1; // TODO: When partial grades are implemented, return count of grades
-        
-        [JsonIgnore] 
-        public ButtonStyleBase? ButtonStyle { get; internal set; }
+
+        [JsonIgnore]
+        public ButtonStyleBase? ButtonStyle
+        {
+            get => _buttonStyle;
+            internal set => this.RaiseAndSetIfChanged(ref _buttonStyle, value);
+        }
 
         internal float RoundedGrade => (float)Math.Round(GradeValue, 2);
         internal string DateString => Date.ToString("dd.MM.yyyy", CultureInfo.CurrentCulture);

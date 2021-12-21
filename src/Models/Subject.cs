@@ -11,13 +11,16 @@ using GradeManagement.Models.Settings;
 using GradeManagement.UtilityCollection;
 using GradeManagement.ViewModels;
 using GradeManagement.Views.Lists.ElementButtonControls;
+using ReactiveUI;
 
 namespace GradeManagement.Models
 {
-    public class Subject : IElement, IGradable, ICloneable
+    public class Subject : ReactiveObject, IElement, IGradable, ICloneable
     {
         private readonly Color _additionalInfoColor = Color.Parse("#999999");
         private readonly Color _lightBackground = Color.Parse("#c7cad1");
+        
+        private ButtonStyleBase? _buttonStyle;
 
         public Subject(string name, float weighting, string subjectColorHex, bool counts)
         {
@@ -58,8 +61,12 @@ namespace GradeManagement.Models
         [JsonIgnore]
         public int ElementCount => Grades.Count;
         
-        [JsonIgnore] 
-        public ButtonStyleBase? ButtonStyle { get; internal set; }
+        [JsonIgnore]
+        public ButtonStyleBase? ButtonStyle
+        {
+            get => _buttonStyle;
+            internal set => this.RaiseAndSetIfChanged(ref _buttonStyle, value);
+        }
 
         internal Color SubjectColor => Color.Parse(SubjectColorHex);
         internal SolidColorBrush TitleBrush => 

@@ -64,18 +64,20 @@
         
         <Border DockPanel.Dock="Bottom" Classes="topbar-border" BorderThickness="0, 1, 0, 0" 
                 VerticalAlignment="Bottom">
-            <!-- <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch"> -->
-            <!--     <Button Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="60,0,0,0"/> -->
-            <!--     <Grid ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center" VerticalAlignment="Center"> -->
-            <!--         <Border Grid.Column="0" Margin="0,0,10,0"> -->
-            <!--             <Button Width="150" Height="80" VerticalAlignment="Center"/> -->
-            <!--         </Border> -->
-            <!--         <Border Grid.Column="1" Margin="10, 0, 0, 0"> -->
-            <!--             <Button Width="150" Height="80" VerticalAlignment="Center"/> -->
-            <!--         </Border> -->
-            <!--     </Grid> -->
-            <!--     <Button Width="80" Height="80" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,60,0"/> -->
-            <!-- </Panel> -->
+            <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Button Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="60,0,0,0"/>
+                <Grid ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Border Grid.Column="0" Margin="0,0,10,0">
+                        <Button Classes="change-view-button" 
+                                Command="{Binding ChangeView}" CommandParameter="0"/>
+                    </Border>
+                    <Border Grid.Column="1" Margin="10, 0, 0, 0">
+                        <Button Classes="change-view-button" 
+                                Command="{Binding ChangeView}" CommandParameter="1"/>
+                    </Border>
+                </Grid>
+                <Button Width="80" Height="80" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,60,0"/>
+            </Panel>
         </Border>
         
         <Panel>
