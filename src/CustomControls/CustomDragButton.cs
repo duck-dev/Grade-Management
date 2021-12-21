@@ -3,7 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Styling;
 
-namespace GradeManagement.Views.CustomControls
+namespace GradeManagement.CustomControls
 {
     public sealed class CustomDragButton : Button, IStyleable
     {
