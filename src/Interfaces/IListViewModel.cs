@@ -2,7 +2,7 @@
 
 namespace GradeManagement.Interfaces
 {
-    public interface IListViewModel<T>
+    public interface IListViewModel<T> where T : class, IElement
     {
         ObservableCollection<T>? Items { get; set; }
         bool EmptyCollection { get; }

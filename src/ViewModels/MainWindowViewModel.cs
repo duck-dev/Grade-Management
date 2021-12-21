@@ -43,7 +43,8 @@ namespace GradeManagement.ViewModels
             private set => this.RaiseAndSetIfChanged(ref _content, value);
         }
 
-        internal void SwitchPage<T, TItems>(IEnumerable<TItems> items) where T : ListViewModelBase, IListViewModel<TItems>
+        internal void SwitchPage<T, TItems>(IEnumerable<TItems> items) where T : ListViewModelBase, IListViewModel<TItems> 
+            where TItems : class, IElement
         {
             if (_views.Any(x => x.GetType() == typeof(T)))
             {
@@ -169,39 +170,33 @@ namespace GradeManagement.ViewModels
             return ShowDialog(window, MainWindowInstance, this);
         }
 
-        // TODO: This is horrible, but I'm not really able to use the interface out of the box. I'll have to figure out something...
         private void ChangeView(byte view)
         {
             switch (_content)
             {
-                case YearListViewModel yearViewModel:
-                    var years = yearViewModel.Items;
-                    if (years is null)
-                        return;
-
-                    foreach (var year in years)
-                        year.ButtonStyle = view == 0 ? new GridButton(year) : new ListButton(year);
-                    
+                case YearListViewModel:
+                    ChangeView<SchoolYear>(view);
                     break;
-                case SubjectListViewModel subjectViewModel:
-                    var subjects = subjectViewModel.Items;
-                    if (subjects is null)
-                        return;
-
-                    foreach (var year in subjects)
-                        year.ButtonStyle = view == 0 ? new GridButton(year) : new ListButton(year);
-                    
+                case SubjectListViewModel:
+                    ChangeView<Subject>(view);
                     break;
-                case GradeListViewModel gradeViewModel:
-                    var grades = gradeViewModel.Items;
-                    if (grades is null)
-                        return;
-
-                    foreach (var year in grades)
-                        year.ButtonStyle = view == 0 ? new GridButton(year) : new ListButton(year);
-                    
+                case GradeListViewModel:
+                    ChangeView<Grade>(view);
                     break;
             }
+        }
+
+        private void ChangeView<T>(byte view) where T : class, IElement
+        {
+            if (_content is not IListViewModel<T> type)
+                return;
+
+            var collection = type.Items;
+            if (collection is null)
+                return;
+
+            foreach (var item in collection)
+                item.ButtonStyle = view == 0 ? new GridButton(item) : new ListButton(item);
         }
     }
 }

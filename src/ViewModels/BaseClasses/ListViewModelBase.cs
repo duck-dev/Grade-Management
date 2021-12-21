@@ -8,7 +8,7 @@ namespace GradeManagement.ViewModels.BaseClasses
         protected internal Type? AddPageType { get; protected init; }
         protected internal Type? AddViewModelType { get; protected init; }
 
-        protected void DuplicateElement<T>(IElement element) where T : IElement
+        protected void DuplicateElement<T>(IElement element) where T : class, IElement
         {
             var instance = MainWindowViewModel.Instance;
             if (instance is null)

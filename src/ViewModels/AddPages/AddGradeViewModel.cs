@@ -130,6 +130,8 @@ namespace GradeManagement.ViewModels.AddPages
                         BorderBrushes![3].Color = IncompleteColor;
                     this.RaisePropertyChanged(nameof(BorderBrushes));
                     
+                    SelectedDay = _selectedDay; // Update Day, because of leap year (possibly valid/invalid day)
+                    
                     return;
                 }
                 

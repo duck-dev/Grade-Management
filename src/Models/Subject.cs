@@ -65,7 +65,7 @@ namespace GradeManagement.Models
         public ButtonStyleBase? ButtonStyle
         {
             get => _buttonStyle;
-            internal set => this.RaiseAndSetIfChanged(ref _buttonStyle, value);
+            set => this.RaiseAndSetIfChanged(ref _buttonStyle, value);
         }
 
         internal Color SubjectColor => Color.Parse(SubjectColorHex);
