@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Avalonia.Controls;
 using Avalonia.Media;
+using GradeManagement.Enums;
 using GradeManagement.Interfaces;
 using GradeManagement.Models;
 using GradeManagement.Models.Settings;
@@ -172,18 +173,33 @@ namespace GradeManagement.ViewModels
 
         private void ChangeView(byte view)
         {
+            var settings = SettingsManager.Settings;
             switch (_content)
             {
                 case YearListViewModel:
                     ChangeView<SchoolYear>(view);
+                    
+                    if (settings is null)
+                        return;
+                    settings.YearButtonStyle = view == 0 ? SelectedButtonStyle.Grid : SelectedButtonStyle.List;
                     break;
                 case SubjectListViewModel:
                     ChangeView<Subject>(view);
+                    
+                    if (settings is null)
+                        return;
+                    settings.SubjectButtonStyle = view == 0 ? SelectedButtonStyle.Grid : SelectedButtonStyle.List;
                     break;
                 case GradeListViewModel:
                     ChangeView<Grade>(view);
+                    
+                    if (settings is null)
+                        return;
+                    settings.GradeButtonStyle = view == 0 ? SelectedButtonStyle.Grid : SelectedButtonStyle.List;
                     break;
             }
+            
+            SettingsManager.SaveSettings();
         }
 
         private void ChangeView<T>(byte view) where T : class, IElement
