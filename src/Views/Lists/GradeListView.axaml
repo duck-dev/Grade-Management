@@ -3,48 +3,101 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:listViewModels="clr-namespace:GradeManagement.ViewModels.Lists"
+             xmlns:elementButtonControls="clr-namespace:GradeManagement.Views.Lists.ElementButtonControls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="GradeManagement.Views.Lists.GradeListView">
-    
+
     <Design.DataContext>
         <listViewModels:GradeListViewModel/>
     </Design.DataContext>
-    
+
     <UserControl.Styles>
-        <StyleInclude Source="/src/Styles/ContextMenuStyle.axaml"/>
-        <StyleInclude Source="/src/Styles/ListViewStyle.axaml"/>
-        
+        <StyleInclude Source="/src/Styles/ContextMenuStyle.axaml" />
+        <StyleInclude Source="/src/Styles/ListViewStyle.axaml" />
+
         <Style Selector="Button.element-button:pressed /template/ ContentPresenter">
-            <Setter Property="Background" Value="#b8babf"/>
+            <Setter Property="Background" Value="#b8babf" />
         </Style>
     </UserControl.Styles>
-    
+
+    <UserControl.DataTemplates>
+        <DataTemplate DataType="elementButtonControls:GridButton">
+            <Grid VerticalAlignment="Stretch" RowDefinitions="*,*,*">
+                <Panel Grid.Row="0" VerticalAlignment="Stretch">
+                    <Viewbox HorizontalAlignment="Center" VerticalAlignment="Stretch" Height="46">
+                        <TextBlock Text="{Binding Element.Name}"
+                                   FontWeight="Bold"
+                                   Foreground="Black"
+                                   HorizontalAlignment="Center"
+                                   TextAlignment="Center"
+                                   Margin="10 0 0 0" />
+                    </Viewbox>
+                </Panel>
+                <Grid Grid.Row="1" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center"
+                      VerticalAlignment="Top">
+                    <Grid Grid.Column="0" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center"
+                          VerticalAlignment="Center">
+                        <Image Grid.Column="0" Source="/Assets/avalonia-logo.ico"
+                               Margin="0,0,8,0" Width="30" Height="30"
+                               HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <TextBlock Grid.Column="1" TextAlignment="Center"
+                                   Text="{Binding Element.DateString}"
+                                   Foreground="#878787"
+                                   FontSize="30"
+                                   Margin="8, 0, 25, 0"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <!--TODO: Consider culture-->
+                    </Grid>
+                    <TextBlock Grid.Column="1" TextAlignment="Center"
+                               Text="{Binding Path=Element.Weighting, StringFormat='W  {0}'}"
+                               Foreground="#878787"
+                               FontSize="30"
+                               Margin="25, 0, 0, 0"
+                               HorizontalAlignment="Center" VerticalAlignment="Top" />
+                </Grid>
+                <Panel Grid.Row="2" VerticalAlignment="Stretch">
+                    <TextBlock Text="{Binding Element.RoundedGrade}"
+                               TextAlignment="Center"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               Foreground="Black"
+                               FontSize="46"
+                               FontWeight="Bold">
+                    </TextBlock>
+                </Panel>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate DataType="elementButtonControls:ListButton">
+
+        </DataTemplate>
+    </UserControl.DataTemplates>
+
     <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"
-                    IsEnabled="{Binding EmptyCollection}" 
+                    IsEnabled="{Binding EmptyCollection}"
                     IsVisible="{Binding EmptyCollection}">
             <TextBlock Classes="no-elements-text" Margin="0,0,8,0">
                 This subject doesn't yet contain grades. You can add a new grade with the green button
             </TextBlock>
             <Viewbox Width="40" Height="40" VerticalAlignment="Center">
                 <Grid Width="24" Height="24">
-                    <Ellipse Fill="#009B72"/>
-                    <TextBlock Text="+" FontSize="16" FontWeight="Bold" TextAlignment="Center" 
-                               VerticalAlignment="Center" HorizontalAlignment="Center" 
-                               Foreground="White"/>
+                    <Ellipse Fill="#009B72" />
+                    <TextBlock Text="+" FontSize="16" FontWeight="Bold" TextAlignment="Center"
+                               VerticalAlignment="Center" HorizontalAlignment="Center"
+                               Foreground="White" />
                 </Grid>
             </Viewbox>
             <TextBlock Classes="no-elements-text" Margin="8,0,0,0">
                 in the bottom-right corner.
             </TextBlock>
         </StackPanel>
-        
+
         <ScrollViewer VerticalScrollBarVisibility="Auto"
                       HorizontalScrollBarVisibility="Disabled">
             <ItemsControl Items="{Binding Items}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal"/>
+                        <WrapPanel Orientation="Horizontal" />
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
@@ -55,32 +108,31 @@
                                 Width="500" Height="300">
                             <Button.Transitions>
                                 <Transitions>
-                                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
+                                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2" />
                                 </Transitions>
                             </Button.Transitions>
                             <Button.ContextMenu>
                                 <ContextMenu>
-                                    <MenuItem Header="Edit Grade" 
+                                    <MenuItem Header="Edit Grade"
                                               Command="{Binding $parent[Window].DataContext.EditGrade}"
-                                              CommandParameter="{Binding}"/>
+                                              CommandParameter="{Binding}" />
                                     <MenuItem Header="Duplicate Grade"
                                               Command="{Binding $parent[UserControl].DataContext.Duplicate}"
                                               CommandParameter="{Binding}">
                                     </MenuItem>
                                     <MenuItem Header="Remove Grade"
                                               Command="{Binding $parent[UserControl].DataContext.RemoveElement}"
-                                              CommandParameter="{Binding}"/>
+                                              CommandParameter="{Binding}" />
                                 </ContextMenu>
                             </Button.ContextMenu>
-                            <UserControl Content="{Binding ButtonControlTemplate}" 
-                                         DataContext="{Binding}"/>
+                            <ContentControl Content="{Binding ButtonStyle}" />
                         </Button>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
-        
+
         <Button HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="57.5, 0, 0, 45"
-                Width="150" Height="175" Command="{Binding OpenTargetGradeCalc}"/>
+                Width="150" Height="175" Command="{Binding OpenTargetGradeCalc}" />
     </Panel>
 </UserControl>

@@ -2,26 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
-using Avalonia.Controls;
+using GradeManagement.Enums;
 using GradeManagement.ExtensionCollection;
 using GradeManagement.Interfaces;
 using GradeManagement.Models.Settings;
 using GradeManagement.UtilityCollection;
-using GradeManagement.ViewModels.Lists;
+using GradeManagement.Views.Lists.ElementButtonControls;
 
 namespace GradeManagement.Models
 {
     public class SchoolYear : IElement, ICloneable
     {
-        private UserControl? _buttonControlTemplate;
-        
         public SchoolYear(string name)
         {
             this.Name = name;
 
-            var type = SettingsManager.Settings?.YearButtonStyle;
-            if(type is not null && Activator.CreateInstance(type) is UserControl control)
-                ButtonControlTemplate = control;
+            var isGrid = SettingsManager.Settings?.GradeButtonStyle == SelectedButtonStyle.Grid;
+            this.ButtonStyle = isGrid ? new GridButton(this) : new ListButton(this);
         }
 
         [JsonConstructor]
@@ -35,19 +32,11 @@ namespace GradeManagement.Models
 
         [JsonInclude] 
         public List<Subject> Subjects { get; private set; } = new();
-        
-        internal float Average => Utilities.GetAverage(Subjects, true);
 
-        private UserControl? ButtonControlTemplate
-        {
-            get => _buttonControlTemplate;
-            set
-            {
-                _buttonControlTemplate = value;
-                var viewModel = YearListViewModel.Instance;
-                viewModel?.UpdateVisualOnChange(viewModel, DataManager.SchoolYears);
-            }
-        }
+        [JsonIgnore] 
+        public ButtonStyleBase? ButtonStyle { get; internal set; }
+
+        internal float Average => Utilities.GetAverage(Subjects, true);
 
         public IEnumerable<T>? Duplicate<T>() where T : IElement
         {
@@ -61,12 +50,6 @@ namespace GradeManagement.Models
         }
 
         public object Clone() => this.MemberwiseClone();
-        
-        public void ChangeButtonStyle(Type styleType)
-        {
-            if (Activator.CreateInstance(styleType) is UserControl control)
-                ButtonControlTemplate = control;
-        }
 
         internal void Edit(string newName) => this.Name = newName;
     }

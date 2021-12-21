@@ -1,12 +1,11 @@
-using System;
-using GradeManagement.Views.Lists.ElementButtonControls.Grid;
+using GradeManagement.Enums;
 
 namespace GradeManagement.Models.Settings
 {
     public class Preferences
     {
-        public Type? YearButtonStyle { get; set; } = typeof(GridYearButton);
-        public Type? SubjectButtonStyle { get; set; } = typeof(GridSubjectButton);
-        public Type? GradeButtonStyle { get; set; } = typeof(GridGradeButton);
+        public SelectedButtonStyle YearButtonStyle { get; set; } = SelectedButtonStyle.Grid;
+        public SelectedButtonStyle SubjectButtonStyle { get; set; } = SelectedButtonStyle.Grid;
+        public SelectedButtonStyle GradeButtonStyle { get; set; } = SelectedButtonStyle.Grid;
     }
 }

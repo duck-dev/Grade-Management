@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:listViewModels="clr-namespace:GradeManagement.ViewModels.Lists"
+             xmlns:elementButtonControls="clr-namespace:GradeManagement.Views.Lists.ElementButtonControls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="GradeManagement.Views.Lists.SubjectListView">
     
@@ -14,6 +15,49 @@
         <StyleInclude Source="/src/Styles/ContextMenuStyle.axaml"/>
         <StyleInclude Source="/src/Styles/ListViewStyle.axaml"/>
     </UserControl.Styles>
+    
+    <UserControl.DataTemplates>
+        <DataTemplate DataType="elementButtonControls:GridButton">
+            <Grid VerticalAlignment="Stretch" RowDefinitions="*,*,*">
+                <Panel Grid.Row="0" VerticalAlignment="Stretch">
+                    <Viewbox HorizontalAlignment="Center" VerticalAlignment="Stretch" Height="46">
+                        <TextBlock Text="{Binding Element.Name}"
+                                   FontWeight="Bold"
+                                   Foreground="{Binding Element.TitleBrush}"
+                                   HorizontalAlignment="Center"
+                                   TextAlignment="Center"
+                                   Margin="10 0 0 0" />
+                    </Viewbox>
+                </Panel>
+                <Panel Grid.Row="1" VerticalAlignment="Stretch">
+                    <Grid ColumnDefinitions="Auto,Auto" VerticalAlignment="Top" HorizontalAlignment="Center">
+                        <TextBlock Grid.Column="0" TextAlignment="Center"
+                                   Text="{Binding Path=Element.Grades.Count, StringFormat='=  {0}'}"
+                                   Foreground="{Binding Element.AdditionalInfoColor}"
+                                   FontSize="30"
+                                   Margin="0, 0, 25, 0" />
+                        <TextBlock Grid.Column="1" TextAlignment="Center"
+                                   Text="{Binding Path=Element.Weighting, StringFormat='W  {0}'}"
+                                   Foreground="{Binding Element.AdditionalInfoColor}"
+                                   FontSize="30"
+                                   Margin="25, 0, 0, 0" />
+                    </Grid>
+                </Panel>
+                <Panel Grid.Row="2" VerticalAlignment="Stretch">
+                    <TextBlock Text="{Binding Element.RoundedAverage}"
+                               TextAlignment="Center"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               Foreground="Black"
+                               FontSize="46"
+                               FontWeight="Bold" />
+                </Panel>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate DataType="elementButtonControls:ListButton">
+            
+        </DataTemplate>
+    </UserControl.DataTemplates>
     
     <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -79,8 +123,7 @@
                                               CommandParameter="{Binding}"/>
                                 </ContextMenu>
                             </Button.ContextMenu>
-                            <UserControl Content="{Binding ButtonControlTemplate}" 
-                                         DataContext="{Binding}"/>
+                            <ContentControl Content="{Binding ButtonStyle}"/>
                         </Button>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

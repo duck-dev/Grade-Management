@@ -18,6 +18,9 @@
       <UpToDateCheckInput Remove="Views\MainWindow.axaml" />
       <UpToDateCheckInput Remove="Assets\Styles\MainStyle.xaml" />
       <UpToDateCheckInput Remove="Assets\Styles\MainWindowStyle.axaml" />
+      <UpToDateCheckInput Remove="src\Views\Lists\ElementButtonControls\Grid\GridGradeButton.axaml" />
+      <UpToDateCheckInput Remove="src\Views\Lists\ElementButtonControls\Grid\GridSubjectButton.axaml" />
+      <UpToDateCheckInput Remove="src\Views\Lists\ElementButtonControls\Grid\GridYearButton.axaml" />
     </ItemGroup>
     <ItemGroup>
       <Compile Update="src\App.axaml.cs">
@@ -51,6 +54,5 @@
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Assets\Images" />
-      <Folder Include="src\Views\Lists\ElementButtonControls\List" />
     </ItemGroup>
 </Project>

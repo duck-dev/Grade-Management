@@ -1,5 +1,6 @@
 using System.IO;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using GradeManagement.UtilityCollection;
 
 namespace GradeManagement.Models.Settings
@@ -12,15 +13,26 @@ namespace GradeManagement.Models.Settings
         internal static void LoadSettings()
         {
             if (!File.Exists(FilePath))
+            {
+                SaveSettings();
                 return;
+            }
 
             string content = File.ReadAllText(FilePath);
-            Settings = JsonSerializer.Deserialize<Preferences>(content);
+            var options = new JsonSerializerOptions
+            {
+                Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) }
+            };
+            Settings = JsonSerializer.Deserialize<Preferences>(content, options);
         }
 
         internal static void SaveSettings()
         {
-            var options = new JsonSerializerOptions { WriteIndented = true };
+            var options = new JsonSerializerOptions
+            {
+                WriteIndented = true,
+                Converters = { new JsonStringEnumConverter(JsonNamingPolicy.CamelCase) }
+            };
             string jsonString = JsonSerializer.Serialize(Settings, options);
             File.WriteAllText(FilePath, jsonString);
         }

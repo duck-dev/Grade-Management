@@ -1,5 +1,4 @@
 using System;
-using Avalonia.Controls;
 using GradeManagement.Interfaces;
 
 namespace GradeManagement.ViewModels.BaseClasses

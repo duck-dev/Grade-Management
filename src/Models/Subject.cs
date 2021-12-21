@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
 using Avalonia;
-using Avalonia.Controls;
 using Avalonia.Media;
+using GradeManagement.Enums;
 using GradeManagement.ExtensionCollection;
 using GradeManagement.Interfaces;
 using GradeManagement.Models.Settings;
 using GradeManagement.UtilityCollection;
 using GradeManagement.ViewModels;
-using GradeManagement.ViewModels.Lists;
+using GradeManagement.Views.Lists.ElementButtonControls;
 
 namespace GradeManagement.Models
 {
@@ -18,8 +18,6 @@ namespace GradeManagement.Models
     {
         private readonly Color _additionalInfoColor = Color.Parse("#999999");
         private readonly Color _lightBackground = Color.Parse("#c7cad1");
-        
-        private UserControl? _buttonControlTemplate;
 
         public Subject(string name, float weighting, string subjectColorHex, bool counts)
         {
@@ -28,9 +26,8 @@ namespace GradeManagement.Models
             this.Counts = counts;
             this.SubjectColorHex = subjectColorHex;
             
-            var type = SettingsManager.Settings?.SubjectButtonStyle;
-            if(type is not null && Activator.CreateInstance(type) is UserControl control)
-                ButtonControlTemplate = control;
+            var isGrid = SettingsManager.Settings?.GradeButtonStyle == SelectedButtonStyle.Grid;
+            this.ButtonStyle = isGrid ? new GridButton(this) : new ListButton(this);
         }
         
         [JsonConstructor]
@@ -60,6 +57,9 @@ namespace GradeManagement.Models
 
         [JsonIgnore]
         public int ElementCount => Grades.Count;
+        
+        [JsonIgnore] 
+        public ButtonStyleBase? ButtonStyle { get; internal set; }
 
         internal Color SubjectColor => Color.Parse(SubjectColorHex);
         internal SolidColorBrush TitleBrush => 
@@ -96,17 +96,6 @@ namespace GradeManagement.Models
         
         private Color AdditionalInfoDark => _additionalInfoColor.DarkenColor(0.3f);
         private Color AdditionalInfoLight => _additionalInfoColor.BrightenColor(0.3f);
-        
-        private UserControl? ButtonControlTemplate
-        {
-            get => _buttonControlTemplate;
-            set
-            {
-                _buttonControlTemplate = value;
-                var viewModel = SubjectListViewModel.Instance;
-                viewModel?.UpdateVisualOnChange(viewModel, MainWindowViewModel.CurrentYear?.Subjects);
-            }
-        }
 
         public IEnumerable<T>? Duplicate<T>() where T : IElement
         {
@@ -121,12 +110,6 @@ namespace GradeManagement.Models
         }
 
         public object Clone() => this.MemberwiseClone();
-
-        public void ChangeButtonStyle(Type styleType)
-        {
-            if (Activator.CreateInstance(styleType) is UserControl control)
-                ButtonControlTemplate = control;
-        }
 
         internal void Edit(string newName, float newWeighting, string newSubjectColorHex, bool counts)
         {
