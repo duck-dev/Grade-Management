@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -142,7 +141,7 @@ namespace GradeManagement.ViewModels
             if(viewModel is not null)
                 viewModel.CurrentAddWindow = window;
 
-            return ShowDialog(window, MainWindowInstance, this, 0);
+            return ShowDialog(window, MainWindowInstance, this);
         }
 
         private Window? ShowAddPage(Type? windowType, Type? viewModelType)
@@ -167,7 +166,7 @@ namespace GradeManagement.ViewModels
             if(viewModel is not null)
                 viewModel.CurrentAddWindow = window;
 
-            return ShowDialog(window, MainWindowInstance, this, 0);
+            return ShowDialog(window, MainWindowInstance, this);
         }
 
         // TODO: This is horrible, but I'm not really able to use the interface out of the box. I'll have to figure out something...

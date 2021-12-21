@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using GradeManagement.ExtensionCollection;
 using GradeManagement.Interfaces;
 using GradeManagement.Models;
 using GradeManagement.ViewModels.AddPages;
@@ -62,7 +61,7 @@ namespace GradeManagement.ViewModels.Lists
             if (currentYear is null)
                 return;
             
-            currentYear.Subjects.SafeRemove(subject);
+            currentYear.Subjects.Remove(subject);
             UpdateVisualOnChange(this, currentYear.Subjects);
         }
     }

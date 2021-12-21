@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using GradeManagement.ExtensionCollection;
 using GradeManagement.Interfaces;
 using GradeManagement.Models;
 using GradeManagement.ViewModels.AddPages;
@@ -64,7 +63,7 @@ namespace GradeManagement.ViewModels.Lists
             if (currentSubject is null)
                 return;
             
-            currentSubject.Grades.SafeRemove(grade);
+            currentSubject.Grades.Remove(grade);
             UpdateVisualOnChange(this, currentSubject.Grades);
         }
         
@@ -78,7 +77,7 @@ namespace GradeManagement.ViewModels.Lists
             _targetGradeWindowModel.ConfigureViewModels(Items);
             window.DataContext = _targetGradeWindowModel;
             
-            ShowDialog(window, MainWindowInstance, this, 0);
+            ShowDialog(window, MainWindowInstance, this);
         }
     }
 }

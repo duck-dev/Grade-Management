@@ -34,7 +34,7 @@ namespace GradeManagement.ViewModels.BaseClasses
             DataManager.SaveData();
         }
         
-        protected T? ShowDialog<T>(T window, Window? parentWindow, ViewModelBase callerViewModel, int index)
+        protected T? ShowDialog<T>(T window, Window? parentWindow, ViewModelBase callerViewModel)
             where T : Window
         {
             if (parentWindow is null)
