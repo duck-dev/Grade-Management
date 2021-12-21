@@ -21,9 +21,9 @@
             <Grid VerticalAlignment="Stretch" RowDefinitions="*,*,*">
                 <Panel Grid.Row="0" VerticalAlignment="Stretch">
                     <Viewbox HorizontalAlignment="Center" VerticalAlignment="Stretch" Height="46">
-                        <TextBlock Text="{Binding Element.Name}"
+                        <TextBlock Text="{Binding SubjectRef.Name}"
                                    FontWeight="Bold"
-                                   Foreground="{Binding Element.TitleBrush}"
+                                   Foreground="{Binding SubjectRef.TitleBrush}"
                                    HorizontalAlignment="Center"
                                    TextAlignment="Center"
                                    Margin="10 0 0 0" />
@@ -32,19 +32,19 @@
                 <Panel Grid.Row="1" VerticalAlignment="Stretch">
                     <Grid ColumnDefinitions="Auto,Auto" VerticalAlignment="Top" HorizontalAlignment="Center">
                         <TextBlock Grid.Column="0" TextAlignment="Center"
-                                   Text="{Binding Path=Element.Grades.Count, StringFormat='=  {0}'}"
-                                   Foreground="{Binding Element.AdditionalInfoColor}"
+                                   Text="{Binding Path=SubjectRef.Grades.Count, StringFormat='=  {0}'}"
+                                   Foreground="{Binding SubjectRef.AdditionalInfoColor}"
                                    FontSize="30"
                                    Margin="0, 0, 25, 0" />
                         <TextBlock Grid.Column="1" TextAlignment="Center"
-                                   Text="{Binding Path=Element.Weighting, StringFormat='W  {0}'}"
-                                   Foreground="{Binding Element.AdditionalInfoColor}"
+                                   Text="{Binding Path=SubjectRef.Weighting, StringFormat='W  {0}'}"
+                                   Foreground="{Binding SubjectRef.AdditionalInfoColor}"
                                    FontSize="30"
                                    Margin="25, 0, 0, 0" />
                     </Grid>
                 </Panel>
                 <Panel Grid.Row="2" VerticalAlignment="Stretch">
-                    <TextBlock Text="{Binding Element.RoundedAverage}"
+                    <TextBlock Text="{Binding SubjectRef.RoundedAverage}"
                                TextAlignment="Center"
                                VerticalAlignment="Center"
                                HorizontalAlignment="Center"

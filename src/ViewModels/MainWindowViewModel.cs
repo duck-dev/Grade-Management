@@ -24,7 +24,6 @@ namespace GradeManagement.ViewModels
         {
             Instance = this;
             
-            DataManager.LoadData();
             SettingsManager.LoadSettings();
             InitializeTopbarElements();
             

@@ -4,6 +4,6 @@ namespace GradeManagement.Views.Lists.ElementButtonControls
 {
     public class GridButton : ButtonStyleBase
     {
-        public GridButton(IElement element) => Element = element;
+        public GridButton(IElement element) : base(element) { }
     }
 }

@@ -25,7 +25,7 @@
             <Grid VerticalAlignment="Stretch" RowDefinitions="*,*">
                 <Panel Grid.Row="0" VerticalAlignment="Stretch">
                     <Viewbox HorizontalAlignment="Center" VerticalAlignment="Stretch" Height="56">
-                        <TextBlock Text="{Binding Element.Name}"
+                        <TextBlock Text="{Binding YearRef.Name}"
                                    FontWeight="Bold"
                                    Foreground="Black"
                                    HorizontalAlignment="Center"
@@ -36,12 +36,12 @@
                 <Panel Grid.Row="1" VerticalAlignment="Stretch">
                     <Grid ColumnDefinitions="Auto,Auto" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <TextBlock Grid.Column="0" TextAlignment="Center"
-                                   Text="{Binding Path=Element.Subjects.Count, StringFormat='=  {0}'}"
+                                   Text="{Binding Path=YearRef.Subjects.Count, StringFormat='=  {0}'}"
                                    Foreground="#878787"
                                    FontSize="42"
                                    Margin="0, 0, 35, 0" />
                         <TextBlock Grid.Column="1" TextAlignment="Center"
-                                   Text="{Binding Path=Element.Average, StringFormat='Ø  {0}'}"
+                                   Text="{Binding Path=YearRef.Average, StringFormat='Ø  {0}'}"
                                    Foreground="#878787"
                                    FontSize="42"
                                    Margin="35, 0, 0, 0" />

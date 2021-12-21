@@ -4,6 +4,6 @@ namespace GradeManagement.Views.Lists.ElementButtonControls
 {
     public class ListButton : ButtonStyleBase
     {
-        public ListButton(IElement element) => Element = element;
+        public ListButton(IElement element) : base(element) { }
     }
 }

@@ -26,7 +26,7 @@ namespace GradeManagement.Models
             this.Counts = counts;
             this.SubjectColorHex = subjectColorHex;
             
-            var isGrid = SettingsManager.Settings?.GradeButtonStyle == SelectedButtonStyle.Grid;
+            var isGrid = SettingsManager.Settings?.SubjectButtonStyle == SelectedButtonStyle.Grid;
             this.ButtonStyle = isGrid ? new GridButton(this) : new ListButton(this);
         }
         

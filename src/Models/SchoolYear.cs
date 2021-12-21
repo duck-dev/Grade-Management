@@ -17,7 +17,7 @@ namespace GradeManagement.Models
         {
             this.Name = name;
 
-            var isGrid = SettingsManager.Settings?.GradeButtonStyle == SelectedButtonStyle.Grid;
+            var isGrid = SettingsManager.Settings?.YearButtonStyle == SelectedButtonStyle.Grid;
             this.ButtonStyle = isGrid ? new GridButton(this) : new ListButton(this);
         }
 

@@ -25,7 +25,7 @@
             <Grid VerticalAlignment="Stretch" RowDefinitions="*,*,*">
                 <Panel Grid.Row="0" VerticalAlignment="Stretch">
                     <Viewbox HorizontalAlignment="Center" VerticalAlignment="Stretch" Height="46">
-                        <TextBlock Text="{Binding Element.Name}"
+                        <TextBlock Text="{Binding GradeRef.Name}"
                                    FontWeight="Bold"
                                    Foreground="Black"
                                    HorizontalAlignment="Center"
@@ -41,7 +41,7 @@
                                Margin="0,0,8,0" Width="30" Height="30"
                                HorizontalAlignment="Center" VerticalAlignment="Center" />
                         <TextBlock Grid.Column="1" TextAlignment="Center"
-                                   Text="{Binding Element.DateString}"
+                                   Text="{Binding GradeRef.DateString}"
                                    Foreground="#878787"
                                    FontSize="30"
                                    Margin="8, 0, 25, 0"
@@ -49,14 +49,14 @@
                         <!--TODO: Consider culture-->
                     </Grid>
                     <TextBlock Grid.Column="1" TextAlignment="Center"
-                               Text="{Binding Path=Element.Weighting, StringFormat='W  {0}'}"
+                               Text="{Binding Path=GradeRef.Weighting, StringFormat='W  {0}'}"
                                Foreground="#878787"
                                FontSize="30"
                                Margin="25, 0, 0, 0"
                                HorizontalAlignment="Center" VerticalAlignment="Top" />
                 </Grid>
                 <Panel Grid.Row="2" VerticalAlignment="Stretch">
-                    <TextBlock Text="{Binding Element.RoundedGrade}"
+                    <TextBlock Text="{Binding GradeRef.RoundedGrade}"
                                TextAlignment="Center"
                                VerticalAlignment="Center"
                                HorizontalAlignment="Center"
