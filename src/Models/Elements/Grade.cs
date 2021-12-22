@@ -45,6 +45,8 @@ namespace GradeManagement.Models.Elements
             get => _gradeValue;
             private set
             {
+                if (value.Equals(_gradeValue))
+                    return;
                 _gradeValue = value;
                 this.RaisePropertyChanged(nameof(RoundedGrade));
             }
@@ -63,6 +65,8 @@ namespace GradeManagement.Models.Elements
             get => _date;
             private set
             {
+                if(value.Equals(_date))
+                    return;
                 _date = value;
                 this.RaisePropertyChanged(nameof(DateString));
             }

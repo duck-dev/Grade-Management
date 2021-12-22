@@ -57,6 +57,8 @@ namespace GradeManagement.Models.Elements
             get => _grades;
             private set
             {
+                if (value.SequenceEqual(_grades))
+                    return;
                 this.RaiseAndSetIfChanged(ref _grades, value);
                 this.RaisePropertyChanged(nameof(ElementCount));
                 this.RaisePropertyChanged(nameof(RoundedAverage));

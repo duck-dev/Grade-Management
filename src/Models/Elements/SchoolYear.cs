@@ -45,6 +45,8 @@ namespace GradeManagement.Models.Elements
             get => _subjects;
             private set
             {
+                if (value.SequenceEqual(_subjects))
+                    return;
                 this.RaiseAndSetIfChanged(ref _subjects, value);
                 this.RaisePropertyChanged(nameof(Average));
             }
