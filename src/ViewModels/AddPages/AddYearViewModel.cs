@@ -38,14 +38,16 @@ namespace GradeManagement.ViewModels.AddPages
             
             if (EditedYear is null)
             {
+                var viewModel = YearListViewModel.Instance;
                 var year = new SchoolYear(ElementName);
+                
                 DataManager.SchoolYears.Add(year);
+                viewModel?.Items?.Add(year);
             }
             else
                 EditedYear.Edit(ElementName);
             
-            var viewModel = YearListViewModel.Instance;
-            UpdateVisualOnChange(viewModel, DataManager.SchoolYears);
+            UpdateVisualOnChange();
             EditedYear = null;
         }
 

@@ -12,8 +12,10 @@ using ReactiveUI;
 
 namespace GradeManagement.Models
 {
-    public class SchoolYear : ReactiveObject, IElement, ICloneable
+    public class SchoolYear : ReactiveObject, IElement
     {
+        private string _name = string.Empty;
+        private List<Subject> _subjects = new();
         private ButtonStyleBase? _buttonStyle;
         
         public SchoolYear(string name)
@@ -29,12 +31,24 @@ namespace GradeManagement.Models
         {
             this.Subjects = subjects;
         }
-        
-        [JsonInclude]
-        public string Name { get; private set; }
 
-        [JsonInclude] 
-        public List<Subject> Subjects { get; private set; } = new();
+        [JsonInclude]
+        public string Name
+        {
+            get => _name; 
+            private set => this.RaiseAndSetIfChanged(ref _name, value);
+        }
+
+        [JsonInclude]
+        public List<Subject> Subjects
+        {
+            get => _subjects;
+            private set
+            {
+                this.RaiseAndSetIfChanged(ref _subjects, value);
+                this.RaisePropertyChanged(nameof(Average));
+            }
+        }
 
         [JsonIgnore]
         public ButtonStyleBase? ButtonStyle
@@ -45,19 +59,16 @@ namespace GradeManagement.Models
 
         internal float Average => Utilities.GetAverage(Subjects, true);
 
-        public IEnumerable<T>? Duplicate<T>() where T : IElement
+        public T? Duplicate<T>() where T : class, IElement
         {
-            if (Clone() is not SchoolYear duplicate)
-                return null;
-
-            duplicate.Subjects = duplicate.Subjects.Clone().ToList();
+            var duplicate = this.Clone();
             DataManager.SchoolYears.Add(duplicate);
 
-            return DataManager.SchoolYears as IEnumerable<T>;
+            return duplicate as T;
         }
 
-        public object Clone() => this.MemberwiseClone();
-
         internal void Edit(string newName) => this.Name = newName;
+        
+        private SchoolYear Clone() => new(_name, _subjects.Clone().ToList());
     }
 }

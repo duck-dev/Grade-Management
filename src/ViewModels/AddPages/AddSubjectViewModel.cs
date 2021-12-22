@@ -48,14 +48,16 @@ namespace GradeManagement.ViewModels.AddPages
 
             if (EditedSubject is null)
             {
+                var viewModel = SubjectListViewModel.Instance;
                 var subject = new Subject(ElementName, ElementWeighting, "#fcba03", ElementCounts); // TODO: Use selected color
+                
                 currentYear.Subjects.SafeAdd(subject);
+                viewModel?.Items?.Add(subject);
             }
             else
                 EditedSubject.Edit(ElementName, ElementWeighting, "#fcba03", ElementCounts); // TODO: Use selected color
             
-            var viewModel = SubjectListViewModel.Instance;
-            UpdateVisualOnChange(viewModel, currentYear.Subjects);
+            UpdateVisualOnChange();
             EditedSubject = null;
         }
 

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Text.Json.Serialization;
 using GradeManagement.Enums;
@@ -13,6 +12,11 @@ namespace GradeManagement.Models
 {
     public class Grade : ReactiveObject, IElement, IGradable, ICloneable
     {
+        private string _name = string.Empty;
+        private float _gradeValue;
+        private float _weighting;
+        private DateTime _date;
+        //private bool _counts; TODO: Will be used once there is a UI representation of this bool on the element
         private ButtonStyleBase? _buttonStyle;
         
         [JsonConstructor]
@@ -27,21 +31,45 @@ namespace GradeManagement.Models
             var isGrid = SettingsManager.Settings?.GradeButtonStyle == SelectedButtonStyle.Grid;
             this.ButtonStyle = isGrid ? new GridButton(this) : new ListButton(this);
         }
+
+        [JsonInclude]
+        public string Name
+        {
+            get => _name; 
+            private set => this.RaiseAndSetIfChanged(ref _name, value);
+        }
+
+        [JsonInclude]
+        public float GradeValue
+        {
+            get => _gradeValue;
+            private set
+            {
+                _gradeValue = value;
+                this.RaisePropertyChanged(nameof(RoundedGrade));
+            }
+        }
+
+        [JsonInclude]
+        public float Weighting
+        {
+            get => _weighting; 
+            private set => this.RaiseAndSetIfChanged(ref _weighting, value);
+        }
+
+        [JsonInclude]
+        public DateTime Date
+        {
+            get => _date;
+            private set
+            {
+                _date = value;
+                this.RaisePropertyChanged(nameof(DateString));
+            }
+        }
         
         [JsonInclude]
-        public string Name { get; private set; }
-        
-        [JsonInclude]
-        public float GradeValue { get; private set; }
-        
-        [JsonInclude]
-        public float Weighting { get; private set; }
-        
-        [JsonInclude]
-        public DateTime Date { get; private set; }
-        
-        [JsonInclude]
-        public bool Counts { get; private set; }
+        public bool Counts { get; private set; } // TODO: Update UI
 
         [JsonIgnore] 
         public int ElementCount => 1; // TODO: When partial grades are implemented, return count of grades
@@ -56,17 +84,18 @@ namespace GradeManagement.Models
         internal float RoundedGrade => (float)Math.Round(GradeValue, 2);
         internal string DateString => Date.ToString("dd.MM.yyyy", CultureInfo.CurrentCulture);
 
-        public IEnumerable<T>? Duplicate<T>() where T : IElement
+        public T? Duplicate<T>() where T : class, IElement
         {
-            if (Clone() is not Grade duplicate)
+            if (this.Clone() is not Grade duplicate)
                 return null;
+            
             var currentSubject = MainWindowViewModel.CurrentSubject;
             currentSubject?.Grades.Add(duplicate);
 
-            return currentSubject?.Grades as IEnumerable<T>;
+            return duplicate as T;
         }
-
-        public object Clone() => this.MemberwiseClone();
+        
+        public object Clone() => new Grade(_name, _gradeValue, _weighting, _date, Counts);
 
         internal void Edit(string newName, float newGrade, float newWeighting, DateTime newDate, bool counts)
         {

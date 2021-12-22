@@ -19,7 +19,11 @@ namespace GradeManagement.Models
     {
         private readonly Color _additionalInfoColor = Color.Parse("#999999");
         private readonly Color _lightBackground = Color.Parse("#c7cad1");
-        
+
+        private string _name = string.Empty;
+        private List<Grade> _grades = new();
+        private float _weighting;
+        private string _subjectColorHex = string.Empty;
         private ButtonStyleBase? _buttonStyle;
 
         public Subject(string name, float weighting, string subjectColorHex, bool counts)
@@ -39,21 +43,51 @@ namespace GradeManagement.Models
         {
             this.Grades = grades;
         }
+
+        [JsonInclude]
+        public string Name
+        {
+            get => _name; 
+            private set => this.RaiseAndSetIfChanged(ref _name, value);
+        }
+
+        [JsonInclude]
+        public List<Grade> Grades
+        {
+            get => _grades;
+            private set
+            {
+                this.RaiseAndSetIfChanged(ref _grades, value);
+                this.RaisePropertyChanged(nameof(ElementCount));
+                this.RaisePropertyChanged(nameof(RoundedAverage));
+            }
+        }
+
+        [JsonInclude]
+        public float Weighting
+        {
+            get => _weighting; 
+            private set => this.RaiseAndSetIfChanged(ref _weighting, value);
+        }
         
         [JsonInclude]
-        public string Name { get; private set; }
-
-        [JsonInclude] 
-        public List<Grade> Grades { get; private set; } = new();
+        public bool Counts { get; private set; } // TODO: Update UI
 
         [JsonInclude]
-        public float Weighting { get; private set; }
-        
-        [JsonInclude]
-        public bool Counts { get; private set; }
-
-        [JsonInclude]
-        public string SubjectColorHex { get; private set; }
+        public string SubjectColorHex
+        {
+            get => _subjectColorHex;
+            private set
+            {
+                if (_subjectColorHex.Equals(value))
+                    return;
+                _subjectColorHex = value;
+                this.RaisePropertyChanged(nameof(SubjectColor));
+                this.RaisePropertyChanged(nameof(TitleBrush));
+                this.RaisePropertyChanged(nameof(BackgroundBrushHover));
+                this.RaisePropertyChanged(nameof(AdditionalInfoColor));
+            }
+        }
         
         [JsonIgnore]
         public float GradeValue => Utilities.GetAverage(Grades, false);
@@ -104,19 +138,18 @@ namespace GradeManagement.Models
         private Color AdditionalInfoDark => _additionalInfoColor.DarkenColor(0.3f);
         private Color AdditionalInfoLight => _additionalInfoColor.BrightenColor(0.3f);
 
-        public IEnumerable<T>? Duplicate<T>() where T : IElement
+        public T? Duplicate<T>() where T : class, IElement
         {
             if (Clone() is not Subject duplicate)
                 return null;
-            duplicate.Grades = duplicate.Grades.Clone().ToList();
-            
+
             var currentYear = MainWindowViewModel.CurrentYear;
             currentYear?.Subjects.Add(duplicate);
 
-            return currentYear?.Subjects as IEnumerable<T>;
+            return duplicate as T;
         }
 
-        public object Clone() => this.MemberwiseClone();
+        public object Clone() => new Subject(_name, _weighting, _subjectColorHex, _grades.Clone().ToList(), Counts);
 
         internal void Edit(string newName, float newWeighting, string newSubjectColorHex, bool counts)
         {

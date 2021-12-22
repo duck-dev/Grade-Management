@@ -229,14 +229,16 @@ namespace GradeManagement.ViewModels.AddPages
             
             if (EditedGrade is null)
             {
+                var viewModel = GradeListViewModel.Instance;
                 var grade = new Grade(ElementName, _elementGrade, ElementWeighting, _tempSelectedDate.Value, ElementCounts);
+                
                 currentSubject.Grades.Add(grade);
+                viewModel?.Items?.Add(grade);
             }
             else
                 EditedGrade.Edit(ElementName, _elementGrade, ElementWeighting, _tempSelectedDate.Value, ElementCounts);
             
-            var viewModel = GradeListViewModel.Instance;
-            UpdateVisualOnChange(viewModel, currentSubject.Grades);
+            UpdateVisualOnChange();
             EditedGrade = null;
         }
 

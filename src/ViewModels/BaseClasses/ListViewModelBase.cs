@@ -15,9 +15,13 @@ namespace GradeManagement.ViewModels.BaseClasses
                 return;
             
             var content = instance.Content;
-            var collection = element.Duplicate<T>();
+            var duplicate = element.Duplicate<T>();
+            content.UpdateVisualOnChange();
+
+            if (duplicate is null)
+                return;
             var viewModel = content as IListViewModel<T>;
-            content.UpdateVisualOnChange(viewModel, collection);
+            viewModel?.Items?.Add(duplicate);
         }
 
         protected internal virtual void ChangeTopbar()
