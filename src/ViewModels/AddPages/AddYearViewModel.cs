@@ -1,6 +1,7 @@
 ﻿using Avalonia.Media;
 using GradeManagement.Interfaces;
 using GradeManagement.Models;
+using GradeManagement.Models.Elements;
 using GradeManagement.ViewModels.BaseClasses;
 using GradeManagement.ViewModels.Lists;
 

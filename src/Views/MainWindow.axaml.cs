@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Markup.Xaml;
 using GradeManagement.Models;
+using GradeManagement.Models.Elements;
 using GradeManagement.ViewModels;
 using GradeManagement.ViewModels.Lists;
 

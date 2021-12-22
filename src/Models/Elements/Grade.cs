@@ -8,7 +8,7 @@ using GradeManagement.ViewModels;
 using GradeManagement.Views.Lists.ElementButtonControls;
 using ReactiveUI;
 
-namespace GradeManagement.Models
+namespace GradeManagement.Models.Elements
 {
     public class Grade : ReactiveObject, IElement, IGradable, ICloneable
     {

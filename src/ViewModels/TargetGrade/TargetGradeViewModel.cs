@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using GradeManagement.Interfaces;
-using GradeManagement.Models;
+using GradeManagement.Models.Elements;
 using GradeManagement.ViewModels.BaseClasses;
 using ReactiveUI;
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using GradeManagement.Interfaces;
 using GradeManagement.Models;
+using GradeManagement.Models.Elements;
 using GradeManagement.ViewModels.AddPages;
 using GradeManagement.ViewModels.BaseClasses;
 using GradeManagement.Views.AddPages;

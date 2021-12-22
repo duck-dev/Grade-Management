@@ -5,8 +5,7 @@ using System.Linq;
 using Avalonia.Media;
 using GradeManagement.ExtensionCollection;
 using GradeManagement.Interfaces;
-using GradeManagement.Models;
-using GradeManagement.UtilityCollection;
+using GradeManagement.Models.Elements;
 using GradeManagement.ViewModels.BaseClasses;
 using ReactiveUI;
 

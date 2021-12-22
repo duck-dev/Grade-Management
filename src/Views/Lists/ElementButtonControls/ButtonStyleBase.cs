@@ -1,5 +1,5 @@
 using GradeManagement.Interfaces;
-using GradeManagement.Models;
+using GradeManagement.Models.Elements;
 
 namespace GradeManagement.Views.Lists.ElementButtonControls
 {

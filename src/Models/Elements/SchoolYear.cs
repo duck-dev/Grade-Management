@@ -10,7 +10,7 @@ using GradeManagement.UtilityCollection;
 using GradeManagement.Views.Lists.ElementButtonControls;
 using ReactiveUI;
 
-namespace GradeManagement.Models
+namespace GradeManagement.Models.Elements
 {
     public class SchoolYear : ReactiveObject, IElement
     {

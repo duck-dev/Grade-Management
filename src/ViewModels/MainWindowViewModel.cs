@@ -7,6 +7,7 @@ using Avalonia.Media;
 using GradeManagement.Enums;
 using GradeManagement.Interfaces;
 using GradeManagement.Models;
+using GradeManagement.Models.Elements;
 using GradeManagement.Models.Settings;
 using GradeManagement.ViewModels.AddPages;
 using GradeManagement.ViewModels.BaseClasses;
@@ -29,7 +30,7 @@ namespace GradeManagement.ViewModels
             SettingsManager.LoadSettings();
             InitializeTopbarElements();
             
-            _content = Content = new YearListViewModel(DataManager.SchoolYears!);
+            _content = Content = new YearListViewModel(DataManager.SchoolYears);
             _views.Add(_content);
             _content.ChangeTopbar();
         }

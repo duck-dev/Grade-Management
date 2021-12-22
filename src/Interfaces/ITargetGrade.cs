@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using GradeManagement.Models;
+using GradeManagement.Models.Elements;
 
 namespace GradeManagement.Interfaces
 {
