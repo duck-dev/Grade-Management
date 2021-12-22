@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
 using Avalonia.Controls;
 using Avalonia.Media;
 using GradeManagement.Enums;
@@ -21,7 +19,6 @@ namespace GradeManagement.ViewModels
     public class MainWindowViewModel : ViewModelBase
     {
         private ListViewModelBase _content;
-        private readonly List<ViewModelBase> _views = new();
 
         public MainWindowViewModel()
         {
@@ -31,7 +28,6 @@ namespace GradeManagement.ViewModels
             InitializeTopbarElements();
             
             _content = Content = new YearListViewModel(DataManager.SchoolYears);
-            _views.Add(_content);
             _content.ChangeTopbar();
         }
 
@@ -48,18 +44,7 @@ namespace GradeManagement.ViewModels
         internal void SwitchPage<T, TItems>(IEnumerable<TItems> items) where T : ListViewModelBase, IListViewModel<TItems> 
             where TItems : class, IElement
         {
-            if (_views.Any(x => x.GetType() == typeof(T)))
-            {
-                if (_views.Find(x => x.GetType() == typeof(T)) is not ListViewModelBase viewModelBase)
-                    return;
-                Content = viewModelBase;
-                ((IListViewModel<TItems>)Content).Items = new ObservableCollection<TItems>(items);
-            }
-            else
-            {
-                Content = (Activator.CreateInstance(typeof(T), items) as T)!;
-                _views.Add(Content);
-            }
+            Content = (Activator.CreateInstance(typeof(T), items) as T)!;
             _content.ChangeTopbar();
         }
         
@@ -127,22 +112,10 @@ namespace GradeManagement.ViewModels
                                                         where TViewModel : AddViewModelBase, new()
         {
             var window = new TWindow();
+            viewModel = new TViewModel();
             
-            if (_views.Any(x => x.GetType() == typeof(TViewModel)))
-            {
-                var viewModelBase = _views.Find(x => x.GetType() == typeof(TViewModel));
-                window.DataContext = viewModelBase;
-                viewModel = viewModelBase as TViewModel;
-            }
-            else
-            {
-                viewModel = new TViewModel();
-                window.DataContext = viewModel;
-                _views.Add(viewModel);
-            }
-
-            if(viewModel is not null)
-                viewModel.CurrentAddWindow = window;
+            window.DataContext = viewModel;
+            viewModel.CurrentAddWindow = window;
 
             return ShowDialog(window, MainWindowInstance, this);
         }
@@ -151,23 +124,10 @@ namespace GradeManagement.ViewModels
         {
             if (windowType is null || viewModelType is null || Activator.CreateInstance(windowType) is not Window window)
                 return null;
-
-            AddViewModelBase? viewModel;
-            if (_views.Any(x => x.GetType() == viewModelType))
-            {
-                var viewModelBase = _views.Find(x => x.GetType() == viewModelType);
-                viewModel = viewModelBase as AddViewModelBase;
-                window.DataContext = viewModelBase;
-            }
-            else
-            {
-                viewModel = (AddViewModelBase)Activator.CreateInstance(viewModelType)!;
-                window.DataContext = viewModel;
-                _views.Add(viewModel);
-            }
             
-            if(viewModel is not null)
-                viewModel.CurrentAddWindow = window;
+            var viewModel = (AddViewModelBase)Activator.CreateInstance(viewModelType)!;
+            window.DataContext = viewModel;
+            viewModel.CurrentAddWindow = window;
 
             return ShowDialog(window, MainWindowInstance, this);
         }
