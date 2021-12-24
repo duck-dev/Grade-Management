@@ -35,7 +35,7 @@
                         <!--                 <Image Source="/Assets/Images/back-button-arrow.png"/> -->
                         <!--         </Button.Content> -->
                         <!-- </Button> TODO: Set up back-button!!!-->
-                        <TextBox Grid.Row="1" Classes="add-page-text-box" Watermark="Name of the Grade" MaxLength="35" 
+                        <TextBox Grid.Row="1" Classes="add-page-text-box" Watermark="Name of the Grade" MaxLength="40" 
                                  Text="{Binding ElementName}" 
                                  BorderBrush="{Binding BorderBrushes[0]}"/>
                         <Grid Grid.Row="2" ColumnDefinitions="440,60" 
