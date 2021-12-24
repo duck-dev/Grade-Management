@@ -78,7 +78,7 @@
             <ItemsControl Items="{Binding Items}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel Width="1680" HorizontalAlignment="Center" Orientation="Horizontal"/>
+                        <WrapPanel Orientation="Horizontal"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
@@ -86,7 +86,7 @@
                         <Button Command="{Binding $parent[Window].DataContext.OpenYear}"
                                 CommandParameter="{Binding}"
                                 Classes="element-button"
-                                Width="500" Height="300">
+                                Width="420" Height="300">
                             <Button.Transitions>
                                 <Transitions>
                                     <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
