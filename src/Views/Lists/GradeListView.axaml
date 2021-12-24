@@ -38,12 +38,12 @@
                     <Grid Grid.Column="0" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center"
                           VerticalAlignment="Center">
                         <Image Grid.Column="0" Source="/Assets/avalonia-logo.ico"
-                               Margin="0,0,8,0" Width="30" Height="30"
+                               Margin="0,0,8,0" Width="30" Height="26"
                                HorizontalAlignment="Center" VerticalAlignment="Center" />
                         <TextBlock Grid.Column="1" TextAlignment="Center"
                                    Text="{Binding GradeRef.DateString}"
                                    Foreground="#878787"
-                                   FontSize="30"
+                                   FontSize="26"
                                    Margin="8, 0, 25, 0"
                                    HorizontalAlignment="Center" VerticalAlignment="Center" />
                         <!--TODO: Consider culture-->
@@ -105,7 +105,7 @@
                         <Button Classes="element-button"
                                 Command="{Binding $parent[Window].DataContext.EditGrade}"
                                 CommandParameter="{Binding}"
-                                Width="500" Height="300">
+                                Width="420" Height="300">
                             <Button.Transitions>
                                 <Transitions>
                                     <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2" />
