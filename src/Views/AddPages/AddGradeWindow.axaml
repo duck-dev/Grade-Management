@@ -37,6 +37,7 @@
                         <!-- </Button> TODO: Set up back-button!!!-->
                         <TextBox Grid.Row="1" Classes="add-page-text-box" Watermark="Name of the Grade" MaxLength="40" 
                                  Text="{Binding ElementName}" 
+                                 HorizontalContentAlignment="Left"
                                  BorderBrush="{Binding BorderBrushes[0]}"/>
                         <Grid Grid.Row="2" ColumnDefinitions="440,60" 
                               Width="500" Height="60" VerticalAlignment="Top">
@@ -70,12 +71,12 @@
                         </Grid>
                         <TextBox Grid.Row="3" Classes="add-page-text-box"
                                  Width="100" Height="60" Watermark="Grade" MaxLength="5"
-                                 TextAlignment="Center" HorizontalContentAlignment="Center"
+                                 HorizontalContentAlignment="Center"
                                  Text="{Binding ElementGradeString}"
                                  BorderBrush="{Binding BorderBrushes[4]}"/>
                         <TextBox Grid.Row="4" Classes="add-page-text-box"
                                  Width="100" Height="60" Watermark="Weighting" MaxLength="5"
-                                 TextAlignment="Center" HorizontalContentAlignment="Center"
+                                 HorizontalContentAlignment="Center"
                                  Text="{Binding ElementWeightingString}"
                                  BorderBrush="{Binding BorderBrushes[5]}"/>
                         <CheckBox Grid.Row="5" Classes="add-page-checkbox" IsChecked="{Binding ElementCounts}">

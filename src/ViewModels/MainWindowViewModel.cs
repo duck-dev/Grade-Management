@@ -138,21 +138,21 @@ namespace GradeManagement.ViewModels
             switch (_content)
             {
                 case YearListViewModel:
-                    ChangeView<SchoolYear>(view);
+                    ChangeViewGeneric<SchoolYear>(view);
                     
                     if (settings is null)
                         return;
                     settings.YearButtonStyle = view == 0 ? SelectedButtonStyle.Grid : SelectedButtonStyle.List;
                     break;
                 case SubjectListViewModel:
-                    ChangeView<Subject>(view);
+                    ChangeViewGeneric<Subject>(view);
                     
                     if (settings is null)
                         return;
                     settings.SubjectButtonStyle = view == 0 ? SelectedButtonStyle.Grid : SelectedButtonStyle.List;
                     break;
                 case GradeListViewModel:
-                    ChangeView<Grade>(view);
+                    ChangeViewGeneric<Grade>(view);
                     
                     if (settings is null)
                         return;
@@ -163,7 +163,7 @@ namespace GradeManagement.ViewModels
             SettingsManager.SaveSettings();
         }
 
-        private void ChangeView<T>(byte view) where T : class, IElement
+        private void ChangeViewGeneric<T>(byte view) where T : class, IElement
         {
             if (_content is not IListViewModel<T> type)
                 return;

@@ -31,10 +31,11 @@
                       <TextBox Grid.Row="1" Classes="add-page-text-box" 
                                Watermark="Name of the Subject" MaxLength="25" 
                                Text="{Binding ElementName}"
+                               HorizontalContentAlignment="Left"
                                BorderBrush="{Binding BorderBrushes[0]}"/>
                       <TextBox Grid.Row="2" Classes="add-page-text-box" 
                                Width="100" Height="60" Watermark="Weighting" MaxLength="5"
-                               TextAlignment="Center" HorizontalContentAlignment="Center"
+                               HorizontalContentAlignment="Center"
                                Text="{Binding ElementWeightingString}"
                                BorderBrush="{Binding BorderBrushes[1]}"/>
                       <CheckBox Grid.Row="3" Classes="add-page-checkbox" 

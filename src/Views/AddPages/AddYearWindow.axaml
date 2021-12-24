@@ -31,6 +31,7 @@
         </Grid>
         <TextBox Classes="add-page-text-box" Watermark="Name of the School Year" MaxLength="25"
                  Text="{Binding ElementName}"
+                 HorizontalContentAlignment="Left"
                  BorderBrush="{Binding BorderBrushes[0]}"/>
     </Panel>
 </Window>

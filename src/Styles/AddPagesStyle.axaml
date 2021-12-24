@@ -22,7 +22,6 @@
         <Setter Property="Height" Value="60"/>
         <Setter Property="BorderBrush" Value="#009b72"/>
         <Setter Property="SelectionBrush" Value="#009b72"/>
-        <Setter Property="HorizontalContentAlignment" Value="Left"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="AcceptsReturn" Value="False"/>
         <Setter Property="AcceptsTab" Value="False"/>
@@ -71,7 +70,7 @@
         <Setter Property="Height" Value="60"/>
         <Setter Property="BorderBrush" Value="#009b72"/>
         <Setter Property="BorderThickness" Value="0.75"/>
-        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="FontSize" Value="16"/>
     </Style>
