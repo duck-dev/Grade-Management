@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
 using GradeManagement.Enums;
@@ -12,7 +11,7 @@ using ReactiveUI;
 
 namespace GradeManagement.Models.Elements
 {
-    public class SchoolYear : ReactiveObject, IElement
+    public class SchoolYear : ReactiveObject, IElement, ISimpleGradable
     {
         private string _name = string.Empty;
         private List<Subject> _subjects = new();
@@ -58,6 +57,12 @@ namespace GradeManagement.Models.Elements
             get => _buttonStyle;
             set => this.RaiseAndSetIfChanged(ref _buttonStyle, value);
         }
+
+        [JsonIgnore] 
+        public float GradeValue => Utilities.GetAverage(Subjects, true);
+
+        [JsonIgnore] 
+        public int ElementCount => Subjects.Count;
 
         internal float Average => Utilities.GetAverage(Subjects, true);
 
