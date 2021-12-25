@@ -58,10 +58,8 @@ namespace GradeManagement.ViewModels.Lists
         private void RemoveElement(Subject subject)
         {
             var currentYear = MainWindowViewModel.CurrentYear;
-            if (currentYear is null)
-                return;
-            
-            currentYear.Subjects.Remove(subject);
+
+            currentYear?.Subjects.Remove(subject);
             Items?.Remove(subject);
             UpdateVisualOnChange();
         }
