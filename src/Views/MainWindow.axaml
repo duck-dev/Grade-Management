@@ -48,11 +48,13 @@
                                                         set left margin to 30 (Margin: 30, 0, 0, 0)-->
                                 <TextBlock Classes="topbar-text topbar-text-pointable topbar-text-year"
                                            Grid.Column="0"
-                                           PointerPressed="OnYearPressed" />
-                                <TextBlock Classes="topbar-text topbar-text-symbol" Grid.Column="1">/</TextBlock>
+                                           PointerPressed="OnYearPressed"/>
+                                <TextBlock Classes="topbar-text topbar-text-symbol" Grid.Column="1">
+                                    /
+                                </TextBlock>
                                 <TextBlock Classes="topbar-text topbar-text-pointable topbar-text-subject"
                                            Grid.Column="2"
-                                           PointerPressed="OnSubjectPressed" />
+                                           PointerPressed="OnSubjectPressed"/>
                             </Grid>
                         </Viewbox>
                         <!-- <Button Width="80" Height="80" HorizontalAlignment="Right" Margin="0,0,60,0"> -->
@@ -66,11 +68,11 @@
                 <Grid ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center" VerticalAlignment="Stretch">
                     <Border Grid.Column="0" Margin="0,0,10,0">
                         <Button Classes="change-view-button"
-                                Command="{Binding ChangeView}" CommandParameter="0" />
+                                Command="{Binding ChangeView}" CommandParameter="0"/>
                     </Border>
                     <Border Grid.Column="1" Margin="10, 0, 0, 0">
                         <Button Classes="change-view-button"
-                                Command="{Binding ChangeView}" CommandParameter="1" />
+                                Command="{Binding ChangeView}" CommandParameter="1"/>
                     </Border>
                 </Grid>
             </Panel>
@@ -79,11 +81,11 @@
         <Border DockPanel.Dock="Bottom" Classes="topbar-border" BorderThickness="0, 1, 0, 0"
                 VerticalAlignment="Bottom">
             <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <Button Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="60,0,0,0" />
+                <Button Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="60,0,0,0"/>
                 <TextBlock Text="{Binding Path=CurrentAverage, StringFormat='Average: {0}'}"
                            FontSize="30" Foreground="Black"
                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Button Width="80" Height="80" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,60,0" />
+                <Button Width="80" Height="80" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,60,0"/>
             </Panel>
         </Border>
         
