@@ -58,10 +58,12 @@ namespace GradeManagement.ViewModels
         private float CurrentAverage => Utilities.GetAverage(_currentGradables, true);
 
         internal void SwitchPage<T, TItems>(IEnumerable<TItems> items) where T : ListViewModelBase, IListViewModel<TItems> 
-            where TItems : class, IElement
+            where TItems : class, IElement, ISimpleGradable
         {
             Content = (Activator.CreateInstance(typeof(T), items) as T)!;
             _content.ChangeTopbar();
+
+            this.CurrentGradables = items;
         }
         
         private static void EditElement<TElement, TViewModel>(TElement element, TViewModel? viewModel, Window? window) 
