@@ -105,7 +105,6 @@
                         <Button Command="{Binding $parent[Window].DataContext.EditGrade}"
                                 CommandParameter="{Binding}"
                                 Classes="element-button"
-                                Classes.element-button-grid="{Binding $parent[UserControl].DataContext.IsViewGrid}"
                                 Classes.element-button-list="{Binding !$parent[UserControl].DataContext.IsViewGrid}"
                                 Width="420" Height="300">
                             <Button.Transitions>

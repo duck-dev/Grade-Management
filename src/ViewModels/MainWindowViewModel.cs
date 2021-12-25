@@ -143,38 +143,38 @@ namespace GradeManagement.ViewModels
             return ShowDialog(window, MainWindowInstance, this);
         }
 
-        private void ChangeView(byte view)
+        private void ChangeView(bool isGrid)
         {
             var settings = SettingsManager.Settings;
             switch (_content)
             {
                 case YearListViewModel:
-                    ChangeViewGeneric<SchoolYear>(view);
+                    ChangeViewGeneric<SchoolYear>(isGrid);
                     
                     if (settings is null)
                         return;
-                    settings.YearButtonStyle = view == 0 ? SelectedButtonStyle.Grid : SelectedButtonStyle.List;
+                    settings.YearButtonStyle = isGrid ? SelectedButtonStyle.Grid : SelectedButtonStyle.List;
                     break;
                 case SubjectListViewModel:
-                    ChangeViewGeneric<Subject>(view);
+                    ChangeViewGeneric<Subject>(isGrid);
                     
                     if (settings is null)
                         return;
-                    settings.SubjectButtonStyle = view == 0 ? SelectedButtonStyle.Grid : SelectedButtonStyle.List;
+                    settings.SubjectButtonStyle = isGrid ? SelectedButtonStyle.Grid : SelectedButtonStyle.List;
                     break;
                 case GradeListViewModel:
-                    ChangeViewGeneric<Grade>(view);
+                    ChangeViewGeneric<Grade>(isGrid);
                     
                     if (settings is null)
                         return;
-                    settings.GradeButtonStyle = view == 0 ? SelectedButtonStyle.Grid : SelectedButtonStyle.List;
+                    settings.GradeButtonStyle = isGrid ? SelectedButtonStyle.Grid : SelectedButtonStyle.List;
                     break;
             }
             
             SettingsManager.SaveSettings();
         }
 
-        private void ChangeViewGeneric<T>(byte view) where T : class, IElement
+        private void ChangeViewGeneric<T>(bool isGrid) where T : class, IElement
         {
             if (_content is not IListViewModel<T> viewModelInterface)
                 return;
@@ -183,10 +183,10 @@ namespace GradeManagement.ViewModels
             if (collection is null)
                 return;
             
-            _content.ChangeButtonView(view);
+            _content.ChangeButtonView(isGrid);
 
             foreach (var item in collection)
-                item.ButtonStyle = view == 0 ? new GridButton(item) : new ListButton(item);
+                item.ButtonStyle = isGrid ? new GridButton(item) : new ListButton(item);
         }
     }
 }

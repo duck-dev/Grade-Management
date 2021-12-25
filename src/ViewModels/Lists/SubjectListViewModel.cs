@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using GradeManagement.Enums;
 using GradeManagement.Interfaces;
 using GradeManagement.Models.Elements;
+using GradeManagement.Models.Settings;
 using GradeManagement.ViewModels.AddPages;
 using GradeManagement.ViewModels.BaseClasses;
 using GradeManagement.Views.AddPages;
@@ -22,6 +24,9 @@ namespace GradeManagement.ViewModels.Lists
             Instance = this;
             AddPageType = typeof(AddSubjectWindow);
             AddViewModelType = typeof(AddSubjectViewModel);
+            
+            bool isGrid = SettingsManager.Settings?.SubjectButtonStyle == SelectedButtonStyle.Grid;
+            ChangeButtonView(isGrid);
         }
 
 #pragma warning disable 618
