@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
 using GradeManagement.Enums;
@@ -6,7 +6,6 @@ using GradeManagement.ExtensionCollection;
 using GradeManagement.Interfaces;
 using GradeManagement.Models.Settings;
 using GradeManagement.UtilityCollection;
-using GradeManagement.ViewModels;
 using GradeManagement.Views.Lists.ElementButtonControls;
 using ReactiveUI;
 
@@ -15,10 +14,8 @@ namespace GradeManagement.Models.Elements
     public class SchoolYear : ReactiveObject, IElement, ISimpleGradable
     {
         private string _name = string.Empty;
-        private ObservableCollection<Subject> _subjects = new();
+        private List<Subject> _subjects = new();
         private ButtonStyleBase? _buttonStyle;
-
-        private readonly MainWindowViewModel? _mainWindowViewModel;
 
         public SchoolYear(string name)
         {
@@ -26,19 +23,10 @@ namespace GradeManagement.Models.Elements
 
             var isGrid = SettingsManager.Settings?.YearButtonStyle == SelectedButtonStyle.Grid;
             this.ButtonStyle = isGrid ? new GridButton(this) : new ListButton(this);
-            
-            _mainWindowViewModel = MainWindowViewModel.Instance;
-
-            _subjects.CollectionChanged += (sender, args) =>
-            {
-                this.RaisePropertyChanged(nameof(GradeValue));
-                if (_mainWindowViewModel is not null)
-                    _mainWindowViewModel.CurrentGradables = _subjects;
-            };
         }
 
         [JsonConstructor]
-        public SchoolYear(string name, ObservableCollection<Subject> subjects) : this(name)
+        public SchoolYear(string name, List<Subject> subjects) : this(name)
         {
             this.Subjects = subjects;
         }
@@ -51,7 +39,7 @@ namespace GradeManagement.Models.Elements
         }
 
         [JsonInclude]
-        public ObservableCollection<Subject> Subjects
+        public List<Subject> Subjects
         {
             get => _subjects;
             private set
@@ -60,9 +48,6 @@ namespace GradeManagement.Models.Elements
                     return;
                 this.RaiseAndSetIfChanged(ref _subjects, value);
                 this.RaisePropertyChanged(nameof(GradeValue));
-                
-                if (_mainWindowViewModel is not null)
-                    _mainWindowViewModel.CurrentGradables = _subjects;
             }
         }
 
@@ -89,6 +74,6 @@ namespace GradeManagement.Models.Elements
 
         internal void Edit(string newName) => this.Name = newName;
         
-        private SchoolYear Clone() => new(_name, new ObservableCollection<Subject>(_subjects.Clone()));
+        private SchoolYear Clone() => new(_name, _subjects.Clone().ToList());
     }
 }
