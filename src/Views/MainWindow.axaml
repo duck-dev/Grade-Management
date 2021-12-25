@@ -68,11 +68,21 @@
                 <Grid ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center" VerticalAlignment="Stretch">
                     <Border Grid.Column="0" Margin="0,0,10,0">
                         <Button Classes="change-view-button"
-                                Command="{Binding ChangeView}" CommandParameter="0"/>
+                                Command="{Binding ChangeView}" CommandParameter="0">
+                            <Grid ColumnDefinitions="Auto,*">
+                                <Image Grid.Column="0" Classes="change-view-icon" Source="/Assets/avalonia-logo.ico"/>
+                                <TextBlock Grid.Column="1" Classes="change-view-text" Text="Grid"/>
+                            </Grid>
+                        </Button>
                     </Border>
                     <Border Grid.Column="1" Margin="10, 0, 0, 0">
                         <Button Classes="change-view-button"
-                                Command="{Binding ChangeView}" CommandParameter="1"/>
+                                Command="{Binding ChangeView}" CommandParameter="1">
+                            <Grid ColumnDefinitions="Auto,*">
+                                <Image Grid.Column="0" Classes="change-view-icon" Source="/Assets/avalonia-logo.ico"/>
+                                <TextBlock Grid.Column="1" Classes="change-view-text" Text="List"/>
+                            </Grid>
+                        </Button>
                     </Border>
                 </Grid>
             </Panel>
@@ -88,7 +98,7 @@
                 <Button Width="80" Height="80" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,60,0"/>
             </Panel>
         </Border>
-        
+
         <Panel>
             <UserControl Content="{Binding Content}"
                          VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
