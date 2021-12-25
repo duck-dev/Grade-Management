@@ -2,7 +2,7 @@ namespace GradeManagement.Enums
 {
     public enum SelectedButtonStyle
     {
-        Grid,
-        List
+        Grid = 0,
+        List = 1
     }
 }

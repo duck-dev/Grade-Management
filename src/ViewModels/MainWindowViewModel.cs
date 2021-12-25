@@ -176,12 +176,14 @@ namespace GradeManagement.ViewModels
 
         private void ChangeViewGeneric<T>(byte view) where T : class, IElement
         {
-            if (_content is not IListViewModel<T> type)
+            if (_content is not IListViewModel<T> viewModelInterface)
                 return;
 
-            var collection = type.Items;
+            var collection = viewModelInterface.Items;
             if (collection is null)
                 return;
+            
+            _content.ChangeButtonView(view);
 
             foreach (var item in collection)
                 item.ButtonStyle = view == 0 ? new GridButton(item) : new ListButton(item);
