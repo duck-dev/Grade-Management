@@ -84,7 +84,8 @@
             <ItemsControl Items="{Binding Items}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal"/>
+                        <WrapPanel Classes.wrap-panel-grid="{Binding IsViewGrid}" 
+                                   Classes.wrap-panel-list="{Binding !IsViewGrid}"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
@@ -92,8 +93,8 @@
                         <Button Command="{Binding $parent[Window].DataContext.OpenSubject}"
                                 CommandParameter="{Binding}"
                                 Classes="element-button"
-                                Classes.element-button-list="{Binding !$parent[UserControl].DataContext.IsViewGrid}"
-                                Width="320" Height="300">
+                                Classes.subject-element-button="{Binding $parent[UserControl].DataContext.IsViewGrid}"
+                                Classes.element-button-list="{Binding !$parent[UserControl].DataContext.IsViewGrid}">
                             <Button.Background>
                                 <LinearGradientBrush StartPoint="0%,100%" EndPoint="100%,0%">
                                     <GradientStop Color="{Binding SubjectColor}" Offset="0.0"/>

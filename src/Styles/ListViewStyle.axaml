@@ -1,13 +1,14 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
-    <!-- Element-Button -->
+    <!-- Element-Buttons -->
     
     <Style Selector="Button.element-button">
         <Setter Property="Background" Value="#c7cad1"/>
         <Setter Property="Margin" Value="30,17.5"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="RenderTransform" Value="scale(1)"/>
+        <Setter Property="Height" Value="300"/>
     </Style>
     <Style Selector="Button.element-button /template/ ContentPresenter">
         <Setter Property="CornerRadius" Value="20"/>
@@ -17,9 +18,27 @@
         <Setter Property="RenderTransform" Value="scale(0.95)"/>
     </Style>
     
+    <Style Selector="Button.grade-year-element-button">
+        <Setter Property="Width" Value="420"/>
+    </Style>
+    
+    <Style Selector="Button.subject-element-button">
+        <Setter Property="Width" Value="320"/>
+    </Style>
+    
     <Style Selector="Button.element-button-list">
         <Setter Property="Height" Value="100"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
+    </Style>
+    
+    <!-- WrapPanel -->
+    
+    <Style Selector="WrapPanel.wrap-panel-grid">
+        <Setter Property="Orientation" Value="Horizontal"/>
+    </Style>
+    
+    <Style Selector="WrapPanel.wrap-panel-list">
+        <Setter Property="Orientation" Value="Vertical"/>
     </Style>
         
     <!-- "No Elements" text -->

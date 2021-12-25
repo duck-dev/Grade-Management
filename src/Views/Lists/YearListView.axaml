@@ -78,7 +78,8 @@
             <ItemsControl Items="{Binding Items}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal"/>
+                        <WrapPanel Classes.wrap-panel-grid="{Binding IsViewGrid}" 
+                                   Classes.wrap-panel-list="{Binding !IsViewGrid}"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
@@ -86,8 +87,8 @@
                         <Button Command="{Binding $parent[Window].DataContext.OpenYear}"
                                 CommandParameter="{Binding}"
                                 Classes="element-button"
-                                Classes.element-button-list="{Binding !$parent[UserControl].DataContext.IsViewGrid}"
-                                Width="420" Height="300">
+                                Classes.grade-year-element-button="{Binding $parent[UserControl].DataContext.IsViewGrid}"
+                                Classes.element-button-list="{Binding !$parent[UserControl].DataContext.IsViewGrid}">
                             <Button.Transitions>
                                 <Transitions>
                                     <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
