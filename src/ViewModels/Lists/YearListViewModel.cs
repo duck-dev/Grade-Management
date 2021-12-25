@@ -28,8 +28,14 @@ namespace GradeManagement.ViewModels.Lists
         public YearListViewModel(IEnumerable<SchoolYear> years) : this()
 #pragma warning restore 618
         {
+            var mainInstance = MainWindowViewModel.Instance;
+            
             Items = new ObservableCollection<SchoolYear>(years);
-            Items.CollectionChanged += (sender, args) => this.RaisePropertyChanged(nameof(EmptyCollection));
+            Items.CollectionChanged += (sender, args) =>
+            {
+                this.RaisePropertyChanged(nameof(EmptyCollection));
+                mainInstance?.UpdateAverage();
+            };
             InitializeTopbarElements();
         }
 

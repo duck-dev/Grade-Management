@@ -30,8 +30,14 @@ namespace GradeManagement.ViewModels.Lists
         public GradeListViewModel(IEnumerable<Grade> items) : this()
 #pragma warning restore 618
         {
+            var mainInstance = MainWindowViewModel.Instance;
+            
             Items = new ObservableCollection<Grade>(items);
-            Items.CollectionChanged += (sender, args) => this.RaisePropertyChanged(nameof(EmptyCollection));
+            Items.CollectionChanged += (sender, args) =>
+            {
+                this.RaisePropertyChanged(nameof(EmptyCollection));
+                mainInstance?.UpdateAverage();
+            };
             InitializeTopbarElements();
         }
 
