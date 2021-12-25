@@ -7,6 +7,7 @@ using GradeManagement.Interfaces;
 using GradeManagement.Models;
 using GradeManagement.Models.Elements;
 using GradeManagement.Models.Settings;
+using GradeManagement.UtilityCollection;
 using GradeManagement.ViewModels.AddPages;
 using GradeManagement.ViewModels.BaseClasses;
 using GradeManagement.ViewModels.Lists;
@@ -19,6 +20,7 @@ namespace GradeManagement.ViewModels
     public class MainWindowViewModel : ViewModelBase
     {
         private ListViewModelBase _content;
+        private IEnumerable<ISimpleGradable> _currentGradables;
 
         public MainWindowViewModel()
         {
@@ -29,6 +31,8 @@ namespace GradeManagement.ViewModels
             
             _content = Content = new YearListViewModel(DataManager.SchoolYears);
             _content.ChangeTopbar();
+            
+            _currentGradables = DataManager.SchoolYears;
         }
 
         internal static MainWindowViewModel? Instance { get; private set; }
@@ -40,6 +44,18 @@ namespace GradeManagement.ViewModels
             get => _content;
             private set => this.RaiseAndSetIfChanged(ref _content, value);
         }
+
+        internal IEnumerable<ISimpleGradable> CurrentGradables
+        {
+            get => _currentGradables;
+            set
+            {
+                _currentGradables = value;
+                this.RaisePropertyChanged(nameof(CurrentAverage));
+            }
+        }
+
+        private float CurrentAverage => Utilities.GetAverage(_currentGradables, true);
 
         internal void SwitchPage<T, TItems>(IEnumerable<TItems> items) where T : ListViewModelBase, IListViewModel<TItems> 
             where TItems : class, IElement
