@@ -25,9 +25,9 @@ namespace GradeManagement.UtilityCollection
         [SuppressMessage("ReSharper", "PossibleMultipleEnumeration")]
         public static float GetAverage(IEnumerable<IGradable> gradables, bool round)
         {
+            var enumerable = gradables.Where(x => x.Counts && x.ElementCount > 0 && !float.IsNaN(x.GradeValue));
             if (!gradables.Any())
                 return 0;
-            var enumerable = gradables.Where(x => x.Counts && x.ElementCount > 0);
             float result = enumerable.Sum(x => x.GradeValue * x.Weighting) / enumerable.Sum(x => x.Weighting);
             return round ? (float)Math.Round(result, 2) : result;
         }
@@ -37,10 +37,9 @@ namespace GradeManagement.UtilityCollection
         /// this overload uses a collection of <see cref="ISimpleGradable">ISimpleGradables</see></remarks>
         public static float GetAverage(IEnumerable<ISimpleGradable> gradables, bool round)
         {
-            var enumerable = gradables.ToList();
+            var enumerable = gradables.Where(x => x.ElementCount > 0).ToList();
             if (!enumerable.Any())
                 return 0;
-            
             float result = enumerable.Sum(x => x.GradeValue) / enumerable.Count;
             return round ? (float) Math.Round(result, 2) : result;
         }
