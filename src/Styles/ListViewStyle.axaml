@@ -3,7 +3,7 @@
     
     <Style Selector="Button.element-button">
         <Setter Property="Background" Value="#c7cad1"/>
-        <Setter Property="Margin" Value="30,30"/>
+        <Setter Property="Margin" Value="30,17.5"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="RenderTransform" Value="scale(1)"/>
     </Style>

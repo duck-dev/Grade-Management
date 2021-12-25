@@ -92,7 +92,7 @@
                         <Button Command="{Binding $parent[Window].DataContext.OpenSubject}"
                                 CommandParameter="{Binding}"
                                 Classes="element-button"
-                                Width="320" Height="320">
+                                Width="320" Height="300">
                             <Button.Background>
                                 <LinearGradientBrush StartPoint="0%,100%" EndPoint="100%,0%">
                                     <GradientStop Color="{Binding SubjectColor}" Offset="0.0"/>
