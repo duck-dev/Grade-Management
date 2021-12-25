@@ -103,11 +103,20 @@ namespace GradeManagement.Models.Elements
 
         internal void Edit(string newName, float newGrade, float newWeighting, DateTime newDate, bool counts)
         {
+            var oldGrade = this.GradeValue;
+            var oldCounts = this.Counts;
+            var oldWeighting = this.Weighting;
+            
             this.Name = newName;
             this.GradeValue = newGrade;
             this.Weighting = newWeighting;
             this.Date = newDate;
             this.Counts = counts;
+            
+            if (oldCounts == counts && Math.Abs(oldWeighting - newWeighting) < 0.001f && Math.Abs(oldGrade - newGrade) < 0.001f) 
+                return;
+            var mainInstance = MainWindowViewModel.Instance;
+            mainInstance?.UpdateAverage();
         }
     }
 }

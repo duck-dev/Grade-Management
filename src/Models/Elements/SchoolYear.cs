@@ -11,7 +11,7 @@ using ReactiveUI;
 
 namespace GradeManagement.Models.Elements
 {
-    public class SchoolYear : ReactiveObject, IElement, ISimpleGradable
+    public class SchoolYear : ReactiveObject, IElement, IGradable
     {
         private string _name = string.Empty;
         private List<Subject> _subjects = new();
@@ -60,6 +60,12 @@ namespace GradeManagement.Models.Elements
 
         [JsonIgnore] 
         public float GradeValue => Utilities.GetAverage(Subjects, true);
+
+        [JsonIgnore]
+        public float Weighting => 1;
+
+        [JsonIgnore] 
+        public bool Counts => true;
 
         [JsonIgnore] 
         public int ElementCount => Subjects.Count;

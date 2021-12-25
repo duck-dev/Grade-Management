@@ -20,7 +20,7 @@ namespace GradeManagement.ViewModels
     public class MainWindowViewModel : ViewModelBase
     {
         private ListViewModelBase _content;
-        private IEnumerable<ISimpleGradable> _currentGradables;
+        private IEnumerable<IGradable> _currentGradables;
 
         public MainWindowViewModel()
         {
@@ -45,25 +45,16 @@ namespace GradeManagement.ViewModels
             private set => this.RaiseAndSetIfChanged(ref _content, value);
         }
 
-        internal IEnumerable<ISimpleGradable> CurrentGradables
-        {
-            get => _currentGradables;
-            set
-            {
-                _currentGradables = value;
-                this.RaisePropertyChanged(nameof(CurrentAverage));
-            }
-        }
-
         private float CurrentAverage => Utilities.GetAverage(_currentGradables, true);
 
         internal void SwitchPage<T, TItems>(IEnumerable<TItems> items) where T : ListViewModelBase, IListViewModel<TItems> 
-            where TItems : class, IElement, ISimpleGradable
+            where TItems : class, IElement, IGradable
         {
             Content = (Activator.CreateInstance(typeof(T), items) as T)!;
             _content.ChangeTopbar();
 
-            this.CurrentGradables = items;
+            _currentGradables = items;
+            UpdateAverage();
         }
 
         internal void UpdateAverage() => this.RaisePropertyChanged(nameof(CurrentAverage));

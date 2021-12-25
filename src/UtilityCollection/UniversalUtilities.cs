@@ -32,18 +32,6 @@ namespace GradeManagement.UtilityCollection
             return round ? (float)Math.Round(result, 2) : result;
         }
 
-        /// <inheritdoc cref="GetAverage(System.Collections.Generic.IEnumerable{GradeManagement.Interfaces.IGradable},bool)"/>
-        /// <remarks>Instead of a collection of <see cref="IGradable">IGradables</see>,
-        /// this overload uses a collection of <see cref="ISimpleGradable">ISimpleGradables</see></remarks>
-        public static float GetAverage(IEnumerable<ISimpleGradable> gradables, bool round)
-        {
-            var enumerable = gradables.Where(x => x.ElementCount > 0 && !float.IsNaN(x.GradeValue)).ToList();
-            if (!enumerable.Any())
-                return 0;
-            float result = enumerable.Sum(x => x.GradeValue) / enumerable.Count;
-            return round ? (float) Math.Round(result, 2) : result;
-        }
-
         /// <summary>
         /// Log a message to the console (for debugging purposes).
         /// </summary>

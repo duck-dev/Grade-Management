@@ -155,10 +155,18 @@ namespace GradeManagement.Models.Elements
 
         internal void Edit(string newName, float newWeighting, string newSubjectColorHex, bool counts)
         {
+            var oldCounts = this.Counts;
+            var oldWeighting = this.Weighting;
+            
             this.Name = newName;
             this.Weighting = newWeighting;
             this.Counts = counts;
             this.SubjectColorHex = newSubjectColorHex;
+
+            if (oldCounts == counts && Math.Abs(oldWeighting - newWeighting) < 0.001f) 
+                return;
+            var mainInstance = MainWindowViewModel.Instance;
+            mainInstance?.UpdateAverage();
         }
     }
 }
