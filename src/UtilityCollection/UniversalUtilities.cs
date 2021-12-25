@@ -37,7 +37,7 @@ namespace GradeManagement.UtilityCollection
         /// this overload uses a collection of <see cref="ISimpleGradable">ISimpleGradables</see></remarks>
         public static float GetAverage(IEnumerable<ISimpleGradable> gradables, bool round)
         {
-            var enumerable = gradables.Where(x => x.ElementCount > 0).ToList();
+            var enumerable = gradables.Where(x => x.ElementCount > 0 && !float.IsNaN(x.GradeValue)).ToList();
             if (!enumerable.Any())
                 return 0;
             float result = enumerable.Sum(x => x.GradeValue) / enumerable.Count;
