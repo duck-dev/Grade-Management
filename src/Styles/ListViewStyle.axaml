@@ -30,6 +30,9 @@
         <Setter Property="Height" Value="100"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
     </Style>
+    <Style Selector="Button.element-button-list:pointerover">
+        <Setter Property="RenderTransform" Value="scale(0.985)"/>
+    </Style>
         
     <!-- "No Elements" text -->
     

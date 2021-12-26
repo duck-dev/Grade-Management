@@ -10,16 +10,16 @@
     <Design.DataContext>
         <listViewModels:YearListViewModel/>
     </Design.DataContext>
-    
+
     <UserControl.Styles>
         <StyleInclude Source="/src/Styles/ContextMenuStyle.axaml"/>
         <StyleInclude Source="/src/Styles/ListViewStyle.axaml"/>
-        
+
         <Style Selector="Button.element-button:pressed /template/ ContentPresenter">
             <Setter Property="Background" Value="#b8babf"/>
         </Style>
     </UserControl.Styles>
-    
+
     <UserControl.DataTemplates>
         <DataTemplate DataType="elementButtonControls:GridButton">
             <Grid VerticalAlignment="Stretch" RowDefinitions="*,*">
@@ -30,7 +30,7 @@
                                    Foreground="Black"
                                    HorizontalAlignment="Center"
                                    TextAlignment="Center"
-                                   Margin="10 0 0 0" />
+                                   Margin="10 0 0 0"/>
                     </Viewbox>
                 </Panel>
                 <Panel Grid.Row="1" VerticalAlignment="Stretch">
@@ -39,24 +39,37 @@
                                    Text="{Binding Path=YearRef.Subjects.Count, StringFormat='=  {0}'}"
                                    Foreground="#878787"
                                    FontSize="42"
-                                   Margin="0, 0, 35, 0" />
+                                   Margin="0, 0, 35, 0"/>
                         <TextBlock Grid.Column="1" TextAlignment="Center"
                                    Text="{Binding Path=YearRef.GradeValue, StringFormat='Ø  {0}'}"
                                    Foreground="#878787"
                                    FontSize="42"
-                                   Margin="35, 0, 0, 0" />
+                                   Margin="35, 0, 0, 0"/>
                     </Grid>
                 </Panel>
             </Grid>
         </DataTemplate>
         <DataTemplate DataType="elementButtonControls:ListButton">
-            
+            <Grid ColumnDefinitions="*,Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid Grid.Column="0" RowDefinitions="*,*" HorizontalAlignment="Left" Margin="10,0,0,0">
+                    <TextBlock Grid.Row="0" Text="{Binding YearRef.Name}"
+                               FontSize="36" FontWeight="Bold" Foreground="Black"
+                               HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"
+                               Text="{Binding Path=YearRef.Subjects.Count, StringFormat='=  {0}'}"
+                               Foreground="#878787" FontSize="28"/>
+                </Grid>
+                <TextBlock Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"
+                           Text="{Binding YearRef.GradeValue}"
+                           FontSize="42" FontWeight="Bold" Foreground="Black"
+                           Margin="0,0,10,0"/>
+            </Grid>
         </DataTemplate>
     </UserControl.DataTemplates>
 
     <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"
-                    IsEnabled="{Binding EmptyCollection}" 
+                    IsEnabled="{Binding EmptyCollection}"
                     IsVisible="{Binding EmptyCollection}">
             <TextBlock Classes="no-elements-text" Margin="0,0,8,0">
                 This subject doesn't yet contain grades. You can add a new grade with the green button
@@ -64,8 +77,8 @@
             <Viewbox Width="40" Height="40" VerticalAlignment="Center">
                 <Grid Width="24" Height="24">
                     <Ellipse Fill="#009B72"/>
-                    <TextBlock Text="+" FontSize="16" FontWeight="Bold" TextAlignment="Center" 
-                               VerticalAlignment="Center" HorizontalAlignment="Center" 
+                    <TextBlock Text="+" FontSize="16" FontWeight="Bold" TextAlignment="Center"
+                               VerticalAlignment="Center" HorizontalAlignment="Center"
                                Foreground="White"/>
                 </Grid>
             </Viewbox>
@@ -73,12 +86,13 @@
                 in the bottom-right corner.
             </TextBlock>
         </StackPanel>
-        
+
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
             <ItemsControl Items="{Binding Items}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Horizontal"/>
+                        <!-- <StackPanel Orientation="Vertical"/> -->
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
@@ -95,7 +109,7 @@
                             </Button.Transitions>
                             <Button.ContextMenu>
                                 <ContextMenu>
-                                    <MenuItem Header="Edit School Year" 
+                                    <MenuItem Header="Edit School Year"
                                               Command="{Binding $parent[Window].DataContext.EditYear}"
                                               CommandParameter="{Binding}"/>
                                     <MenuItem Header="Duplicate School Year"
@@ -106,8 +120,8 @@
                                               Command="{Binding $parent[UserControl].DataContext.RemoveElement}"
                                               CommandParameter="{Binding}"/>
                                     <MenuItem Header="Create Year-Template"/>
-                                              <!-- Command="{Binding $parent[UserControl].DataContext.CreateTemplate}" -->
-                                              <!-- CommandParameter="{Binding}"/> -->
+                                    <!-- Command="{Binding $parent[UserControl].DataContext.CreateTemplate}" -->
+                                    <!-- CommandParameter="{Binding}"/> -->
                                 </ContextMenu>
                             </Button.ContextMenu>
                             <ContentControl Content="{Binding ButtonStyle}"/>
