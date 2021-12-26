@@ -144,8 +144,8 @@
             <ItemsControl Items="{Binding Items}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal"/>
-                        <!-- <StackPanel Orientation="Vertical"/> -->
+                        <!-- <WrapPanel Orientation="Horizontal"/> -->
+                        <StackPanel Orientation="Vertical"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
@@ -158,11 +158,11 @@
                             <Button.Background>
                                 <LinearGradientBrush StartPoint="0%,100%" EndPoint="100%,0%">
                                     <GradientStop Color="{Binding SubjectColor}" Offset="0.0"/>
-                                    <GradientStop Color="#c7cad1" Offset="0.9"/>
+                                    <GradientStop Color="#c7cad1" Offset="1.0"/>
                                 </LinearGradientBrush>
                             </Button.Background>
                             <Button.Styles>
-                                <Style Selector="Button:pointerover /template/ ContentPresenter">
+                                <Style Selector="Button.element-button:pointerover /template/ ContentPresenter">
                                     <Setter Property="Background" Value="{Binding BackgroundBrushHover}"/>
                                 </Style>
                             </Button.Styles>

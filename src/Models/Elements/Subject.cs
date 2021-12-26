@@ -115,7 +115,7 @@ namespace GradeManagement.Models.Elements
                 return Utilities.CreateLinearGradientBrush(new RelativePoint(0, 100, RelativeUnit.Relative),
                     new RelativePoint(100, 0, RelativeUnit.Relative),
                     new[] {SubjectColor, _lightBackground},
-                    new[] {0.0, 90.0});
+                    new[] {0.0, 100.0});
             }
         }
         internal LinearGradientBrush BackgroundBrushHover
@@ -125,7 +125,7 @@ namespace GradeManagement.Models.Elements
                 return Utilities.CreateLinearGradientBrush(new RelativePoint(0, 100, RelativeUnit.Relative),
                     new RelativePoint(100, 0, RelativeUnit.Relative),
                     new[] {SubjectColor.DarkenColor(0.075f), SubjectColor.DarkenColor(0.075f)},
-                    new[] {0.0, 90.0});
+                    new[] {0.0, 100.0});
             }
         }
         
