@@ -34,28 +34,42 @@
                         <TextBlock Grid.Column="0" TextAlignment="Center"
                                    Text="{Binding Path=SubjectRef.Grades.Count, StringFormat='=  {0}'}"
                                    Foreground="{Binding SubjectRef.AdditionalInfoColor}"
-                                   FontSize="30"
-                                   Margin="0, 0, 25, 0" />
+                                   FontSize="30" Margin="0, 0, 25, 0" />
                         <TextBlock Grid.Column="1" TextAlignment="Center"
                                    Text="{Binding Path=SubjectRef.Weighting, StringFormat='W  {0}'}"
                                    Foreground="{Binding SubjectRef.AdditionalInfoColor}"
-                                   FontSize="30"
-                                   Margin="25, 0, 0, 0" />
+                                   FontSize="30" Margin="25, 0, 0, 0" />
                     </Grid>
                 </Panel>
                 <Panel Grid.Row="2" VerticalAlignment="Stretch">
                     <TextBlock Text="{Binding SubjectRef.RoundedAverage}"
-                               TextAlignment="Center"
-                               VerticalAlignment="Center"
-                               HorizontalAlignment="Center"
-                               Foreground="Black"
-                               FontSize="46"
-                               FontWeight="Bold" />
+                               TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"
+                               Foreground="Black" FontSize="46" FontWeight="Bold" />
                 </Panel>
             </Grid>
         </DataTemplate>
         <DataTemplate DataType="elementButtonControls:ListButton">
-            
+            <Grid ColumnDefinitions="*,Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid Grid.Column="0" RowDefinitions="*,*" HorizontalAlignment="Left" Margin="10,0,0,0">
+                    <TextBlock Grid.Row="0" Text="{Binding SubjectRef.Name}"
+                               FontSize="36" FontWeight="Bold" Foreground="Black"
+                               HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Grid Grid.Row="1" ColumnDefinitions="Auto, Auto">
+                        <TextBlock Grid.Column="0" VerticalAlignment="Center"
+                                   Text="{Binding Path=SubjectRef.Grades.Count, StringFormat='=  {0}'}"
+                                   Foreground="{Binding SubjectRef.AdditionalInfoColor}" 
+                                   FontSize="28" Margin="0,0,25,0"/>
+                        <TextBlock Grid.Column="1" VerticalAlignment="Center"
+                                   Text="{Binding Path=SubjectRef.Weighting, StringFormat='W  {0}'}"
+                                   Foreground="{Binding SubjectRef.AdditionalInfoColor}"
+                                   FontSize="28" Margin="25, 0, 0, 0"/>
+                    </Grid>
+                </Grid>
+                <TextBlock Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"
+                           Text="{Binding SubjectRef.RoundedAverage}"
+                           FontSize="42" FontWeight="Bold" Foreground="Black"
+                           Margin="0,0,10,0"/>
+            </Grid>
         </DataTemplate>
     </UserControl.DataTemplates>
     
@@ -84,8 +98,8 @@
             <ItemsControl Items="{Binding Items}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal"/>
-                        <!-- <StackPanel Orientation="Vertical"/> -->
+                        <!-- <WrapPanel Orientation="Horizontal"/> -->
+                        <StackPanel Orientation="Vertical"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
