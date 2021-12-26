@@ -144,8 +144,8 @@
             <ItemsControl Items="{Binding Items}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <!-- <WrapPanel Orientation="Horizontal"/> -->
-                        <StackPanel Orientation="Vertical"/>
+                        <WrapPanel Orientation="Horizontal"/>
+                        <!-- <StackPanel Orientation="Vertical"/> -->
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
