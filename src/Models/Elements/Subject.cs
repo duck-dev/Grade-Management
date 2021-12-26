@@ -137,8 +137,8 @@ namespace GradeManagement.Models.Elements
         private Color DarkSubjectTint => SubjectColor.DarkenColor(0.2f);
         private Color LightSubjectTint => SubjectColor.BrightenColor(0.2f);
         
-        private Color AdditionalInfoDark => _additionalInfoColor.DarkenColor(0.3f);
-        private Color AdditionalInfoLight => _additionalInfoColor.BrightenColor(0.3f);
+        private Color AdditionalInfoDark => _additionalInfoColor.DarkenColor(0.2f);
+        private Color AdditionalInfoLight => _additionalInfoColor.BrightenColor(0.2f);
 
         public T? Duplicate<T>() where T : class, IElement
         {
