@@ -68,7 +68,7 @@
             <!--     <Grid Grid.Column="0" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Left" Margin="10,0,0,0"> -->
             <!--         <TextBlock Grid.Column="0" Text="{Binding YearRef.Name}" -->
             <!--                    FontSize="36" FontWeight="Bold" Foreground="Black" VerticalAlignment="Center"/> -->
-            <!--         <TextBlock Grid.Column="1" VerticalAlignment="Center" Margin="40,0,0,0" -->
+            <!--         <TextBlock Grid.Column="1" VerticalAlignment="Center" Margin="60,0,0,0" -->
             <!--                    Text="{Binding Path=YearRef.Subjects.Count, StringFormat='=  {0}'}" -->
             <!--                    Foreground="#878787" FontSize="28"/> -->
             <!--     </Grid> -->
