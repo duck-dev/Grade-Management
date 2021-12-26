@@ -30,16 +30,6 @@
         <Setter Property="Height" Value="100"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
     </Style>
-    
-    <!-- WrapPanel -->
-    
-    <Style Selector="WrapPanel.wrap-panel-grid">
-        <Setter Property="Orientation" Value="Horizontal"/>
-    </Style>
-    
-    <Style Selector="WrapPanel.wrap-panel-list">
-        <Setter Property="Orientation" Value="Vertical"/>
-    </Style>
         
     <!-- "No Elements" text -->
     

@@ -78,8 +78,7 @@
             <ItemsControl Items="{Binding Items}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel Classes.wrap-panel-grid="{Binding IsViewGrid}" 
-                                   Classes.wrap-panel-list="{Binding !IsViewGrid}"/>
+                        <WrapPanel Orientation="Horizontal"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
