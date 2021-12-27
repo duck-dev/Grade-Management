@@ -83,6 +83,34 @@
                            Text="{Binding GradeRef.RoundedGrade}"
                            FontSize="42" FontWeight="Bold" Foreground="Black" Margin="0,0,10,0"/>
             </Grid>
+            
+            <!-- <Grid ColumnDefinitions="*,Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"> -->
+            <!--     <Grid Grid.Column="0" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Left" Margin="10,0,0,0"> -->
+            <!--         <TextBlock Grid.Column="0" Text="{Binding GradeRef.Name}" -->
+            <!--                    FontSize="36" FontWeight="Bold" Foreground="Black" -->
+            <!--                    HorizontalAlignment="Left" VerticalAlignment="Center"/> -->
+            <!--         <Grid Grid.Column="1" ColumnDefinitions="Auto, Auto" Margin="60,0,0,0"> -->
+            <!--             <Grid Grid.Column="0" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center" -->
+            <!--                   VerticalAlignment="Center"> -->
+            <!--                 <Image Grid.Column="0" Source="/Assets/avalonia-logo.ico" -->
+            <!--                        Margin="0,0,8,0" Width="30" Height="26" -->
+            <!--                        HorizontalAlignment="Center" VerticalAlignment="Center"/> -->
+            <!--                 <TextBlock Grid.Column="1" TextAlignment="Center" -->
+            <!--                            Text="{Binding GradeRef.DateString}" -->
+            <!--                            Foreground="#878787" FontSize="26" Margin="8, 0, 25, 0" -->
+            <!--                            HorizontalAlignment="Center" VerticalAlignment="Center"/> -->
+            <!--                 ~1~TODO: Consider culture@1@ -->
+            <!--             </Grid> -->
+            <!--             <TextBlock Grid.Column="1" VerticalAlignment="Center" -->
+            <!--                        Text="{Binding Path=GradeRef.Weighting, StringFormat='W  {0}'}" -->
+            <!--                        Foreground="#878787" FontSize="28" Margin="20, 0, 0, 0"/> -->
+            <!--         </Grid> -->
+            <!--     </Grid> -->
+            <!--     <TextBlock Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" -->
+            <!--                Text="{Binding GradeRef.RoundedGrade}" -->
+            <!--                FontSize="42" FontWeight="Bold" Foreground="Black" -->
+            <!--                Margin="0,0,10,0"/> -->
+            <!-- </Grid> -->
         </DataTemplate>
     </UserControl.DataTemplates>
 
