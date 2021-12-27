@@ -15,11 +15,13 @@
     </UserControl.Styles>
     
     <Grid RowDefinitions="*,*,*,*" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <TextBox Grid.Row="0" Classes="target-grade-textbox" Watermark="Grade"
+        <TextBlock Grid.Row="0" Classes="intro-text"
+                   Text="Calculate the new average you'd have if your next grade had the specified value and weighting."/>
+        <TextBox Grid.Row="1" Classes="target-grade-textbox" Watermark="Grade"
                  Text="{Binding GradeString}"/>
-        <TextBox Grid.Row="1" Classes="target-grade-textbox" Watermark="Weighting"
+        <TextBox Grid.Row="2" Classes="target-grade-textbox" Watermark="Weighting"
                  Text="{Binding WeightingString}"/>
-        <TextBlock Grid.Row="3" Classes="result-text" Text="{Binding Path=CalculatedAverage, 
-                                                                     StringFormat='Calculated Average {0}'}"/>
+        <TextBlock Grid.Row="3" Classes="result-text"
+                   Text="{Binding Path=CalculatedAverage, StringFormat='Calculated Average {0}'}"/>
     </Grid>
 </UserControl>
