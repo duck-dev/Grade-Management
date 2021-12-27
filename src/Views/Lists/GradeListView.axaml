@@ -12,11 +12,11 @@
     </Design.DataContext>
 
     <UserControl.Styles>
-        <StyleInclude Source="/src/Styles/ContextMenuStyle.axaml" />
-        <StyleInclude Source="/src/Styles/ListViewStyle.axaml" />
+        <StyleInclude Source="/src/Styles/ContextMenuStyle.axaml"/>
+        <StyleInclude Source="/src/Styles/ListViewStyle.axaml"/>
 
         <Style Selector="Button.element-button:pressed /template/ ContentPresenter">
-            <Setter Property="Background" Value="#b8babf" />
+            <Setter Property="Background" Value="#b8babf"/>
         </Style>
     </UserControl.Styles>
 
@@ -26,11 +26,8 @@
                 <Panel Grid.Row="0" VerticalAlignment="Stretch">
                     <Viewbox HorizontalAlignment="Center" VerticalAlignment="Stretch" Height="46">
                         <TextBlock Text="{Binding GradeRef.Name}"
-                                   FontWeight="Bold"
-                                   Foreground="Black"
-                                   HorizontalAlignment="Center"
-                                   TextAlignment="Center"
-                                   Margin="10 0 0 0" />
+                                   FontWeight="Bold" Foreground="Black" Margin="10 0 0 0"
+                                   HorizontalAlignment="Center" TextAlignment="Center"/>
                     </Viewbox>
                 </Panel>
                 <Grid Grid.Row="1" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center"
@@ -39,36 +36,53 @@
                           VerticalAlignment="Center">
                         <Image Grid.Column="0" Source="/Assets/avalonia-logo.ico"
                                Margin="0,0,8,0" Width="30" Height="26"
-                               HorizontalAlignment="Center" VerticalAlignment="Center" />
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         <TextBlock Grid.Column="1" TextAlignment="Center"
                                    Text="{Binding GradeRef.DateString}"
-                                   Foreground="#878787"
-                                   FontSize="26"
-                                   Margin="8, 0, 25, 0"
-                                   HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                   Foreground="#878787" FontSize="26" Margin="8, 0, 25, 0"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         <!--TODO: Consider culture-->
                     </Grid>
                     <TextBlock Grid.Column="1" TextAlignment="Center"
                                Text="{Binding Path=GradeRef.Weighting, StringFormat='W  {0}'}"
-                               Foreground="#878787"
-                               FontSize="30"
-                               Margin="25, 0, 0, 0"
-                               HorizontalAlignment="Center" VerticalAlignment="Top" />
+                               Foreground="#878787" FontSize="30" Margin="25, 0, 0, 0"
+                               HorizontalAlignment="Center" VerticalAlignment="Top"/>
                 </Grid>
                 <Panel Grid.Row="2" VerticalAlignment="Stretch">
                     <TextBlock Text="{Binding GradeRef.RoundedGrade}"
-                               TextAlignment="Center"
-                               VerticalAlignment="Center"
-                               HorizontalAlignment="Center"
-                               Foreground="Black"
-                               FontSize="46"
-                               FontWeight="Bold">
+                               TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"
+                               Foreground="Black" FontSize="46" FontWeight="Bold">
                     </TextBlock>
                 </Panel>
             </Grid>
         </DataTemplate>
         <DataTemplate DataType="elementButtonControls:ListButton">
-
+            <Grid ColumnDefinitions="*,Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid Grid.Column="0" RowDefinitions="*,*" HorizontalAlignment="Left" Margin="10,0,0,0">
+                    <TextBlock Grid.Row="0" Text="{Binding GradeRef.Name}"
+                               FontSize="36" FontWeight="Bold" Foreground="Black"
+                               HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Grid Grid.Row="1" ColumnDefinitions="Auto, Auto">
+                        <Grid Grid.Column="0" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center"
+                              VerticalAlignment="Center">
+                            <Image Grid.Column="0" Source="/Assets/avalonia-logo.ico"
+                                   Margin="0,0,8,0" Width="30" Height="26"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="1" TextAlignment="Center"
+                                       Text="{Binding GradeRef.DateString}"
+                                       Foreground="#878787" FontSize="26" Margin="8, 0, 25, 0"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <!--TODO: Consider culture-->
+                        </Grid>
+                        <TextBlock Grid.Column="1" VerticalAlignment="Center"
+                                   Text="{Binding Path=GradeRef.Weighting, StringFormat='W  {0}'}"
+                                   Foreground="#878787" FontSize="28" Margin="25, 0, 0, 0"/>
+                    </Grid>
+                </Grid>
+                <TextBlock Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"
+                           Text="{Binding GradeRef.RoundedGrade}"
+                           FontSize="42" FontWeight="Bold" Foreground="Black" Margin="0,0,10,0"/>
+            </Grid>
         </DataTemplate>
     </UserControl.DataTemplates>
 
@@ -81,10 +95,10 @@
             </TextBlock>
             <Viewbox Width="40" Height="40" VerticalAlignment="Center">
                 <Grid Width="24" Height="24">
-                    <Ellipse Fill="#009B72" />
+                    <Ellipse Fill="#009B72"/>
                     <TextBlock Text="+" FontSize="16" FontWeight="Bold" TextAlignment="Center"
                                VerticalAlignment="Center" HorizontalAlignment="Center"
-                               Foreground="White" />
+                               Foreground="White"/>
                 </Grid>
             </Viewbox>
             <TextBlock Classes="no-elements-text" Margin="8,0,0,0">
@@ -110,24 +124,24 @@
                                 Classes.element-button-list="{Binding !$parent[UserControl].DataContext.IsViewGrid}">
                             <Button.Transitions>
                                 <Transitions>
-                                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2" />
+                                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
                                 </Transitions>
                             </Button.Transitions>
                             <Button.ContextMenu>
                                 <ContextMenu>
                                     <MenuItem Header="Edit Grade"
                                               Command="{Binding $parent[Window].DataContext.EditGrade}"
-                                              CommandParameter="{Binding}" />
+                                              CommandParameter="{Binding}"/>
                                     <MenuItem Header="Duplicate Grade"
                                               Command="{Binding $parent[UserControl].DataContext.Duplicate}"
                                               CommandParameter="{Binding}">
                                     </MenuItem>
                                     <MenuItem Header="Remove Grade"
                                               Command="{Binding $parent[UserControl].DataContext.RemoveElement}"
-                                              CommandParameter="{Binding}" />
+                                              CommandParameter="{Binding}"/>
                                 </ContextMenu>
                             </Button.ContextMenu>
-                            <ContentControl Content="{Binding ButtonStyle}" />
+                            <ContentControl Content="{Binding ButtonStyle}"/>
                         </Button>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
@@ -135,6 +149,6 @@
         </ScrollViewer>
 
         <Button HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="57.5, 0, 0, 45"
-                Width="150" Height="175" Command="{Binding OpenTargetGradeCalc}" />
+                Width="150" Height="175" Command="{Binding OpenTargetGradeCalc}"/>
     </Panel>
 </UserControl>
