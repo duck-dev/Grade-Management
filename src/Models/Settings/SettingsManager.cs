@@ -8,7 +8,7 @@ namespace GradeManagement.Models.Settings
     public static class SettingsManager
     {
         internal static Preferences? Settings { get; private set; } = new();
-        private static string FilePath => Utilities.FilesParentPath + "/Settings.json";
+        private static string FilePath => Path.Combine(Utilities.FilesParentPath, "Settings.json");
 
         internal static void LoadSettings()
         {

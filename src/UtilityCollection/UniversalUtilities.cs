@@ -12,8 +12,14 @@ namespace GradeManagement.UtilityCollection
         /// <summary>
         /// The parent path of all settings- and data-files
         /// </summary>
-        public static string? FilesParentPath 
-            => Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+        public static string FilesParentPath
+        {
+            get
+            {
+                var directory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+                return directory ?? throw new Exception("Directory name of the currently executing assembly is null.");
+            }
+        }
         
         /// <summary>
         /// Calculate the average of several grades with a weighting factor for each grade.
