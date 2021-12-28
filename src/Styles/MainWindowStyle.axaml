@@ -35,7 +35,7 @@
     <Style Selector="Button.change-view-button">
         <Setter Property="Width" Value="200"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>
-        <Setter Property="Background" Value="#c7cad1"></Setter>
+        <Setter Property="Background" Value="#c7cad1"/>
     </Style>
     <Style Selector="Button.change-view-button /template/ ContentPresenter">
         <Setter Property="CornerRadius" Value="10"/>
@@ -47,8 +47,9 @@
         <Setter Property="Background" Value="#bdbdbd"/>
     </Style>
     
-    <Style Selector="Button.change-view-button-selected">
-        
+    <Style Selector="Button.change-view-button-selected /template/ ContentPresenter">
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="BorderBrush" Value="#009B72"/>
     </Style>
     
     <Style Selector="TextBlock.change-view-text">
