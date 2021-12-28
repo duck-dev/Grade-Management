@@ -47,6 +47,10 @@
         <Setter Property="Background" Value="#bdbdbd"/>
     </Style>
     
+    <Style Selector="Button.change-view-button-selected">
+        
+    </Style>
+    
     <Style Selector="TextBlock.change-view-text">
         <Setter Property="FontSize" Value="22"/>
         <Setter Property="Foreground" Value="#666666"/>

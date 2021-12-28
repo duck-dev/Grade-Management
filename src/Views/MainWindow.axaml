@@ -68,6 +68,7 @@
                 <Grid ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center" VerticalAlignment="Stretch">
                     <Border Grid.Column="0" Margin="0,0,10,0">
                         <Button Classes="change-view-button"
+                                Classes.change-view-button-selected="{Binding Content.IsViewGrid}"
                                 Command="{Binding ChangeView}" CommandParameter="true">
                             <Grid ColumnDefinitions="Auto,*">
                                 <Image Grid.Column="0" Classes="change-view-icon" Source="/Assets/avalonia-logo.ico"/>
@@ -77,6 +78,7 @@
                     </Border>
                     <Border Grid.Column="1" Margin="10, 0, 0, 0">
                         <Button Classes="change-view-button"
+                                Classes.change-view-button-selected="{Binding !Content.IsViewGrid}"
                                 Command="{Binding ChangeView}" CommandParameter="false">
                             <Grid ColumnDefinitions="Auto,*">
                                 <Image Grid.Column="0" Classes="change-view-icon" Source="/Assets/avalonia-logo.ico"/>
