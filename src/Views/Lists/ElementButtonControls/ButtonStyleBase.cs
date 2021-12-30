@@ -21,8 +21,8 @@ namespace GradeManagement.Views.Lists.ElementButtonControls
             }
         }
         
-        protected SchoolYear? YearRef { get; init; }
-        protected Subject? SubjectRef { get; init; }
-        protected Grade? GradeRef { get; init; }
+        protected SchoolYear? YearRef { get; }
+        protected Subject? SubjectRef { get; }
+        protected Grade? GradeRef { get; }
     }
 }
