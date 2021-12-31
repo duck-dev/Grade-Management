@@ -103,13 +103,9 @@
         </StackPanel>
 
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-            <ItemsControl Items="{Binding Items}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal"/>
-                        <!-- <StackPanel Orientation="Vertical"/> -->
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
+            <ItemsControl Items="{Binding Items}"
+                          Classes.list-view-panel-grid="{Binding IsViewGrid}"
+                          Classes.list-view-panel-list="{Binding !IsViewGrid}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Button Command="{Binding $parent[Window].DataContext.OpenYear}"

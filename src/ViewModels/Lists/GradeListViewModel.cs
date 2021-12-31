@@ -68,13 +68,6 @@ namespace GradeManagement.ViewModels.Lists
                 grade.IsVisible = true;
         }
 
-        protected override void ChangeButtonView()
-        {
-            var settings = SettingsManager.Settings;
-            if(settings is not null)
-                IsViewGrid = settings.GradeButtonStyle == SelectedButtonStyle.Grid;
-        }
-
         private void RemoveElement(Grade grade)
         {
             var currentSubject = MainWindowViewModel.CurrentSubject;

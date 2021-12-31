@@ -65,14 +65,7 @@ namespace GradeManagement.ViewModels.Lists
             for (int i = 0; i < TopbarTexts!.Count; i++)
                 TopbarTexts[i].IsVisible = _elementsVisibilities[i];
         }
-        
-        protected override void ChangeButtonView()
-        {
-            var settings = SettingsManager.Settings;
-            if(settings is not null)
-                IsViewGrid = settings.SubjectButtonStyle == SelectedButtonStyle.Grid;
-        }
-        
+
         private void RemoveElement(Subject subject)
         {
             var currentYear = MainWindowViewModel.CurrentYear;

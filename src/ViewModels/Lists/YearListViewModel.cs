@@ -65,14 +65,7 @@ namespace GradeManagement.ViewModels.Lists
             foreach (var control in TopbarTexts!)
                 control.IsVisible = false;
         }
-        
-        protected override void ChangeButtonView()
-        {
-            var settings = SettingsManager.Settings;
-            if(settings is not null)
-                IsViewGrid = settings.YearButtonStyle == SelectedButtonStyle.Grid;
-        }
-        
+
         private void RemoveElement(SchoolYear year)
         {
             DataManager.SchoolYears.Remove(year);
