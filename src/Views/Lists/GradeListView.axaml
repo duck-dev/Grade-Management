@@ -164,8 +164,7 @@
             </TextBlock>
         </StackPanel>
 
-        <ScrollViewer VerticalScrollBarVisibility="Auto"
-                      HorizontalScrollBarVisibility="Disabled">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
             <ItemsControl Items="{Binding Items}"
                           Classes.list-view-panel-grid="{Binding IsViewGrid}"
                           Classes.list-view-panel-list="{Binding !IsViewGrid}">
