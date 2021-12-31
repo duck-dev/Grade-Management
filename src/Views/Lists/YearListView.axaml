@@ -108,11 +108,9 @@
         </StackPanel>
 
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-            <ItemsControl Items="{Binding Items}"
-                          Classes.list-view-panel-grid="{Binding IsViewGrid}"
-                          Classes.list-view-panel-list="{Binding !IsViewGrid}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
+            <ContentControl Content="{Binding IsViewGrid}">
+                <ContentControl.Resources>
+                    <DataTemplate x:Key="YearItemTemplate">
                         <Button Command="{Binding $parent[Window].DataContext.OpenYear}"
                                 CommandParameter="{Binding}"
                                 Classes="element-button"
@@ -143,8 +141,34 @@
                             <ContentControl Content="{Binding ButtonStyle}"/>
                         </Button>
                     </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                </ContentControl.Resources>
+                <ContentControl.DataTemplates>
+                    <customControls:PanelTemplateSelector>
+                        <DataTemplate x:Key="True">
+                            <ItemsControl Items="{Binding Items}"
+                                          ItemTemplate="{StaticResource ResourceKey=YearItemTemplate}"
+                                          DataContext="{Binding $parent[UserControl].DataContext}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
+                        </DataTemplate>
+                        <DataTemplate x:Key="False">
+                            <ItemsControl Items="{Binding Items}"
+                                          ItemTemplate="{StaticResource ResourceKey=YearItemTemplate}"
+                                          DataContext="{Binding $parent[UserControl].DataContext}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Vertical"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
+                        </DataTemplate>
+                    </customControls:PanelTemplateSelector>
+                </ContentControl.DataTemplates>
+            </ContentControl>
         </ScrollViewer>
     </Panel>
 </UserControl>
