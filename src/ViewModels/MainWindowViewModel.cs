@@ -95,7 +95,7 @@ namespace GradeManagement.ViewModels
 
         private void OpenSubject(Subject subject)
         {
-            if (TopbarTexts?[2] is TextBlock textBlock)
+            if (TopbarTexts?.Count > 4 && TopbarTexts?[4] is TextBlock textBlock)
             {
                 textBlock.Text = subject.Name;
                 textBlock.Foreground = new SolidColorBrush(subject.SubjectColor);
@@ -106,7 +106,7 @@ namespace GradeManagement.ViewModels
         
         private void OpenYear(SchoolYear year)
         {
-            if (TopbarTexts?[0] is TextBlock textBlock)
+            if (TopbarTexts?.Count > 2 && TopbarTexts?[2] is TextBlock textBlock)
                 textBlock.Text = year.Name;
             SwitchPage<SubjectListViewModel, Subject>(year.Subjects);
             CurrentYear = year;

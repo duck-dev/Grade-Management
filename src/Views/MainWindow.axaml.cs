@@ -1,10 +1,13 @@
+using System.Collections.Generic;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Markup.Xaml;
+using GradeManagement.Interfaces;
 using GradeManagement.Models;
 using GradeManagement.Models.Elements;
 using GradeManagement.ViewModels;
+using GradeManagement.ViewModels.BaseClasses;
 using GradeManagement.ViewModels.Lists;
 
 namespace GradeManagement.Views
@@ -29,18 +32,28 @@ namespace GradeManagement.Views
             AvaloniaXamlLoader.Load(this);
         }
 
-        private void OnYearPressed(object? sender, PointerPressedEventArgs e)
+        private void OnAllYearsPressed(object? sender, PointerPressedEventArgs e)
         {
-            _mainWindowModel ??= this.DataContext as MainWindowViewModel;
-            _mainWindowModel!.SwitchPage<YearListViewModel, SchoolYear>(DataManager.SchoolYears);
+            SwitchPage<YearListViewModel, SchoolYear>(DataManager.SchoolYears);
             MainWindowViewModel.CurrentYear = null;
         }
+
+        private void OnYearPressed(object? sender, PointerPressedEventArgs e)
+        {
+            SwitchPage<SubjectListViewModel, Subject>(MainWindowViewModel.CurrentYear!.Subjects);
+            MainWindowViewModel.CurrentSubject = null;
+        }
         
-        private void OnSubjectPressed(object? sender, PointerPressedEventArgs e)
+        private void OnSubjectPressed(object? sender, PointerPressedEventArgs e) 
+            => SwitchPage<GradeListViewModel, Grade>(MainWindowViewModel.CurrentSubject!.Grades);
+
+        private void SwitchPage<TViewModel, TElement>(IEnumerable<TElement> elements) 
+            where TViewModel : ListViewModelBase, IListViewModel<TElement> where TElement : class, IElement, IGradable
         {
             _mainWindowModel ??= this.DataContext as MainWindowViewModel;
-            _mainWindowModel!.SwitchPage<SubjectListViewModel, Subject>(MainWindowViewModel.CurrentYear!.Subjects);
-            MainWindowViewModel.CurrentSubject = null;
+            if (_mainWindowModel!.Content is TViewModel)
+                return;
+            _mainWindowModel!.SwitchPage<TViewModel, TElement>(elements);
         }
     }
 }

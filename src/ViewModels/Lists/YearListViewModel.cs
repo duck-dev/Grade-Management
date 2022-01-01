@@ -15,6 +15,7 @@ namespace GradeManagement.ViewModels.Lists
 {
     public class YearListViewModel : ListViewModelBase, IListViewModel<SchoolYear>
     {
+        private readonly bool[] _elementsVisibilities = { true, true, false, false, false };
         private ObservableCollection<SchoolYear>? _items;
         
         [Obsolete("Do NOT use this constructor, because it leaves the collection of school years uninitialized " +
@@ -59,11 +60,11 @@ namespace GradeManagement.ViewModels.Lists
 
         public void Duplicate(IElement element) => DuplicateElement<SchoolYear>(element);
 
-        protected internal override void ChangeTopbar()
+        protected internal override void ChangeTopbar(int arrayLength = -1)
         {
-            base.ChangeTopbar();
-            foreach (var control in TopbarTexts!)
-                control.IsVisible = false;
+            base.ChangeTopbar(_elementsVisibilities.Length);
+            for (int i = 0; i < TopbarTexts!.Count; i++)
+                TopbarTexts[i].IsVisible = _elementsVisibilities[i];
         }
 
         private void RemoveElement(SchoolYear year)

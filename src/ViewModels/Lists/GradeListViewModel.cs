@@ -61,7 +61,7 @@ namespace GradeManagement.ViewModels.Lists
 
         public void Duplicate(IElement element) => DuplicateElement<Grade>(element);
 
-        protected internal override void ChangeTopbar()
+        protected internal override void ChangeTopbar(int arrayLength = -1)
         {
             base.ChangeTopbar();
             foreach (var grade in TopbarTexts!)

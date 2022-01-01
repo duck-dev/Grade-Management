@@ -14,7 +14,7 @@ namespace GradeManagement.ViewModels.Lists
 {
     public class SubjectListViewModel : ListViewModelBase, IListViewModel<Subject>
     {
-        private readonly bool[] _elementsVisibilities = { true, false, false };
+        private readonly bool[] _elementsVisibilities = { true, true, true, false, false };
         private ObservableCollection<Subject>? _items;
 
         [Obsolete("Do NOT use this constructor, because it leaves the collection of subjects uninitialized " +
@@ -59,9 +59,9 @@ namespace GradeManagement.ViewModels.Lists
 
         public void Duplicate(IElement element) => DuplicateElement<Subject>(element);
 
-        protected internal override void ChangeTopbar()
+        protected internal override void ChangeTopbar(int arrayLength = -1)
         {
-            base.ChangeTopbar();
+            base.ChangeTopbar(_elementsVisibilities.Length);
             for (int i = 0; i < TopbarTexts!.Count; i++)
                 TopbarTexts[i].IsVisible = _elementsVisibilities[i];
         }

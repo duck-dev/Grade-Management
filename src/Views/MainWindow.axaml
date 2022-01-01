@@ -42,19 +42,18 @@
                         </Grid>
                         <Viewbox HorizontalAlignment="Center" VerticalAlignment="Center" Width="1500" Height="80">
                             <Grid Name="Topbar-Grid"
-                                  ColumnDefinitions="Auto,Auto,Auto"
+                                  ColumnDefinitions="Auto,Auto,Auto,Auto,Auto"
                                   VerticalAlignment="Stretch"
                                   HorizontalAlignment="Center"> <!--If this element's HorizontalAlignment is "Left", 
                                                         set left margin to 30 (Margin: 30, 0, 0, 0)-->
-                                <TextBlock Classes="topbar-text topbar-text-pointable topbar-text-year"
-                                           Grid.Column="0"
-                                           PointerPressed="OnYearPressed"/>
-                                <TextBlock Classes="topbar-text topbar-text-symbol" Grid.Column="1">
-                                    /
-                                </TextBlock>
-                                <TextBlock Classes="topbar-text topbar-text-pointable topbar-text-subject"
-                                           Grid.Column="2"
-                                           PointerPressed="OnSubjectPressed"/>
+                                <TextBlock Grid.Column="0" Classes="topbar-text topbar-text-pointable topbar-text-symbol" 
+                                           Text="..." PointerPressed="OnAllYearsPressed"/>
+                                <TextBlock Grid.Column="1" Classes="topbar-text topbar-text-symbol" Text="/"/>
+                                <TextBlock Grid.Column="2"  Classes="topbar-text topbar-text-pointable"
+                                           Foreground="#A5B1CC" PointerPressed="OnYearPressed"/>
+                                <TextBlock Grid.Column="3" Classes="topbar-text topbar-text-symbol" Text="/"/>
+                                <TextBlock Grid.Column="4" Classes="topbar-text topbar-text-pointable"
+                                           Foreground="#ff8400" PointerPressed="OnSubjectPressed"/>
                             </Grid>
                         </Viewbox>
                         <!-- <Button Width="80" Height="80" HorizontalAlignment="Right" Margin="0,0,60,0"> -->

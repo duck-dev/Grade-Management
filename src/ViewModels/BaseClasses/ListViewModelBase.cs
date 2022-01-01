@@ -33,10 +33,10 @@ namespace GradeManagement.ViewModels.BaseClasses
             viewModel?.Items?.Add(duplicate);
         }
 
-        protected internal virtual void ChangeTopbar()
+        protected internal virtual void ChangeTopbar(int arrayLength = -1)
         {
-            if (TopbarTexts is null)
-                throw new ArgumentNullException();
+            if (arrayLength > -1 && (TopbarTexts is null || TopbarTexts.Count > arrayLength))
+                throw new Exception("Topbar Texts are not accessible. Check the length and nullability.");
         }
         
         protected internal void ChangeButtonView(bool isGrid) => IsViewGrid = isGrid;
