@@ -24,14 +24,10 @@
         <DataTemplate DataType="elementButtonControls:GridButton">
             <Grid VerticalAlignment="Stretch" RowDefinitions="*,*">
                 <Panel Grid.Row="0" VerticalAlignment="Stretch">
-                    <Viewbox HorizontalAlignment="Center" VerticalAlignment="Stretch" Height="56">
-                        <TextBlock Text="{Binding YearRef.Name}"
-                                   FontWeight="Bold"
-                                   Foreground="Black"
-                                   HorizontalAlignment="Center"
-                                   TextAlignment="Center"
-                                   Margin="10 0 0 0"/>
-                    </Viewbox>
+                    <TextBlock Text="{Binding YearRef.Name}" 
+                               FontWeight="Bold" Foreground="Black" FontSize="40" TextWrapping="Wrap"
+                               HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" 
+                               Margin="10,0,0,0"/>
                 </Panel>
                 <Panel Grid.Row="1" VerticalAlignment="Stretch">
                     <Grid ColumnDefinitions="Auto,Auto" VerticalAlignment="Center" HorizontalAlignment="Center">
