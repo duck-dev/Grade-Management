@@ -22,7 +22,9 @@
         
         <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid RowDefinitions="*,*,*,*,*">
-                      <TextBlock Grid.Row="0" Classes="add-page-title-text" Text="{Binding Title}"/>
+                     <Viewbox Grid.Row="0" Height="30" Margin="30,0">
+                             <TextBlock Classes="add-page-title-text" Text="{Binding Title}"/>
+                     </Viewbox>
                       <!-- <Button Grid.Row="0" Classes="add-page-back-button"> -->
                       <!--         <Button.Content> -->
                       <!--                 <Image Source="/Assets/Images/back-button-arrow.png"/> -->
