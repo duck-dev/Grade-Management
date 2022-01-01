@@ -66,7 +66,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Viewbox Width="175" Height="175">
+                    <Viewbox Width="150" Height="150">
                         <Grid Width="100" Height="100">
                             <Ellipse Fill="#009B72"/>
                             <TextBlock Text="+" FontSize="58" FontWeight="Bold" TextAlignment="Center" 
@@ -77,11 +77,11 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Setter Property="Width" Value="175"/>
-        <Setter Property="Height" Value="175"/>
+        <Setter Property="Width" Value="150"/>
+        <Setter Property="Height" Value="150"/>
         <Setter Property="VerticalAlignment" Value="Bottom"/>
         <Setter Property="HorizontalAlignment" Value="Right"/>
-        <Setter Property="Margin" Value="0,0,45,45"/>
+        <Setter Property="Margin" Value="0,0,30,17.5"/> <!-- Bottom-Margin + top-margin of bottom bar (currently 17.5)-->
     </Style>
     <Style Selector="Button.add-button:pointerover">
         <Setter Property="Cursor" Value="Hand"/>

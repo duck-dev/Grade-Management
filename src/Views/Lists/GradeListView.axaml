@@ -128,7 +128,7 @@
                                FontSize="36" FontWeight="Bold" Foreground="Black"
                                HorizontalAlignment="Left" VerticalAlignment="Center"/>
                     <Grid Grid.Column="1" RowDefinitions="*, *" Margin="60,0,0,0">
-                        <Grid Grid.Column="0" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center"
+                        <Grid Grid.Row="0" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center"
                               VerticalAlignment="Center">
                             <Image Grid.Column="0" Source="/Assets/avalonia-logo.ico"
                                    Margin="0,0,8,0" Width="30" Height="26"

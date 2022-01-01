@@ -29,6 +29,7 @@
     <Style Selector="Button.element-button-list">
         <Setter Property="Height" Value="100"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="Margin" Value="120,17.5"/>
     </Style>
     <Style Selector="Button.element-button-list:pointerover">
         <Setter Property="RenderTransform" Value="scale(0.985)"/>
