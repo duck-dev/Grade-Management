@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Avalonia;
 using Avalonia.Media;
-using GradeManagement.ExtensionCollection;
 
 namespace GradeManagement.UtilityCollection
 {
@@ -85,7 +84,7 @@ namespace GradeManagement.UtilityCollection
         public static LinearGradientBrush CreateLinearGradientBrush(RelativePoint startPoint, RelativePoint endPoint, 
             GradientStops gradientStops)
         {
-            return new LinearGradientBrush()
+            return new LinearGradientBrush
             {
                 StartPoint = startPoint,
                 EndPoint = endPoint,

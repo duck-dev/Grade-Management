@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Avalonia.Controls;
-using GradeManagement.Interfaces;
 using GradeManagement.Models;
 using GradeManagement.Views;
 using ReactiveUI;
