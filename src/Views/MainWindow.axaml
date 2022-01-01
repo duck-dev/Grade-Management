@@ -91,7 +91,7 @@
         </DockPanel>
 
         <Border DockPanel.Dock="Bottom" Classes="topbar-border" BorderThickness="0, 1, 0, 0"
-                VerticalAlignment="Bottom">
+                VerticalAlignment="Bottom" Margin="0,17.5,0,0">
             <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Button Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="60,0,0,0"/>
                 <TextBlock Text="{Binding Path=CurrentAverage, StringFormat='Average: {0}'}"
