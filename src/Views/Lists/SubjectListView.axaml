@@ -145,7 +145,7 @@
                     <MenuItem Header="Ascending"
                               Command="{Binding SortElements}"
                               CommandParameter="CountsAscending"/>
-                    <MenuItem Header="Ascending"
+                    <MenuItem Header="Descending"
                               Command="{Binding SortElements}"
                               CommandParameter="CountsDescending"/>
                 </MenuItem>
@@ -153,7 +153,7 @@
                     <MenuItem Header="Ascending"
                               Command="{Binding SortElements}"
                               CommandParameter="CreationDateAscending"/>
-                    <MenuItem Header="Ascending"
+                    <MenuItem Header="Descending"
                               Command="{Binding SortElements}"
                               CommandParameter="CreationDateDescending"/>
                 </MenuItem>
@@ -168,10 +168,10 @@
                 <MenuItem Header="Number of elements">
                     <MenuItem Header="Ascending"
                               Command="{Binding SortElements}"
-                              CommandParameter="NameAscending"/>
+                              CommandParameter="ElementNumberAscending"/>
                     <MenuItem Header="Descending"
                               Command="{Binding SortElements}"
-                              CommandParameter="NameDescending"/>
+                              CommandParameter="ElementNumberDescending"/>
                 </MenuItem>
                 <MenuItem Header="Weighting">
                     <MenuItem Header="Ascending"
