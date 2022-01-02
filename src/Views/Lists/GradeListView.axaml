@@ -151,6 +151,66 @@
             </Grid>
         </DataTemplate>
     </UserControl.DataTemplates>
+    
+    <UserControl.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="Paste Grade"
+                      Command="{Binding $parent[Window].DataContext.PasteCopiedElement}"
+                      IsEnabled="{Binding $parent[Window].DataContext.HasCopiedElement}"/>
+            <MenuItem Header="Sort by" IsEnabled="False">
+                <MenuItem Header="Grade">
+                    <MenuItem Header="Ascending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="GradeAscending"/>
+                    <MenuItem Header="Descending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="GradeDescending"/>
+                </MenuItem>
+                <MenuItem Header="Counts?">
+                    <MenuItem Header="Ascending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="CountsAscending"/>
+                    <MenuItem Header="Descending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="CountsDescending"/>
+                </MenuItem>
+                <MenuItem Header="Creation Date">
+                    <MenuItem Header="Ascending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="CreationDateAscending"/>
+                    <MenuItem Header="Descending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="CreationDateDescending"/>
+                </MenuItem>
+                <MenuItem Header="Date"
+                          Command="{Binding SortElements}"
+                          CommandParameter="DateAscending">
+                    <MenuItem Header="Ascending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="DateAscending"/>
+                    <MenuItem Header="Descending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="DateDescending"/>
+                </MenuItem>
+                <MenuItem Header="Name">
+                    <MenuItem Header="Ascending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="NameAscending"/>
+                    <MenuItem Header="Descending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="NameDescending"/>
+                </MenuItem>
+                <MenuItem Header="Weighting">
+                    <MenuItem Header="Ascending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="WeightingAscending"/>
+                    <MenuItem Header="Descending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="WeightingDescending"/>
+                </MenuItem>
+            </MenuItem>
+        </ContextMenu>
+    </UserControl.ContextMenu>
 
     <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -190,6 +250,9 @@
                                 <ContextMenu>
                                     <MenuItem Header="Edit Grade"
                                               Command="{Binding $parent[Window].DataContext.EditGrade}"
+                                              CommandParameter="{Binding}"/>
+                                    <MenuItem Header="Copy Grade"
+                                              Command="{Binding $parent[Window].DataContext.CopyElement}"
                                               CommandParameter="{Binding}"/>
                                     <MenuItem Header="Duplicate Grade"
                                               Command="{Binding $parent[UserControl].DataContext.Duplicate}"
