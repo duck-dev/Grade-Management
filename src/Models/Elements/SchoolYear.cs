@@ -70,12 +70,19 @@ namespace GradeManagement.Models.Elements
         [JsonIgnore] 
         public int ElementCount => Subjects.Count;
 
-        public T? Duplicate<T>() where T : class, IElement
+        public T? Duplicate<T>(bool save = true) where T : class, IElement
         {
             var duplicate = this.Clone();
-            DataManager.SchoolYears.Add(duplicate);
+            if(save)
+                Save(duplicate);
 
             return duplicate as T;
+        }
+        
+        public void Save<T>(T? element = null) where T : class, IElement
+        {
+            SchoolYear year = element as SchoolYear ?? this;
+            DataManager.SchoolYears.Add(year);
         }
 
         internal void Edit(string newName) => this.Name = newName;

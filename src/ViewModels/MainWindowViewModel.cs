@@ -21,6 +21,7 @@ namespace GradeManagement.ViewModels
     {
         private ListViewModelBase _content;
         private IEnumerable<IGradable> _currentGradables;
+        private IElement? _copiedElement;
 
         public MainWindowViewModel()
         {
@@ -46,6 +47,18 @@ namespace GradeManagement.ViewModels
         }
 
         private float CurrentAverage => Utilities.GetAverage(_currentGradables, true);
+        
+        private IElement? CopiedElement
+        {
+            get => _copiedElement;
+            set
+            {
+                _copiedElement = value;
+                this.RaisePropertyChanged(nameof(HasCopiedElement));
+            }
+        }
+
+        private bool HasCopiedElement => CopiedElement is not null;
 
         internal void SwitchPage<T, TItems>(IEnumerable<TItems> items) where T : ListViewModelBase, IListViewModel<TItems> 
             where TItems : class, IElement, IGradable
@@ -187,6 +200,49 @@ namespace GradeManagement.ViewModels
 
             foreach (var item in collection)
                 item.ButtonStyle = isGrid ? new GridButton(item) : new ListButton(item);
+        }
+
+        private void CopyElement(IElement element)
+        {
+            switch (element)
+            {
+                case SchoolYear year:
+                    CopyElement<SchoolYear>(year);
+                    break;
+                case Subject subject:
+                    CopyElement<Subject>(subject);
+                    break;
+                case Grade grade:
+                    CopyElement<Grade>(grade);
+                    break;
+            } 
+        }
+        
+        private void CopyElement<T>(T element) where T : class, IElement 
+            => CopiedElement = element.Duplicate<T>(false);
+
+        private void PasteCopiedElement()
+        {
+            switch(Content)
+            {
+                case YearListViewModel:
+                    PasteCopiedElement<SchoolYear>();
+                    break;
+                case SubjectListViewModel:
+                    PasteCopiedElement<Subject>();
+                    break;
+                case GradeListViewModel:
+                    PasteCopiedElement<Grade>();
+                    break;
+            }
+        }
+
+        private void PasteCopiedElement<T>() where T : class, IElement
+        {
+            if (_content is not IListViewModel<T> viewModel || CopiedElement is not T element) 
+                return;
+            viewModel.Items?.Add(element);
+            element.Save<T>();
         }
     }
 }

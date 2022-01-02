@@ -88,15 +88,22 @@ namespace GradeManagement.Models.Elements
         internal float RoundedGrade => (float)Math.Round(GradeValue, 2);
         internal string DateString => Date.ToString("dd.MM.yyyy", CultureInfo.CurrentCulture);
 
-        public T? Duplicate<T>() where T : class, IElement
+        public T? Duplicate<T>(bool save = true) where T : class, IElement
         {
             if (this.Clone() is not Grade duplicate)
                 return null;
             
-            var currentSubject = MainWindowViewModel.CurrentSubject;
-            currentSubject?.Grades.Add(duplicate);
+            if(save)
+                Save(duplicate);
 
             return duplicate as T;
+        }
+        
+        public void Save<T>(T? element = null) where T : class, IElement
+        {
+            Grade grade = element as Grade ?? this;
+            var currentSubject = MainWindowViewModel.CurrentSubject;
+            currentSubject?.Grades.Add(grade);
         }
         
         public object Clone() => new Grade(_name, _gradeValue, _weighting, _date, Counts);

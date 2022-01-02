@@ -140,15 +140,22 @@ namespace GradeManagement.Models.Elements
         private Color AdditionalInfoDark => _additionalInfoColor.DarkenColor(0.2f);
         private Color AdditionalInfoLight => _additionalInfoColor.BrightenColor(0.2f);
 
-        public T? Duplicate<T>() where T : class, IElement
+        public T? Duplicate<T>(bool save = true) where T : class, IElement
         {
             if (Clone() is not Subject duplicate)
                 return null;
 
-            var currentYear = MainWindowViewModel.CurrentYear;
-            currentYear?.Subjects.Add(duplicate);
+            if (save)
+                Save(duplicate);
 
             return duplicate as T;
+        }
+
+        public void Save<T>(T? element = null) where T : class, IElement
+        {
+            Subject subject = element as Subject ?? this;
+            var currentYear = MainWindowViewModel.CurrentYear;
+            currentYear?.Subjects.Add(subject);
         }
 
         public object Clone() => new Subject(_name, _weighting, _subjectColorHex, _grades.Clone().ToList(), Counts);

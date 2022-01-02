@@ -7,6 +7,7 @@ namespace GradeManagement.Interfaces
         string Name { get; }
         ButtonStyleBase? ButtonStyle { get; set; }
 
-        T? Duplicate<T>() where T : class, IElement;
+        T? Duplicate<T>(bool save = true) where T : class, IElement;
+        void Save<T>(T? element = null) where T : class, IElement;
     }
 }
