@@ -24,9 +24,9 @@
         <DataTemplate DataType="elementButtonControls:GridButton">
             <Grid VerticalAlignment="Stretch" RowDefinitions="*,*">
                 <Panel Grid.Row="0" VerticalAlignment="Stretch">
-                    <TextBlock Text="{Binding YearRef.Name}" 
+                    <TextBlock Text="{Binding YearRef.Name}"
                                FontWeight="Bold" Foreground="Black" FontSize="40" TextWrapping="Wrap"
-                               HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" 
+                               HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
                                Margin="10,0,0,0"/>
                 </Panel>
                 <Panel Grid.Row="1" VerticalAlignment="Stretch">
@@ -46,10 +46,10 @@
             </Grid>
         </DataTemplate>
         <DataTemplate DataType="elementButtonControls:ListButton">
-            
+
             <!-- Design A
                  (additional information below title)-->
-            
+
             <!-- <Grid ColumnDefinitions="*,Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"> -->
             <!--     <Grid Grid.Column="0" RowDefinitions="*,*" HorizontalAlignment="Left" Margin="10,0,0,0"> -->
             <!--         <TextBlock Grid.Row="0" Text="{Binding YearRef.Name}" -->
@@ -64,7 +64,7 @@
             <!--                FontSize="42" FontWeight="Bold" Foreground="Black" -->
             <!--                Margin="0,0,10,0"/> -->
             <!-- </Grid> -->
-            
+
             <!-- Design B & C
                  (additional information next to title)-->
             <Grid ColumnDefinitions="*,Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -82,6 +82,48 @@
             </Grid>
         </DataTemplate>
     </UserControl.DataTemplates>
+
+    <UserControl.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="Paste School Year"
+                      Command="{Binding $parent[Window].DataContext.PasteCopiedElement}"
+                      IsEnabled="{Binding $parent[Window].DataContext.HasCopiedElement}"/>
+            <MenuItem Header="Sort by" IsEnabled="False">
+                <MenuItem Header="Average">
+                    <MenuItem Header="Ascending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="AverageAscending"/>
+                    <MenuItem Header="Descending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="AverageDescending"/>
+                </MenuItem>
+                <MenuItem Header="Creation Date">
+                    <MenuItem Header="Ascending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="CreationDateAscending"/>
+                    <MenuItem Header="Ascending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="CreationDateDescending"/>
+                </MenuItem>
+                <MenuItem Header="Name">
+                    <MenuItem Header="Ascending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="NameAscending"/>
+                    <MenuItem Header="Descending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="NameDescending"/>
+                </MenuItem>
+                <MenuItem Header="Number of elements">
+                    <MenuItem Header="Ascending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="NameAscending"/>
+                    <MenuItem Header="Descending"
+                              Command="{Binding SortElements}"
+                              CommandParameter="NameDescending"/>
+                </MenuItem>
+            </MenuItem>
+        </ContextMenu>
+    </UserControl.ContextMenu>
 
     <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -121,6 +163,9 @@
                                 <ContextMenu>
                                     <MenuItem Header="Edit School Year"
                                               Command="{Binding $parent[Window].DataContext.EditYear}"
+                                              CommandParameter="{Binding}"/>
+                                    <MenuItem Header="Copy School Year"
+                                              Command="{Binding $parent[Window].DataContext.CopyElement}"
                                               CommandParameter="{Binding}"/>
                                     <MenuItem Header="Duplicate School Year"
                                               Command="{Binding $parent[UserControl].DataContext.Duplicate}"
