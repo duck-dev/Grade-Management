@@ -175,9 +175,10 @@
                                     <MenuItem Header="Remove School Year"
                                               Command="{Binding $parent[UserControl].DataContext.RemoveElement}"
                                               CommandParameter="{Binding}"/>
-                                    <MenuItem Header="Create Year-Template"/>
-                                    <!-- Command="{Binding $parent[UserControl].DataContext.CreateTemplate}" -->
-                                    <!-- CommandParameter="{Binding}"/> -->
+                                    <MenuItem Header="Create Year-Template"
+                                              Command="{Binding $parent[UserControl].DataContext.CreateTemplate}"
+                                              CommandParameter="{Binding}"
+                                              IsEnabled="False"/> <!-- TODO: Enable when logic has been implemented -->
                                 </ContextMenu>
                             </Button.ContextMenu>
                             <ContentControl Content="{Binding ButtonStyle}"/>
