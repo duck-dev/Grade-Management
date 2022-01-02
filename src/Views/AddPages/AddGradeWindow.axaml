@@ -87,8 +87,7 @@
                         </CheckBox>
                         <Button Grid.Row="6" Classes="add-page-button" Command="{Binding CreateElement}"
                                 IsEnabled="{Binding DataComplete}" 
-                                Content="{Binding ButtonText}">
-                        </Button>
+                                Content="{Binding ButtonText}" HotKey="Enter"/>
                 </Grid> 
                 <Panel Opacity="0.6" Background="Black" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                        IsEnabled="{Binding CalendarOpen}" 

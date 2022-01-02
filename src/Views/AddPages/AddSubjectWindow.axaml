@@ -47,7 +47,7 @@
                       </CheckBox>
                       <Button Grid.Row="4" Classes="add-page-button" Command="{Binding CreateElement}"
                               IsEnabled="{Binding DataComplete}"
-                              Content="{Binding ButtonText}"/>
+                              Content="{Binding ButtonText}" HotKey="Enter"/>
                 </Grid>
         </Panel>
 </Window>

@@ -28,7 +28,7 @@
             </Viewbox>
             <Button Grid.Row="1" Classes="add-page-button" Command="{Binding CreateElement}"
                     IsEnabled="{Binding DataComplete}"
-                    Content="{Binding ButtonText}"/>
+                    Content="{Binding ButtonText}" HotKey="Enter"/>
         </Grid>
         <TextBox Classes="add-page-text-box" Watermark="Name of the School Year" MaxLength="25"
                  Text="{Binding ElementName}"
