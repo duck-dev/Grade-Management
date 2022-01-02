@@ -174,7 +174,16 @@
                                     </MenuItem>
                                     <MenuItem Header="Remove School Year"
                                               Command="{Binding $parent[UserControl].DataContext.RemoveElement}"
-                                              CommandParameter="{Binding}"/>
+                                              CommandParameter="{Binding}">
+                                        <MenuItem.Styles>
+                                            <Style Selector="MenuItem:pointerover /template/ Border">
+                                                <Setter Property="Background" Value="#d4735b"/>
+                                            </Style>
+                                            <Style Selector="MenuItem:pressed /template/ Border">
+                                                <Setter Property="Background" Value="#c96047"/>
+                                            </Style>
+                                        </MenuItem.Styles>
+                                    </MenuItem>
                                     <MenuItem Header="Create Year-Template"
                                               Command="{Binding $parent[UserControl].DataContext.CreateTemplate}"
                                               CommandParameter="{Binding}"
