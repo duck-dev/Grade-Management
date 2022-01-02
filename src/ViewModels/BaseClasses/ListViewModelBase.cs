@@ -10,6 +10,7 @@ namespace GradeManagement.ViewModels.BaseClasses
         
         protected internal Type? AddPageType { get; protected init; }
         protected internal Type? AddViewModelType { get; protected init; }
+        protected internal Type? ElementType { get; protected init; }
 
         protected bool IsViewGrid
         {

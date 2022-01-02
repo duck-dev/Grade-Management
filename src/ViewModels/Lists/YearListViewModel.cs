@@ -24,6 +24,7 @@ namespace GradeManagement.ViewModels.Lists
             Instance = this;
             AddPageType = typeof(AddYearWindow);
             AddViewModelType = typeof(AddYearViewModel);
+            ElementType = typeof(SchoolYear);
             
             bool isGrid = SettingsManager.Settings?.YearButtonStyle == SelectedButtonStyle.Grid;
             ChangeButtonView(isGrid);

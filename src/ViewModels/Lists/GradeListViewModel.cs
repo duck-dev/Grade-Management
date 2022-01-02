@@ -26,6 +26,7 @@ namespace GradeManagement.ViewModels.Lists
             Instance = this;
             AddPageType = typeof(AddGradeWindow);
             AddViewModelType = typeof(AddGradeViewModel);
+            ElementType = typeof(Grade);
             
             bool isGrid = SettingsManager.Settings?.GradeButtonStyle == SelectedButtonStyle.Grid;
             ChangeButtonView(isGrid);

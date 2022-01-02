@@ -58,7 +58,8 @@ namespace GradeManagement.ViewModels
             }
         }
 
-        private bool HasCopiedElement => CopiedElement is not null;
+        private bool HasCopiedElement => CopiedElement is not null 
+                                         && CopiedElement.GetType() == Content.ElementType;
 
         internal void SwitchPage<T, TItems>(IEnumerable<TItems> items) where T : ListViewModelBase, IListViewModel<TItems> 
             where TItems : class, IElement, IGradable
