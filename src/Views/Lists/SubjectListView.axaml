@@ -136,10 +136,10 @@
             </TextBlock>
             <Viewbox Width="40" Height="40" VerticalAlignment="Center">
                 <Grid Width="24" Height="24">
-                    <Ellipse Fill="#009B72"/>
+                    <Ellipse Stroke="#009B72" StrokeThickness="5" Fill="#0000ffff"/>
                     <TextBlock Text="+" FontSize="16" FontWeight="Bold" TextAlignment="Center" 
                                VerticalAlignment="Center" HorizontalAlignment="Center" 
-                               Foreground="White"/>
+                               Foreground="#009B72"/>
                 </Grid>
             </Viewbox>
             <TextBlock Classes="no-elements-text" Margin="8,0,0,0">
