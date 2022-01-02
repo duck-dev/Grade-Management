@@ -156,7 +156,8 @@
         <ContextMenu>
             <MenuItem Header="Paste Grade"
                       Command="{Binding $parent[Window].DataContext.PasteCopiedElement}"
-                      IsEnabled="{Binding $parent[Window].DataContext.HasCopiedElement}"/>
+                      IsEnabled="{Binding $parent[Window].DataContext.HasCopiedElement}"
+                      HotKey="CTRL+V"/>
             <MenuItem Header="Sort by" IsEnabled="False">
                 <MenuItem Header="Grade">
                     <MenuItem Header="Ascending"

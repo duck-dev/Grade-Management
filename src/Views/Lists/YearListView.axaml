@@ -87,7 +87,8 @@
         <ContextMenu>
             <MenuItem Header="Paste School Year"
                       Command="{Binding $parent[Window].DataContext.PasteCopiedElement}"
-                      IsEnabled="{Binding $parent[Window].DataContext.HasCopiedElement}"/>
+                      IsEnabled="{Binding $parent[Window].DataContext.HasCopiedElement}"
+                      HotKey="CTRL+V"/>
             <MenuItem Header="Sort by" IsEnabled="False">
                 <MenuItem Header="Average">
                     <MenuItem Header="Ascending"
