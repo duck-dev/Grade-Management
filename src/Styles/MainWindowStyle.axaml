@@ -79,7 +79,7 @@
         </Setter>
         <Setter Property="VerticalAlignment" Value="Bottom"/>
         <Setter Property="HorizontalAlignment" Value="Right"/>
-        <Setter Property="Margin" Value="0,0,37.5,27.5"/> <!-- Bottom-Margin + top-margin of bottom bar (currently 17.5)-->
+        <Setter Property="Margin" Value="0,0,37.5,20"/> <!-- Bottom-Margin + top-margin of bottom bar (currently 17.5)-->
     </Style>
     <Style Selector="Button.add-button:pointerover">
         <Setter Property="Cursor" Value="Hand"/>
