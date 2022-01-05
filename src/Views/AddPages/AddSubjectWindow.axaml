@@ -16,7 +16,7 @@
         </Design.DataContext>
     
         <Window.Styles>
-                <StyleInclude Source="/src/Styles/MainStyle.xaml"/>
+                <StyleInclude Source="/src/Styles/MainStyle.axaml"/>
                 <StyleInclude Source="/src/Styles/AddPagesStyle.axaml"/>
         </Window.Styles>
         

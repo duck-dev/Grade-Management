@@ -16,7 +16,7 @@
         </Design.DataContext>
         
         <Window.Styles>
-                <StyleInclude Source="/src/Styles/MainStyle.xaml"/>
+                <StyleInclude Source="/src/Styles/MainStyle.axaml"/>
                 <Style Selector="Button.target-grade-button">
                         <Setter Property="Width" Value="200"/>
                         <Setter Property="Height" Value="50"/>
