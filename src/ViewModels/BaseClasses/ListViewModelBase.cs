@@ -43,7 +43,7 @@ namespace GradeManagement.ViewModels.BaseClasses
             viewModel?.Items?.Add(duplicate);
         }
 
-        protected virtual void RemoveElement(IElement element, string elementType, Action confirmAction)
+        protected void RemoveElement(IElement element, string elementType, Action confirmAction)
         {
             string dialogTitle = $"Do you really want to remove the {elementType} \"{element.Name}\"?";
             CurrentDialog = new ConfirmationDialogViewModel(dialogTitle,

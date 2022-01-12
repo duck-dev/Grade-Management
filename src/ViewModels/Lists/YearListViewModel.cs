@@ -69,9 +69,13 @@ namespace GradeManagement.ViewModels.Lists
 
         private void RemoveElement(SchoolYear year)
         {
-            DataManager.SchoolYears.Remove(year);
-            Items?.Remove(year);
-            UpdateVisualOnChange();
+            Action action = () =>
+            {
+                DataManager.SchoolYears.Remove(year);
+                Items?.Remove(year);
+                UpdateVisualOnChange();
+            };
+            base.RemoveElement(year, "School Year", action);
         }
     }
 }

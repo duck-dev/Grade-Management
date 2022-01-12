@@ -72,12 +72,15 @@ namespace GradeManagement.ViewModels.Lists
         private void RemoveElement(Grade grade)
         {
             var currentSubject = MainWindowViewModel.CurrentSubject;
-
-            currentSubject?.Grades.Remove(grade);
-            Items?.Remove(grade);
-            UpdateVisualOnChange();
+            Action action = () =>
+            {
+                currentSubject?.Grades.Remove(grade);
+                Items?.Remove(grade);
+                UpdateVisualOnChange();
+            };
+            base.RemoveElement(grade, "Grade", action);
         }
-        
+
         private void OpenTargetGradeCalc()
         {
             if (Items is null)
