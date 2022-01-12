@@ -1,7 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
-namespace GradeManagement.Views.Lists.Dialogs
+namespace GradeManagement.Views.Dialogs
 {
     public class ConfirmationDialogView : UserControl
     {
