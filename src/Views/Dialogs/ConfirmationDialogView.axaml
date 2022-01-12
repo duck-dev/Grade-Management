@@ -22,6 +22,16 @@
                             Background="{Binding ButtonColors[0]}"
                             Command="{Binding Command}"
                             CommandParameter="Confirm">
+                        <Button.Styles>
+                            <Style Selector="Button.dialog-button:pointerover /template/ ContentPresenter">
+                                <Setter Property="Background" Value="{Binding ButtonColorsHover[0]}"/>
+                            </Style>
+                        </Button.Styles>
+                        <Button.Transitions>
+                            <Transitions>
+                                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
+                            </Transitions>
+                        </Button.Transitions>
                         <Viewbox Height="16" HorizontalAlignment="Stretch" Margin="20,0">
                             <TextBlock Foreground="{Binding ButtonTextColors[0]}"
                                        Text="{Binding ButtonTexts[0]}"/>
@@ -31,6 +41,16 @@
                             Background="{Binding ButtonColors[1]}"
                             Command="{Binding Command}"
                             CommandParameter="Cancel">
+                        <Button.Styles>
+                            <Style Selector="Button.dialog-button:pointerover /template/ ContentPresenter">
+                                <Setter Property="Background" Value="{Binding ButtonColorsHover[1]}"/>
+                            </Style>
+                        </Button.Styles>
+                        <Button.Transitions>
+                            <Transitions>
+                                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
+                            </Transitions>
+                        </Button.Transitions>
                         <Viewbox Height="16" HorizontalAlignment="Stretch" Margin="20,0">
                             <TextBlock Foreground="{Binding ButtonTextColors[1]}"
                                        Text="{Binding ButtonTexts[1]}"/>
