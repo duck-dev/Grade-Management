@@ -50,7 +50,6 @@ namespace GradeManagement.ViewModels.BaseClasses
             string elementTypeName = elementType.ToString().SplitCamelCase();
             string dialogTitle = $"Do you really want to remove the {elementTypeName} \"{element.Name}\"?";
             CurrentDialog = new ConfirmationDialogViewModel(dialogTitle,
-                new[] {Color.Parse(""), Color.Parse("")},
                 new[] {Colors.White, Colors.White},
                 new[] {"Remove", "Cancel"},
                 confirmAction);

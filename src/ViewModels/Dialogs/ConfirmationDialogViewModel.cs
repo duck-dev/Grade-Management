@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Avalonia.Media;
-using GradeManagement.Interfaces;
 using GradeManagement.ViewModels.BaseClasses;
 
 namespace GradeManagement.ViewModels.Dialogs
@@ -19,24 +18,21 @@ namespace GradeManagement.ViewModels.Dialogs
         private readonly Action? _cancelAction;
 
         public ConfirmationDialogViewModel(string title,
-            IEnumerable<SolidColorBrush> borderColors,
             IEnumerable<SolidColorBrush> buttonTextColors,
             IEnumerable<string> buttonTexts,
             Action? confirmAction,
-            Action? cancelAction = null) : base(title, borderColors, buttonTextColors, buttonTexts)
+            Action? cancelAction = null) : base(title, buttonTextColors, buttonTexts)
         {
             _confirmAction = confirmAction;
             _cancelAction = cancelAction;
         }
 
         public ConfirmationDialogViewModel(string title,
-            IEnumerable<Color> borderColors,
             IEnumerable<Color> buttonTextColors,
             IEnumerable<string> buttonTexts,
             Action? confirmAction,
             Action? cancelAction = null)
-            : this(title, 
-                   borderColors.Select(x => new SolidColorBrush(x)), 
+            : this(title,   
                    buttonTextColors.Select(x => new SolidColorBrush(x)),
                    buttonTexts,
                    confirmAction,
@@ -45,7 +41,6 @@ namespace GradeManagement.ViewModels.Dialogs
 
         private void Command(ActionType actionType)
         {
-
             CloseDialog();
             if (actionType == ActionType.Confirm)
                 _confirmAction?.Invoke();
