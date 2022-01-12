@@ -14,15 +14,6 @@
         <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.11" />
     </ItemGroup>
     <ItemGroup>
-      <UpToDateCheckInput Remove="Views\MainWindow.axaml" />
-      <UpToDateCheckInput Remove="Assets\Styles\MainStyle.xaml" />
-      <UpToDateCheckInput Remove="Assets\Styles\MainWindowStyle.axaml" />
-      <UpToDateCheckInput Remove="src\Views\Lists\ElementButtonControls\Grid\GridGradeButton.axaml" />
-      <UpToDateCheckInput Remove="src\Views\Lists\ElementButtonControls\Grid\GridSubjectButton.axaml" />
-      <UpToDateCheckInput Remove="src\Views\Lists\ElementButtonControls\Grid\GridYearButton.axaml" />
-      <UpToDateCheckInput Remove="src\Views\Lists\Dialogs\ConfirmationDialogView.axaml" />
-    </ItemGroup>
-    <ItemGroup>
       <Compile Update="src\App.axaml.cs">
         <DependentUpon>App.axaml</DependentUpon>
         <SubType>Code</SubType>
