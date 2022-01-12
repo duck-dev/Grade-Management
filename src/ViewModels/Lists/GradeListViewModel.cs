@@ -78,7 +78,7 @@ namespace GradeManagement.ViewModels.Lists
                 Items?.Remove(grade);
                 UpdateVisualOnChange();
             };
-            base.RemoveElement(grade, "Grade", action);
+            base.RemoveElement(grade, Enums.ElementType.Grade, action);
         }
 
         private void OpenTargetGradeCalc()
