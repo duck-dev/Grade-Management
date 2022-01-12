@@ -7,14 +7,14 @@
                 <Setter Property="Background" Value="#66000000"/> <!-- Save as darkened background resource for pop-ups/dialogs -->
         </Style>
         
-        <Style Selector="Panel.front-panel">
+        <Style Selector="Border.border-front-panel">
                 <Setter Property="Background" Value="#d8dde6"/> <!-- Main background (See: MainStyle.axaml)-->
                 <Setter Property="Width" Value="400"/>
                 <Setter Property="Height" Value="250"/>
                 <Setter Property="HorizontalAlignment" Value="Center"/>
                 <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
-        <Style Selector="Panel.front-panel /template/ ContentPresenter">
+        <Style Selector="Border.border-front-panel /template/ ContentPresenter">
                 <Setter Property="CornerRadius" Value="20"/>
         </Style>
         

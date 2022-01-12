@@ -8,56 +8,58 @@
     <Design.DataContext>
         <dialogs:ConfirmationDialogViewModel/>
     </Design.DataContext>
-    
+
     <UserControl.Styles>
         <StyleInclude Source="/src/Styles/DialogStyle.axaml"/>
     </UserControl.Styles>
-    
+
     <Panel Classes="background-panel">
-        <Panel Classes="front-panel">
-            <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <TextBlock Classes="title-text" DockPanel.Dock="Top" Text="{Binding Title}"/>
-                <Grid RowDefinitions="Auto,Auto" DockPanel.Dock="Bottom" VerticalAlignment="Center">
-                    <Button Grid.Row="0" Classes="dialog-button"
-                            Background="{Binding ButtonColors[0]}"
-                            Command="{Binding Command}"
-                            CommandParameter="Confirm">
-                        <Button.Styles>
-                            <Style Selector="Button.dialog-button:pointerover /template/ ContentPresenter">
-                                <Setter Property="Background" Value="{Binding ButtonColorsHover[0]}"/>
-                            </Style>
-                        </Button.Styles>
-                        <Button.Transitions>
-                            <Transitions>
-                                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
-                            </Transitions>
-                        </Button.Transitions>
-                        <Viewbox Height="16" HorizontalAlignment="Stretch" Margin="20,0">
-                            <TextBlock Foreground="{Binding ButtonTextColors[0]}"
-                                       Text="{Binding ButtonTexts[0]}"/>
-                        </Viewbox>
-                    </Button>
-                    <Button Grid.Row="1" Classes="dialog-button"
-                            Background="{Binding ButtonColors[1]}"
-                            Command="{Binding Command}"
-                            CommandParameter="Cancel">
-                        <Button.Styles>
-                            <Style Selector="Button.dialog-button:pointerover /template/ ContentPresenter">
-                                <Setter Property="Background" Value="{Binding ButtonColorsHover[1]}"/>
-                            </Style>
-                        </Button.Styles>
-                        <Button.Transitions>
-                            <Transitions>
-                                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
-                            </Transitions>
-                        </Button.Transitions>
-                        <Viewbox Height="16" HorizontalAlignment="Stretch" Margin="20,0">
-                            <TextBlock Foreground="{Binding ButtonTextColors[1]}"
-                                       Text="{Binding ButtonTexts[1]}"/>
-                        </Viewbox>
-                    </Button>
-                </Grid>
-            </DockPanel>
-        </Panel>
+        <Border CornerRadius="20" Classes="border-front-panel">
+            <Panel>
+                <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <TextBlock Classes="title-text" DockPanel.Dock="Top" Text="{Binding Title}"/>
+                    <Grid RowDefinitions="Auto,Auto" DockPanel.Dock="Bottom" VerticalAlignment="Center">
+                        <Button Grid.Row="0" Classes="dialog-button"
+                                Background="{Binding ButtonColors[0]}"
+                                Command="{Binding Command}"
+                                CommandParameter="Confirm">
+                            <Button.Styles>
+                                <Style Selector="Button.dialog-button:pointerover /template/ ContentPresenter">
+                                    <Setter Property="Background" Value="{Binding ButtonColorsHover[0]}"/>
+                                </Style>
+                            </Button.Styles>
+                            <Button.Transitions>
+                                <Transitions>
+                                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
+                                </Transitions>
+                            </Button.Transitions>
+                            <Viewbox Height="16" HorizontalAlignment="Stretch" Margin="20,0">
+                                <TextBlock Foreground="{Binding ButtonTextColors[0]}"
+                                           Text="{Binding ButtonTexts[0]}"/>
+                            </Viewbox>
+                        </Button>
+                        <Button Grid.Row="1" Classes="dialog-button"
+                                Background="{Binding ButtonColors[1]}"
+                                Command="{Binding Command}"
+                                CommandParameter="Cancel">
+                            <Button.Styles>
+                                <Style Selector="Button.dialog-button:pointerover /template/ ContentPresenter">
+                                    <Setter Property="Background" Value="{Binding ButtonColorsHover[1]}"/>
+                                </Style>
+                            </Button.Styles>
+                            <Button.Transitions>
+                                <Transitions>
+                                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
+                                </Transitions>
+                            </Button.Transitions>
+                            <Viewbox Height="16" HorizontalAlignment="Stretch" Margin="20,0">
+                                <TextBlock Foreground="{Binding ButtonTextColors[1]}"
+                                           Text="{Binding ButtonTexts[1]}"/>
+                            </Viewbox>
+                        </Button>
+                    </Grid>
+                </DockPanel>
+            </Panel>
+        </Border>
     </Panel>
 </UserControl>
