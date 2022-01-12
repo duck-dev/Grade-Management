@@ -18,21 +18,24 @@ namespace GradeManagement.ViewModels.Dialogs
         private readonly Action? _cancelAction;
 
         public ConfirmationDialogViewModel(string title,
+            IEnumerable<SolidColorBrush> buttonColors,
             IEnumerable<SolidColorBrush> buttonTextColors,
             IEnumerable<string> buttonTexts,
             Action? confirmAction,
-            Action? cancelAction = null) : base(title, buttonTextColors, buttonTexts)
+            Action? cancelAction = null) : base(title, buttonColors, buttonTextColors, buttonTexts)
         {
             _confirmAction = confirmAction;
             _cancelAction = cancelAction;
         }
 
         public ConfirmationDialogViewModel(string title,
+            IEnumerable<Color> buttonColors,
             IEnumerable<Color> buttonTextColors,
             IEnumerable<string> buttonTexts,
             Action? confirmAction,
             Action? cancelAction = null)
-            : this(title,   
+            : this(title,
+                   buttonColors.Select(x => new SolidColorBrush(x)),
                    buttonTextColors.Select(x => new SolidColorBrush(x)),
                    buttonTexts,
                    confirmAction,

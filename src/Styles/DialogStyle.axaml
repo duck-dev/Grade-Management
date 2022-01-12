@@ -7,29 +7,29 @@
                 <Setter Property="Background" Value="#66000000"/> <!-- Save as darkened background resource for pop-ups/dialogs -->
         </Style>
         
-        <Style Selector="Panel.front-panel /template/ ContentPresenter">
+        <Style Selector="Panel.front-panel">
                 <Setter Property="Background" Value="#d8dde6"/> <!-- Main background (See: MainStyle.axaml)-->
-                <Setter Property="CornerRadius" Value="20"/>
                 <Setter Property="Width" Value="400"/>
-                <Setter Property="Height" Value="200"/>
+                <Setter Property="Height" Value="250"/>
                 <Setter Property="HorizontalAlignment" Value="Center"/>
                 <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style Selector="Panel.front-panel /template/ ContentPresenter">
+                <Setter Property="CornerRadius" Value="20"/>
         </Style>
         
         <Style Selector="TextBlock.title-text">
-                <Setter Property="Background" Value="Black"/>
+                <Setter Property="Foreground" Value="Black"/>
                 <Setter Property="FontSize" Value="20"/>
                 <Setter Property="TextWrapping" Value="Wrap"/>
-                <Setter Property="HorizontalAlignment" Value="Center"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="TextAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="30, 30, 30, 0"/>
         </Style>
         
-        <Style Selector="Button.dialog-button /template/ ContentPresenter">
+        <Style Selector="Button.dialog-button">
                 <Setter Property="HorizontalAlignment" Value="Stretch"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="30,0"/>
+                <Setter Property="Height" Value="40"/>
+                <Setter Property="Margin" Value="30,7.5"/>
                 <Setter Property="CornerRadius" Value="5"/>
-                <Setter Property="BorderThickness" Value="0.5"/>
-                <Setter Property="Padding" Value="15"/>
         </Style>
 </Styles>
