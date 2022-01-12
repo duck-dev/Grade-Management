@@ -4,9 +4,9 @@ using Avalonia.Media;
 
 namespace GradeManagement.ViewModels.BaseClasses
 {
-    public abstract class ConfirmationDialogBase : ViewModelBase
+    public abstract class DialogBase : ViewModelBase
     {
-        protected ConfirmationDialogBase(string title, 
+        protected DialogBase(string title, 
                                          IEnumerable<SolidColorBrush> borderColors, 
                                          IEnumerable<SolidColorBrush> buttonTextColors,
                                          IEnumerable<string> buttonTexts)

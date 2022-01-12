@@ -19,16 +19,16 @@
                 <TextBlock Classes="title-text" DockPanel.Dock="Top" Text="{Binding Title}"/>
                 <Grid RowDefinitions="*,*">
                     <Button Grid.Row="0" Classes="dialog-button" BorderBrush="{Binding BorderColors[0]}"
-                            Command="{Binding Confirm}"
-                            CommandParameter="{Binding $parent[UserControl]}">
+                            Command="{Binding Command}"
+                            CommandParameter="Confirm">
                         <Viewbox Height="16" HorizontalAlignment="Stretch" Margin="20,0">
                             <TextBlock Foreground="{Binding ButtonTextColors[0]}"
                                        Text="{Binding ButtonTexts[0]}"/>
                         </Viewbox>
                     </Button>
                     <Button Grid.Row="0" Classes="dialog-button" BorderBrush="{Binding BorderColors[1]}"
-                            Command="{Binding Cancel}"
-                            CommandParameter="{Binding $parent[UserControl]}">
+                            Command="{Binding Command}"
+                            CommandParameter="Cancel">
                         <Viewbox Height="16" HorizontalAlignment="Stretch" Margin="20,0">
                             <TextBlock Foreground="{Binding ButtonTextColors[1]}"
                                        Text="{Binding ButtonTexts[1]}"/>
