@@ -18,7 +18,7 @@
         <StyleInclude Source="/src/Styles/MainWindowStyle.axaml"/>
     </Window.Styles>
 
-    <Panel>
+    <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <DockPanel>
             <DockPanel DockPanel.Dock="Top">
                 <Panel DockPanel.Dock="Top">
@@ -103,6 +103,7 @@
                 <Button Classes="add-button" Command="{Binding OpenAddPage}"/>
             </Panel>
         </DockPanel>
+        
         <UserControl Content="{Binding Content.CurrentDialog}"
                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
     </Panel>
