@@ -54,11 +54,13 @@ namespace GradeManagement.ViewModels.Lists
                 this.RaisePropertyChanged(nameof(EmptyCollection));
             }
         }
+        
         public bool EmptyCollection => Items?.Count == 0;
         
         internal static YearListViewModel? Instance { get; private set; }
 
-        public void Duplicate(IElement element) => DuplicateElement<SchoolYear>(element);
+        public void Duplicate(IElement element) 
+            => DuplicateElement<SchoolYear>(element);
 
         protected internal override void ChangeTopbar()
         {

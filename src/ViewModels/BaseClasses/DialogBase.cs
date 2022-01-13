@@ -22,12 +22,12 @@ namespace GradeManagement.ViewModels.BaseClasses
         }
         
         protected string Title { get; init; }
-
+        
         protected SolidColorBrush[] ButtonColors { get; init; }
-
         protected SolidColorBrush[] ButtonColorsHover
             => ButtonColors.Select(x => new SolidColorBrush(x.Color.DarkenColor(0.1f))).ToArray();
         protected SolidColorBrush[] ButtonTextColors { get; init; }
+        
         protected string[] ButtonTexts { get; init; }
     }
 }
