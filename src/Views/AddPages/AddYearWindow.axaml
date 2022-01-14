@@ -21,12 +21,25 @@
     </Window.Styles>
     
     <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <Grid RowDefinitions="*,*">
+        <Grid RowDefinitions="*,*,*">
             <Viewbox Grid.Row="0" Height="30" Margin="30,0">
                 <TextBlock Classes="add-page-title-text" Text="{Binding Title}"
                            TextAlignment="Center" TextWrapping="Wrap"/>
             </Viewbox>
-            <Button Grid.Row="1" Classes="add-page-button" Command="{Binding CreateElement}"
+            <ItemsControl Grid.Row="1" Items="{Binding ElementColorsCollection}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Rectangle Classes.selected-color="{Binding Selected}" 
+                                   Width="" Height="" Fill="{Binding ElementColor}"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <Button Grid.Row="2" Classes="add-page-button" Command="{Binding CreateElement}"
                     IsEnabled="{Binding DataComplete}"
                     Content="{Binding ButtonText}" HotKey="Enter"/>
         </Grid>
