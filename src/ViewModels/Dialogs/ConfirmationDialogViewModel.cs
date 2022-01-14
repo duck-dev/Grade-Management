@@ -46,11 +46,12 @@ namespace GradeManagement.ViewModels.Dialogs
         {
             CloseDialog();
             if (actionType == ActionType.Confirm)
+            {
+                CheckIgnoreDialog();
                 _confirmAction?.Invoke();
+            }
             else if(actionType == ActionType.Cancel)
                 _cancelAction?.Invoke();
-            
-            CheckIgnoreDialog();
         }
     }
 }
