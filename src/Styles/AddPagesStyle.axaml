@@ -58,10 +58,13 @@
     <Style Selector="CheckBox.add-page-checkbox /template/ ContentPresenter">
         <Setter Property="CornerRadius" Value="5"/>
     </Style>
-    <Style Selector="CheckBox.add-page-checkbox:checked /template/ Path#checkMark">
-        <Setter Property="Fill" Value="#009b72"/>
-        <Setter Property="TextBlock.Foreground" Value="White"/>
-        <Setter Property="TextBlock.FontWeight" Value="Bold"/>
+    <Style Selector="CheckBox.add-page-checkbox:checked /template/ Border#NormalRectangle">
+        <Setter Property="BorderBrush" Value="#009b72"/>
+        <Setter Property="Background" Value="#009b72"/>
+    </Style>
+    <Style Selector="CheckBox.add-page-checkbox:indeterminate /template/ Border#NormalRectangle">
+        <Setter Property="BorderBrush" Value="#808080"/>
+        <Setter Property="Background" Value="#808080"/>
     </Style>
     
     <Style Selector="TextBox.add-page-date-picker-textbox">
