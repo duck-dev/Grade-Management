@@ -49,13 +49,8 @@ namespace GradeManagement.ViewModels.Dialogs
                 _confirmAction?.Invoke();
             else if(actionType == ActionType.Cancel)
                 _cancelAction?.Invoke();
-        }
-
-        private void CloseDialog()
-        {
-            if (MainWindowViewModel.Instance is not { } mainInstance)
-                return;
-            mainInstance.Content.CurrentDialog = null;
+            
+            CheckIgnoreDialog();
         }
     }
 }

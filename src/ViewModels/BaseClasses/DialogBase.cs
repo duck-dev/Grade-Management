@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Avalonia.Media;
 using GradeManagement.ExtensionCollection;
+using GradeManagement.Models.Settings;
 
 namespace GradeManagement.ViewModels.BaseClasses
 {
@@ -29,5 +30,22 @@ namespace GradeManagement.ViewModels.BaseClasses
         protected SolidColorBrush[] ButtonTextColors { get; init; }
         
         protected string[] ButtonTexts { get; init; }
+        
+        protected bool IgnoreDialog { get; set; }
+        
+        protected static void CloseDialog()
+        {
+            if (MainWindowViewModel.Instance is not { } mainInstance)
+                return;
+            mainInstance.Content.CurrentDialog = null;
+        }
+
+        protected void CheckIgnoreDialog()
+        {
+            if (!IgnoreDialog || SettingsManager.Settings is not { } settings) 
+                return;
+            settings.ShowRemoveConfirmation = false;
+            SettingsManager.SaveSettings();
+        }
     }
 }
