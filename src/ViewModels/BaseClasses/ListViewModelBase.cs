@@ -12,7 +12,7 @@ namespace GradeManagement.ViewModels.BaseClasses
     {
         private bool _isViewGrid;
         private DialogBase? _currentDialog;
-        
+
         protected internal Type? AddPageType { get; protected init; }
         protected internal Type? AddViewModelType { get; protected init; }
         protected internal Type? ElementType { get; protected init; }
@@ -47,6 +47,12 @@ namespace GradeManagement.ViewModels.BaseClasses
 
         protected void RemoveElement(IElement element, ElementType elementType, Action confirmAction)
         {
+            if (SettingsRef is not null && !SettingsRef.ShowRemoveConfirmation)
+            {
+                confirmAction.Invoke();
+                return;
+            }
+            
             string elementTypeName = elementType.ToString().SplitCamelCase();
             string dialogTitle = $"Do you really want to remove the {elementTypeName} \"{element.Name}\"?";
             CurrentDialog = new ConfirmationDialogViewModel(dialogTitle,
