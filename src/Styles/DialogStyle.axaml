@@ -37,4 +37,22 @@
                 <Setter Property="Cursor" Value="Hand"/>
                 <Setter Property="RenderTransform" Value="scale(0.95)"/>
         </Style>
+        
+        <Style Selector="CheckBox.dialog-checkbox">
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="IsThreeState" Value="False"/>
+        </Style>
+        <Style Selector="CheckBox.dialog-checkbox /template/ Border#NormalRectangle">
+                <Setter Property="MinWidth" Value="14"/>
+                <Setter Property="MinHeight" Value="14"/>
+        </Style>
+        <Style Selector="CheckBox.dialog-checkbox /template/ ContentPresenter">
+                <Setter Property="CornerRadius" Value="5"/>
+        </Style>
+        <Style Selector="CheckBox.dialog-checkbox:checked /template/ Path#CheckGlyph">
+                <Setter Property="TextBlock.Foreground" Value="White"/>
+                <Setter Property="TextBlock.FontWeight" Value="Bold"/>
+        </Style>
 </Styles>

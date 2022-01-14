@@ -18,7 +18,7 @@
             <Panel>
                 <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <TextBlock Classes="title-text" DockPanel.Dock="Top" Text="{Binding Title}"/>
-                    <Grid RowDefinitions="Auto,Auto" DockPanel.Dock="Bottom" VerticalAlignment="Center">
+                    <Grid RowDefinitions="Auto,Auto,Auto" DockPanel.Dock="Bottom" VerticalAlignment="Center">
                         <Button Grid.Row="0" Classes="dialog-button"
                                 Background="{Binding ButtonColors[0]}"
                                 Command="{Binding Command}"
@@ -57,6 +57,19 @@
                                            Text="{Binding ButtonTexts[1]}"/>
                             </Viewbox>
                         </Button>
+                        <CheckBox Grid.Row="2" Classes="dialog-checkbox" BorderBrush="#808080"
+                                  IsChecked="{Binding IgnoreDialog}" Content="Don't show again">
+                            <CheckBox.Styles>
+                                <Style Selector="CheckBox.dialog-checkbox:checked /template/ Border#NormalRectangle">
+                                    <Setter Property="BorderBrush" Value="#808080"/>
+                                    <Setter Property="Background" Value="#808080"/>
+                                </Style>
+                                <Style Selector="CheckBox.dialog-checkbox:indeterminate /template/ Border#NormalRectangle">
+                                    <Setter Property="BorderBrush" Value="#808080"/>
+                                    <Setter Property="Background" Value="#808080"/>
+                                </Style>
+                            </CheckBox.Styles>
+                        </CheckBox>
                     </Grid>
                 </DockPanel>
             </Panel>
