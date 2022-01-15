@@ -22,7 +22,7 @@ namespace GradeManagement.Models.Elements
         private float _weighting;
         private ButtonStyleBase? _buttonStyle;
 
-        public Subject(string name, float weighting, string subjectColorHex, bool counts) : base(subjectColorHex)
+        public Subject(string name, float weighting, string elementColorHex, bool counts) : base(elementColorHex)
         {
             this.Name = name;
             this.Weighting = weighting;
@@ -33,8 +33,8 @@ namespace GradeManagement.Models.Elements
         }
         
         [JsonConstructor]
-        public Subject(string name, float weighting, string subjectColorHex, List<Grade> grades, bool counts) 
-            : this(name, weighting, subjectColorHex, counts)
+        public Subject(string name, float weighting, string elementColorHex, List<Grade> grades, bool counts) 
+            : this(name, weighting, elementColorHex, counts)
         {
             this.Grades = grades;
         }

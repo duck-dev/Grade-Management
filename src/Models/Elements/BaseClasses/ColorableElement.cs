@@ -12,11 +12,11 @@ namespace GradeManagement.Models.Elements
     {
         private readonly Color _additionalInfoColor = Color.Parse("#999999");
         private readonly Color _lightBackground = Color.Parse("#c7cad1");
-        private string _elementColorHex;
-
-        protected ColorableElement(string colorHex)
-            => _elementColorHex = colorHex;
+        private string _elementColorHex = "#c7cad1";
         
+        protected ColorableElement(string elementColorHex)
+            => this.ElementColorHex = elementColorHex;
+
         [JsonInclude]
         public string ElementColorHex
         {
