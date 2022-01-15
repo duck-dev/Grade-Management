@@ -10,57 +10,61 @@
         Width="800"
         Height="600"
         CanResize="False">
-        
-        <Design.DataContext>
-                <addPages:AddSubjectViewModel/>
-        </Design.DataContext>
-    
-        <Window.Styles>
-                <StyleInclude Source="/src/Styles/MainStyle.axaml"/>
-                <StyleInclude Source="/src/Styles/AddPagesStyle.axaml"/>
-        </Window.Styles>
-        
-        <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <Grid RowDefinitions="*,*,*,*,*,*">
-                     <Viewbox Grid.Row="0" Height="30" Margin="30,0">
-                             <TextBlock Classes="add-page-title-text" Text="{Binding Title}"
-                                        TextAlignment="Center" TextWrapping="Wrap"/>
-                     </Viewbox>
-                      <!-- <Button Grid.Row="0" Classes="add-page-back-button"> -->
-                      <!--         <Button.Content> -->
-                      <!--                 <Image Source="/Assets/Images/back-button-arrow.png"/> -->
-                      <!--         </Button.Content> -->
-                      <!-- </Button> TODO: Set up back-button!!!-->
-                      <TextBox Grid.Row="1" Classes="add-page-text-box" 
-                               Watermark="Name of the Subject" MaxLength="25" 
-                               Text="{Binding ElementName}"
-                               HorizontalContentAlignment="Left"
-                               BorderBrush="{Binding BorderBrushes[0]}"/>
-                      <TextBox Grid.Row="2" Classes="add-page-text-box" 
-                               Width="100" Height="60" Watermark="Weighting" MaxLength="5"
-                               HorizontalContentAlignment="Center"
-                               Text="{Binding ElementWeightingString}"
-                               BorderBrush="{Binding BorderBrushes[1]}"/>
-                      <CheckBox Grid.Row="3" Classes="add-page-checkbox" 
-                                IsChecked="{Binding ElementCounts}">
-                              Count subject for year's average?
-                      </CheckBox>
-                      <ItemsControl Grid.Row="4" Items="{Binding ElementColorsCollection}">
-                              <ItemsControl.ItemsPanel>
-                                      <ItemsPanelTemplate>
-                                              <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
-                                      </ItemsPanelTemplate>
-                              </ItemsControl.ItemsPanel>
-                              <ItemsControl.ItemTemplate>
-                                      <DataTemplate>
-                                              <Rectangle Classes.selected-color="{Binding Selected}" 
-                                                         Width="" Height="" Fill="{Binding ElementColor}"/>
-                                      </DataTemplate>
-                              </ItemsControl.ItemTemplate>
-                      </ItemsControl>
-                      <Button Grid.Row="5" Classes="add-page-button" Command="{Binding CreateElement}"
-                              IsEnabled="{Binding DataComplete}"
-                              Content="{Binding ButtonText}" HotKey="Enter"/>
-                </Grid>
-        </Panel>
+
+    <Design.DataContext>
+        <addPages:AddSubjectViewModel/>
+    </Design.DataContext>
+
+    <Window.Styles>
+        <StyleInclude Source="/src/Styles/MainStyle.axaml"/>
+        <StyleInclude Source="/src/Styles/AddPagesStyle.axaml"/>
+    </Window.Styles>
+
+    <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid RowDefinitions="*,*,*,*,*,*">
+            <Viewbox Grid.Row="0" Height="30" Margin="30,0">
+                <TextBlock Classes="add-page-title-text" Text="{Binding Title}"
+                           TextAlignment="Center" TextWrapping="Wrap"/>
+            </Viewbox>
+            <!-- <Button Grid.Row="0" Classes="add-page-back-button"> -->
+            <!--         <Button.Content> -->
+            <!--                 <Image Source="/Assets/Images/back-button-arrow.png"/> -->
+            <!--         </Button.Content> -->
+            <!-- </Button> TODO: Set up back-button!!!-->
+            <TextBox Grid.Row="1" Classes="add-page-text-box"
+                     Watermark="Name of the Subject" MaxLength="25"
+                     Text="{Binding ElementName}"
+                     HorizontalContentAlignment="Left"
+                     BorderBrush="{Binding BorderBrushes[0]}"/>
+            <TextBox Grid.Row="2" Classes="add-page-text-box"
+                     Width="100" Height="60" Watermark="Weighting" MaxLength="5"
+                     HorizontalContentAlignment="Center"
+                     Text="{Binding ElementWeightingString}"
+                     BorderBrush="{Binding BorderBrushes[1]}"/>
+            <CheckBox Grid.Row="3" Classes="add-page-checkbox"
+                      IsChecked="{Binding ElementCounts}">
+                Count subject for year's average?
+            </CheckBox>
+            <ItemsControl Grid.Row="4" Items="{Binding ElementColorsCollection}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Classes="normal-color" Classes.selected-color="{Binding Selected}">
+                            <Button Background="{Binding ElementColor}" 
+                                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                    Command="{Binding $parent[Window].DataContext.ChangeColor}"
+                                    CommandParameter="{Binding}"/>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <Button Grid.Row="5" Classes="add-page-button" Command="{Binding CreateElement}"
+                    IsEnabled="{Binding DataComplete}"
+                    Content="{Binding ButtonText}" HotKey="Enter"/>
+        </Grid>
+    </Panel>
 </Window>

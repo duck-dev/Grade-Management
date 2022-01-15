@@ -21,31 +21,35 @@
     </Window.Styles>
     
     <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <Grid RowDefinitions="*,*,*">
+        <Grid RowDefinitions="*,*,*,*">
             <Viewbox Grid.Row="0" Height="30" Margin="30,0">
                 <TextBlock Classes="add-page-title-text" Text="{Binding Title}"
                            TextAlignment="Center" TextWrapping="Wrap"/>
             </Viewbox>
-            <ItemsControl Grid.Row="1" Items="{Binding ElementColorsCollection}">
+            <TextBox Grid.Row="1" Classes="add-page-text-box" Watermark="Name of the School Year" MaxLength="25"
+                     Text="{Binding ElementName}"
+                     HorizontalContentAlignment="Left"
+                     BorderBrush="{Binding BorderBrushes[0]}"/>
+            <ItemsControl Grid.Row="2" Items="{Binding ElementColorsCollection}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Rectangle Classes.selected-color="{Binding Selected}" 
-                                   Width="" Height="" Fill="{Binding ElementColor}"/>
+                        <Border Classes="normal-color" Classes.selected-color="{Binding Selected}">
+                            <Button Background="{Binding ElementColor}" 
+                                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                    Command="{Binding $parent[Window].DataContext.ChangeColor}"
+                                    CommandParameter="{Binding}"/>
+                        </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-            <Button Grid.Row="2" Classes="add-page-button" Command="{Binding CreateElement}"
+            <Button Grid.Row="3" Classes="add-page-button" Command="{Binding CreateElement}"
                     IsEnabled="{Binding DataComplete}"
                     Content="{Binding ButtonText}" HotKey="Enter"/>
         </Grid>
-        <TextBox Classes="add-page-text-box" Watermark="Name of the School Year" MaxLength="25"
-                 Text="{Binding ElementName}"
-                 HorizontalContentAlignment="Left"
-                 BorderBrush="{Binding BorderBrushes[0]}"/>
     </Panel>
 </Window>

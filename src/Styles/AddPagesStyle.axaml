@@ -80,5 +80,16 @@
     <Style Selector="TextBox.add-page-date-picker-textbox /template/ ContentPresenter">
         <Setter Property="CornerRadius" Value="10"/>
     </Style>
+    
+    <Style Selector="Border.normal-color">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="BorderBrush" Value="White"/>
+        <Setter Property="Width" Value="45"/>
+        <Setter Property="Height" Value="45"/>
+        <Setter Property="Margin" Value="0.272727272727273,0"/>
+    </Style>
+    <Style Selector="Border.selected-color">
+        <Setter Property="BorderThickness" Value="3"/>
+    </Style>
 </Styles>
 
