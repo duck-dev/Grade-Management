@@ -112,7 +112,7 @@ namespace GradeManagement.ViewModels
             if (TopbarTexts?[2] is TextBlock textBlock)
             {
                 textBlock.Text = subject.Name;
-                textBlock.Foreground = new SolidColorBrush(subject.SubjectColor);
+                textBlock.Foreground = new SolidColorBrush(subject.ElementColor);
             }
             SwitchPage<GradeListViewModel, Grade>(subject.Grades);
             CurrentSubject = subject;
