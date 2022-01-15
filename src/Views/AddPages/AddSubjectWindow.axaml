@@ -56,7 +56,13 @@
                         <Button Classes="color-button" Classes.color-button-selected="{Binding Selected}"
                                 Background="{Binding ElementColorBrush}"
                                 Command="{Binding $parent[Window].DataContext.ChangeColor}"
-                                CommandParameter="{Binding}"/>
+                                CommandParameter="{Binding}">
+                            <Button.Transitions>
+                                <Transitions>
+                                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
+                                </Transitions>
+                            </Button.Transitions>
+                        </Button>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

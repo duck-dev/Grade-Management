@@ -102,7 +102,13 @@
         <Setter Property="Width" Value="45"/>
         <Setter Property="Height" Value="45"/>
         <Setter Property="Margin" Value="0.272727272727273,0"/>
+        <Setter Property="RenderTransform" Value="scale(1)"/>
     </Style>
+    <Style Selector="Button.color-button:pointerover">
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="RenderTransform" Value="scale(0.95)"/>    
+    </Style>
+    
     <Style Selector="Button.color-button-selected">
         <Setter Property="BorderThickness" Value="3"/>
     </Style>
