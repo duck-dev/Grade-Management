@@ -21,54 +21,56 @@
     </Window.Styles>
 
     <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <Grid RowDefinitions="*,*,*,*,*,*">
-            <Viewbox Grid.Row="0" Height="30" Margin="30,0">
-                <TextBlock Classes="add-page-title-text" Text="{Binding Title}"
-                           TextAlignment="Center" TextWrapping="Wrap"/>
+        <Grid RowDefinitions="*,Auto,*">
+            <Viewbox Grid.Row="0" Height="30" VerticalAlignment="Center"> <!-- Was top and Margin="30,30,30,0" -->
+                <TextBlock Classes="add-page-title-text" Text="{Binding Title}"/>
             </Viewbox>
             <!-- <Button Grid.Row="0" Classes="add-page-back-button"> -->
             <!--         <Button.Content> -->
             <!--                 <Image Source="/Assets/Images/back-button-arrow.png"/> -->
             <!--         </Button.Content> -->
             <!-- </Button> TODO: Set up back-button!!!-->
-            <TextBox Grid.Row="1" Classes="add-page-text-box"
-                     Watermark="Name of the Subject" MaxLength="25"
-                     Text="{Binding ElementName}"
-                     HorizontalContentAlignment="Left"
-                     BorderBrush="{Binding BorderBrushes[0]}"/>
-            <TextBox Grid.Row="2" Classes="add-page-text-box"
-                     Width="100" Height="60" Watermark="Weighting" MaxLength="5"
-                     HorizontalContentAlignment="Center"
-                     Text="{Binding ElementWeightingString}"
-                     BorderBrush="{Binding BorderBrushes[1]}"/>
-            <CheckBox Grid.Row="3" Classes="add-page-checkbox"
-                      IsChecked="{Binding ElementCounts}">
-                Count subject for year's average?
-            </CheckBox>
-            <ItemsControl Grid.Row="4" Items="{Binding ElementColorsCollection}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Button Classes="color-button" Classes.color-button-selected="{Binding Selected}"
-                                Background="{Binding ElementColorBrush}"
-                                Command="{Binding $parent[Window].DataContext.ChangeColor}"
-                                CommandParameter="{Binding}">
-                            <Button.Transitions>
-                                <Transitions>
-                                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
-                                </Transitions>
-                            </Button.Transitions>
-                        </Button>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-            <Button Grid.Row="5" Classes="add-page-button" Command="{Binding CreateElement}"
+            <Grid Grid.Row="1" RowDefinitions="Auto,Auto,Auto,Auto" VerticalAlignment="Center">
+                <TextBox Grid.Row="0" Classes="add-page-text-box"
+                         Watermark="Name of the Subject" MaxLength="25"
+                         Text="{Binding ElementName}"
+                         HorizontalContentAlignment="Left" Margin="0,0,0,15"
+                         BorderBrush="{Binding BorderBrushes[0]}"/>
+                <TextBox Grid.Row="1" Classes="add-page-text-box"
+                         Width="100" Height="60" Watermark="Weighting" MaxLength="5"
+                         HorizontalContentAlignment="Center" Margin="0,15"
+                         Text="{Binding ElementWeightingString}"
+                         BorderBrush="{Binding BorderBrushes[1]}"/>
+                <CheckBox Grid.Row="2" Classes="add-page-checkbox"
+                          IsChecked="{Binding ElementCounts}" 
+                          Content="Count subject for year's average?" Margin="0,15"/>
+                <ItemsControl Grid.Row="3" Items="{Binding ElementColorsCollection}"
+                              Margin="0,15,0,0">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Classes="color-button" Classes.color-button-selected="{Binding Selected}"
+                                    Background="{Binding ElementColorBrush}"
+                                    Command="{Binding $parent[Window].DataContext.ChangeColor}"
+                                    CommandParameter="{Binding}">
+                                <Button.Transitions>
+                                    <Transitions>
+                                        <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
+                                    </Transitions>
+                                </Button.Transitions>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+            <Button Grid.Row="2" Classes="add-page-button" Command="{Binding CreateElement}"
                     IsEnabled="{Binding DataComplete}"
-                    Content="{Binding ButtonText}" HotKey="Enter"/>
+                    Content="{Binding ButtonText}"/> <!-- Had Margin="0,0,0,30" -->
         </Grid>
     </Panel>
 </Window>
