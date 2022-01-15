@@ -30,8 +30,8 @@
                      Text="{Binding ElementName}"
                      HorizontalContentAlignment="Left"
                      BorderBrush="{Binding BorderBrushes[0]}"
-                     VerticalAlignment="Bottom" Margin="0,0,0,15"/>
-            <Grid Grid.Row="2" RowDefinitions="Auto,Auto" Margin="0,15,0,0" VerticalAlignment="Top">
+                     VerticalAlignment="Bottom" Margin="0,0,0,25"/>
+            <Grid Grid.Row="2" RowDefinitions="Auto,Auto" Margin="0,25,0,0" VerticalAlignment="Top">
                 <TextBlock Grid.Row="0" FontSize="14" Foreground="Black" Margin="0,0,0,7.5"
                            Text="Pick a color for the School Year:" HorizontalAlignment="Center"/>
                 <ItemsControl Grid.Row="1" Items="{Binding ElementColorsCollection}">
