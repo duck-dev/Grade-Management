@@ -39,15 +39,17 @@ namespace GradeManagement.Models.Elements
 
         internal SolidColorBrush? TitleBrush { get; private set; }
         
+        internal LinearGradientBrush? BackgroundBrush { get; private set; }
+        
         internal LinearGradientBrush? BackgroundBrushHover { get; private set; }
         
         internal SolidColorBrush? AdditionalInfoColor { get; private set; }
         
-        private Color DarkSubjectTint => ElementColor.DarkenColor(0.2f);
-        private Color LightSubjectTint => ElementColor.BrightenColor(0.2f);
+        private Color DarkSubjectTint => ElementColor.DarkenColor(0.3f);
+        private Color LightSubjectTint => ElementColor.BrightenColor(0.3f);
         
-        private Color AdditionalInfoDark => _additionalInfoColor.DarkenColor(0.2f);
-        private Color AdditionalInfoLight => _additionalInfoColor.BrightenColor(0.2f);
+        private Color AdditionalInfoDark => _additionalInfoColor.DarkenColor(0.3f);
+        private Color AdditionalInfoLight => _additionalInfoColor.BrightenColor(0.3f);
 
         private void ApplyChangedColor()
         {
@@ -58,11 +60,18 @@ namespace GradeManagement.Models.Elements
             TitleBrush = new SolidColorBrush(titleTint);
 
             var backgroundGradient = Utilities.CreateLinearGradientBrush(
-                new RelativePoint(0, 100, RelativeUnit.Relative),
-                new RelativePoint(100, 0, RelativeUnit.Relative),
+                new RelativePoint(0, 1, RelativeUnit.Relative),
+                new RelativePoint(1, 0, RelativeUnit.Relative),
+                new[] { ElementColor, _lightBackground },
+                new[] { 0.2, 1.0 });
+            BackgroundBrush = backgroundGradient;
+            
+            var backgroundGradientHover = Utilities.CreateLinearGradientBrush(
+                new RelativePoint(0, 1, RelativeUnit.Relative),
+                new RelativePoint(1, 0, RelativeUnit.Relative),
                 new[] { ElementColor.DarkenColor(0.075f), _lightBackground.DarkenColor(0.075f) },
-                new[] { 0.0, 100.0 });
-            BackgroundBrushHover = backgroundGradient;
+                new[] { 0.2, 1.0 });
+            BackgroundBrushHover = backgroundGradientHover;
 
             var additionalInfoTint 
                 = Utilities.AdjustForegroundBrightness(ElementColor, AdditionalInfoDark, AdditionalInfoLight);

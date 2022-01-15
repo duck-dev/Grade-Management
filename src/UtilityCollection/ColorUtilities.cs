@@ -69,7 +69,10 @@ namespace GradeManagement.UtilityCollection
         {
             var gradientStops = new GradientStops();
             for (int i = 0; i < colors.Length; i++)
-                gradientStops.Add(new GradientStop(colors[i], offsets[i]));
+            {
+                if(i < offsets.Length)
+                    gradientStops.Add(new GradientStop(colors[i], offsets[i]));
+            }
 
             return CreateLinearGradientBrush(startPoint, endPoint, gradientStops);
         }
