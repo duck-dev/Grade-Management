@@ -10,16 +10,16 @@
         Width="800"
         Height="600"
         CanResize="False">
-    
+
     <Design.DataContext>
         <addPages:AddYearViewModel/>
     </Design.DataContext>
-    
+
     <Window.Styles>
         <StyleInclude Source="/src/Styles/MainStyle.axaml"/>
         <StyleInclude Source="/src/Styles/AddPagesStyle.axaml"/>
     </Window.Styles>
-    
+
     <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid RowDefinitions="*,*,*,*">
             <Viewbox Grid.Row="0" Height="30" Margin="30,0">
@@ -29,33 +29,39 @@
             <TextBox Grid.Row="1" Classes="add-page-text-box" Watermark="Name of the School Year" MaxLength="25"
                      Text="{Binding ElementName}"
                      HorizontalContentAlignment="Left"
-                     BorderBrush="{Binding BorderBrushes[0]}"/>
-            <ItemsControl Grid.Row="2" Items="{Binding ElementColorsCollection}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Button Classes="color-button" Classes.color-button-selected="{Binding Selected}"
-                                Background="{Binding ElementColorBrush}"
-                                Command="{Binding $parent[Window].DataContext.ChangeColor}"
-                                CommandParameter="{Binding}">
-                            <Button.Transitions>
-                                <Transitions>
-                                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
-                                </Transitions>
-                            </Button.Transitions>
-                            <Button.Styles>
-                                <Style Selector="Button.color-button:pointerover /template/ ContentPresenter">
-                                    <Setter Property="Background" Value="{Binding ElementColorBrush}"/>
-                                </Style>
-                            </Button.Styles>
-                        </Button>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                     BorderBrush="{Binding BorderBrushes[0]}"
+                     VerticalAlignment="Bottom" Margin="0,0,0,15"/>
+            <Grid Grid.Row="2" RowDefinitions="Auto,Auto" Margin="0,15,0,0" VerticalAlignment="Top">
+                <TextBlock Grid.Row="0" FontSize="14" Foreground="Black" Margin="0,0,0,7.5"
+                           Text="Pick a color for the School Year:" HorizontalAlignment="Center"/>
+                <ItemsControl Grid.Row="1" Items="{Binding ElementColorsCollection}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Classes="color-button" Classes.color-button-selected="{Binding Selected}"
+                                    Background="{Binding ElementColorBrush}"
+                                    Command="{Binding $parent[Window].DataContext.ChangeColor}"
+                                    CommandParameter="{Binding}">
+                                <Button.Transitions>
+                                    <Transitions>
+                                        <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
+                                    </Transitions>
+                                </Button.Transitions>
+                                <Button.Styles>
+                                    <Style Selector="Button.color-button:pointerover /template/ ContentPresenter">
+                                        <Setter Property="Background" Value="{Binding ElementColorBrush}"/>
+                                    </Style>
+                                </Button.Styles>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
             <Button Grid.Row="3" Classes="add-page-button" Command="{Binding CreateElement}"
                     IsEnabled="{Binding DataComplete}"
                     Content="{Binding ButtonText}" HotKey="Enter"/>
