@@ -1,5 +1,7 @@
 using System;
+using System.Collections.ObjectModel;
 using Avalonia.Media;
+using GradeManagement.Models;
 using GradeManagement.ViewModels.AddPages;
 using ReactiveUI;
 
@@ -18,6 +20,24 @@ namespace GradeManagement.ViewModels.BaseClasses
         private string? _buttonText;
         private string? _title;
         private bool _elementCounts = true;
+
+        private readonly Color[] _elementColors =
+        {
+            Color.Parse("#FFAE03"), Color.Parse("#EB8934"), Color.Parse("#D64045"), Color.Parse("#FF85FB"), 
+            Color.Parse("#A326C9"), Color.Parse("#A5B1CC"), Color.Parse("#4D7EA8"), Color.Parse("#91D9E6"),
+            Color.Parse("#009B72"), Color.Parse("#74CC31"), Color.Parse("#A8744F")
+        };
+        
+        protected AddViewModelBase()
+        {
+            foreach(var color in _elementColors)
+                ElementColorsCollection.Add(new ColorRepresentation(color));
+
+            var random = new Random();
+            int randomColor = random.Next(0, ElementColorsCollection.Count);
+            SelectedColor = ElementColorsCollection[randomColor];
+            SelectedColor.Selected = true;
+        }
         
         // Colors for border (incomplete/complete selection)
         protected static Color IncompleteColor { get; } = Color.Parse("#D64045");
@@ -85,6 +105,16 @@ namespace GradeManagement.ViewModels.BaseClasses
                 this.RaiseAndSetIfChanged(ref _elementCounts, value);
                 this.RaisePropertyChanged(nameof(DataComplete));
             }
+        }
+
+        protected ObservableCollection<ColorRepresentation> ElementColorsCollection { get; } = new();
+        protected ColorRepresentation SelectedColor { get; private set; }
+
+        protected void ChangeColor(ColorRepresentation colorRepresentation)
+        {
+            SelectedColor.Selected = false;
+            colorRepresentation.Selected = true;
+            SelectedColor = colorRepresentation;
         }
 
         internal void EditPageText(AddPageAction action, Type pageType, string suffix = "")
