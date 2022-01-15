@@ -1,6 +1,8 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
+    <!-- Title Text -->
+    
     <Style Selector="TextBlock.add-page-title-text">
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
@@ -9,10 +11,14 @@
         <Setter Property="FontSize" Value="30"/>
     </Style>
     
-    <Style Selector="Button.add-page-back-button">
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
-    </Style>
+    <!-- Back-Button -->
+    
+    <!-- <Style Selector="Button.add-page-back-button"> -->
+    <!--     <Setter Property="HorizontalAlignment" Value="Left"/> -->
+    <!--     <Setter Property="VerticalAlignment" Value="Center"/> -->
+    <!-- </Style> -->
+    
+    <!-- Text-box -->
     
     <Style Selector="TextBox.add-page-text-box">
         <Setter Property="Background" Value="White"/>
@@ -28,6 +34,8 @@
         <Setter Property="TextWrapping" Value="NoWrap"/>
         <Setter Property="FontSize" Value="16"/>
     </Style>
+    
+    <!-- Button for creating/editing -->
     
     <Style Selector="Button.add-page-button">
         <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -50,6 +58,8 @@
         <Setter Property="Background" Value="#707070"/>
     </Style>
     
+    <!-- Checkbox -->
+    
     <Style Selector="CheckBox.add-page-checkbox">
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
@@ -66,6 +76,8 @@
         <Setter Property="BorderBrush" Value="#808080"/>
         <Setter Property="Background" Value="#808080"/>
     </Style>
+    
+    <!-- Date Picker -->
     
     <Style Selector="TextBox.add-page-date-picker-textbox">
         <Setter Property="Background" Value="White"/>
