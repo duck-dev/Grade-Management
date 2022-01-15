@@ -63,6 +63,11 @@
                                         <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
                                     </Transitions>
                                 </Button.Transitions>
+                                <Button.Styles>
+                                    <Style Selector="Button.color-button:pointerover /template/ ContentPresenter">
+                                        <Setter Property="Background" Value="{Binding ElementColorBrush}"/>
+                                    </Style>
+                                </Button.Styles>
                             </Button>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
