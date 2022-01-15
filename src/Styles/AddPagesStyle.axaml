@@ -83,7 +83,7 @@
     
     <!-- Color Buttons -->
     
-    <Style Selector="Border.normal-color-border">
+    <Style Selector="Button.color-button">
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="BorderBrush" Value="Black"/>
         <Setter Property="CornerRadius" Value="10"/>
@@ -91,14 +91,8 @@
         <Setter Property="Height" Value="45"/>
         <Setter Property="Margin" Value="0.272727272727273,0"/>
     </Style>
-    <Style Selector="Border.selected-color-border">
+    <Style Selector="Button.color-button-selected">
         <Setter Property="BorderThickness" Value="3"/>
-    </Style>
-    
-    <Style Selector="Button.color-button">
-        <Setter Property="HorizontalAlignment" Value="Stretch"/>
-        <Setter Property="VerticalAlignment" Value="Stretch"/>
-        <Setter Property="CornerRadius" Value="10"/>
     </Style>
 </Styles>
 

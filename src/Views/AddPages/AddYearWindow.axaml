@@ -38,11 +38,10 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border Classes="normal-color-border" Classes.selected-color-border="{Binding Selected}">
-                            <Button Classes="color-button" Background="{Binding ElementColorBrush}"
-                                    Command="{Binding $parent[Window].DataContext.ChangeColor}"
-                                    CommandParameter="{Binding}"/>
-                        </Border>
+                        <Button Classes="color-button" Classes.color-button-selected="{Binding Selected}"
+                                Background="{Binding ElementColorBrush}"
+                                Command="{Binding $parent[Window].DataContext.ChangeColor}"
+                                CommandParameter="{Binding}"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
