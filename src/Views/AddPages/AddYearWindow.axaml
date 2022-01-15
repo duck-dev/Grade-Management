@@ -38,9 +38,8 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border Classes="normal-color" Classes.selected-color="{Binding Selected}">
-                            <Button Background="{Binding ElementColor}" 
-                                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                        <Border Classes="normal-color-border" Classes.selected-color-border="{Binding Selected}">
+                            <Button Classes="color-button" Background="{Binding ElementColorBrush}"
                                     Command="{Binding $parent[Window].DataContext.ChangeColor}"
                                     CommandParameter="{Binding}"/>
                         </Border>

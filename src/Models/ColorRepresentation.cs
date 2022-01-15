@@ -8,9 +8,13 @@ namespace GradeManagement.Models
         private bool _selected;
 
         public ColorRepresentation(Color color)
-            => ElementColor = color;
+        {
+            ElementColor = color;
+            ElementColorBrush = new SolidColorBrush(color);
+        }
         
         internal Color ElementColor { get; }
+        internal SolidColorBrush ElementColorBrush { get; }
         internal bool Selected
         {
             get => _selected;
