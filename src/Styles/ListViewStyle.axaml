@@ -4,6 +4,7 @@
     <!-- Element-Buttons -->
     
     <Style Selector="Button.element-button">
+        <Setter Property="Background" Value="#C7CAD1"/>
         <Setter Property="Margin" Value="30,17.5"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="RenderTransform" Value="scale(1)"/>
