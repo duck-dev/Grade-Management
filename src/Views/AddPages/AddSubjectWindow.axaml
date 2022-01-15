@@ -41,37 +41,39 @@
                          HorizontalContentAlignment="Center" Margin="0,15"
                          Text="{Binding ElementWeightingString}"
                          BorderBrush="{Binding BorderBrushes[1]}"/>
-                <CheckBox Grid.Row="2" Classes="add-page-checkbox"
-                          IsChecked="{Binding ElementCounts}" 
-                          Content="Count subject for year's average?" Margin="0,15"/>
-                <ItemsControl Grid.Row="3" Items="{Binding ElementColorsCollection}"
-                              Margin="0,15,0,0">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Button Classes="color-button" Classes.color-button-selected="{Binding Selected}"
-                                    Background="{Binding ElementColorBrush}"
-                                    Command="{Binding $parent[Window].DataContext.ChangeColor}"
-                                    CommandParameter="{Binding}">
-                                <Button.Transitions>
-                                    <Transitions>
-                                        <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
-                                    </Transitions>
-                                </Button.Transitions>
-                                <Button.Styles>
-                                    <Style Selector="Button.color-button:pointerover /template/ ContentPresenter">
-                                        <Setter Property="Background" Value="{Binding ElementColorBrush}"/>
-                                    </Style>
-                                </Button.Styles>
-                            </Button>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                <Grid Grid.Row="2" RowDefinitions="Auto,Auto" Margin="0,15">
+                    <TextBlock Grid.Row="0" FontSize="14" Foreground="Black" Margin="0,0,0,7.5"
+                               Text="Pick a color for the Subject:" HorizontalAlignment="Center"/>
+                    <ItemsControl Grid.Row="1" Items="{Binding ElementColorsCollection}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Classes="color-button" Classes.color-button-selected="{Binding Selected}"
+                                        Background="{Binding ElementColorBrush}"
+                                        Command="{Binding $parent[Window].DataContext.ChangeColor}"
+                                        CommandParameter="{Binding}">
+                                    <Button.Transitions>
+                                        <Transitions>
+                                            <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
+                                        </Transitions>
+                                    </Button.Transitions>
+                                    <Button.Styles>
+                                        <Style Selector="Button.color-button:pointerover /template/ ContentPresenter">
+                                            <Setter Property="Background" Value="{Binding ElementColorBrush}"/>
+                                        </Style>
+                                    </Button.Styles>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
+                <CheckBox Grid.Row="3" Classes="add-page-checkbox"
+                          IsChecked="{Binding ElementCounts}"
+                          Content="Count subject for year's average?" Margin="0,15,0,0"/>
             </Grid>
             <Button Grid.Row="2" Classes="add-page-button" Command="{Binding CreateElement}"
                     IsEnabled="{Binding DataComplete}"
