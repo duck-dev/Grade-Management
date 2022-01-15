@@ -49,8 +49,9 @@ namespace GradeManagement.ViewModels.AddPages
             if (EditedSubject is null)
             {
                 var viewModel = SubjectListViewModel.Instance;
-                var subject = new Subject(ElementName, ElementWeighting, "#fcba03", ElementCounts); // TODO: Use selected color
-                
+                var colorHex = SelectedColor.ElementColor.ToHexString();
+                var subject = new Subject(ElementName, ElementWeighting, colorHex, ElementCounts);
+
                 currentYear.Subjects.SafeAdd(subject);
                 viewModel?.Items?.Add(subject);
             }

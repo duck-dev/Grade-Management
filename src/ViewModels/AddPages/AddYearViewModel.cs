@@ -1,4 +1,5 @@
 ﻿using Avalonia.Media;
+using GradeManagement.ExtensionCollection;
 using GradeManagement.Interfaces;
 using GradeManagement.Models;
 using GradeManagement.Models.Elements;
@@ -40,7 +41,8 @@ namespace GradeManagement.ViewModels.AddPages
             if (EditedYear is null)
             {
                 var viewModel = YearListViewModel.Instance;
-                var year = new SchoolYear(ElementName);
+                var colorHex = SelectedColor.ElementColor.ToHexString();
+                var year = new SchoolYear(ElementName, colorHex);
                 
                 DataManager.SchoolYears.Add(year);
                 viewModel?.Items?.Add(year);
