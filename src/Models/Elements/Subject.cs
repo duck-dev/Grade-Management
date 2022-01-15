@@ -17,6 +17,8 @@ namespace GradeManagement.Models.Elements
 {
     public class Subject : ColorableElement, IElement, IGradable, ICloneable
     {
+        private const int MaxNameLength = 25;
+        
         private string _name = string.Empty;
         private List<Grade> _grades = new();
         private float _weighting;
@@ -24,6 +26,8 @@ namespace GradeManagement.Models.Elements
 
         public Subject(string name, float weighting, string elementColorHex, bool counts) : base(elementColorHex)
         {
+            if (name.Length > MaxNameLength)
+                name = name.Substring(0, MaxNameLength);
             this.Name = name;
             this.Weighting = weighting;
             this.Counts = counts;

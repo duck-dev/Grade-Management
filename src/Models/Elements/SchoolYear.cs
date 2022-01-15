@@ -13,12 +13,16 @@ namespace GradeManagement.Models.Elements
 {
     public class SchoolYear : ReactiveObject, IElement, IGradable
     {
+        private const int MaxNameLength = 25;
+        
         private string _name = string.Empty;
         private List<Subject> _subjects = new();
         private ButtonStyleBase? _buttonStyle;
 
         public SchoolYear(string name)
         {
+            if (name.Length > MaxNameLength)
+                name = name.Substring(0, MaxNameLength);
             this.Name = name;
 
             var isGrid = SettingsManager.Settings?.YearButtonStyle == SelectedButtonStyle.Grid;

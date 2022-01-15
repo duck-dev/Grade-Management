@@ -12,6 +12,8 @@ namespace GradeManagement.Models.Elements
 {
     public class Grade : ReactiveObject, IElement, IGradable, ICloneable
     {
+        private const int MaxNameLength = 35;
+        
         private string _name = string.Empty;
         private float _gradeValue;
         private float _weighting;
@@ -22,6 +24,8 @@ namespace GradeManagement.Models.Elements
         [JsonConstructor]
         public Grade(string name, float gradeValue, float weighting, DateTime date, bool counts)
         {
+            if (name.Length > MaxNameLength)
+                name = name.Substring(0, MaxNameLength);
             this.Name = name;
             this.GradeValue = gradeValue;
             this.Weighting = weighting;
