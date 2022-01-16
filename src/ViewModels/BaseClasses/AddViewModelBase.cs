@@ -26,14 +26,16 @@ namespace GradeManagement.ViewModels.BaseClasses
             Color.Parse("#C7CAD1"), Color.Parse("#FFAE03"), Color.Parse("#EB8934"), Color.Parse("#D64045"), 
             Color.Parse("#FF85FB"), Color.Parse("#A326C9"), Color.Parse("#4D7EA8"), Color.Parse("#6FB3BF"), 
             Color.Parse("#A5B1CC"), Color.Parse("#009B72"), Color.Parse("#74CC31"), Color.Parse("#A8744F")
-        }; // TODO: Change first (default) color with resource for the default color and grade background
-           // and perhaps do that for other colors too
-        
+        }; // TODO: Substitute first (default) color with resource for each color
+
         protected AddViewModelBase()
         {
-            foreach(var color in _elementColors)
-                ElementColorsCollection.Add(new ColorRepresentation(color));
-            
+            foreach (var color in _elementColors)
+            {
+                var colorRepresentation = new ColorRepresentation(color);
+                ElementColorsCollection.Add(colorRepresentation);
+            }
+
             SelectedColor = ElementColorsCollection[0];
             SelectedColor.Selected = true;
         }

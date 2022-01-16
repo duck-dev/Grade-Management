@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Linq;
 using Avalonia.Media;
 using GradeManagement.ExtensionCollection;
 using GradeManagement.Interfaces;
@@ -31,6 +32,10 @@ namespace GradeManagement.ViewModels.AddPages
             ElementName = subject.Name;
             ElementWeightingString = subject.Weighting.ToString(CultureInfo.CurrentCulture);
             ElementCounts = subject.Counts;
+            
+            var colorRepresentation = ElementColorsCollection.FirstOrDefault(x => x.ElementColor.Equals(subject.ElementColor));
+            if(colorRepresentation is not null)
+                ChangeColor(colorRepresentation);
         }
         
         protected internal override void EraseData()
