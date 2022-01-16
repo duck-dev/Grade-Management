@@ -88,8 +88,8 @@ namespace GradeManagement.Models.Elements
             set => this.RaiseAndSetIfChanged(ref _buttonStyle, value);
         }
         
-        protected override int GridThreshold => 120;
-        protected override int ListThreshold => 135;
+        protected override int GridThresholdAdditionalInfo => 120;
+        protected override int ListThresholdAdditionalInfo => 135;
         
         internal float RoundedAverage => Utilities.GetAverage(Grades, true);
 

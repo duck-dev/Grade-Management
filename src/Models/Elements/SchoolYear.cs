@@ -75,8 +75,8 @@ namespace GradeManagement.Models.Elements
         [JsonIgnore] 
         public int ElementCount => Subjects.Count;
 
-        protected override int GridThreshold => 120;
-        protected override int ListThreshold => 135;
+        protected override int GridThresholdAdditionalInfo => 120;
+        protected override int ListThresholdAdditionalInfo => 135;
 
         public T? Duplicate<T>(bool save = true) where T : class, IElement
         {

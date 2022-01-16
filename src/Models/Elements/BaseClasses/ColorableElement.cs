@@ -11,11 +11,16 @@ namespace GradeManagement.Models.Elements
 {
     public class ColorableElement : ReactiveObject
     {
+        private const int GridThresholdTitle = 110;
+        private const int ListThresholdTitle = 135;
+        
         private readonly Color _additionalInfoBaseColor = Color.Parse("#999999");
         private readonly Color _lightBackground = Color.Parse("#c7cad1");
 
         private SolidColorBrush? _additionalInfoGrid;
         private SolidColorBrush? _additionalInfoList;
+        private SolidColorBrush? _titleBrushGrid;
+        private SolidColorBrush? _titleBrushList;
         private SelectedButtonStyle _buttonStyle;
         
         private string _elementColorHex = "#c7cad1";
@@ -42,8 +47,8 @@ namespace GradeManagement.Models.Elements
             }
         }
 
-        protected virtual int GridThreshold { get; }
-        protected virtual int ListThreshold { get; }
+        protected virtual int GridThresholdAdditionalInfo { get; }
+        protected virtual int ListThresholdAdditionalInfo { get; }
 
         internal Color ElementColor { get; private set; }
 
@@ -59,8 +64,8 @@ namespace GradeManagement.Models.Elements
             private set => this.RaiseAndSetIfChanged(ref _additionalInfoBrush, value);
         }
         
-        private Color DarkSubjectTint => ElementColor.DarkenColor(0.3f);
-        private Color LightSubjectTint => ElementColor.BrightenColor(0.3f);
+        private Color DarkTitleTint => ElementColor.DarkenColor(0.3f);
+        private Color LightTitleTint => ElementColor.BrightenColor(0.4f);
         
         private Color AdditionalInfoDark => _additionalInfoBaseColor.DarkenColor(0.25f);
         private Color AdditionalInfoLight => _additionalInfoBaseColor.BrightenColor(0.25f);
@@ -68,10 +73,6 @@ namespace GradeManagement.Models.Elements
         private void ApplyChangedColor()
         {
             ElementColor = Color.Parse(_elementColorHex);
-                
-            var titleTint 
-                = Utilities.AdjustForegroundBrightness(ElementColor, DarkSubjectTint, LightSubjectTint);
-            TitleBrush = new SolidColorBrush(titleTint);
 
             var backgroundGradient = Utilities.CreateLinearGradientBrush(
                 new RelativePoint(0, 1, RelativeUnit.Relative),
@@ -94,18 +95,24 @@ namespace GradeManagement.Models.Elements
         {
             _buttonStyle = isGrid ? SelectedButtonStyle.Grid : SelectedButtonStyle.List;
             AdditionalInfoColor = isGrid ? _additionalInfoGrid : _additionalInfoList;
+            TitleBrush = isGrid ? _titleBrushGrid : _titleBrushList;
         }
 
         private void SetAdditionalInfoColor()
         {
-            var gridColor = Utilities.AdjustForegroundBrightness(ElementColor, AdditionalInfoDark, AdditionalInfoLight, GridThreshold);
+            var gridColor = Utilities.AdjustForegroundBrightness(ElementColor, AdditionalInfoDark, AdditionalInfoLight, GridThresholdAdditionalInfo);
             _additionalInfoGrid = new SolidColorBrush(gridColor);
-            var listColor = Utilities.AdjustForegroundBrightness(ElementColor, AdditionalInfoDark, AdditionalInfoLight, ListThreshold);
+            var listColor = Utilities.AdjustForegroundBrightness(ElementColor, AdditionalInfoDark, AdditionalInfoLight, ListThresholdAdditionalInfo);
             _additionalInfoList = new SolidColorBrush(listColor);
 
+            gridColor = Utilities.AdjustForegroundBrightness(ElementColor, DarkTitleTint, LightTitleTint, GridThresholdTitle);
+            _titleBrushGrid = new SolidColorBrush(gridColor);
+            listColor = Utilities.AdjustForegroundBrightness(ElementColor, DarkTitleTint, LightTitleTint, ListThresholdTitle);
+            _titleBrushList = new SolidColorBrush(listColor);
+            
             bool isGrid = _buttonStyle == SelectedButtonStyle.Grid;
             AdditionalInfoColor = isGrid ? _additionalInfoGrid : _additionalInfoList;
-            Utilities.Log(AdditionalInfoColor.Color.ToHexString());
+            TitleBrush = isGrid ? _titleBrushGrid : _titleBrushList;
         }
     }
 }
