@@ -20,6 +20,7 @@ namespace GradeManagement.ViewModels.BaseClasses
         private string? _buttonText;
         private string? _title;
         private bool _elementCounts = true;
+        private ColorRepresentation _selectedColor;
 
         private readonly Color[] _elementColors =
         {
@@ -36,7 +37,7 @@ namespace GradeManagement.ViewModels.BaseClasses
                 ElementColorsCollection.Add(colorRepresentation);
             }
 
-            SelectedColor = ElementColorsCollection[0];
+            _selectedColor = SelectedColor = ElementColorsCollection[0];
             SelectedColor.Selected = true;
         }
         
@@ -109,7 +110,16 @@ namespace GradeManagement.ViewModels.BaseClasses
         }
 
         protected ObservableCollection<ColorRepresentation> ElementColorsCollection { get; } = new();
-        protected ColorRepresentation SelectedColor { get; private set; }
+
+        protected ColorRepresentation SelectedColor
+        {
+            get => _selectedColor;
+            private set
+            {
+                _selectedColor = value;
+                this.RaisePropertyChanged(nameof(DataComplete));
+            }
+        }
 
         protected void ChangeColor(ColorRepresentation colorRepresentation)
         {

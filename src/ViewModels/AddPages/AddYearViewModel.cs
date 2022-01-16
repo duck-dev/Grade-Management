@@ -64,7 +64,8 @@ namespace GradeManagement.ViewModels.AddPages
             if (EditedYear is null)
                 return true;
 
-            return ElementName is not null && !ElementName.Trim().Equals(EditedYear.Name.Trim());
+            return ElementName is not null && (!ElementName.Trim().Equals(EditedYear.Name.Trim()) 
+                                               || !SelectedColor.ElementColor.Equals(EditedYear.ElementColor));
         }
     }
 }
