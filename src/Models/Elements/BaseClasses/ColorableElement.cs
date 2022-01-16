@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using Avalonia;
 using Avalonia.Media;
+using GradeManagement.Enums;
 using GradeManagement.ExtensionCollection;
 using GradeManagement.UtilityCollection;
 using ReactiveUI;
@@ -10,12 +11,17 @@ namespace GradeManagement.Models.Elements
 {
     public class ColorableElement : ReactiveObject
     {
-        private readonly Color _additionalInfoColor = Color.Parse("#999999");
+        private readonly Color _additionalInfoBaseColor = Color.Parse("#999999");
         private readonly Color _lightBackground = Color.Parse("#c7cad1");
-        private string _elementColorHex = "#c7cad1";
+
+        private SolidColorBrush? _additionalInfoGrid;
+        private SolidColorBrush? _additionalInfoList;
+        private SelectedButtonStyle _buttonStyle;
         
-        protected ColorableElement(string elementColorHex)
-            => this.ElementColorHex = elementColorHex;
+        private string _elementColorHex = "#c7cad1";
+        private SolidColorBrush? _additionalInfoBrush;
+
+        protected ColorableElement(string elementColorHex) => this.ElementColorHex = elementColorHex;
 
         [JsonInclude]
         public string ElementColorHex
@@ -35,7 +41,10 @@ namespace GradeManagement.Models.Elements
                 this.RaisePropertyChanged(nameof(AdditionalInfoColor));
             }
         }
-        
+
+        protected virtual int GridThreshold { get; }
+        protected virtual int ListThreshold { get; }
+
         internal Color ElementColor { get; private set; }
 
         internal SolidColorBrush? TitleBrush { get; private set; }
@@ -43,14 +52,18 @@ namespace GradeManagement.Models.Elements
         internal LinearGradientBrush? BackgroundBrush { get; private set; }
         
         internal LinearGradientBrush? BackgroundBrushHover { get; private set; }
-        
-        internal SolidColorBrush? AdditionalInfoColor { get; private set; }
+
+        internal SolidColorBrush? AdditionalInfoColor
+        {
+            get => _additionalInfoBrush; 
+            private set => this.RaiseAndSetIfChanged(ref _additionalInfoBrush, value);
+        }
         
         private Color DarkSubjectTint => ElementColor.DarkenColor(0.3f);
         private Color LightSubjectTint => ElementColor.BrightenColor(0.3f);
         
-        private Color AdditionalInfoDark => _additionalInfoColor.DarkenColor(0.25f);
-        private Color AdditionalInfoLight => _additionalInfoColor.BrightenColor(0.25f);
+        private Color AdditionalInfoDark => _additionalInfoBaseColor.DarkenColor(0.25f);
+        private Color AdditionalInfoLight => _additionalInfoBaseColor.BrightenColor(0.25f);
 
         private void ApplyChangedColor()
         {
@@ -73,10 +86,26 @@ namespace GradeManagement.Models.Elements
                 new[] { ElementColor.DarkenColor(0.075f), _lightBackground.DarkenColor(0.075f) },
                 new[] { 0.2, 1.0 });
             BackgroundBrushHover = backgroundGradientHover;
+            
+            SetAdditionalInfoColor();
+        }
 
-            var additionalInfoTint 
-                = Utilities.AdjustForegroundBrightness(ElementColor, AdditionalInfoDark, AdditionalInfoLight, 120);
-            AdditionalInfoColor = new SolidColorBrush(additionalInfoTint);
+        internal void AdjustTextColors(bool isGrid)
+        {
+            _buttonStyle = isGrid ? SelectedButtonStyle.Grid : SelectedButtonStyle.List;
+            AdditionalInfoColor = isGrid ? _additionalInfoGrid : _additionalInfoList;
+        }
+
+        private void SetAdditionalInfoColor()
+        {
+            var gridColor = Utilities.AdjustForegroundBrightness(ElementColor, AdditionalInfoDark, AdditionalInfoLight, GridThreshold);
+            _additionalInfoGrid = new SolidColorBrush(gridColor);
+            var listColor = Utilities.AdjustForegroundBrightness(ElementColor, AdditionalInfoDark, AdditionalInfoLight, ListThreshold);
+            _additionalInfoList = new SolidColorBrush(listColor);
+
+            bool isGrid = _buttonStyle == SelectedButtonStyle.Grid;
+            AdditionalInfoColor = isGrid ? _additionalInfoGrid : _additionalInfoList;
+            Utilities.Log(AdditionalInfoColor.Color.ToHexString());
         }
     }
 }

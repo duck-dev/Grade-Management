@@ -29,12 +29,12 @@
                     <Grid ColumnDefinitions="Auto,Auto" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <TextBlock Grid.Column="0" TextAlignment="Center"
                                    Text="{Binding Path=YearRef.Subjects.Count, StringFormat='=  {0}'}"
-                                   Foreground="#878787"
+                                   Foreground="{Binding YearRef.AdditionalInfoColor}"
                                    FontSize="42"
                                    Margin="0, 0, 35, 0"/>
                         <TextBlock Grid.Column="1" TextAlignment="Center"
                                    Text="{Binding Path=YearRef.GradeValue, StringFormat='Ø  {0}'}"
-                                   Foreground="#878787"
+                                   Foreground="{Binding YearRef.AdditionalInfoColor}"
                                    FontSize="42"
                                    Margin="35, 0, 0, 0"/>
                     </Grid>
@@ -69,7 +69,7 @@
                                FontSize="36" FontWeight="Bold" Foreground="Black" VerticalAlignment="Center"/>
                     <TextBlock Grid.Column="1" VerticalAlignment="Center" Margin="60,0,0,0"
                                Text="{Binding Path=YearRef.Subjects.Count, StringFormat='=  {0}'}"
-                               Foreground="#878787" FontSize="28"/>
+                               Foreground="{Binding YearRef.AdditionalInfoColor}" FontSize="28"/>
                 </Grid>
                 <TextBlock Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"
                            Text="{Binding YearRef.GradeValue}"

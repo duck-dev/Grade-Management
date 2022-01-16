@@ -16,7 +16,7 @@ namespace GradeManagement.UtilityCollection
         /// <param name="darkColor">The dark tint.</param>
         /// <param name="lightColor">The light tint.</param>
         /// <param name="threshold">The threshold, at which the color becomes dark upwards and light downwards.
-        ///                         Default value: 130</param>
+        ///                         Default value: 110</param>
         /// <returns>The adjusted foreground color.</returns>
         public static Color AdjustForegroundBrightness(Color backgroundColor, Color darkColor, Color lightColor, 
             int threshold = 110)

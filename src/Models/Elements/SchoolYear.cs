@@ -27,6 +27,7 @@ namespace GradeManagement.Models.Elements
 
             var isGrid = SettingsManager.Settings?.YearButtonStyle == SelectedButtonStyle.Grid;
             this.ButtonStyle = isGrid ? new GridButton(this) : new ListButton(this);
+            AdjustTextColors(isGrid);
         }
 
         [JsonConstructor]
@@ -73,6 +74,9 @@ namespace GradeManagement.Models.Elements
 
         [JsonIgnore] 
         public int ElementCount => Subjects.Count;
+
+        protected override int GridThreshold => 120;
+        protected override int ListThreshold => 135;
 
         public T? Duplicate<T>(bool save = true) where T : class, IElement
         {

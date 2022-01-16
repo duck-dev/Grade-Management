@@ -3,6 +3,7 @@ using Avalonia.Media;
 using GradeManagement.Enums;
 using GradeManagement.ExtensionCollection;
 using GradeManagement.Interfaces;
+using GradeManagement.Models.Elements;
 using GradeManagement.ViewModels.Dialogs;
 using ReactiveUI;
 
@@ -67,7 +68,27 @@ namespace GradeManagement.ViewModels.BaseClasses
             if (TopbarTexts is null)
                 throw new ArgumentNullException();
         }
-        
-        protected internal void ChangeButtonView(bool isGrid) => IsViewGrid = isGrid;
+
+        protected internal void ChangeButtonView(bool isGrid)
+        {
+            IsViewGrid = isGrid;
+            AdjustTextColors(isGrid);
+        }
+
+        private void AdjustTextColors(bool isGrid)
+        {
+            if (this is IListViewModel<Subject> {Items: { }} subjectViewModel)
+            {
+                foreach (var item in subjectViewModel.Items)
+                    item.AdjustTextColors(isGrid);
+                return;
+            }
+
+            if (this is IListViewModel<SchoolYear> {Items: { }} yearViewModel)
+            {
+                foreach (var item in yearViewModel.Items)
+                    item.AdjustTextColors(isGrid);
+            }
+        }
     }
 }

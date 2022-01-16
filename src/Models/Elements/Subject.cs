@@ -34,6 +34,7 @@ namespace GradeManagement.Models.Elements
 
             var isGrid = SettingsManager.Settings?.SubjectButtonStyle == SelectedButtonStyle.Grid;
             this.ButtonStyle = isGrid ? new GridButton(this) : new ListButton(this);
+            AdjustTextColors(isGrid);
         }
         
         [JsonConstructor]
@@ -86,7 +87,10 @@ namespace GradeManagement.Models.Elements
             get => _buttonStyle;
             set => this.RaiseAndSetIfChanged(ref _buttonStyle, value);
         }
-
+        
+        protected override int GridThreshold => 120;
+        protected override int ListThreshold => 135;
+        
         internal float RoundedAverage => Utilities.GetAverage(Grades, true);
 
         public T? Duplicate<T>(bool save = true) where T : class, IElement
