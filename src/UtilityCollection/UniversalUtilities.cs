@@ -32,7 +32,7 @@ namespace GradeManagement.UtilityCollection
         public static float GetAverage(IEnumerable<IGradable> gradables, bool round)
         {
             var enumerable = gradables.Where(x => x.Counts && x.ElementCount > 0 && !float.IsNaN(x.GradeValue));
-            if (!gradables.Any())
+            if (!enumerable.Any())
                 return 0;
             float result = enumerable.Sum(x => x.GradeValue * x.Weighting) / enumerable.Sum(x => x.Weighting);
             return round ? (float)Math.Round(result, 2) : result;
