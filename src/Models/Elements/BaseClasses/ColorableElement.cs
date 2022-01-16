@@ -49,8 +49,8 @@ namespace GradeManagement.Models.Elements
         private Color DarkSubjectTint => ElementColor.DarkenColor(0.3f);
         private Color LightSubjectTint => ElementColor.BrightenColor(0.3f);
         
-        private Color AdditionalInfoDark => _additionalInfoColor.DarkenColor(0.3f);
-        private Color AdditionalInfoLight => _additionalInfoColor.BrightenColor(0.3f);
+        private Color AdditionalInfoDark => _additionalInfoColor.DarkenColor(0.25f);
+        private Color AdditionalInfoLight => _additionalInfoColor.BrightenColor(0.25f);
 
         private void ApplyChangedColor()
         {
@@ -75,7 +75,7 @@ namespace GradeManagement.Models.Elements
             BackgroundBrushHover = backgroundGradientHover;
 
             var additionalInfoTint 
-                = Utilities.AdjustForegroundBrightness(ElementColor, AdditionalInfoDark, AdditionalInfoLight);
+                = Utilities.AdjustForegroundBrightness(ElementColor, AdditionalInfoDark, AdditionalInfoLight, 120);
             AdditionalInfoColor = new SolidColorBrush(additionalInfoTint);
         }
     }
