@@ -89,7 +89,11 @@ namespace GradeManagement.Models.Elements
             DataManager.SchoolYears.Add(year);
         }
 
-        internal void Edit(string newName) => this.Name = newName;
+        internal void Edit(string newName, string colorHex)
+        {
+            this.Name = newName;
+            this.ElementColorHex = colorHex;
+        }
         
         private SchoolYear Clone() => new(_name, ElementColorHex, _subjects.Clone().ToList());
     }

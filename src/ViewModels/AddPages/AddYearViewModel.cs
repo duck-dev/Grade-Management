@@ -43,18 +43,18 @@ namespace GradeManagement.ViewModels.AddPages
             if(ElementName is null)
                 return;
             
+            var colorHex = SelectedColor.ElementColor.ToHexString();
             if (EditedYear is null)
             {
                 var viewModel = YearListViewModel.Instance;
-                var colorHex = SelectedColor.ElementColor.ToHexString();
                 var year = new SchoolYear(ElementName, colorHex);
                 
                 DataManager.SchoolYears.Add(year);
                 viewModel?.Items?.Add(year);
             }
             else
-                EditedYear.Edit(ElementName);
-            
+                EditedYear.Edit(ElementName, colorHex);
+
             UpdateVisualOnChange();
             EditedYear = null;
         }

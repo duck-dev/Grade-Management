@@ -160,6 +160,7 @@ namespace GradeManagement.ViewModels.BaseClasses
             ElementName = string.Empty;
             ElementWeightingString = string.Empty;
             ElementCounts = true;
+            SelectedColor = ElementColorsCollection[0];
         }
     }
 }

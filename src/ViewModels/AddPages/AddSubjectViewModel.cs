@@ -50,19 +50,19 @@ namespace GradeManagement.ViewModels.AddPages
             var currentYear = MainWindowViewModel.CurrentYear;
             if (ElementName is null || currentYear is null)
                 return;
-
+            
+            var colorHex = SelectedColor.ElementColor.ToHexString();
             if (EditedSubject is null)
             {
                 var viewModel = SubjectListViewModel.Instance;
-                var colorHex = SelectedColor.ElementColor.ToHexString();
                 var subject = new Subject(ElementName, ElementWeighting, colorHex, ElementCounts);
 
                 currentYear.Subjects.SafeAdd(subject);
                 viewModel?.Items?.Add(subject);
             }
             else
-                EditedSubject.Edit(ElementName, ElementWeighting, "#fcba03", ElementCounts); // TODO: Use selected color
-            
+                EditedSubject.Edit(ElementName, ElementWeighting, colorHex, ElementCounts);
+
             UpdateVisualOnChange();
             EditedSubject = null;
         }
