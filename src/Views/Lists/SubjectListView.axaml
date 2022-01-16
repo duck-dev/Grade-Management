@@ -106,7 +106,7 @@
             <Grid ColumnDefinitions="*,Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid Grid.Column="0" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Left" Margin="10,0,0,0">
                     <TextBlock Grid.Column="0" Text="{Binding SubjectRef.Name}"
-                               FontSize="36" FontWeight="Bold" Foreground="Black"
+                               FontSize="36" FontWeight="Bold" Foreground="{Binding SubjectRef.TitleBrush}"
                                HorizontalAlignment="Left" VerticalAlignment="Center"/>
                     <Grid Grid.Column="1" RowDefinitions="*, *" Margin="60,0,0,0">
                         <TextBlock Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"
