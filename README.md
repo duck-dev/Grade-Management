@@ -29,7 +29,7 @@ The same goes for calculating the hypothetical average with your next assumed gr
 Don't fear anymore, rather export your semesters or let them be automatically exported at a certain specified time. (Coming soon)
 - <span style="color:#009B72">**Many settings:**</span> Customize your **Grade Management** with a wide range of settings. (Coming soon)
 - <span style="color:#009B72">**Order elements:**</span> Order the elements according to many different parameters 
-or just pick your own preferred order whenever you feel like it. (coming soon)
+or just pick your own preferred order whenever you feel like it. (Coming soon)
 - <span style="color:#009B72">**Multi-Lingual:**</span> Do you speak English... oder Deutsch... ou Français?
 We offer you freedom in the choice of your favored language. (Coming soon)
 
@@ -40,7 +40,7 @@ Assign a **color** to each semester and subject to recognize them at first glanc
 - <span style="color:#009B72">**Intuitive and simple, yet so powerful:**</span> Incredibly **intuitive** layout and navigation.
 - <span style="color:#009B72">**Different views:**</span> 
 Do you prefer to view your semesters, subjects or grades in a **grid**- or **list**-pattern? Whatever, you can decide for yourself!
-- <span style="color:#009B72">**Themes:**</span> Light Theme or Dark Theme? We say **both** and even **more**. (coming soon)
+- <span style="color:#009B72">**Themes:**</span> Light Theme or Dark Theme? We say **both** and even **more**. (Coming soon)
 
 ## Development
 This tool is being developed with the open-source .NET XAML UI-framework [Avalonia](https://avaloniaui.net/) and C#.
