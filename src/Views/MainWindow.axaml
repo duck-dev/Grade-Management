@@ -88,12 +88,12 @@
             <Border DockPanel.Dock="Bottom" Classes="topbar-border" BorderThickness="0, 1, 0, 0"
                     VerticalAlignment="Bottom" Margin="0,17.5,0,0">
                 <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <Button Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Center"
-                            Margin="60,0,0,0"/>
+                    <!-- <Button Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Center" -->
+                    <!--         Margin="60,0,0,0"/> -->
                     <TextBlock Text="{Binding Path=CurrentAverage, StringFormat='Average: {0}'}"
                                FontSize="30" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <Button Width="80" Height="80" HorizontalAlignment="Right" VerticalAlignment="Center"
-                            Margin="0,0,60,0"/>
+                    <!-- <Button Width="80" Height="80" HorizontalAlignment="Right" VerticalAlignment="Center" -->
+                    <!--         Margin="0,0,60,0"/> -->
                 </Panel>
             </Border>
 
