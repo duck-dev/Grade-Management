@@ -306,7 +306,27 @@
             </ContentControl>
         </ScrollViewer>
 
-        <Button HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="57.5, 0, 0, 45"
-                Width="150" Height="175" Command="{Binding OpenTargetGradeCalc}"/>
+        <Button HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="37.5, 0, 0, 20"
+                Width="175" Height="175" Command="{Binding OpenTargetGradeCalc}">
+            <Button.Template>
+                <ControlTemplate>
+                    <Image Source="/Assets/Images/Calculator-Light.png" Width="175" Height="175"/>
+                </ControlTemplate>
+            </Button.Template>
+            <Button.Styles>
+                <Style Selector="Button:pointerover">
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Setter Property="RenderTransform" Value="scale(0.95)"/>
+                </Style>
+                <Style Selector="Button:pressed">
+                    <Setter Property="RenderTransform" Value="scale(0.90)"/>
+                </Style>
+            </Button.Styles>
+            <Button.Transitions>
+                <Transitions>
+                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
+                </Transitions>
+            </Button.Transitions>
+        </Button>
     </Panel>
 </UserControl>
