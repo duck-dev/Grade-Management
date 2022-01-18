@@ -43,7 +43,4 @@
         <SubType>Code</SubType>
       </Compile>
     </ItemGroup>
-    <ItemGroup>
-      <Folder Include="Assets\Images" />
-    </ItemGroup>
 </Project>
