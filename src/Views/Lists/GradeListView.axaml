@@ -35,7 +35,7 @@
                       VerticalAlignment="Top">
                     <Grid Grid.Column="0" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center"
                           VerticalAlignment="Center">
-                        <Image Grid.Column="0" Source="/Assets/Images/Date-Dark.png"
+                        <Image Grid.Column="0" Source="/Assets/Images/Dark/Date-Dark.png"
                                Margin="0,0,10,0" Width="28" Height="28"
                                HorizontalAlignment="Center" VerticalAlignment="Center"/> <!-- TODO: Consider themes when implemented -->
                         <TextBlock Grid.Column="1" TextAlignment="Center"
@@ -46,7 +46,7 @@
                     </Grid>
                     <Grid Grid.Column="1" ColumnDefinitions="Auto,Auto" 
                           HorizontalAlignment="Center" VerticalAlignment="Center" Margin="25, 0, 0, 0">
-                        <Image Grid.Column="0" Source="/Assets/Images/Weighting-Dark.png" Width="32" Height="32"
+                        <Image Grid.Column="0" Source="/Assets/Images/Dark/Weighting-Dark.png" Width="32" Height="32"
                                Margin="0,0,10,0"/> <!-- TODO: Consider themes when implemented -->
                         <TextBlock Grid.Column="1" TextAlignment="Center" Foreground="#878787" FontSize="30"
                                    Text="{Binding Path=GradeRef.Weighting}"/>
@@ -133,7 +133,7 @@
                     <Grid Grid.Column="1" RowDefinitions="*, *" Margin="60,0,0,0">
                         <Grid Grid.Row="0" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center"
                               VerticalAlignment="Center">
-                            <Image Grid.Column="0" Source="/Assets/Images/Date-Dark.png"
+                            <Image Grid.Column="0" Source="/Assets/Images/Dark/Date-Dark.png"
                                    Margin="0,0,10,0" Width="28" Height="28"
                                    HorizontalAlignment="Center" VerticalAlignment="Center"/> <!-- TODO: Consider themes when implemented -->
                             <TextBlock Grid.Column="1" TextAlignment="Center"
@@ -144,7 +144,7 @@
                         </Grid>
                         <Grid Grid.Row="1" ColumnDefinitions="Auto,Auto" 
                               HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Image Grid.Column="0" Source="/Assets/Images/Weighting-Dark.png" Width="30" Height="30"
+                            <Image Grid.Column="0" Source="/Assets/Images/Dark/Weighting-Dark.png" Width="30" Height="30"
                                    Margin="0,0,10,0"/> <!-- TODO: Consider themes when implemented -->
                             <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
                                        Text="{Binding Path=GradeRef.Weighting}"
@@ -318,7 +318,7 @@
                 Width="175" Height="175" Command="{Binding OpenTargetGradeCalc}">
             <Button.Template>
                 <ControlTemplate>
-                    <Image Source="/Assets/Images/Calculator-Dark.png" Width="175" Height="175"/>
+                    <Image Source="/Assets/Images/Dark/Calculator-Dark.png" Width="175" Height="175"/> <!-- TODO: Consider themes when implemented -->
                 </ControlTemplate>
             </Button.Template>
             <Button.Styles>
