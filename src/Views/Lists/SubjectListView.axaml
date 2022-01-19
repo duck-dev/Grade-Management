@@ -36,16 +36,26 @@
                                    Text="{Binding Path=SubjectRef.Grades.Count, StringFormat='=  {0}'}"
                                    Foreground="{Binding SubjectRef.AdditionalInfoColor}"
                                    FontSize="30" Margin="0, 0, 25, 0" />
-                        <TextBlock Grid.Column="1" TextAlignment="Center"
-                                   Text="{Binding Path=SubjectRef.Weighting, StringFormat='W  {0}'}"
-                                   Foreground="{Binding SubjectRef.AdditionalInfoColor}"
-                                   FontSize="30" Margin="25, 0, 0, 0" />
+                        <Grid Grid.Column="1" ColumnDefinitions="Auto,Auto" 
+                              HorizontalAlignment="Center" VerticalAlignment="Center" Margin="25, 0, 0, 0">
+                            <Image Grid.Column="0" Source="/Assets/Images/Weighting-Dark-New.png" Width="32" Height="32"
+                                   Margin="0,0,10,0"
+                                   IsVisible="{Binding SubjectRef.DarkSymbols}" 
+                                   IsEnabled="{Binding SubjectRef.DarkSymbols}"/>
+                            <Image Grid.Column="0" Source="/Assets/Images/Weighting-Light-New.png" Width="32" Height="32"
+                                   Margin="0,0,10,0" 
+                                   IsVisible="{Binding !SubjectRef.DarkSymbols}" 
+                                   IsEnabled="{Binding !SubjectRef.DarkSymbols}"/>
+                            <TextBlock Grid.Column="1" TextAlignment="Center" FontSize="30"
+                                       Text="{Binding SubjectRef.Weighting}"
+                                       Foreground="{Binding SubjectRef.AdditionalInfoColor}"/>
+                        </Grid>
                     </Grid>
                 </Panel>
                 <Panel Grid.Row="2" VerticalAlignment="Stretch">
                     <TextBlock Text="{Binding SubjectRef.RoundedAverage}"
                                TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"
-                               Foreground="Black" FontSize="46" FontWeight="Bold" />
+                               Foreground="Black" FontSize="46" FontWeight="Bold"/>
                 </Panel>
             </Grid>
         </DataTemplate>
@@ -115,11 +125,11 @@
                                    FontSize="28"/>
                         <Grid Grid.Row="1" ColumnDefinitions="Auto,Auto" 
                               HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Image Grid.Column="0" Source="/Assets/Images/Weighting-Dark.png" Width="25" Height="25"
+                            <Image Grid.Column="0" Source="/Assets/Images/Weighting-Dark-New.png" Width="30" Height="30"
                                    Margin="0,0,10,0"
                                    IsVisible="{Binding SubjectRef.DarkSymbols}" 
                                    IsEnabled="{Binding SubjectRef.DarkSymbols}"/>
-                            <Image Grid.Column="0" Source="/Assets/Images/Weighting-Light.png" Width="25" Height="25"
+                            <Image Grid.Column="0" Source="/Assets/Images/Weighting-Light-New.png" Width="30" Height="30"
                                    Margin="0,0,10,0" 
                                    IsVisible="{Binding !SubjectRef.DarkSymbols}" 
                                    IsEnabled="{Binding !SubjectRef.DarkSymbols}"/>
