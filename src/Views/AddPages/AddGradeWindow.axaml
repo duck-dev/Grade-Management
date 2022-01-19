@@ -69,8 +69,29 @@
                                                 </Grid>
                                         </Panel> 
                                 </Border>
-                                <Button Grid.Column="1" Width="50" Height="60" HorizontalAlignment="Center"
-                                        Command="{Binding ToggleCalendar}"/>
+                                <Button Grid.Column="1" Width="50" Height="50" HorizontalAlignment="Center" 
+                                        Command="{Binding ToggleCalendar}">
+                                        <Button.Template>
+                                                <ControlTemplate>
+                                                        <Image Source="/Assets/Images/Dark/Date-Dark.png" 
+                                                               Width="50" Height="50"/> <!-- TODO: Consider themes when implemented -->
+                                                </ControlTemplate>
+                                        </Button.Template>
+                                        <Button.Styles>
+                                                <Style Selector="Button:pointerover">
+                                                        <Setter Property="Cursor" Value="Hand"/>
+                                                        <Setter Property="RenderTransform" Value="scale(0.95)"/>
+                                                </Style>
+                                                <Style Selector="Button:pressed">
+                                                        <Setter Property="RenderTransform" Value="scale(0.90)"/>
+                                                </Style>
+                                        </Button.Styles>
+                                        <Button.Transitions>
+                                                <Transitions>
+                                                        <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
+                                                </Transitions>
+                                        </Button.Transitions>
+                                </Button>
                         </Grid>
                         <TextBox Grid.Row="3" Classes="add-page-text-box"
                                  Width="100" Height="60" Watermark="Grade" MaxLength="5"
