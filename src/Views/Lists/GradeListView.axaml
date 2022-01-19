@@ -318,7 +318,7 @@
                 Width="175" Height="175" Command="{Binding OpenTargetGradeCalc}">
             <Button.Template>
                 <ControlTemplate>
-                    <Image Source="/Assets/Images/Calculator-Light.png" Width="175" Height="175"/>
+                    <Image Source="/Assets/Images/Calculator-Dark.png" Width="175" Height="175"/>
                 </ControlTemplate>
             </Button.Template>
             <Button.Styles>
