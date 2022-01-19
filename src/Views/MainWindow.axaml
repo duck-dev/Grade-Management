@@ -76,7 +76,7 @@
                                     Command="{Binding ChangeView}" CommandParameter="false">
                                 <Grid ColumnDefinitions="Auto,*">
                                     <Image Grid.Column="0" Classes="change-view-icon"
-                                           Source="/Assets/avalonia-logo.ico"/> <!-- TODO: Consider themes when implemented -->
+                                           Source="/Assets/Images/Dark/List-Dark-Filled.png"/> <!-- TODO: Consider themes when implemented -->
                                     <TextBlock Grid.Column="1" Classes="change-view-text" Text="List"/>
                                 </Grid>
                             </Button>
