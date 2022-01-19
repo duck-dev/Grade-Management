@@ -44,10 +44,13 @@
                                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         <!--TODO: Consider culture-->
                     </Grid>
-                    <TextBlock Grid.Column="1" TextAlignment="Center"
-                               Text="{Binding Path=GradeRef.Weighting, StringFormat='W  {0}'}"
-                               Foreground="#878787" FontSize="30" Margin="25, 0, 0, 0"
-                               HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <Grid Grid.Column="1" ColumnDefinitions="Auto,Auto" 
+                          HorizontalAlignment="Center" VerticalAlignment="Center" Margin="25, 0, 0, 0">
+                        <Image Grid.Column="0" Source="/Assets/Images/Weighting-Dark-New.png" Width="32" Height="32"
+                               Margin="0,0,10,0"/> <!-- TODO: Consider themes when implemented -->
+                        <TextBlock Grid.Column="1" TextAlignment="Center" Foreground="#878787" FontSize="30"
+                                   Text="{Binding Path=GradeRef.Weighting}"/>
+                    </Grid>
                 </Grid>
                 <Panel Grid.Row="2" VerticalAlignment="Stretch">
                     <TextBlock Text="{Binding GradeRef.RoundedGrade}"
@@ -139,9 +142,14 @@
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <!--TODO: Consider culture-->
                         </Grid>
-                        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                   Text="{Binding Path=GradeRef.Weighting, StringFormat='W  {0}'}"
-                                   Foreground="#878787" FontSize="28"/>
+                        <Grid Grid.Row="1" ColumnDefinitions="Auto,Auto" 
+                              HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image Grid.Column="0" Source="/Assets/Images/Weighting-Dark-New.png" Width="30" Height="30"
+                                   Margin="0,0,10,0"/> <!-- TODO: Consider themes when implemented -->
+                            <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                       Text="{Binding Path=GradeRef.Weighting}"
+                                       Foreground="#878787" FontSize="28"/>
+                        </Grid>
                     </Grid>
                 </Grid>
                 <TextBlock Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"
