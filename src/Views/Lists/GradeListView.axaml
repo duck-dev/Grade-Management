@@ -35,8 +35,8 @@
                       VerticalAlignment="Top">
                     <Grid Grid.Column="0" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center"
                           VerticalAlignment="Center">
-                        <Image Grid.Column="0" Source="/Assets/avalonia-logo.ico"
-                               Margin="0,0,8,0" Width="30" Height="26"
+                        <Image Grid.Column="0" Source="/Assets/Images/Date-Dark.png"
+                               Margin="0,0,10,0" Width="28" Height="28"
                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         <TextBlock Grid.Column="1" TextAlignment="Center"
                                    Text="{Binding GradeRef.DateString}"
@@ -133,8 +133,8 @@
                     <Grid Grid.Column="1" RowDefinitions="*, *" Margin="60,0,0,0">
                         <Grid Grid.Row="0" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center"
                               VerticalAlignment="Center">
-                            <Image Grid.Column="0" Source="/Assets/avalonia-logo.ico"
-                                   Margin="0,0,8,0" Width="30" Height="26"
+                            <Image Grid.Column="0" Source="/Assets/Images/Date-Dark.png"
+                                   Margin="0,0,10,0" Width="28" Height="28"
                                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <TextBlock Grid.Column="1" TextAlignment="Center"
                                        Text="{Binding GradeRef.DateString}"
