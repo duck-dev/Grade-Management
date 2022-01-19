@@ -27,7 +27,8 @@ namespace GradeManagement.ViewModels.BaseClasses
             Color.Parse("#C7CAD1"), Color.Parse("#FFAE03"), Color.Parse("#EB8934"), Color.Parse("#D64045"), 
             Color.Parse("#FF85FB"), Color.Parse("#A326C9"), Color.Parse("#5F8BB0"), Color.Parse("#6FB3BF"), 
             Color.Parse("#A5B1CC"), Color.Parse("#009B72"), Color.Parse("#74CC31"), Color.Parse("#A8744F")
-        }; // TODO: Substitute first (default) color with resource for each color
+        }; // TODO: Substitute hard-coded color with resource for each color
+        // TODO: Adapt (first (default) color)/colors to theme
 
         protected AddViewModelBase()
         {

@@ -25,6 +25,8 @@ namespace GradeManagement.Models.Elements
         
         private string _elementColorHex = "#c7cad1";
         private SolidColorBrush? _additionalInfoBrush;
+        
+        private bool _darkSymbols;
 
         protected ColorableElement(string elementColorHex) => this.ElementColorHex = elementColorHex;
 
@@ -64,13 +66,19 @@ namespace GradeManagement.Models.Elements
             private set => this.RaiseAndSetIfChanged(ref _additionalInfoBrush, value);
         }
         
+        protected bool DarkSymbols
+        {
+            get => _darkSymbols;
+            set => this.RaiseAndSetIfChanged(ref _darkSymbols, value);
+        }
+        
         private Color DarkTitleTint => ElementColor.DarkenColor(0.3f);
         private Color LightTitleTint => ElementColor.BrightenColor(0.4f);
         
         private Color AdditionalInfoDark => _additionalInfoBaseColor.DarkenColor(0.25f);
         private Color AdditionalInfoLight => _additionalInfoBaseColor.BrightenColor(0.25f);
 
-        private void ApplyChangedColor()
+        protected virtual void ApplyChangedColor()
         {
             ElementColor = Color.Parse(_elementColorHex);
 
@@ -96,6 +104,9 @@ namespace GradeManagement.Models.Elements
             _buttonStyle = isGrid ? SelectedButtonStyle.Grid : SelectedButtonStyle.List;
             AdditionalInfoColor = isGrid ? _additionalInfoGrid : _additionalInfoList;
             TitleBrush = isGrid ? _titleBrushGrid : _titleBrushList;
+            
+            int threshold = isGrid ? GridThresholdAdditionalInfo : ListThresholdAdditionalInfo;
+            DarkSymbols = Utilities.PerceivedBrightness(ElementColor) > threshold;
         }
 
         private void SetAdditionalInfoColor()

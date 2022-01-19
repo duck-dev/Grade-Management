@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
-using Avalonia;
-using Avalonia.Media;
 using GradeManagement.Enums;
 using GradeManagement.ExtensionCollection;
 using GradeManagement.Interfaces;
