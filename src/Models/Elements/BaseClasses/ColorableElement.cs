@@ -99,9 +99,10 @@ namespace GradeManagement.Models.Elements
             SetAdditionalInfoColor();
         }
 
-        internal void AdjustTextColors(bool isGrid)
+        internal void AdjustTextColors(bool isGrid, bool changeButtonStyle = true)
         {
-            _buttonStyle = isGrid ? SelectedButtonStyle.Grid : SelectedButtonStyle.List;
+            if(changeButtonStyle)
+                _buttonStyle = isGrid ? SelectedButtonStyle.Grid : SelectedButtonStyle.List;
             AdditionalInfoColor = isGrid ? _additionalInfoGrid : _additionalInfoList;
             TitleBrush = isGrid ? _titleBrushGrid : _titleBrushList;
             
@@ -122,8 +123,7 @@ namespace GradeManagement.Models.Elements
             _titleBrushList = new SolidColorBrush(listColor);
             
             bool isGrid = _buttonStyle == SelectedButtonStyle.Grid;
-            AdditionalInfoColor = isGrid ? _additionalInfoGrid : _additionalInfoList;
-            TitleBrush = isGrid ? _titleBrushGrid : _titleBrushList;
+            AdjustTextColors(isGrid, false);
         }
     }
 }
