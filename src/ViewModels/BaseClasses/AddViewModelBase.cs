@@ -72,7 +72,7 @@ namespace GradeManagement.ViewModels.BaseClasses
             {
                 this.RaiseAndSetIfChanged(ref _elementName, value);
                 BorderBrushes![NameIndex].Color = NormalColor;
-                if (string.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value))
                     BorderBrushes[NameIndex].Color = IncompleteColor;
                 
                 this.RaisePropertyChanged(nameof(BorderBrushes));

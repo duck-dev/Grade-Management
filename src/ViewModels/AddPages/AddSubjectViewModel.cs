@@ -18,7 +18,7 @@ namespace GradeManagement.ViewModels.AddPages
             EditPageText(AddPageAction.Create, "Subject");
         }
 
-        protected override bool DataComplete => !string.IsNullOrEmpty(ElementName) 
+        protected override bool DataComplete => !string.IsNullOrEmpty(ElementName)  && !string.IsNullOrWhiteSpace(ElementName)
                                                 && !float.IsNaN(ElementWeighting)
                                                 && DataChanged();
 

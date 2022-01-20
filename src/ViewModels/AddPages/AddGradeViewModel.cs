@@ -48,11 +48,10 @@ namespace GradeManagement.ViewModels.AddPages
 
         internal static AddGradeViewModel? Instance { get; private set; }
 
-        protected override bool DataComplete => !string.IsNullOrEmpty(ElementName)
+        protected override bool DataComplete => !string.IsNullOrEmpty(ElementName) && !string.IsNullOrWhiteSpace(ElementName)
                                                 && !float.IsNaN(_elementGrade)
                                                 && !float.IsNaN(ElementWeighting)
-                                                && Utilities.ValidateDate(_selectedDay, _selectedMonth.Month, 
-                                                                            _selectedYear, out _)
+                                                && Utilities.ValidateDate(_selectedDay, _selectedMonth.Month, _selectedYear, out _)
                                                 && DataChanged();
 
         internal int SelectedDay

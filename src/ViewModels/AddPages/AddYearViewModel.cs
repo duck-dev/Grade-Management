@@ -17,7 +17,8 @@ namespace GradeManagement.ViewModels.AddPages
             EditPageText(AddPageAction.Create, "School Year");
         }
 
-        protected override bool DataComplete => !string.IsNullOrEmpty(ElementName) && DataChanged();
+        protected override bool DataComplete => !string.IsNullOrEmpty(ElementName) && !string.IsNullOrWhiteSpace(ElementName) 
+                                                && DataChanged();
 
         private SchoolYear? EditedYear { get; set; }
 
