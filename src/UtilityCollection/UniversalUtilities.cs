@@ -31,7 +31,7 @@ namespace GradeManagement.UtilityCollection
         [SuppressMessage("ReSharper", "PossibleMultipleEnumeration")]
         public static float GetAverage(IEnumerable<IGradable> gradables, bool round)
         {
-            var enumerable = gradables.Where(x => x.Counts && x.ElementCount > 0 && !float.IsNaN(x.GradeValue));
+            var enumerable = gradables.Where(x => x.Counts && x.ElementCount > 0 && !float.IsNaN(x.GradeValue) && x.GradeValue != 0);
             if (!enumerable.Any())
                 return 0;
             float result = enumerable.Sum(x => x.GradeValue * x.Weighting) / enumerable.Sum(x => x.Weighting);
