@@ -95,7 +95,7 @@
     
     <!-- Color Buttons -->
     
-    <Style Selector="Button.color-button">
+    <Style Selector="Button.color-button /template/ ContentPresenter">
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="BorderBrush" Value="Black"/>
         <Setter Property="CornerRadius" Value="10"/>
@@ -109,7 +109,7 @@
         <Setter Property="RenderTransform" Value="scale(0.90)"/>    
     </Style>
     
-    <Style Selector="Button.color-button-selected">
+    <Style Selector="Button.color-button-selected /template/ ContentPresenter">
         <Setter Property="BorderThickness" Value="3"/>
     </Style>
 </Styles>
