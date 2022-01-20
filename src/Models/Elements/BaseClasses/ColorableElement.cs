@@ -73,10 +73,10 @@ namespace GradeManagement.Models.Elements
         }
         
         private Color DarkTitleTint => ElementColor.DarkenColor(0.3f);
-        private Color LightTitleTint => ElementColor.BrightenColor(0.4f);
+        private Color LightTitleTint => ElementColor.BrightenColor(0.5f);
         
         private Color AdditionalInfoDark => _additionalInfoBaseColor.DarkenColor(0.25f);
-        private Color AdditionalInfoLight => _additionalInfoBaseColor.BrightenColor(0.25f);
+        private Color AdditionalInfoLight => _additionalInfoBaseColor.BrightenColor(0.3f);
 
         protected virtual void ApplyChangedColor()
         {
