@@ -244,6 +244,8 @@ namespace GradeManagement.ViewModels
                 return;
             viewModel.Items?.Add(element);
             element.Save<T>();
+            
+            CopiedElement = element.Duplicate<T>(false);
         }
     }
 }
