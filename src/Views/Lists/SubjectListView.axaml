@@ -207,7 +207,7 @@
                     IsEnabled="{Binding EmptyCollection}" 
                     IsVisible="{Binding EmptyCollection}">
             <TextBlock Classes="no-elements-text" Margin="0,0,8,0">
-                This subject doesn't yet contain grades. You can add a new grade with the green button
+                This year doesn't yet contain subjects. You can add a new subject with the green button
             </TextBlock>
             <Viewbox Width="40" Height="40" VerticalAlignment="Center">
                 <Grid Width="24" Height="24">
