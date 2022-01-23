@@ -104,9 +104,9 @@
         <Setter Property="Template">
             <ControlTemplate TargetType="{x:Type Button}">
                 <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <Ellipse Stroke="#009B72" StrokeThickness="5" Fill="#0000ffff"/>
+                    <Ellipse Stroke="#8B8D92" StrokeThickness="5" Fill="#0000ffff"/>
                     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
-                               Foreground="#009B72" FontWeight="Bold" FontSize="50" Text="i"/>
+                               Foreground="#8B8D92" FontWeight="Bold" FontSize="50" Text="i"/>
                 </Grid>
             </ControlTemplate>
         </Setter>
@@ -118,9 +118,9 @@
     </Style>
     <Style Selector="Button.info-button:pointerover">
         <Setter Property="Cursor" Value="Hand"/>
-        <Setter Property="RenderTransform" Value="scale(0.95)"/>
+        <Setter Property="RenderTransform" Value="scale(0.925)"/>
     </Style>
     <Style Selector="Button.info-button:pressed">
-        <Setter Property="RenderTransform" Value="scale(0.90)"/>
+        <Setter Property="RenderTransform" Value="scale(0.875)"/>
     </Style>
 </Styles>
