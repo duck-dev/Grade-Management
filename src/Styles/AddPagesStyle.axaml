@@ -48,7 +48,10 @@
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="HotKey" Value="Enter"></Setter>
+        <Setter Property="HotKey" Value="Enter"/>
+    </Style>
+    <Style Selector="Button.add-page-button /template/ ContentPresenter">
+        <Setter Property="CornerRadius" Value="10"/>
     </Style>
     <Style Selector="Button.add-page-button:pointerover /template/ ContentPresenter">
         <Setter Property="Background" Value="#007354"/>
