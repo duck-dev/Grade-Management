@@ -93,4 +93,34 @@
     <Style Selector="Button.add-button:pressed">
         <Setter Property="RenderTransform" Value="scale(0.90)"/>
     </Style>
+    
+    <!-- Info-Button (later: Settings-Button)-->
+    <Style Selector="Button.info-button">
+        <Setter Property="Width" Value="80"/>
+        <Setter Property="Height" Value="80"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="Margin" Value="0,0,60,0"/>
+        <Setter Property="Template">
+            <ControlTemplate TargetType="{x:Type Button}">
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Ellipse Stroke="#009B72" StrokeThickness="5" Fill="#0000ffff"/>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                               Foreground="#009B72" FontWeight="Bold" FontSize="50" Text="i"/>
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+        <Setter Property="Transitions">
+            <Transitions>
+                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
+            </Transitions>
+        </Setter>
+    </Style>
+    <Style Selector="Button.info-button:pointerover">
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="RenderTransform" Value="scale(0.95)"/>
+    </Style>
+    <Style Selector="Button.info-button:pressed">
+        <Setter Property="RenderTransform" Value="scale(0.90)"/>
+    </Style>
 </Styles>
