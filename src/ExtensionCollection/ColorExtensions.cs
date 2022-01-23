@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Avalonia.Media;
 
 namespace GradeManagement.ExtensionCollection
@@ -20,6 +21,35 @@ namespace GradeManagement.ExtensionCollection
                 g = (byte) ((float) color.G).Lerp(to.G, amount),
                 b = (byte) ((float) color.B).Lerp(to.B, amount);
             return Color.FromArgb(a, r, g, b);
+        }
+        
+        /// <summary>
+        /// Chooses the specified dark or light tint, based on the background's brightness.
+        /// Dark background => Light tint and vice-versa.
+        /// </summary>
+        /// <param name="backgroundColor">The background color, whose brightness determines the foreground tint.</param>
+        /// <param name="darkColor">The dark tint.</param>
+        /// <param name="lightColor">The light tint.</param>
+        /// <param name="threshold">The threshold, at which the color becomes dark upwards and light downwards.
+        ///                         Default value: 110</param>
+        /// <returns>The adjusted foreground color.</returns>
+        public static Color AdjustForegroundBrightness(this Color backgroundColor, Color darkColor, Color lightColor, int threshold = 110)
+        {
+            return ((PerceivedBrightness(backgroundColor) > threshold) ? darkColor : lightColor);
+        }
+
+        /// <summary>
+        /// Calculate the brightness of a color.
+        /// </summary>
+        /// <param name="color">The passed <see cref="Avalonia.Media.Color"/>.</param>
+        /// <returns>The brightness represented as an integer.</returns>
+        [SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
+        public static int PerceivedBrightness(this Color color)
+        {
+            return (int)Math.Sqrt(
+                color.R * color.R * .299 +
+                color.G * color.G * .587 +
+                color.B * color.B * .114);
         }
 
         /// <summary>

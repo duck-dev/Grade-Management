@@ -107,19 +107,19 @@ namespace GradeManagement.Models.Elements
             TitleBrush = isGrid ? _titleBrushGrid : _titleBrushList;
             
             int threshold = isGrid ? GridThresholdAdditionalInfo : ListThresholdAdditionalInfo;
-            DarkSymbols = Utilities.PerceivedBrightness(ElementColor) > threshold;
+            DarkSymbols = ElementColor.PerceivedBrightness() > threshold;
         }
 
         private void SetAdditionalInfoColor()
         {
-            var gridColor = Utilities.AdjustForegroundBrightness(ElementColor, AdditionalInfoDark, AdditionalInfoLight, GridThresholdAdditionalInfo);
+            var gridColor = ElementColor.AdjustForegroundBrightness(AdditionalInfoDark, AdditionalInfoLight, GridThresholdAdditionalInfo);
             _additionalInfoGrid = new SolidColorBrush(gridColor);
-            var listColor = Utilities.AdjustForegroundBrightness(ElementColor, AdditionalInfoDark, AdditionalInfoLight, ListThresholdAdditionalInfo);
+            var listColor = ElementColor.AdjustForegroundBrightness(AdditionalInfoDark, AdditionalInfoLight, ListThresholdAdditionalInfo);
             _additionalInfoList = new SolidColorBrush(listColor);
 
-            gridColor = Utilities.AdjustForegroundBrightness(ElementColor, DarkTitleTint, LightTitleTint, GridThresholdTitle);
+            gridColor = ElementColor.AdjustForegroundBrightness(DarkTitleTint, LightTitleTint, GridThresholdTitle);
             _titleBrushGrid = new SolidColorBrush(gridColor);
-            listColor = Utilities.AdjustForegroundBrightness(ElementColor, DarkTitleTint, LightTitleTint, ListThresholdTitle);
+            listColor = ElementColor.AdjustForegroundBrightness(DarkTitleTint, LightTitleTint, ListThresholdTitle);
             _titleBrushList = new SolidColorBrush(listColor);
             
             bool isGrid = _buttonStyle == SelectedButtonStyle.Grid;
