@@ -11,6 +11,11 @@ namespace GradeManagement.Models.Elements
 {
     public class ColorableElement : ReactiveObject
     {
+        private const float TitleDarkenFactor = 0.3f;
+        private const float TitleBrightenFactor = 0.5f;
+        private const float AdditionalInfoDarkenFactor = 0.25f;
+        private const float AdditionalInfoBrightenFactor = 0.3f;
+        
         private const int GridThresholdTitle = 110;
         private const int ListThresholdTitle = 135;
         
@@ -72,11 +77,11 @@ namespace GradeManagement.Models.Elements
             set => this.RaiseAndSetIfChanged(ref _darkSymbols, value);
         }
         
-        private Color DarkTitleTint => ElementColor.DarkenColor(0.3f);
-        private Color LightTitleTint => ElementColor.BrightenColor(0.5f);
+        private Color DarkTitleTint => ElementColor.DarkenColor(TitleDarkenFactor);
+        private Color LightTitleTint => ElementColor.BrightenColor(TitleBrightenFactor);
         
-        private Color AdditionalInfoDark => _additionalInfoBaseColor.DarkenColor(0.25f);
-        private Color AdditionalInfoLight => _additionalInfoBaseColor.BrightenColor(0.3f);
+        private Color AdditionalInfoDark => _additionalInfoBaseColor.DarkenColor(AdditionalInfoDarkenFactor);
+        private Color AdditionalInfoLight => _additionalInfoBaseColor.BrightenColor(AdditionalInfoBrightenFactor);
 
         protected virtual void ApplyChangedColor()
         {

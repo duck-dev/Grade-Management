@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Avalonia.Controls;
 using Avalonia.Media;
 using GradeManagement.Enums;
+using GradeManagement.ExtensionCollection;
 using GradeManagement.Interfaces;
 using GradeManagement.Models;
 using GradeManagement.Models.Elements;
@@ -126,7 +127,10 @@ namespace GradeManagement.ViewModels
             if (TopbarTexts?[index] is not TextBlock textBlock) 
                 return;
             textBlock.Text = element.Name;
-            textBlock.Foreground = new SolidColorBrush(element.ElementColor);
+
+            const float darkenFactor = 0.1f;
+            var color = element.ElementColor.DarkenColor(darkenFactor);
+            textBlock.Foreground = new SolidColorBrush(color);
         }
 
         private void OpenAddPage()
