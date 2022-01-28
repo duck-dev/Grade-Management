@@ -27,16 +27,28 @@
                 </Panel>
                 <Panel Grid.Row="1" VerticalAlignment="Stretch">
                     <Grid ColumnDefinitions="Auto,Auto" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <TextBlock Grid.Column="0" TextAlignment="Center"
-                                   Text="{Binding Path=YearRef.Subjects.Count, StringFormat='=  {0}'}"
-                                   Foreground="{Binding YearRef.AdditionalInfoColor}"
-                                   FontSize="42"
-                                   Margin="0, 0, 35, 0"/>
-                        <TextBlock Grid.Column="1" TextAlignment="Center"
-                                   Text="{Binding Path=YearRef.GradeValue, StringFormat='Ø  {0}'}"
-                                   Foreground="{Binding YearRef.AdditionalInfoColor}"
-                                   FontSize="42"
-                                   Margin="35, 0, 0, 0"/>
+                        <Grid Grid.Column="0" ColumnDefinitions="Auto,Auto"
+                              HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,35,0">
+                            <Image Grid.Column="0" Source="/Assets/Images/Dark/List-Dark-Filled.png" Width="40" Height="40"
+                                   Margin="0,0,15,0"
+                                   IsVisible="{Binding YearRef.DarkSymbols}" 
+                                   IsEnabled="{Binding YearRef.DarkSymbols}"/>
+                            <Image Grid.Column="0" Source="/Assets/Images/Light/List-Light-Filled.png" Width="40" Height="40"
+                                   Margin="0,0,15,0" 
+                                   IsVisible="{Binding !YearRef.DarkSymbols}" 
+                                   IsEnabled="{Binding !YearRef.DarkSymbols}"/>
+                            <TextBlock Grid.Column="1" TextAlignment="Center" FontSize="42"
+                                       Text="{Binding Path=YearRef.Subjects.Count}"
+                                       Foreground="{Binding YearRef.AdditionalInfoColor}"/>
+                        </Grid>
+                        <Grid Grid.Column="1" ColumnDefinitions="Auto,Auto" Margin="35,0,0,0">
+                            <TextBlock Grid.Column="0" TextAlignment="Center" FontSize="42" FontWeight="Bold"
+                                       Text="Ø" Foreground="{Binding YearRef.AdditionalInfoColor}"
+                                       Margin="0,0,15,0"/>
+                            <TextBlock Grid.Column="1" TextAlignment="Center" FontSize="42"
+                                       Text="{Binding Path=YearRef.GradeValue}"
+                                       Foreground="{Binding YearRef.AdditionalInfoColor}"/>
+                        </Grid>
                     </Grid>
                 </Panel>
             </Grid>
