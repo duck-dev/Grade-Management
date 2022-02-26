@@ -13,6 +13,5 @@
     <Application.Styles>
         <FluentTheme Mode="Light"/>
         <StyleInclude Source="/src/Resources/BaseResources.axaml"/>
-        <StyleInclude Source="{Binding ThemeSource}"/>
     </Application.Styles>
 </Application>
