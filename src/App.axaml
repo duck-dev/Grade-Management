@@ -5,8 +5,14 @@
     <Application.DataTemplates>
         <local:ViewLocator/>
     </Application.DataTemplates>
+    
+    <Application.DataContext>
+        <local:App/>
+    </Application.DataContext>
 
     <Application.Styles>
         <FluentTheme Mode="Light"/>
+        <StyleInclude Source="/src/Resources/BaseResources.axaml"/>
+        <StyleInclude Source="{Binding ThemeSource}"/>
     </Application.Styles>
 </Application>

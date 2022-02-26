@@ -40,6 +40,8 @@ namespace GradeManagement.ViewModels
         internal static MainWindowViewModel? Instance { get; private set; }
         internal static Subject? CurrentSubject { get; set; }
         internal static SchoolYear? CurrentYear { get; set; }
+        
+        internal App? AppInstance { get; init; }
 
         internal ListViewModelBase Content
         {
