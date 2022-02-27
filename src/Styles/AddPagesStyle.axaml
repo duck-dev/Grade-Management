@@ -54,12 +54,12 @@
         <Setter Property="CornerRadius" Value="10"/>
     </Style>
     <Style Selector="Button.add-page-button:pointerover /template/ ContentPresenter">
-        <Setter Property="Background" Value="{StaticResource DarkerAppGreen}"/>
+        <Setter Property="Background" Value="{StaticResource VariantAppGreen}"/>
         <Setter Property="Cursor" Value="Hand"/>
     </Style>
 
     <Style Selector="Button.add-page-button-grey:pointerover /template/ ContentPresenter">
-        <Setter Property="Background" Value="{StaticResource StandardGrey}"/>
+        <Setter Property="Background" Value="{StaticResource VariantStandardGrey}"/>
     </Style>
 
     <!-- Checkbox -->

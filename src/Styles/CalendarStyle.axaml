@@ -59,7 +59,7 @@
         <Setter Property="FontWeight" Value="Bold"/>
     </Style>
     <Style Selector="CalendarDayButton:selected:pointerover">
-        <Setter Property="Background" Value="{StaticResource DarkerAppGreen}"/>
+        <Setter Property="Background" Value="{StaticResource VariantAppGreen}"/>
     </Style>
 
     <Style Selector="CalendarDayButton:inactive">
@@ -111,6 +111,6 @@
         <Setter Property="FontWeight" Value="Bold"/>
     </Style>
     <Style Selector="CalendarButton:selected:pointerover">
-        <Setter Property="Background" Value="{StaticResource DarkerAppGreen}"/>
+        <Setter Property="Background" Value="{StaticResource VariantAppGreen}"/>
     </Style>
 </Styles>

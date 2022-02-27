@@ -2,6 +2,7 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Style.Resources>
+        <SolidColorBrush x:Key="MainBackground" Color="#D8DDE6"/>
         <SolidColorBrush x:Key="ElementBackground" Color="#C7CAD1"/>
         <SolidColorBrush x:Key="VariantElementBackground" Color="#B8BABF"/>
         

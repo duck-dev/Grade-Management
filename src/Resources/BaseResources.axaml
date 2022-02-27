@@ -3,12 +3,13 @@
     
     <Style.Resources>
         <!-- Brushes -->
-        <SolidColorBrush x:Key="FullyTransparent" Color="#0000ffff"/>
+        <SolidColorBrush x:Key="FullyTransparent" Color="#0000FFFF"/>
         <SolidColorBrush x:Key="AppGreen" Color="#009B72"/>
-        <SolidColorBrush x:Key="DarkerAppGreen" Color="#007354"/>
+        <SolidColorBrush x:Key="VariantAppGreen" Color="#00AD7F"/>
         <SolidColorBrush x:Key="LightPurple" Color="#A5B1CC"/>
         
         <SolidColorBrush x:Key="StandardGrey" Color="#808080"/>
+        <SolidColorBrush x:Key="VariantStandardGrey" Color="#919191"/>
         <SolidColorBrush x:Key="DarkGrey" Color="#666666"/>
         <SolidColorBrush x:Key="AlmostWhite" Color="#E6E6E6"/>
         <SolidColorBrush x:Key="DarkerAlmostWhite" Color="#D4D4D4"/>
