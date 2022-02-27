@@ -15,6 +15,11 @@
         <SolidColorBrush x:Key="AlmostWhite" Color="#E6E6E6"/>
         <SolidColorBrush x:Key="DarkerAlmostWhite" Color="#D4D4D4"/>
         <SolidColorBrush x:Key="DarkenedBackgroundDialogs" Color="#66000000"/>
+        <SolidColorBrush x:Key="InfoButtonGrey" Color="#8B8D92"/>
+        
+        <SolidColorBrush x:Key="CalendarDayButtonHover" Color="#DCDCDC"/>
+        <SolidColorBrush x:Key="CalendarDayButtonInactive" Color="#C9C9C9"/>
+        <SolidColorBrush x:Key="CalendarDayButtonInactiveHover" Color="#D1D1D1"/>
         
         <SolidColorBrush x:Key="LightGreenContextMenu" Color="#58C4A8"/>
         <SolidColorBrush x:Key="DarkerLightGreenContextMenu" Color="#0EB085"/>

@@ -38,7 +38,7 @@
         <Setter Property="Cursor" Value="Hand"/>
     </Style>
     <Style Selector="Button.change-view-button:pressed /template/ ContentPresenter">
-        <Setter Property="Background" Value="#BDBDBD"/>
+        <Setter Property="Background" Value="{StaticResource DarkerElementBackground}"/>
     </Style>
 
     <Style Selector="Button.change-view-button-selected /template/ ContentPresenter">
@@ -105,9 +105,10 @@
         <Setter Property="Template">
             <ControlTemplate TargetType="{x:Type Button}">
                 <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <Ellipse Stroke="#8B8D92" StrokeThickness="5" Fill="{StaticResource FullyTransparent}"/>
+                    <Ellipse Stroke="{StaticResource InfoButtonGrey}" StrokeThickness="5" 
+                             Fill="{StaticResource FullyTransparent}"/>
                     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
-                               Foreground="#8B8D92" FontWeight="Bold" FontSize="50" Text="i"/>
+                               Foreground="{StaticResource InfoButtonGrey}" FontWeight="Bold" FontSize="50" Text="i"/>
                 </Grid>
             </ControlTemplate>
         </Setter>

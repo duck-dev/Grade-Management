@@ -43,9 +43,9 @@
 
     <Style Selector="CalendarDayButton:pointerover">
         <Setter Property="RenderTransform" Value="scale(0.95)"/>
-        <Setter Property="Background" Value="#DCDCDC"/> <!--If overriden by `CalendarDayButton:state:pointerover`, 
-                                                        this doesn't have any effect for the overriden selectors,
-                                                        but the overriden value will be used.-->
+        <Setter Property="Background" Value="{StaticResource CalendarDayButtonHover}"/> 
+        <!-- Background: If overriden by `CalendarDayButton:state:pointerover`, this doesn't have any effect 
+        for the overriden selectors, but the overriden value will be used. -->
     </Style>
 
     <Style Selector="CalendarDayButton:today">
@@ -63,11 +63,11 @@
     </Style>
 
     <Style Selector="CalendarDayButton:inactive">
-        <Setter Property="Background" Value="#C9C9C9"/>
+        <Setter Property="Background" Value="{StaticResource CalendarDayButtonInactive}"/>
         <Setter Property="Foreground" Value="{StaticResource StandardGrey}"/>
     </Style>
     <Style Selector="CalendarDayButton:inactive:pointerover">
-        <Setter Property="Background" Value="#D1D1D1"/>
+        <Setter Property="Background" Value="{StaticResource CalendarDayButtonInactiveHover}"/>
     </Style>
 
     <!-- CalendarButton (year and month) -->
@@ -100,9 +100,9 @@
 
     <Style Selector="CalendarButton:pointerover">
         <Setter Property="RenderTransform" Value="scale(0.95)"/>
-        <Setter Property="Background" Value="#DCDCDC"/> <!--If overriden by `CalendarDayButton:state:pointerover`, 
-                                                        this doesn't have any effect for the overriden selectors,
-                                                        but the overriden value will be used.-->
+        <Setter Property="Background" Value="{StaticResource CalendarDayButtonHover}"/>
+        <!-- Background: If overriden by `CalendarDayButton:state:pointerover`, this doesn't have any effect 
+        for the overriden selectors, but the overriden value will be used. -->
     </Style>
 
     <Style Selector="CalendarButton:selected">
