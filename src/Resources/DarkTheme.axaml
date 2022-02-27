@@ -2,6 +2,8 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
     <Style.Resources>
-                
+        <!-- Intentionally reversed (where black is used in light mode, white is going to be used in dark mode and vice-versa)-->
+        <SolidColorBrush x:Key="Black" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="White" Color="#0A0A0A"/>
     </Style.Resources>
 </Style>

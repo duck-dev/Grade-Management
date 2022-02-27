@@ -3,9 +3,6 @@
     
     <Style.Resources>
         <!-- Brushes -->
-        <SolidColorBrush x:Key="Black" Color="#0A0A0A"/>
-        <SolidColorBrush x:Key="White" Color="#FFFFFF"/>
-        
         <SolidColorBrush x:Key="FullyTransparent" Color="#0000FFFF"/>
         <SolidColorBrush x:Key="AppGreen" Color="#009B72"/>
         <SolidColorBrush x:Key="VariantAppGreen" Color="#00AD7F"/>
