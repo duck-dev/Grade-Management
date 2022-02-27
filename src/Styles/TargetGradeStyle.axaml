@@ -2,7 +2,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Style Selector="TextBox.target-grade-textbox">
-        <Setter Property="Background" Value="White"/>
+        <Setter Property="Background" Value="{StaticResource White}"/>
         <Setter Property="Width" Value="300"/>
         <Setter Property="Height" Value="60"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -18,7 +18,7 @@
     </Style>
 
     <Style Selector="TextBlock.result-text">
-        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Foreground" Value="{StaticResource Black}"/>
         <Setter Property="FontSize" Value="26"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -28,7 +28,7 @@
 
     <Style Selector="TextBlock.intro-text">
         <Setter Property="FontSize" Value="18"/>
-        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Foreground" Value="{StaticResource Black}"/>
         <Setter Property="TextAlignment" Value="Center"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>

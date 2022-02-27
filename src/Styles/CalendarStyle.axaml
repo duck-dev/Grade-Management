@@ -12,7 +12,7 @@
     <Style Selector="CalendarDayButton">
         <Setter Property="RenderTransform" Value="scale(1)"/>
         <Setter Property="Background" Value="{StaticResource DarkerAlmostWhite}"/>
-        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Foreground" Value="{StaticResource Black}"/>
         <Setter Property="FontSize" Value="16"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -55,7 +55,7 @@
 
     <Style Selector="CalendarDayButton:selected">
         <Setter Property="Background" Value="{StaticResource AppGreen}"/>
-        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Foreground" Value="{StaticResource White}"/>
         <Setter Property="FontWeight" Value="Bold"/>
     </Style>
     <Style Selector="CalendarDayButton:selected:pointerover">
@@ -74,7 +74,7 @@
     <Style Selector="CalendarButton">
         <Setter Property="RenderTransform" Value="scale(1)"/>
         <Setter Property="Background" Value="{StaticResource DarkerAlmostWhite}"/>
-        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Foreground" Value="{StaticResource Black}"/>
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -107,7 +107,7 @@
 
     <Style Selector="CalendarButton:selected">
         <Setter Property="Background" Value="{StaticResource AppGreen}"/>
-        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Foreground" Value="{StaticResource White}"/>
         <Setter Property="FontWeight" Value="Bold"/>
     </Style>
     <Style Selector="CalendarButton:selected:pointerover">

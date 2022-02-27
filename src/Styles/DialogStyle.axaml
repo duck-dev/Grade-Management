@@ -19,7 +19,7 @@
     </Style>
 
     <Style Selector="TextBlock.title-text">
-        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Foreground" Value="{StaticResource Black}"/>
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="TextAlignment" Value="Center"/>
@@ -52,7 +52,7 @@
         <Setter Property="CornerRadius" Value="5"/>
     </Style>
     <Style Selector="CheckBox.dialog-checkbox:checked /template/ Path#CheckGlyph">
-        <Setter Property="TextBlock.Foreground" Value="White"/>
+        <Setter Property="TextBlock.Foreground" Value="{StaticResource White}"/>
         <Setter Property="TextBlock.FontWeight" Value="Bold"/>
     </Style>
 </Styles>
