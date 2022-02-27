@@ -10,71 +10,71 @@
         Width="750"
         Height="550"
         CanResize="False">
-    
-        <Design.DataContext>
-                <targetGrade:TargetGradeWindowModel/>
-        </Design.DataContext>
-        
-        <Window.Styles>
-                <StyleInclude Source="/src/Styles/MainStyle.axaml"/>
-                <Style Selector="Button.target-grade-button">
-                        <Setter Property="Width" Value="200"/>
-                        <Setter Property="Height" Value="50"/>
-                        <Setter Property="BorderThickness" Value="2"/>
-                        <Setter Property="BorderBrush" Value="#009B72"/>
-                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                        <Setter Property="VerticalContentAlignment" Value="Center"/>
-                        <Setter Property="Command" Value="{Binding SwitchCalculator}"/>
-                </Style>
-                <Style Selector="Button.target-grade-button /template/ ContentPresenter">
-                        <Setter Property="CornerRadius" Value="10"/>
-                </Style>
-                <Style Selector="Button.target-grade-button:pointerover">
-                        <Setter Property="Cursor" Value="Hand"/>
-                </Style>
-                <Style Selector="Button.target-grade-button:pointerover /template/ ContentPresenter">
-                        <Setter Property="BorderThickness" Value="2"/>
-                        <Setter Property="BorderBrush" Value="#009B72"/>
-                </Style>
-        </Window.Styles>
-        
-        <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <Grid DockPanel.Dock="Top" ColumnDefinitions="Auto,Auto" Margin="0,20,0,20"
-                      HorizontalAlignment="Center">
-                        <Button Grid.Column="0" Classes="target-grade-button" Margin="0,0,20,0" 
-                                Background="{Binding ButtonColors[0]}"
-                                Foreground="{Binding ButtonTextColors[0]}"
-                                FontWeight="{Binding FontWeights[0]}"
-                                Content="Calculate Target Grade"
-                                CommandParameter="0">
-                                <Button.Styles>
-                                        <Style Selector="Button:pointerover /template/ ContentPresenter">
-                                                <Setter Property="Background" 
-                                                        Value="{Binding ButtonColorsHover[0]}"/>
-                                                <Setter Property="TextBlock.Foreground" 
-                                                        Value="{Binding ButtonTextColors[0]}"/>
-                                        </Style>
-                                </Button.Styles>
-                        </Button>
-                        <Button Grid.Column="1" Classes="target-grade-button" Margin="20,0,0,0"
-                                Background="{Binding ButtonColors[1]}"
-                                Foreground="{Binding ButtonTextColors[1]}"
-                                FontWeight="{Binding FontWeights[1]}"
-                                Content="Calculate Average"
-                                CommandParameter="1">
-                                <Button.Styles>
-                                        <Style Selector="Button:pointerover /template/ ContentPresenter">
-                                                <Setter Property="Background" 
-                                                        Value="{Binding ButtonColorsHover[1]}"/>
-                                                <Setter Property="TextBlock.Foreground" 
-                                                        Value="{Binding ButtonTextColors[1]}"/>
-                                        </Style>
-                                </Button.Styles>
-                        </Button>
-                </Grid>
-                <Grid DockPanel.Dock="Bottom">
-                       <UserControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
-                                    Content="{Binding Content}"/>
-                </Grid>
-        </DockPanel>
+
+    <Design.DataContext>
+        <targetGrade:TargetGradeWindowModel/>
+    </Design.DataContext>
+
+    <Window.Styles>
+        <StyleInclude Source="/src/Styles/MainStyle.axaml"/>
+        <Style Selector="Button.target-grade-button">
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="{StaticResource AppGreen}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Command" Value="{Binding SwitchCalculator}"/>
+        </Style>
+        <Style Selector="Button.target-grade-button /template/ ContentPresenter">
+            <Setter Property="CornerRadius" Value="10"/>
+        </Style>
+        <Style Selector="Button.target-grade-button:pointerover">
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        <Style Selector="Button.target-grade-button:pointerover /template/ ContentPresenter">
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="{StaticResource AppGreen}"/>
+        </Style>
+    </Window.Styles>
+
+    <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid DockPanel.Dock="Top" ColumnDefinitions="Auto,Auto" Margin="0,20,0,20"
+              HorizontalAlignment="Center">
+            <Button Grid.Column="0" Classes="target-grade-button" Margin="0,0,20,0"
+                    Background="{Binding ButtonColors[0]}"
+                    Foreground="{Binding ButtonTextColors[0]}"
+                    FontWeight="{Binding FontWeights[0]}"
+                    Content="Calculate Target Grade"
+                    CommandParameter="0">
+                <Button.Styles>
+                    <Style Selector="Button:pointerover /template/ ContentPresenter">
+                        <Setter Property="Background"
+                                Value="{Binding ButtonColorsHover[0]}"/>
+                        <Setter Property="TextBlock.Foreground"
+                                Value="{Binding ButtonTextColors[0]}"/>
+                    </Style>
+                </Button.Styles>
+            </Button>
+            <Button Grid.Column="1" Classes="target-grade-button" Margin="20,0,0,0"
+                    Background="{Binding ButtonColors[1]}"
+                    Foreground="{Binding ButtonTextColors[1]}"
+                    FontWeight="{Binding FontWeights[1]}"
+                    Content="Calculate Average"
+                    CommandParameter="1">
+                <Button.Styles>
+                    <Style Selector="Button:pointerover /template/ ContentPresenter">
+                        <Setter Property="Background"
+                                Value="{Binding ButtonColorsHover[1]}"/>
+                        <Setter Property="TextBlock.Foreground"
+                                Value="{Binding ButtonTextColors[1]}"/>
+                    </Style>
+                </Button.Styles>
+            </Button>
+        </Grid>
+        <Grid DockPanel.Dock="Bottom">
+            <UserControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                         Content="{Binding Content}"/>
+        </Grid>
+    </DockPanel>
 </Window>

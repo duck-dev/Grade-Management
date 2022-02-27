@@ -7,16 +7,16 @@
              xmlns:customControls="clr-namespace:GradeManagement.CustomControls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="GradeManagement.Views.Lists.SubjectListView">
-    
+
     <Design.DataContext>
         <listViewModels:SubjectListViewModel/>
     </Design.DataContext>
-    
+
     <UserControl.Styles>
         <StyleInclude Source="/src/Styles/ContextMenuStyle.axaml"/>
         <StyleInclude Source="/src/Styles/ListViewStyle.axaml"/>
     </UserControl.Styles>
-    
+
     <UserControl.DataTemplates>
         <DataTemplate DataType="elementButtonControls:GridButton">
             <Grid VerticalAlignment="Stretch" RowDefinitions="*,*,*">
@@ -24,34 +24,38 @@
                     <Viewbox HorizontalAlignment="Center" VerticalAlignment="Stretch" Height="46">
                         <TextBlock Text="{Binding SubjectRef.Name}"
                                    FontWeight="Bold" Foreground="{Binding SubjectRef.TitleBrush}"
-                                   HorizontalAlignment="Center" TextAlignment="Center" Margin="10 0 0 0" />
+                                   HorizontalAlignment="Center" TextAlignment="Center" Margin="10 0 0 0"/>
                     </Viewbox>
                 </Panel>
                 <Panel Grid.Row="1" VerticalAlignment="Stretch">
                     <Grid ColumnDefinitions="Auto,Auto" VerticalAlignment="Top" HorizontalAlignment="Center">
                         <Grid Grid.Column="0" ColumnDefinitions="Auto,Auto"
                               HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,25,0">
-                            <Image Grid.Column="0" Source="/Assets/Images/Dark/List-Dark-Filled.png" Width="28" Height="28"
+                            <Image Grid.Column="0" Source="/Assets/Images/Dark/List-Dark-Filled.png" Width="28"
+                                   Height="28"
                                    Margin="0,0,10,0"
-                                   IsVisible="{Binding SubjectRef.DarkSymbols}" 
+                                   IsVisible="{Binding SubjectRef.DarkSymbols}"
                                    IsEnabled="{Binding SubjectRef.DarkSymbols}"/>
-                            <Image Grid.Column="0" Source="/Assets/Images/Light/List-Light-Filled.png" Width="28" Height="28"
-                                   Margin="0,0,10,0" 
-                                   IsVisible="{Binding !SubjectRef.DarkSymbols}" 
+                            <Image Grid.Column="0" Source="/Assets/Images/Light/List-Light-Filled.png" Width="28"
+                                   Height="28"
+                                   Margin="0,0,10,0"
+                                   IsVisible="{Binding !SubjectRef.DarkSymbols}"
                                    IsEnabled="{Binding !SubjectRef.DarkSymbols}"/>
                             <TextBlock Grid.Column="1" TextAlignment="Center" FontSize="30"
                                        Text="{Binding Path=SubjectRef.Grades.Count}"
                                        Foreground="{Binding SubjectRef.AdditionalInfoColor}"/>
                         </Grid>
-                        <Grid Grid.Column="1" ColumnDefinitions="Auto,Auto" 
+                        <Grid Grid.Column="1" ColumnDefinitions="Auto,Auto"
                               HorizontalAlignment="Center" VerticalAlignment="Center" Margin="25, 0, 0, 0">
-                            <Image Grid.Column="0" Source="/Assets/Images/Dark/Weighting-Dark.png" Width="32" Height="32"
+                            <Image Grid.Column="0" Source="/Assets/Images/Dark/Weighting-Dark.png" Width="32"
+                                   Height="32"
                                    Margin="0,0,10,0"
-                                   IsVisible="{Binding SubjectRef.DarkSymbols}" 
+                                   IsVisible="{Binding SubjectRef.DarkSymbols}"
                                    IsEnabled="{Binding SubjectRef.DarkSymbols}"/>
-                            <Image Grid.Column="0" Source="/Assets/Images/Light/Weighting-Light.png" Width="32" Height="32"
-                                   Margin="0,0,10,0" 
-                                   IsVisible="{Binding !SubjectRef.DarkSymbols}" 
+                            <Image Grid.Column="0" Source="/Assets/Images/Light/Weighting-Light.png" Width="32"
+                                   Height="32"
+                                   Margin="0,0,10,0"
+                                   IsVisible="{Binding !SubjectRef.DarkSymbols}"
                                    IsEnabled="{Binding !SubjectRef.DarkSymbols}"/>
                             <TextBlock Grid.Column="1" TextAlignment="Center" FontSize="30"
                                        Text="{Binding SubjectRef.Weighting}"
@@ -67,10 +71,10 @@
             </Grid>
         </DataTemplate>
         <DataTemplate DataType="elementButtonControls:ListButton">
-            
+
             <!-- Design A
                  (additional information below title)-->
-            
+
             <!-- <Grid ColumnDefinitions="*,Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"> -->
             <!--     <Grid Grid.Column="0" RowDefinitions="*,*" HorizontalAlignment="Left" Margin="10,0,0,0"> -->
             <!--         <TextBlock Grid.Row="0" Text="{Binding SubjectRef.Name}" -->
@@ -92,10 +96,10 @@
             <!--                FontSize="42" FontWeight="Bold" Foreground="Black" -->
             <!--                Margin="0,0,10,0"/> -->
             <!-- </Grid> -->
-            
+
             <!-- Design B
                  (additional information next to title, horizontally aligned next to each other)-->
-            
+
             <!-- <Grid ColumnDefinitions="*,Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"> -->
             <!--     <Grid Grid.Column="0" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Left" Margin="10,0,0,0"> -->
             <!--         <TextBlock Grid.Column="0" Text="{Binding SubjectRef.Name}" -->
@@ -117,7 +121,7 @@
             <!--                FontSize="42" FontWeight="Bold" Foreground="Black" -->
             <!--                Margin="0,0,10,0"/> -->
             <!-- </Grid> -->
-            
+
             <!-- Design C
                  (additional information next to title, vertically aligned below each other)-->
             <Grid ColumnDefinitions="*,Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -128,27 +132,31 @@
                     <Grid Grid.Column="1" RowDefinitions="*, *" Margin="60,0,0,0">
                         <Grid Grid.Column="0" ColumnDefinitions="Auto,Auto"
                               HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Image Grid.Column="0" Source="/Assets/Images/Dark/List-Dark-Filled.png" Width="28" Height="28"
+                            <Image Grid.Column="0" Source="/Assets/Images/Dark/List-Dark-Filled.png" Width="28"
+                                   Height="28"
                                    Margin="0,0,10,0"
-                                   IsVisible="{Binding SubjectRef.DarkSymbols}" 
+                                   IsVisible="{Binding SubjectRef.DarkSymbols}"
                                    IsEnabled="{Binding SubjectRef.DarkSymbols}"/>
-                            <Image Grid.Column="0" Source="/Assets/Images/Light/List-Light-Filled.png" Width="28" Height="28"
-                                   Margin="0,0,10,0" 
-                                   IsVisible="{Binding !SubjectRef.DarkSymbols}" 
+                            <Image Grid.Column="0" Source="/Assets/Images/Light/List-Light-Filled.png" Width="28"
+                                   Height="28"
+                                   Margin="0,0,10,0"
+                                   IsVisible="{Binding !SubjectRef.DarkSymbols}"
                                    IsEnabled="{Binding !SubjectRef.DarkSymbols}"/>
                             <TextBlock Grid.Column="1" TextAlignment="Center" FontSize="30"
                                        Text="{Binding Path=SubjectRef.Grades.Count}"
                                        Foreground="{Binding SubjectRef.AdditionalInfoColor}"/>
                         </Grid>
-                        <Grid Grid.Row="1" ColumnDefinitions="Auto,Auto" 
+                        <Grid Grid.Row="1" ColumnDefinitions="Auto,Auto"
                               HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Image Grid.Column="0" Source="/Assets/Images/Dark/Weighting-Dark.png" Width="30" Height="30"
+                            <Image Grid.Column="0" Source="/Assets/Images/Dark/Weighting-Dark.png" Width="30"
+                                   Height="30"
                                    Margin="0,0,10,0"
-                                   IsVisible="{Binding SubjectRef.DarkSymbols}" 
+                                   IsVisible="{Binding SubjectRef.DarkSymbols}"
                                    IsEnabled="{Binding SubjectRef.DarkSymbols}"/>
-                            <Image Grid.Column="0" Source="/Assets/Images/Light/Weighting-Light.png" Width="30" Height="30"
-                                   Margin="0,0,10,0" 
-                                   IsVisible="{Binding !SubjectRef.DarkSymbols}" 
+                            <Image Grid.Column="0" Source="/Assets/Images/Light/Weighting-Light.png" Width="30"
+                                   Height="30"
+                                   Margin="0,0,10,0"
+                                   IsVisible="{Binding !SubjectRef.DarkSymbols}"
                                    IsEnabled="{Binding !SubjectRef.DarkSymbols}"/>
                             <TextBlock Grid.Column="1" Text="{Binding SubjectRef.Weighting}"
                                        Foreground="{Binding SubjectRef.AdditionalInfoColor}" FontSize="28"/>
@@ -162,7 +170,7 @@
             </Grid>
         </DataTemplate>
     </UserControl.DataTemplates>
-    
+
     <UserControl.ContextMenu>
         <ContextMenu>
             <MenuItem Header="Paste Subject"
@@ -221,27 +229,28 @@
             </MenuItem>
         </ContextMenu>
     </UserControl.ContextMenu>
-    
+
     <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"
-                    IsEnabled="{Binding EmptyCollection}" 
+                    IsEnabled="{Binding EmptyCollection}"
                     IsVisible="{Binding EmptyCollection}">
             <TextBlock Classes="no-elements-text" Margin="0,0,8,0">
                 This year doesn't yet contain subjects. You can add a new subject with the green button
             </TextBlock>
             <Viewbox Width="40" Height="40" VerticalAlignment="Center">
                 <Grid Width="24" Height="24">
-                    <Ellipse Stroke="#009B72" StrokeThickness="1.333" Fill="#0000ffff"/>
-                    <TextBlock Text="+" FontSize="16" FontWeight="Bold" TextAlignment="Center" 
-                               VerticalAlignment="Center" HorizontalAlignment="Center" 
-                               Foreground="#009B72"/>
+                    <Ellipse Stroke="{StaticResource AppGreen}" StrokeThickness="1.333"
+                             Fill="{StaticResource FullyTransparent}"/>
+                    <TextBlock Text="+" FontSize="16" FontWeight="Bold" TextAlignment="Center"
+                               VerticalAlignment="Center" HorizontalAlignment="Center"
+                               Foreground="{StaticResource AppGreen}"/>
                 </Grid>
             </Viewbox>
             <TextBlock Classes="no-elements-text" Margin="8,0,0,0">
                 in the bottom-right corner.
             </TextBlock>
         </StackPanel>
-        
+
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
             <ContentControl Content="{Binding IsViewGrid}">
                 <ContentControl.Resources>
@@ -269,7 +278,7 @@
                             </Button.Transitions>
                             <Button.ContextMenu>
                                 <ContextMenu>
-                                    <MenuItem Header="Edit Subject" 
+                                    <MenuItem Header="Edit Subject"
                                               Command="{Binding $parent[Window].DataContext.EditSubject}"
                                               CommandParameter="{Binding}"/>
                                     <MenuItem Header="Copy Subject"
@@ -284,10 +293,12 @@
                                               CommandParameter="{Binding}">
                                         <MenuItem.Styles>
                                             <Style Selector="MenuItem:pointerover /template/ Border">
-                                                <Setter Property="Background" Value="#d4735b"/>
+                                                <Setter Property="Background"
+                                                        Value="{StaticResource LightRedContextMenu}"/>
                                             </Style>
                                             <Style Selector="MenuItem:pressed /template/ Border">
-                                                <Setter Property="Background" Value="#c96047"/>
+                                                <Setter Property="Background"
+                                                        Value="{StaticResource DarkerLightRedContextMenu}"/>
                                             </Style>
                                         </MenuItem.Styles>
                                     </MenuItem>

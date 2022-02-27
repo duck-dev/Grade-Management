@@ -1,6 +1,6 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    
+
     <Style Selector="TextBox.target-grade-textbox">
         <Setter Property="Background" Value="White"/>
         <Setter Property="Width" Value="300"/>
@@ -9,14 +9,14 @@
         <Setter Property="MaxLength" Value="5"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="BorderBrush" Value="#009b72"/>
-        <Setter Property="SelectionBrush" Value="#009b72"/>
+        <Setter Property="BorderBrush" Value="{StaticResource AppGreen}"/>
+        <Setter Property="SelectionBrush" Value="{StaticResource AppGreen}"/>
         <Setter Property="AcceptsReturn" Value="False"/>
         <Setter Property="AcceptsTab" Value="False"/>
         <Setter Property="TextWrapping" Value="NoWrap"/>
         <Setter Property="FontSize" Value="16"/>
     </Style>
-    
+
     <Style Selector="TextBlock.result-text">
         <Setter Property="Foreground" Value="Black"/>
         <Setter Property="FontSize" Value="26"/>
@@ -25,7 +25,7 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="TextAlignment" Value="Center"/>
     </Style>
-    
+
     <Style Selector="TextBlock.intro-text">
         <Setter Property="FontSize" Value="18"/>
         <Setter Property="Foreground" Value="Black"/>

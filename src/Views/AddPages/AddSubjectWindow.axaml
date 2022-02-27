@@ -47,7 +47,8 @@
                     <ItemsControl Grid.Row="1" Items="{Binding ElementColorsCollection}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"/>
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
@@ -58,7 +59,8 @@
                                         CommandParameter="{Binding}">
                                     <Button.Transitions>
                                         <Transitions>
-                                            <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
+                                            <TransformOperationsTransition Property="RenderTransform"
+                                                                           Duration="0:0:0.2"/>
                                         </Transitions>
                                     </Button.Transitions>
                                     <Button.Styles>

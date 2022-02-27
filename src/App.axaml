@@ -5,7 +5,7 @@
     <Application.DataTemplates>
         <local:ViewLocator/>
     </Application.DataTemplates>
-    
+
     <Application.DataContext>
         <local:App/>
     </Application.DataContext>

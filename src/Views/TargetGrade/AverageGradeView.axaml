@@ -5,15 +5,15 @@
              xmlns:targetGrade="clr-namespace:GradeManagement.ViewModels.TargetGrade"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="GradeManagement.Views.TargetGrade.AverageGradeView">
-    
+
     <Design.DataContext>
         <targetGrade:AverageGradeViewModel/>
     </Design.DataContext>
-    
+
     <UserControl.Styles>
         <StyleInclude Source="/src/Styles/TargetGradeStyle.axaml"/>
     </UserControl.Styles>
-    
+
     <Grid RowDefinitions="*,*,*,*" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <TextBlock Grid.Row="0" Classes="intro-text"
                    Text="Calculate the new average you'd have if your next grade had the specified value and weighting."/>

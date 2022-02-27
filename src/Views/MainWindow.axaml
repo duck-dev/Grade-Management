@@ -29,7 +29,7 @@
                                       VerticalAlignment="Stretch" HorizontalAlignment="Center">
                                     <!--If the Grid's HorizontalAlignment is "Left", set left margin to 30 (Margin: 30, 0, 0, 0)-->
                                     <TextBlock Grid.Column="0" Classes="topbar-text topbar-text-pointable"
-                                               Foreground="#A5B1CC" PointerPressed="OnYearPressed"/>
+                                               Foreground="{StaticResource LightPurple}" PointerPressed="OnYearPressed"/>
                                     <TextBlock Grid.Column="1" Classes="topbar-text topbar-text-symbol" Text="/"/>
                                     <TextBlock Grid.Column="2" Classes="topbar-text topbar-text-pointable"
                                                PointerPressed="OnSubjectPressed"/>
@@ -47,7 +47,8 @@
                                     Command="{Binding ChangeView}" CommandParameter="true">
                                 <Grid ColumnDefinitions="Auto,*">
                                     <Image Grid.Column="0" Classes="change-view-icon"
-                                           Source="/Assets/Images/Dark/Grid-Dark-Filled.png"/> <!-- TODO: Consider themes when implemented -->
+                                           Source="/Assets/Images/Dark/Grid-Dark-Filled.png"/>
+                                    <!-- TODO: Consider themes when implemented -->
                                     <TextBlock Grid.Column="1" Classes="change-view-text" Text="Grid"/>
                                 </Grid>
                             </Button>
@@ -58,7 +59,8 @@
                                     Command="{Binding ChangeView}" CommandParameter="false">
                                 <Grid ColumnDefinitions="Auto,*">
                                     <Image Grid.Column="0" Classes="change-view-icon"
-                                           Source="/Assets/Images/Dark/List-Dark-Filled.png"/> <!-- TODO: Consider themes when implemented -->
+                                           Source="/Assets/Images/Dark/List-Dark-Filled.png"/>
+                                    <!-- TODO: Consider themes when implemented -->
                                     <TextBlock Grid.Column="1" Classes="change-view-text" Text="List"/>
                                 </Grid>
                             </Button>
@@ -85,7 +87,7 @@
                 <Button Classes="add-button" Command="{Binding OpenAddPage}"/>
             </Panel>
         </DockPanel>
-        
+
         <UserControl Content="{Binding Content.CurrentDialog}"
                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
     </Panel>

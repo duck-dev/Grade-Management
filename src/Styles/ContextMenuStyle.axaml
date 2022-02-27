@@ -1,13 +1,13 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    
+
     <Style Selector="MenuItem:pointerover">
         <Setter Property="FontWeight" Value="Bold"/>
     </Style>
     <Style Selector="MenuItem:pointerover /template/ Border">
-        <Setter Property="Background" Value="#58c4a8"/>
+        <Setter Property="Background" Value="{StaticResource LightGreenContextMenu}"/>
     </Style>
     <Style Selector="MenuItem:pressed /template/ Border">
-        <Setter Property="Background" Value="#0eb085"/>
+        <Setter Property="Background" Value="{StaticResource DarkerLightGreenContextMenu}"/>
     </Style>
 </Styles>

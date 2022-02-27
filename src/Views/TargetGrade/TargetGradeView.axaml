@@ -5,15 +5,15 @@
              xmlns:targetGrade="clr-namespace:GradeManagement.ViewModels.TargetGrade"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="GradeManagement.Views.TargetGrade.TargetGradeView">
-    
+
     <Design.DataContext>
         <targetGrade:TargetGradeViewModel/>
     </Design.DataContext>
-    
+
     <UserControl.Styles>
         <StyleInclude Source="/src/Styles/TargetGradeStyle.axaml"/>
     </UserControl.Styles>
-    
+
     <Grid RowDefinitions="*,*,*,*" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <TextBlock Grid.Row="0" Classes="intro-text"
                    Text="Calculate the next grade you'd need, to achieve the desired average, considering the weighting of the grade."/>
@@ -21,7 +21,7 @@
                  Text="{Binding TargetAverageString}"/>
         <TextBox Grid.Row="2" Classes="target-grade-textbox" Watermark="Weighting"
                  Text="{Binding WeightingString}"/>
-        <TextBlock Grid.Row="3" Classes="result-text" 
+        <TextBlock Grid.Row="3" Classes="result-text"
                    Text="{Binding Path=NeededGrade, StringFormat='Needed Grade {0}'}"/>
     </Grid>
 </UserControl>

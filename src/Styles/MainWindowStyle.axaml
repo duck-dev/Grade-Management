@@ -2,9 +2,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!-- Topbar -->
-    
+
     <Style Selector="Border.topbar-border">
-        <Setter Property="BorderBrush" Value="#808080"/>
+        <Setter Property="BorderBrush" Value="{StaticResource StandardGrey}"/>
         <Setter Property="Height" Value="115"/>
     </Style>
 
@@ -19,17 +19,17 @@
         <Setter Property="Cursor" Value="Hand"/>
         <!-- TODO: Do something fancy "on pointer over" -->
     </Style>
-    
+
     <Style Selector="TextBlock.topbar-text-symbol">
-        <Setter Property="Foreground" Value="#808080"/>
+        <Setter Property="Foreground" Value="{StaticResource StandardGrey}"/>
     </Style>
-    
+
     <!-- Change-View Buttons -->
-    
+
     <Style Selector="Button.change-view-button">
         <Setter Property="Width" Value="200"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>
-        <Setter Property="Background" Value="#c7cad1"/>
+        <Setter Property="Background" Value="{StaticResource ElementBackground}"/>
     </Style>
     <Style Selector="Button.change-view-button /template/ ContentPresenter">
         <Setter Property="CornerRadius" Value="10"/>
@@ -38,40 +38,41 @@
         <Setter Property="Cursor" Value="Hand"/>
     </Style>
     <Style Selector="Button.change-view-button:pressed /template/ ContentPresenter">
-        <Setter Property="Background" Value="#bdbdbd"/>
+        <Setter Property="Background" Value="#BDBDBD"/>
     </Style>
-    
+
     <Style Selector="Button.change-view-button-selected /template/ ContentPresenter">
         <Setter Property="BorderThickness" Value="2"/>
-        <Setter Property="BorderBrush" Value="#009B72"/>
+        <Setter Property="BorderBrush" Value="{StaticResource AppGreen}"/>
     </Style>
-    
+
     <Style Selector="TextBlock.change-view-text">
         <Setter Property="FontSize" Value="22"/>
-        <Setter Property="Foreground" Value="#666666"/>
+        <Setter Property="Foreground" Value="{StaticResource DarkGrey}"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
-    
+
     <Style Selector="Image.change-view-icon">
         <Setter Property="Margin" Value="15,0"/>
         <Setter Property="Width" Value="26"/>
         <Setter Property="Height" Value="26"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
-    
+
     <!-- Add-Button -->
-    
+
     <Style Selector="Button.add-button">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Viewbox Width="150" Height="150">
                         <Grid Width="100" Height="100">
-                            <Ellipse Stroke="#009B72" StrokeThickness="5" Fill="#0000ffff"/>
-                            <TextBlock Text="+" FontSize="58" FontWeight="Bold" TextAlignment="Center" 
-                                       VerticalAlignment="Center" HorizontalAlignment="Center" 
-                                       Foreground="#009B72"/>
+                            <Ellipse Stroke="{StaticResource AppGreen}" StrokeThickness="5"
+                                     Fill="{StaticResource FullyTransparent}"/>
+                            <TextBlock Text="+" FontSize="58" FontWeight="Bold" TextAlignment="Center"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center"
+                                       Foreground="{StaticResource AppGreen}"/>
                         </Grid>
                     </Viewbox>
                 </ControlTemplate>
@@ -79,7 +80,8 @@
         </Setter>
         <Setter Property="VerticalAlignment" Value="Bottom"/>
         <Setter Property="HorizontalAlignment" Value="Right"/>
-        <Setter Property="Margin" Value="0,0,37.5,20"/> <!-- Bottom-Margin + top-margin of bottom bar (currently 17.5)-->
+        <Setter Property="Margin" Value="0,0,37.5,20"/>
+        <!-- Bottom-Margin + top-margin of bottom bar (currently 17.5)-->
         <Setter Property="Transitions">
             <Transitions>
                 <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
@@ -93,7 +95,7 @@
     <Style Selector="Button.add-button:pressed">
         <Setter Property="RenderTransform" Value="scale(0.90)"/>
     </Style>
-    
+
     <!-- Info-Button (later: Settings-Button)-->
     <Style Selector="Button.info-button">
         <Setter Property="Width" Value="80"/>
@@ -104,7 +106,7 @@
         <Setter Property="Template">
             <ControlTemplate TargetType="{x:Type Button}">
                 <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <Ellipse Stroke="#8B8D92" StrokeThickness="5" Fill="#0000ffff"/>
+                    <Ellipse Stroke="#8B8D92" StrokeThickness="5" Fill="{StaticResource FullyTransparent}"/>
                     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
                                Foreground="#8B8D92" FontWeight="Bold" FontSize="50" Text="i"/>
                 </Grid>

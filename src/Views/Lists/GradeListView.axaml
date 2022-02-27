@@ -17,7 +17,7 @@
         <StyleInclude Source="/src/Styles/ListViewStyle.axaml"/>
 
         <Style Selector="Button.element-button:pressed /template/ ContentPresenter">
-            <Setter Property="Background" Value="#b8babf"/>
+            <Setter Property="Background" Value="{StaticResource DarkerElementBackground}"/>
         </Style>
     </UserControl.Styles>
 
@@ -37,19 +37,20 @@
                           VerticalAlignment="Center">
                         <Image Grid.Column="0" Source="/Assets/Images/Dark/Date-Dark.png"
                                Margin="0,0,10,0" Width="28" Height="28"
-                               HorizontalAlignment="Center" VerticalAlignment="Center"/> <!-- TODO: Consider themes when implemented -->
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <!-- TODO: Consider themes when implemented -->
                         <TextBlock Grid.Column="1" TextAlignment="Center"
                                    Text="{Binding GradeRef.DateString}"
-                                   Foreground="#878787" FontSize="26" Margin="8, 0, 25, 0"
-                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                   Foreground="{StaticResource StandardGrey}" FontSize="26"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" Margin="8, 0, 25, 0"/>
                         <!--TODO: Consider culture-->
                     </Grid>
-                    <Grid Grid.Column="1" ColumnDefinitions="Auto,Auto" 
+                    <Grid Grid.Column="1" ColumnDefinitions="Auto,Auto"
                           HorizontalAlignment="Center" VerticalAlignment="Center" Margin="25, 0, 0, 0">
                         <Image Grid.Column="0" Source="/Assets/Images/Dark/Weighting-Dark.png" Width="32" Height="32"
                                Margin="0,0,10,0"/> <!-- TODO: Consider themes when implemented -->
-                        <TextBlock Grid.Column="1" TextAlignment="Center" Foreground="#878787" FontSize="30"
-                                   Text="{Binding Path=GradeRef.Weighting}"/>
+                        <TextBlock Grid.Column="1" TextAlignment="Center" Foreground="{StaticResource StandardGrey}"
+                                   FontSize="30" Text="{Binding Path=GradeRef.Weighting}"/>
                     </Grid>
                 </Grid>
                 <Panel Grid.Row="2" VerticalAlignment="Stretch">
@@ -61,10 +62,10 @@
             </Grid>
         </DataTemplate>
         <DataTemplate DataType="elementButtonControls:ListButton">
-            
+
             <!-- Design A
                  (additional information below title)-->
-            
+
             <!-- <Grid ColumnDefinitions="*,Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"> -->
             <!--     <Grid Grid.Column="0" RowDefinitions="*,*" HorizontalAlignment="Left" Margin="10,0,0,0"> -->
             <!--         <TextBlock Grid.Row="0" Text="{Binding GradeRef.Name}" -->
@@ -91,10 +92,10 @@
             <!--                Text="{Binding GradeRef.RoundedGrade}" -->
             <!--                FontSize="42" FontWeight="Bold" Foreground="Black" Margin="0,0,10,0"/> -->
             <!-- </Grid> -->
-            
+
             <!-- Design B
                  (additional information next to title, horizontally aligned next to each other)-->
-            
+
             <!-- <Grid ColumnDefinitions="*,Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"> -->
             <!--     <Grid Grid.Column="0" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Left" Margin="10,0,0,0"> -->
             <!--         <TextBlock Grid.Column="0" Text="{Binding GradeRef.Name}" -->
@@ -122,7 +123,7 @@
             <!--                FontSize="42" FontWeight="Bold" Foreground="Black" -->
             <!--                Margin="0,0,10,0"/> -->
             <!-- </Grid> -->
-            
+
             <!-- Design C
                  (additional information next to title, vertically aligned below each other)-->
             <Grid ColumnDefinitions="*,Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -135,20 +136,22 @@
                               VerticalAlignment="Center">
                             <Image Grid.Column="0" Source="/Assets/Images/Dark/Date-Dark.png"
                                    Margin="0,0,10,0" Width="28" Height="28"
-                                   HorizontalAlignment="Center" VerticalAlignment="Center"/> <!-- TODO: Consider themes when implemented -->
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <!-- TODO: Consider themes when implemented -->
                             <TextBlock Grid.Column="1" TextAlignment="Center"
                                        Text="{Binding GradeRef.DateString}"
-                                       Foreground="#878787" FontSize="26" Margin="8, 0, 25, 0"
-                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                       Foreground="{StaticResource StandardGrey}" FontSize="26"
+                                       HorizontalAlignment="Center" VerticalAlignment="Center" Margin="8, 0, 25, 0"/>
                             <!--TODO: Consider culture-->
                         </Grid>
-                        <Grid Grid.Row="1" ColumnDefinitions="Auto,Auto" 
+                        <Grid Grid.Row="1" ColumnDefinitions="Auto,Auto"
                               HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Image Grid.Column="0" Source="/Assets/Images/Dark/Weighting-Dark.png" Width="30" Height="30"
+                            <Image Grid.Column="0" Source="/Assets/Images/Dark/Weighting-Dark.png" Width="30"
+                                   Height="30"
                                    Margin="0,0,10,0"/> <!-- TODO: Consider themes when implemented -->
                             <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
                                        Text="{Binding Path=GradeRef.Weighting}"
-                                       Foreground="#878787" FontSize="28"/>
+                                       Foreground="{StaticResource StandardGrey}" FontSize="28"/>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -159,7 +162,7 @@
             </Grid>
         </DataTemplate>
     </UserControl.DataTemplates>
-    
+
     <UserControl.ContextMenu>
         <ContextMenu>
             <MenuItem Header="Paste Grade"
@@ -230,10 +233,11 @@
             </TextBlock>
             <Viewbox Width="40" Height="40" VerticalAlignment="Center">
                 <Grid Width="24" Height="24">
-                    <Ellipse Stroke="#009B72" StrokeThickness="1.333" Fill="#0000ffff"/>
+                    <Ellipse Stroke="{StaticResource AppGreen}" StrokeThickness="1.333"
+                             Fill="{StaticResource FullyTransparent}"/>
                     <TextBlock Text="+" FontSize="16" FontWeight="Bold" TextAlignment="Center"
                                VerticalAlignment="Center" HorizontalAlignment="Center"
-                               Foreground="#009B72"/>
+                               Foreground="{StaticResource AppGreen}"/>
                 </Grid>
             </Viewbox>
             <TextBlock Classes="no-elements-text" Margin="8,0,0,0">
@@ -272,10 +276,12 @@
                                               CommandParameter="{Binding}">
                                         <MenuItem.Styles>
                                             <Style Selector="MenuItem:pointerover /template/ Border">
-                                                <Setter Property="Background" Value="#d4735b"/>
+                                                <Setter Property="Background"
+                                                        Value="{StaticResource LightRedContextMenu}"/>
                                             </Style>
                                             <Style Selector="MenuItem:pressed /template/ Border">
-                                                <Setter Property="Background" Value="#c96047"/>
+                                                <Setter Property="Background"
+                                                        Value="{StaticResource DarkerLightRedContextMenu}"/>
                                             </Style>
                                         </MenuItem.Styles>
                                     </MenuItem>
@@ -318,7 +324,8 @@
                 Width="175" Height="175" Command="{Binding OpenTargetGradeCalc}">
             <Button.Template>
                 <ControlTemplate>
-                    <Image Source="/Assets/Images/Dark/Calculator-Dark.png" Width="175" Height="175"/> <!-- TODO: Consider themes when implemented -->
+                    <Image Source="/Assets/Images/Dark/Calculator-Dark.png" Width="175" Height="175"/>
+                    <!-- TODO: Consider themes when implemented -->
                 </ControlTemplate>
             </Button.Template>
             <Button.Styles>

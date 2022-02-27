@@ -1,10 +1,10 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    
+
     <!-- Element-Buttons -->
-    
+
     <Style Selector="Button.element-button">
-        <Setter Property="Background" Value="#C7CAD1"/>
+        <Setter Property="Background" Value="{StaticResource ElementBackground}"/>
         <Setter Property="Margin" Value="30,17.5"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="RenderTransform" Value="scale(1)"/>
@@ -15,15 +15,15 @@
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="RenderTransform" Value="scale(0.95)"/>
     </Style>
-    
+
     <Style Selector="Button.grade-year-element-button">
         <Setter Property="Width" Value="420"/>
     </Style>
-    
+
     <Style Selector="Button.subject-element-button">
         <Setter Property="Width" Value="320"/>
     </Style>
-    
+
     <Style Selector="Button.element-button-list">
         <Setter Property="Height" Value="100"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
@@ -32,11 +32,11 @@
     <Style Selector="Button.element-button-list:pointerover">
         <Setter Property="RenderTransform" Value="scale(0.985)"/>
     </Style>
-        
+
     <!-- "No Elements" text -->
-    
+
     <Style Selector="TextBlock.no-elements-text">
-        <Setter Property="Foreground" Value="#808080"/>
+        <Setter Property="Foreground" Value="{StaticResource StandardGrey}"/>
         <Setter Property="FontSize" Value="24"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
