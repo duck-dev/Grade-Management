@@ -80,8 +80,7 @@
         </Setter>
         <Setter Property="VerticalAlignment" Value="Bottom"/>
         <Setter Property="HorizontalAlignment" Value="Right"/>
-        <Setter Property="Margin" Value="0,0,37.5,20"/>
-        <!-- Bottom-Margin + top-margin of bottom bar (currently 17.5)-->
+        <Setter Property="Margin" Value="0,0,37.5,20"/> <!-- Bottom-Margin + top-margin of bottom bar (currently 17.5)-->
         <Setter Property="Transitions">
             <Transitions>
                 <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>

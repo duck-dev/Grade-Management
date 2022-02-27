@@ -43,8 +43,7 @@
 
     <Style Selector="CalendarDayButton:pointerover">
         <Setter Property="RenderTransform" Value="scale(0.95)"/>
-        <Setter Property="Background" Value="#DCDCDC"/>
-        <!--If overriden by `CalendarDayButton:state:pointerover`, 
+        <Setter Property="Background" Value="#DCDCDC"/> <!--If overriden by `CalendarDayButton:state:pointerover`, 
                                                         this doesn't have any effect for the overriden selectors,
                                                         but the overriden value will be used.-->
     </Style>
@@ -101,8 +100,7 @@
 
     <Style Selector="CalendarButton:pointerover">
         <Setter Property="RenderTransform" Value="scale(0.95)"/>
-        <Setter Property="Background" Value="#DCDCDC"/>
-        <!--If overriden by `CalendarDayButton:state:pointerover`, 
+        <Setter Property="Background" Value="#DCDCDC"/> <!--If overriden by `CalendarDayButton:state:pointerover`, 
                                                         this doesn't have any effect for the overriden selectors,
                                                         but the overriden value will be used.-->
     </Style>

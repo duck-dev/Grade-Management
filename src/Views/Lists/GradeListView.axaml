@@ -31,10 +31,8 @@
                                    HorizontalAlignment="Center" TextAlignment="Center"/>
                     </Viewbox>
                 </Panel>
-                <Grid Grid.Row="1" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center"
-                      VerticalAlignment="Top">
-                    <Grid Grid.Column="0" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center"
-                          VerticalAlignment="Center">
+                <Grid Grid.Row="1" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Grid Grid.Column="0" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Image Grid.Column="0" Source="/Assets/Images/Dark/Date-Dark.png"
                                Margin="0,0,10,0" Width="28" Height="28"
                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -132,8 +130,7 @@
                                FontSize="36" FontWeight="Bold" Foreground="Black"
                                HorizontalAlignment="Left" VerticalAlignment="Center"/>
                     <Grid Grid.Column="1" RowDefinitions="*, *" Margin="60,0,0,0">
-                        <Grid Grid.Row="0" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center"
-                              VerticalAlignment="Center">
+                        <Grid Grid.Row="0" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Image Grid.Column="0" Source="/Assets/Images/Dark/Date-Dark.png"
                                    Margin="0,0,10,0" Width="28" Height="28"
                                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -144,10 +141,8 @@
                                        HorizontalAlignment="Center" VerticalAlignment="Center" Margin="8, 0, 25, 0"/>
                             <!--TODO: Consider culture-->
                         </Grid>
-                        <Grid Grid.Row="1" ColumnDefinitions="Auto,Auto"
-                              HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Image Grid.Column="0" Source="/Assets/Images/Dark/Weighting-Dark.png" Width="30"
-                                   Height="30"
+                        <Grid Grid.Row="1" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Image Grid.Column="0" Source="/Assets/Images/Dark/Weighting-Dark.png" Width="30" Height="30"
                                    Margin="0,0,10,0"/> <!-- TODO: Consider themes when implemented -->
                             <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
                                        Text="{Binding Path=GradeRef.Weighting}"
@@ -157,8 +152,7 @@
                 </Grid>
                 <TextBlock Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"
                            Text="{Binding GradeRef.RoundedGrade}"
-                           FontSize="42" FontWeight="Bold" Foreground="Black"
-                           Margin="0,0,10,0"/>
+                           FontSize="42" FontWeight="Bold" Foreground="Black" Margin="0,0,10,0"/>
             </Grid>
         </DataTemplate>
     </UserControl.DataTemplates>
@@ -240,9 +234,7 @@
                                Foreground="{StaticResource AppGreen}"/>
                 </Grid>
             </Viewbox>
-            <TextBlock Classes="no-elements-text" Margin="8,0,0,0">
-                in the bottom-right corner.
-            </TextBlock>
+            <TextBlock Classes="no-elements-text" Margin="8,0,0,0" Text="in the bottom-right corner."/>
         </StackPanel>
 
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">

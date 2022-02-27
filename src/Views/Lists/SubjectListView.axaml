@@ -31,14 +31,12 @@
                     <Grid ColumnDefinitions="Auto,Auto" VerticalAlignment="Top" HorizontalAlignment="Center">
                         <Grid Grid.Column="0" ColumnDefinitions="Auto,Auto"
                               HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,25,0">
-                            <Image Grid.Column="0" Source="/Assets/Images/Dark/List-Dark-Filled.png" Width="28"
-                                   Height="28"
-                                   Margin="0,0,10,0"
+                            <Image Grid.Column="0" Source="/Assets/Images/Dark/List-Dark-Filled.png" 
+                                   Width="28" Height="28" Margin="0,0,10,0"
                                    IsVisible="{Binding SubjectRef.DarkSymbols}"
                                    IsEnabled="{Binding SubjectRef.DarkSymbols}"/>
-                            <Image Grid.Column="0" Source="/Assets/Images/Light/List-Light-Filled.png" Width="28"
-                                   Height="28"
-                                   Margin="0,0,10,0"
+                            <Image Grid.Column="0" Source="/Assets/Images/Light/List-Light-Filled.png" 
+                                   Width="28" Height="28" Margin="0,0,10,0"
                                    IsVisible="{Binding !SubjectRef.DarkSymbols}"
                                    IsEnabled="{Binding !SubjectRef.DarkSymbols}"/>
                             <TextBlock Grid.Column="1" TextAlignment="Center" FontSize="30"
@@ -47,14 +45,12 @@
                         </Grid>
                         <Grid Grid.Column="1" ColumnDefinitions="Auto,Auto"
                               HorizontalAlignment="Center" VerticalAlignment="Center" Margin="25, 0, 0, 0">
-                            <Image Grid.Column="0" Source="/Assets/Images/Dark/Weighting-Dark.png" Width="32"
-                                   Height="32"
-                                   Margin="0,0,10,0"
+                            <Image Grid.Column="0" Source="/Assets/Images/Dark/Weighting-Dark.png" 
+                                   Width="32" Height="32" Margin="0,0,10,0"
                                    IsVisible="{Binding SubjectRef.DarkSymbols}"
                                    IsEnabled="{Binding SubjectRef.DarkSymbols}"/>
-                            <Image Grid.Column="0" Source="/Assets/Images/Light/Weighting-Light.png" Width="32"
-                                   Height="32"
-                                   Margin="0,0,10,0"
+                            <Image Grid.Column="0" Source="/Assets/Images/Light/Weighting-Light.png" 
+                                   Width="32" Height="32" Margin="0,0,10,0"
                                    IsVisible="{Binding !SubjectRef.DarkSymbols}"
                                    IsEnabled="{Binding !SubjectRef.DarkSymbols}"/>
                             <TextBlock Grid.Column="1" TextAlignment="Center" FontSize="30"
@@ -132,14 +128,12 @@
                     <Grid Grid.Column="1" RowDefinitions="*, *" Margin="60,0,0,0">
                         <Grid Grid.Column="0" ColumnDefinitions="Auto,Auto"
                               HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Image Grid.Column="0" Source="/Assets/Images/Dark/List-Dark-Filled.png" Width="28"
-                                   Height="28"
-                                   Margin="0,0,10,0"
+                            <Image Grid.Column="0" Source="/Assets/Images/Dark/List-Dark-Filled.png" 
+                                   Width="28" Height="28" Margin="0,0,10,0"
                                    IsVisible="{Binding SubjectRef.DarkSymbols}"
                                    IsEnabled="{Binding SubjectRef.DarkSymbols}"/>
-                            <Image Grid.Column="0" Source="/Assets/Images/Light/List-Light-Filled.png" Width="28"
-                                   Height="28"
-                                   Margin="0,0,10,0"
+                            <Image Grid.Column="0" Source="/Assets/Images/Light/List-Light-Filled.png" 
+                                   Width="28" Height="28" Margin="0,0,10,0"
                                    IsVisible="{Binding !SubjectRef.DarkSymbols}"
                                    IsEnabled="{Binding !SubjectRef.DarkSymbols}"/>
                             <TextBlock Grid.Column="1" TextAlignment="Center" FontSize="30"
@@ -148,14 +142,12 @@
                         </Grid>
                         <Grid Grid.Row="1" ColumnDefinitions="Auto,Auto"
                               HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Image Grid.Column="0" Source="/Assets/Images/Dark/Weighting-Dark.png" Width="30"
-                                   Height="30"
-                                   Margin="0,0,10,0"
+                            <Image Grid.Column="0" Source="/Assets/Images/Dark/Weighting-Dark.png" 
+                                   Width="30" Height="30" Margin="0,0,10,0"
                                    IsVisible="{Binding SubjectRef.DarkSymbols}"
                                    IsEnabled="{Binding SubjectRef.DarkSymbols}"/>
-                            <Image Grid.Column="0" Source="/Assets/Images/Light/Weighting-Light.png" Width="30"
-                                   Height="30"
-                                   Margin="0,0,10,0"
+                            <Image Grid.Column="0" Source="/Assets/Images/Light/Weighting-Light.png" 
+                                   Width="30" Height="30" Margin="0,0,10,0"
                                    IsVisible="{Binding !SubjectRef.DarkSymbols}"
                                    IsEnabled="{Binding !SubjectRef.DarkSymbols}"/>
                             <TextBlock Grid.Column="1" Text="{Binding SubjectRef.Weighting}"
@@ -246,9 +238,7 @@
                                Foreground="{StaticResource AppGreen}"/>
                 </Grid>
             </Viewbox>
-            <TextBlock Classes="no-elements-text" Margin="8,0,0,0">
-                in the bottom-right corner.
-            </TextBlock>
+            <TextBlock Classes="no-elements-text" Margin="8,0,0,0" Text="in the bottom-right corner."/>
         </StackPanel>
 
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">

@@ -21,8 +21,7 @@
                     <Grid RowDefinitions="Auto,Auto,Auto" DockPanel.Dock="Bottom" VerticalAlignment="Center">
                         <Button Grid.Row="0" Classes="dialog-button"
                                 Background="{Binding ButtonColors[0]}"
-                                Command="{Binding Command}"
-                                CommandParameter="Confirm">
+                                Command="{Binding Command}" CommandParameter="Confirm">
                             <Button.Styles>
                                 <Style Selector="Button.dialog-button:pointerover /template/ ContentPresenter">
                                     <Setter Property="Background" Value="{Binding ButtonColorsHover[0]}"/>

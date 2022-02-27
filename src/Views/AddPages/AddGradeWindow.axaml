@@ -40,41 +40,35 @@
             <!-- </Button> TODO: Set up back-button!!!-->
             <TextBox Grid.Row="1" Classes="add-page-text-box" Watermark="Name of the Grade" MaxLength="35"
                      Text="{Binding ElementName}"
-                     HorizontalContentAlignment="Left"
-                     BorderBrush="{Binding BorderBrushes[0]}"/>
-            <Grid Grid.Row="2" ColumnDefinitions="440,60"
-                  Width="500" Height="60" VerticalAlignment="Top">
+                     HorizontalContentAlignment="Left" BorderBrush="{Binding BorderBrushes[0]}"/>
+            <Grid Grid.Row="2" ColumnDefinitions="440,60" Width="500" Height="60" VerticalAlignment="Top">
                 <Border Grid.Column="0" BorderBrush="{StaticResource AppGreen}">
-                    <Panel>
-                        <Grid ColumnDefinitions="Auto,Auto,Auto" HorizontalAlignment="Center">
-                            <TextBox Grid.Column="0"
-                                     Classes="add-page-date-picker-textbox"
-                                     Text="{Binding SelectedDay, 
+                    <Grid ColumnDefinitions="Auto,Auto,Auto" HorizontalAlignment="Center">
+                        <TextBox Grid.Column="0"
+                                 Classes="add-page-date-picker-textbox"
+                                 Text="{Binding SelectedDay, 
                                                                         Converter={StaticResource IntConverter}}"
-                                     Width="90" MaxLength="2" Watermark="Day"
-                                     BorderBrush="{Binding BorderBrushes[1]}"/>
-                            <TextBox Grid.Column="1"
-                                     Classes="add-page-date-picker-textbox"
-                                     Text="{Binding SelectedMonth, 
+                                 Width="90" MaxLength="2" Watermark="Day"
+                                 BorderBrush="{Binding BorderBrushes[1]}"/>
+                        <TextBox Grid.Column="1"
+                                 Classes="add-page-date-picker-textbox"
+                                 Text="{Binding SelectedMonth, 
                                                                         Converter={StaticResource MonthConverter},
                                                                         ConverterParameter={Binding}}"
-                                     Width="200" Watermark="Month"
-                                     BorderBrush="{Binding BorderBrushes[2]}"/>
-                            <TextBox Grid.Column="2"
-                                     Classes="add-page-date-picker-textbox"
-                                     Text="{Binding SelectedYear, 
+                                 Width="200" Watermark="Month" BorderBrush="{Binding BorderBrushes[2]}"/>
+                        <TextBox Grid.Column="2"
+                                 Classes="add-page-date-picker-textbox"
+                                 Text="{Binding SelectedYear, 
                                                                         Converter={StaticResource IntConverter}}"
-                                     Width="150" MaxLength="4" Watermark="Year"
-                                     BorderBrush="{Binding BorderBrushes[3]}"/>
-                        </Grid>
-                    </Panel>
+                                 Width="150" MaxLength="4" Watermark="Year"
+                                 BorderBrush="{Binding BorderBrushes[3]}"/>
+                    </Grid>
                 </Border>
                 <Button Grid.Column="1" Width="50" Height="50" HorizontalAlignment="Center"
                         Command="{Binding ToggleCalendar}">
                     <Button.Template>
                         <ControlTemplate>
-                            <Image Source="/Assets/Images/Dark/Date-Dark.png"
-                                   Width="50" Height="50"/> <!-- TODO: Consider themes when implemented -->
+                            <Image Source="/Assets/Images/Dark/Date-Dark.png" Width="50" Height="50"/> <!-- TODO: Consider themes when implemented -->
                         </ControlTemplate>
                     </Button.Template>
                     <Button.Styles>
@@ -94,13 +88,11 @@
                 </Button>
             </Grid>
             <TextBox Grid.Row="3" Classes="add-page-text-box"
-                     Width="100" Height="60" Watermark="Grade" MaxLength="5"
-                     HorizontalContentAlignment="Center"
+                     Width="100" Height="60" Watermark="Grade" MaxLength="5" HorizontalContentAlignment="Center"
                      Text="{Binding ElementGradeString}"
                      BorderBrush="{Binding BorderBrushes[4]}"/>
             <TextBox Grid.Row="4" Classes="add-page-text-box"
-                     Width="100" Height="60" Watermark="Weighting" MaxLength="5"
-                     HorizontalContentAlignment="Center"
+                     Width="100" Height="60" Watermark="Weighting" MaxLength="5" HorizontalContentAlignment="Center"
                      Text="{Binding ElementWeightingString}"
                      BorderBrush="{Binding BorderBrushes[5]}"/>
             <CheckBox Grid.Row="5" Classes="add-page-checkbox" IsChecked="{Binding ElementCounts}">

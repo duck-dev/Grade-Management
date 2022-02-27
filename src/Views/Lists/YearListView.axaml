@@ -29,14 +29,12 @@
                     <Grid ColumnDefinitions="Auto,Auto" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Grid Grid.Column="0" ColumnDefinitions="Auto,Auto"
                               HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,35,0">
-                            <Image Grid.Column="0" Source="/Assets/Images/Dark/List-Dark-Filled.png" Width="40"
-                                   Height="40"
-                                   Margin="0,0,15,0"
+                            <Image Grid.Column="0" Source="/Assets/Images/Dark/List-Dark-Filled.png" 
+                                   Width="40" Height="40" Margin="0,0,15,0"
                                    IsVisible="{Binding YearRef.DarkSymbols}"
                                    IsEnabled="{Binding YearRef.DarkSymbols}"/>
-                            <Image Grid.Column="0" Source="/Assets/Images/Light/List-Light-Filled.png" Width="40"
-                                   Height="40"
-                                   Margin="0,0,15,0"
+                            <Image Grid.Column="0" Source="/Assets/Images/Light/List-Light-Filled.png" 
+                                   Width="40" Height="40" Margin="0,0,15,0"
                                    IsVisible="{Binding !YearRef.DarkSymbols}"
                                    IsEnabled="{Binding !YearRef.DarkSymbols}"/>
                             <TextBlock Grid.Column="1" TextAlignment="Center" FontSize="42"
@@ -84,13 +82,12 @@
                                VerticalAlignment="Center"/>
                     <Grid Grid.Column="1" ColumnDefinitions="Auto,Auto" VerticalAlignment="Center"
                           Margin="60,0,0,0">
-                        <Image Grid.Column="0" Source="/Assets/Images/Dark/List-Dark-Filled.png" Width="26" Height="26"
-                               Margin="0,0,15,0"
+                        <Image Grid.Column="0" Source="/Assets/Images/Dark/List-Dark-Filled.png" 
+                               Width="26" Height="26" Margin="0,0,15,0"
                                IsVisible="{Binding YearRef.DarkSymbols}"
                                IsEnabled="{Binding YearRef.DarkSymbols}"/>
-                        <Image Grid.Column="0" Source="/Assets/Images/Light/List-Light-Filled.png" Width="26"
-                               Height="26"
-                               Margin="0,0,15,0"
+                        <Image Grid.Column="0" Source="/Assets/Images/Light/List-Light-Filled.png" 
+                               Width="26" Height="26" Margin="0,0,15,0"
                                IsVisible="{Binding !YearRef.DarkSymbols}"
                                IsEnabled="{Binding !YearRef.DarkSymbols}"/>
                         <TextBlock Grid.Column="1" TextAlignment="Center" FontSize="28"
@@ -100,8 +97,7 @@
                 </Grid>
                 <TextBlock Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"
                            Text="{Binding YearRef.GradeValue}"
-                           FontSize="42" FontWeight="Bold" Foreground="Black"
-                           Margin="0,0,10,0"/>
+                           FontSize="42" FontWeight="Bold" Foreground="Black" Margin="0,0,10,0"/>
             </Grid>
         </DataTemplate>
     </UserControl.DataTemplates>
@@ -165,9 +161,7 @@
                                Foreground="{StaticResource AppGreen}"/>
                 </Grid>
             </Viewbox>
-            <TextBlock Classes="no-elements-text" Margin="8,0,0,0">
-                in the bottom-right corner.
-            </TextBlock>
+            <TextBlock Classes="no-elements-text" Margin="8,0,0,0" Text="in the bottom-right corner."/>
         </StackPanel>
 
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
