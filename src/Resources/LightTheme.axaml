@@ -2,6 +2,11 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Style.Resources>
-
+        <SolidColorBrush x:Key="ElementBackground" Color="#C7CAD1"/>
+        <SolidColorBrush x:Key="DarkerElementBackground" Color="#B8BABF"/>
+        
+        <SolidColorBrush x:Key="CalendarDayButtonHover" Color="#DCDCDC"/>
+        <SolidColorBrush x:Key="CalendarDayButtonInactive" Color="#C9C9C9"/>
+        <SolidColorBrush x:Key="CalendarDayButtonInactiveHover" Color="#D1D1D1"/>
     </Style.Resources>
 </Style>
