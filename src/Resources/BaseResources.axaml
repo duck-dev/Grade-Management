@@ -2,6 +2,23 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
     <Style.Resources>
-                
+        <!-- Brushes -->
+        <SolidColorBrush x:Key="FullyTransparent" Color="#0000ffff"/>
+        <SolidColorBrush x:Key="ElementBackground" Color="#C7CAD1"/>
+        <SolidColorBrush x:Key="DarkerElementBackground" Color="#B8BABF"/>
+        <SolidColorBrush x:Key="AppGreen" Color="#009B72"/>
+        <SolidColorBrush x:Key="DarkerAppGreen" Color="#007354"/>
+        <SolidColorBrush x:Key="LightPurple" Color="#A5B1CC"/>
+        
+        <SolidColorBrush x:Key="StandardGrey" Color="#808080"/>
+        <SolidColorBrush x:Key="DarkGrey" Color="#666666"/>
+        <SolidColorBrush x:Key="AlmostWhite" Color="#E6E6E6"/>
+        <SolidColorBrush x:Key="DarkerAlmostWhite" Color="#D4D4D4"/>
+        <SolidColorBrush x:Key="DarkenedBackgroundDialogs" Color="#66000000"/>
+        
+        <SolidColorBrush x:Key="LightGreenContextMenu" Color="#58C4A8"/>
+        <SolidColorBrush x:Key="DarkerLightGreenContextMenu" Color="#0EB085"/>
+        <SolidColorBrush x:Key="LightRedContextMenu" Color="#D4735B"/>
+        <SolidColorBrush x:Key="DarkerLightRedContextMenu" Color="#C96047"/>
     </Style.Resources>
 </Style>
