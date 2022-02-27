@@ -38,7 +38,7 @@
         <Setter Property="Cursor" Value="Hand"/>
     </Style>
     <Style Selector="Button.change-view-button:pressed /template/ ContentPresenter">
-        <Setter Property="Background" Value="{StaticResource DarkerElementBackground}"/>
+        <Setter Property="Background" Value="{StaticResource VariantElementBackground}"/>
     </Style>
 
     <Style Selector="Button.change-view-button-selected /template/ ContentPresenter">

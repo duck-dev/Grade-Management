@@ -17,7 +17,7 @@
         <StyleInclude Source="/src/Styles/ListViewStyle.axaml"/>
 
         <Style Selector="Button.element-button:pressed /template/ ContentPresenter">
-            <Setter Property="Background" Value="{StaticResource DarkerElementBackground}"/>
+            <Setter Property="Background" Value="{StaticResource VariantElementBackground}"/>
         </Style>
     </UserControl.Styles>
 
