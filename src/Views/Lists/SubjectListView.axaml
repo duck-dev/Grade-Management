@@ -253,7 +253,7 @@
                             <!-- <Button.Background> -->
                             <!--     <LinearGradientBrush StartPoint="0%,100%" EndPoint="100%,0%"> -->
                             <!--         <GradientStop Color="{Binding ElementColor}" Offset="0.0"/> -->
-                            <!--         <GradientStop Color="#c7cad1" Offset="1.0"/> -->
+                            <!--         <GradientStop Color="{StaticResource ElementBackground}" Offset="1.0"/> -->
                             <!--     </LinearGradientBrush> -->
                             <!-- </Button.Background> -->
                             <Button.Styles>

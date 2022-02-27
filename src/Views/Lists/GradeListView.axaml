@@ -77,13 +77,13 @@
             <!--                        HorizontalAlignment="Center" VerticalAlignment="Center"/> -->
             <!--                 <TextBlock Grid.Column="1" TextAlignment="Center" -->
             <!--                            Text="{Binding GradeRef.DateString}" -->
-            <!--                            Foreground="#878787" FontSize="26" Margin="8, 0, 25, 0" -->
+            <!--                            Foreground="{StaticResource StandardGrey}" FontSize="26" Margin="8, 0, 25, 0" -->
             <!--                            HorizontalAlignment="Center" VerticalAlignment="Center"/> -->
             <!--                 ~1~TODO: Consider culture@1@ -->
             <!--             </Grid> -->
             <!--             <TextBlock Grid.Column="1" VerticalAlignment="Center" -->
             <!--                        Text="{Binding Path=GradeRef.Weighting, StringFormat='W  {0}'}" -->
-            <!--                        Foreground="#878787" FontSize="28" Margin="25, 0, 0, 0"/> -->
+            <!--                        Foreground="{StaticResource StandardGrey}" FontSize="28" Margin="25, 0, 0, 0"/> -->
             <!--         </Grid> -->
             <!--     </Grid> -->
             <!--     <TextBlock Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" -->
@@ -107,13 +107,13 @@
             <!--                        HorizontalAlignment="Center" VerticalAlignment="Center"/> -->
             <!--                 <TextBlock Grid.Column="1" TextAlignment="Center" -->
             <!--                            Text="{Binding GradeRef.DateString}" -->
-            <!--                            Foreground="#878787" FontSize="26" Margin="8, 0, 25, 0" -->
+            <!--                            Foreground="{StaticResource StandardGrey}" FontSize="26" Margin="8, 0, 25, 0" -->
             <!--                            HorizontalAlignment="Center" VerticalAlignment="Center"/> -->
             <!--                 ~1~TODO: Consider culture@1@ -->
             <!--             </Grid> -->
             <!--             <TextBlock Grid.Column="1" VerticalAlignment="Center" -->
             <!--                        Text="{Binding Path=GradeRef.Weighting, StringFormat='W  {0}'}" -->
-            <!--                        Foreground="#878787" FontSize="28" Margin="20, 0, 0, 0"/> -->
+            <!--                        Foreground="{StaticResource StandardGrey}" FontSize="28" Margin="20, 0, 0, 0"/> -->
             <!--         </Grid> -->
             <!--     </Grid> -->
             <!--     <TextBlock Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" -->
