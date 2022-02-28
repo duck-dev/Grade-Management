@@ -75,7 +75,7 @@
                     <!-- <Button Width="80" Height="80" HorizontalAlignment="Left" VerticalAlignment="Center" -->
                     <!--         Margin="60,0,0,0"/> -->
                     <TextBlock Text="{Binding Path=CurrentAverage, StringFormat='Average: {0}'}"
-                               FontSize="30" Foreground="{StaticResource Black}" 
+                               FontSize="30" Foreground="{StaticResource OppositeAccent}" 
                                HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <!-- <Button Width="80" Height="80" HorizontalAlignment="Right" VerticalAlignment="Center" -->
                     <!--         Margin="0,0,60,0"/> -->

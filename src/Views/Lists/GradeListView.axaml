@@ -27,7 +27,7 @@
                 <Panel Grid.Row="0" VerticalAlignment="Stretch">
                     <Viewbox HorizontalAlignment="Center" VerticalAlignment="Stretch" Height="46">
                         <TextBlock Text="{Binding GradeRef.Name}"
-                                   FontWeight="Bold" Foreground="{StaticResource Black}" Margin="10 0 0 0"
+                                   FontWeight="Bold" Foreground="{StaticResource OppositeAccent}" Margin="10 0 0 0"
                                    HorizontalAlignment="Center" TextAlignment="Center"/>
                     </Viewbox>
                 </Panel>
@@ -54,7 +54,7 @@
                 <Panel Grid.Row="2" VerticalAlignment="Stretch">
                     <TextBlock Text="{Binding GradeRef.RoundedGrade}"
                                TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"
-                               Foreground="{StaticResource Black}" FontSize="46" FontWeight="Bold">
+                               Foreground="{StaticResource OppositeAccent}" FontSize="46" FontWeight="Bold">
                     </TextBlock>
                 </Panel>
             </Grid>
@@ -127,7 +127,7 @@
             <Grid ColumnDefinitions="*,Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid Grid.Column="0" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Left" Margin="10,0,0,0">
                     <TextBlock Grid.Column="0" Text="{Binding GradeRef.Name}"
-                               FontSize="36" FontWeight="Bold" Foreground="{StaticResource Black}"
+                               FontSize="36" FontWeight="Bold" Foreground="{StaticResource OppositeAccent}"
                                HorizontalAlignment="Left" VerticalAlignment="Center"/>
                     <Grid Grid.Column="1" RowDefinitions="*, *" Margin="60,0,0,0">
                         <Grid Grid.Row="0" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -152,7 +152,7 @@
                 </Grid>
                 <TextBlock Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"
                            Text="{Binding GradeRef.RoundedGrade}"
-                           FontSize="42" FontWeight="Bold" Foreground="{StaticResource Black}" Margin="0,0,10,0"/>
+                           FontSize="42" FontWeight="Bold" Foreground="{StaticResource OppositeAccent}" Margin="0,0,10,0"/>
             </Grid>
         </DataTemplate>
     </UserControl.DataTemplates>

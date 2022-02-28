@@ -42,7 +42,7 @@
                          Text="{Binding ElementWeightingString}"
                          BorderBrush="{Binding BorderBrushes[1]}"/>
                 <Grid Grid.Row="2" RowDefinitions="Auto,Auto" Margin="0,15">
-                    <TextBlock Grid.Row="0" FontSize="14" Foreground="{StaticResource Black}" Margin="0,0,0,7.5"
+                    <TextBlock Grid.Row="0" FontSize="14" Foreground="{StaticResource OppositeAccent}" Margin="0,0,0,7.5"
                                Text="Pick a color for the Subject:" HorizontalAlignment="Center"/>
                     <ItemsControl Grid.Row="1" Items="{Binding ElementColorsCollection}">
                         <ItemsControl.ItemsPanel>
