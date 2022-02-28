@@ -5,6 +5,7 @@
 
     <Style Selector="TextBlock.add-page-title-text">
         <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Foreground" Value="{StaticResource OppositeAccent}"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="FontSize" Value="30"/>
@@ -24,6 +25,7 @@
     <Style Selector="TextBox.add-page-text-box">
         <Setter Property="Background" Value="{StaticResource SameAccent}"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/> <!-- Each of them is supposed to be in a Grid anyway, so this is okay and only relative to the grid-entry it's declared in -->
         <Setter Property="Width" Value="500"/>
         <Setter Property="Height" Value="60"/>
         <Setter Property="BorderBrush" Value="{StaticResource AppGreen}"/>
@@ -39,7 +41,8 @@
 
     <Style Selector="Button.add-page-button">
         <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
+        <Setter Property="Margin" Value="0,30"/>
         <Setter Property="Background" Value="{StaticResource AppGreen}"/>
         <Setter Property="Width" Value="250"/>
         <Setter Property="Height" Value="60"/>

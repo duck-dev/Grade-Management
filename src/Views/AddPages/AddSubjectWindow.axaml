@@ -22,7 +22,7 @@
 
     <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid RowDefinitions="*,Auto,*">
-            <Viewbox Grid.Row="0" Height="30" VerticalAlignment="Center"> <!-- Was top and Margin="30,30,30,0" -->
+            <Viewbox Grid.Row="0" Height="30" VerticalAlignment="Center" Margin="30, 0">
                 <TextBlock Classes="add-page-title-text" Text="{Binding Title}"/>
             </Viewbox>
             <!-- <Button Grid.Row="0" Classes="add-page-back-button"> -->
@@ -41,9 +41,9 @@
                          HorizontalContentAlignment="Center" Margin="0,15"
                          Text="{Binding ElementWeightingString}"
                          BorderBrush="{Binding BorderBrushes[1]}"/>
-                <Grid Grid.Row="2" RowDefinitions="Auto,Auto" Margin="0,15">
-                    <TextBlock Grid.Row="0" FontSize="14" Foreground="{StaticResource OppositeAccent}" Margin="0,0,0,7.5"
-                               Text="Pick a color for the Subject:" HorizontalAlignment="Center"/>
+                <Grid Grid.Row="2" RowDefinitions="Auto,Auto" Margin="0,15" VerticalAlignment="Center">
+                    <TextBlock Grid.Row="0" FontSize="14" Foreground="{StaticResource OppositeAccent}" FontWeight="Bold"
+                               Text="Pick a color for the Subject:" HorizontalAlignment="Center" Margin="0,0,0,7.5"/>
                     <ItemsControl Grid.Row="1" Items="{Binding ElementColorsCollection}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -75,7 +75,8 @@
                 </Grid>
                 <CheckBox Grid.Row="3" Classes="add-page-checkbox"
                           IsChecked="{Binding ElementCounts}"
-                          Content="Count subject for year's average?" Margin="0,15,0,0"/>
+                          Content="Count subject for year's average?" Margin="0,15,0,0"
+                          VerticalAlignment="Center"/>
             </Grid>
             <Button Grid.Row="2" Classes="add-page-button" Command="{Binding CreateElement}"
                     IsEnabled="{Binding DataComplete}"

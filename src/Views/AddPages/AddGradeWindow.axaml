@@ -29,7 +29,7 @@
 
     <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid RowDefinitions="*,*,*,*,*,*,*">
-            <Viewbox Grid.Row="0" Height="30" Margin="30,0">
+            <Viewbox Grid.Row="0" Height="30" VerticalAlignment="Center">
                 <TextBlock Classes="add-page-title-text" Text="{Binding Title}"
                            TextAlignment="Center" TextWrapping="Wrap"/>
             </Viewbox>

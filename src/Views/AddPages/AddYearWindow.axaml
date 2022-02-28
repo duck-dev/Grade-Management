@@ -22,7 +22,7 @@
 
     <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid RowDefinitions="*,*,*,*">
-            <Viewbox Grid.Row="0" Height="30" Margin="30,0">
+            <Viewbox Grid.Row="0" Height="30" VerticalAlignment="Center" Margin="30,0">
                 <TextBlock Classes="add-page-title-text" Text="{Binding Title}"
                            TextAlignment="Center" TextWrapping="Wrap"/>
             </Viewbox>
@@ -31,8 +31,8 @@
                      HorizontalContentAlignment="Left" BorderBrush="{Binding BorderBrushes[0]}"
                      VerticalAlignment="Bottom" Margin="0,0,0,25"/>
             <Grid Grid.Row="2" RowDefinitions="Auto,Auto" Margin="0,25,0,0" VerticalAlignment="Top">
-                <TextBlock Grid.Row="0" FontSize="14" Foreground="{StaticResource OppositeAccent}" Margin="0,0,0,7.5"
-                           Text="Pick a color for the School Year:" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="0" FontSize="14" Foreground="{StaticResource OppositeAccent}" FontWeight="Bold"
+                           Text="Pick a color for the School Year:" HorizontalAlignment="Center" Margin="0,0,0,7.5"/>
                 <ItemsControl Grid.Row="1" Items="{Binding ElementColorsCollection}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
