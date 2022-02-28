@@ -222,8 +222,8 @@
         </ContextMenu>
     </UserControl.ContextMenu>
 
-    <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20,0">
-        <Viewbox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" StretchDirection="DownOnly">
+    <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Viewbox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" StretchDirection="DownOnly" Margin="20,0">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"
                         IsEnabled="{Binding EmptyCollection}"
                         IsVisible="{Binding EmptyCollection}">
