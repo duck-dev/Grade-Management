@@ -20,7 +20,7 @@ If you need more than that, make use of the freedoms **Grade Management** offers
   and actually considering it in the average calculation?
 - <span style="color:#009B72">**Calculate Target-Grade:**</span> 
 You want to know how much you're supposed to learn for the next exam in order to reach a certain average? 
-Sure, let the **Grade Management** tool calculate it for you.
+Sure, let **Grade Management** calculate it for you.
 - <span style="color:#009B72">**Calculate Average:**</span> 
 The same goes for calculating the hypothetical average with your next assumed grade.
 - <span style="color:#009B72">**Many convenient features:**</span> Have you made yourself comfortable? 
@@ -45,7 +45,7 @@ Do you prefer to view your semesters, subjects or grades in a **grid**- or **lis
 ### Privacy
 Grade Management collects no personal data and requires no internet connection for any of the features. It is a 100% "local"
 application without any hidden or visible data transfers. Solely your semesters/subjects/grades and settings are being saved
-**locally**, but are not visible to anyone except the user of the local device.
+**locally**, but are not visible to anyone except the user of the local device. Your grades are incognito, hooray!
 
 ## Development
 This tool is being developed with the open-source .NET XAML UI-framework [Avalonia](https://avaloniaui.net/) and C#.
