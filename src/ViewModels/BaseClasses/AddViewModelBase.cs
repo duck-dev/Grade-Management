@@ -1,18 +1,13 @@
 using System;
 using System.Collections.ObjectModel;
 using Avalonia.Media;
+using GradeManagement.Enums;
 using GradeManagement.Models;
 using GradeManagement.ViewModels.AddPages;
 using ReactiveUI;
 
 namespace GradeManagement.ViewModels.BaseClasses
 {
-    internal enum AddPageAction
-    {
-        Create,
-        Edit
-    }
-    
     public abstract class AddViewModelBase : ViewModelBase
     {
         private string? _elementName;
@@ -65,7 +60,7 @@ namespace GradeManagement.ViewModels.BaseClasses
             set => this.RaiseAndSetIfChanged(ref _buttonText, value);
         }
 
-        protected internal string? ElementName
+        protected string? ElementName
         {
             get => _elementName;
             set
@@ -81,7 +76,7 @@ namespace GradeManagement.ViewModels.BaseClasses
         }
 
         protected float ElementWeighting { get; private set; } = float.NaN;
-        protected internal string? ElementWeightingString
+        protected string? ElementWeightingString
         {
             get => _elementWeightingStr;
             set
@@ -100,7 +95,7 @@ namespace GradeManagement.ViewModels.BaseClasses
             }
         }
 
-        protected internal bool ElementCounts
+        protected bool ElementCounts
         {
             get => _elementCounts;
             set
@@ -120,6 +115,14 @@ namespace GradeManagement.ViewModels.BaseClasses
                 _selectedColor = value;
                 this.RaisePropertyChanged(nameof(DataComplete));
             }
+        }
+        
+        protected internal override void EraseData()
+        {
+            ElementName = string.Empty;
+            ElementWeightingString = string.Empty;
+            ElementCounts = true;
+            SelectedColor = ElementColorsCollection[0];
         }
 
         protected void ChangeColor(ColorRepresentation colorRepresentation)
@@ -143,7 +146,7 @@ namespace GradeManagement.ViewModels.BaseClasses
                 { } yearType when yearType == typeof(AddYearViewModel) => "School Year",
                 { } subjectType when subjectType == typeof(AddSubjectViewModel) => "Subject",
                 { } gradeType when gradeType == typeof(AddGradeViewModel) => "Grade",
-                _ => throw new ArgumentException("The passed `pageType` should be an `AddViewModelBase` inheritor.",
+                _ => throw new ArgumentException($"Value of parameter \"{nameof(pageType)}\" should be an `AddViewModelBase` inheritor.",
                     nameof(pageType))
             };
             EditPageText(action, type, suffix);
@@ -154,14 +157,6 @@ namespace GradeManagement.ViewModels.BaseClasses
             string prefix = action.ToString();
             Title = $"{prefix} {(string.IsNullOrEmpty(suffix) ? type : ($"\"{suffix}\""))}:";
             ButtonText = $"{prefix} {type}";
-        }
-
-        protected internal override void EraseData()
-        {
-            ElementName = string.Empty;
-            ElementWeightingString = string.Empty;
-            ElementCounts = true;
-            SelectedColor = ElementColorsCollection[0];
         }
     }
 }

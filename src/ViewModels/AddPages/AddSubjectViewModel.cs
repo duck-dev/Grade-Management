@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 using System.Linq;
 using Avalonia.Media;
+using GradeManagement.Enums;
 using GradeManagement.ExtensionCollection;
 using GradeManagement.Interfaces;
 using GradeManagement.Models.Elements;
