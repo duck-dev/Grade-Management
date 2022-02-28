@@ -45,7 +45,8 @@ namespace GradeManagement.Views
         }
 
         private void SwitchPage<TViewModel, TElement>(IEnumerable<TElement> elements)
-            where TViewModel : ListViewModelBase, IListViewModel<TElement> where TElement : class, IElement, IGradable
+            where TViewModel : ListViewModelBase, IListViewModel<TElement> 
+            where TElement : class, IElement, IGradable
         {
             _mainWindowModel ??= this.DataContext as MainWindowViewModel;
             if (_mainWindowModel!.Content is TViewModel)

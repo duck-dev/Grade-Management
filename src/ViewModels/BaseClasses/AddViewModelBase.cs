@@ -1,8 +1,10 @@
 using System;
 using System.Collections.ObjectModel;
+using Avalonia;
 using Avalonia.Media;
 using GradeManagement.Enums;
 using GradeManagement.Models;
+using GradeManagement.UtilityCollection;
 using GradeManagement.ViewModels.AddPages;
 using ReactiveUI;
 
@@ -10,6 +12,7 @@ namespace GradeManagement.ViewModels.BaseClasses
 {
     public abstract class AddViewModelBase : ViewModelBase
     {
+        private static readonly Color _defaultElementColor = Color.Parse("#C7CAD1");
         private string? _elementName;
         private string? _elementWeightingStr;
         private string? _buttonText;
@@ -19,11 +22,10 @@ namespace GradeManagement.ViewModels.BaseClasses
 
         private readonly Color[] _elementColors =
         {
-            Color.Parse("#C7CAD1"), Color.Parse("#FFAE03"), Color.Parse("#EB8934"), Color.Parse("#D64045"), 
+            DefaultElementColor, Color.Parse("#FFAE03"), Color.Parse("#EB8934"), Color.Parse("#D64045"), 
             Color.Parse("#FF85FB"), Color.Parse("#A326C9"), Color.Parse("#5F8BB0"), Color.Parse("#6FB3BF"), 
             Color.Parse("#A5B1CC"), Color.Parse("#009B72"), Color.Parse("#74CC31"), Color.Parse("#A8744F")
-        }; // TODO: Substitute hard-coded color with resource for each color
-        // TODO: Adapt (first (default) color)/colors to theme
+        };
 
         protected AddViewModelBase()
         {
@@ -38,8 +40,33 @@ namespace GradeManagement.ViewModels.BaseClasses
         }
         
         // Colors for border (incomplete/complete selection)
-        protected static Color IncompleteColor { get; } = Color.Parse("#D64045");
-        protected static Color NormalColor { get; } = Color.Parse("#009b72");
+        protected static Color IncompleteColor
+        {
+            get
+            {
+                var fallbackColor = Color.Parse("#D64045");
+                if (Application.Current is not { } application)
+                    return fallbackColor;
+                
+                var brush = Utilities.GetResourceFromStyle<SolidColorBrush, Application>
+                    (Application.Current, "InvalidColor", 1);
+                return brush?.Color ?? fallbackColor;
+            }
+        }
+
+        protected static Color NormalColor
+        {
+            get
+            {
+                var fallbackColor = Color.Parse("#009B72");
+                if (Application.Current is not { } application)
+                    return fallbackColor;
+                
+                var brush = Utilities.GetResourceFromStyle<SolidColorBrush, Application>
+                    (Application.Current, "AppGreen", 1);
+                return brush?.Color ?? fallbackColor;
+            }
+        }
 
         protected virtual bool DataComplete { get; }
         protected SolidColorBrush[]? BorderBrushes { get; init; }
@@ -114,6 +141,19 @@ namespace GradeManagement.ViewModels.BaseClasses
             {
                 _selectedColor = value;
                 this.RaisePropertyChanged(nameof(DataComplete));
+            }
+        }
+
+        private static Color DefaultElementColor
+        {
+            get
+            {
+                if (Application.Current is not { } application)
+                    return _defaultElementColor;
+                
+                var brush = Utilities.GetResourceFromStyle<SolidColorBrush, Application>
+                            (Application.Current, "ElementBackground", 0);
+                return brush?.Color ?? _defaultElementColor;
             }
         }
         

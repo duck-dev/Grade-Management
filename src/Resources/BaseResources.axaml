@@ -7,6 +7,7 @@
         <SolidColorBrush x:Key="AppGreen" Color="#009B72"/>
         <SolidColorBrush x:Key="VariantAppGreen" Color="#00AD7F"/>
         <SolidColorBrush x:Key="LightPurple" Color="#A5B1CC"/>
+        <SolidColorBrush x:Key="InvalidColor" Color="#D64045"/>
         
         <SolidColorBrush x:Key="LightGreenContextMenu" Color="#58C4A8"/>
         <SolidColorBrush x:Key="DarkerLightGreenContextMenu" Color="#0EB085"/>

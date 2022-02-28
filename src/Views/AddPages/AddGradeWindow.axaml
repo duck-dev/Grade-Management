@@ -102,7 +102,8 @@
                     IsEnabled="{Binding DataComplete}"
                     Content="{Binding ButtonText}" HotKey="Enter"/>
         </Grid>
-        <Panel Opacity="0.6" Background="{StaticResource OppositeAccent}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+        <Panel Opacity="0.6" Background="{StaticResource OppositeAccent}" 
+               HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                IsEnabled="{Binding CalendarOpen}"
                IsVisible="{Binding CalendarOpen}"/>
         <Grid RowDefinitions="Auto,*" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
