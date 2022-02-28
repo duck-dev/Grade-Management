@@ -4,7 +4,7 @@
     <Style Selector="Panel.background-panel">
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>
-        <Setter Property="Background" Value="{StaticResource DarkenedBackgroundDialogs}"/>
+        <Setter Property="Background" Value="{StaticResource DarkenedDialogBackground}"/>
     </Style>
 
     <Style Selector="Border.border-front-panel">

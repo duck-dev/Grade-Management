@@ -8,14 +8,6 @@
         <SolidColorBrush x:Key="VariantAppGreen" Color="#00AD7F"/>
         <SolidColorBrush x:Key="LightPurple" Color="#A5B1CC"/>
         
-        <SolidColorBrush x:Key="StandardGrey" Color="#808080"/>
-        <SolidColorBrush x:Key="VariantStandardGrey" Color="#919191"/>
-        <SolidColorBrush x:Key="DarkGrey" Color="#666666"/>
-        <SolidColorBrush x:Key="AlmostWhite" Color="#E6E6E6"/>
-        <SolidColorBrush x:Key="DarkerAlmostWhite" Color="#D4D4D4"/>
-        <SolidColorBrush x:Key="DarkenedBackgroundDialogs" Color="#66000000"/>
-        <SolidColorBrush x:Key="InfoButtonGrey" Color="#8B8D92"/>
-        
         <SolidColorBrush x:Key="LightGreenContextMenu" Color="#58C4A8"/>
         <SolidColorBrush x:Key="DarkerLightGreenContextMenu" Color="#0EB085"/>
         <SolidColorBrush x:Key="LightRedContextMenu" Color="#D4735B"/>

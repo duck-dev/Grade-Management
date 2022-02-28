@@ -5,13 +5,13 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="Margin" Value="0, 50,0, 0"/>
-        <Setter Property="Background" Value="{StaticResource AlmostWhite}"/>
+        <Setter Property="Background" Value="{StaticResource AlmostAccent}"/>
     </Style>
 
     <!-- CalendarDayButton -->
     <Style Selector="CalendarDayButton">
         <Setter Property="RenderTransform" Value="scale(1)"/>
-        <Setter Property="Background" Value="{StaticResource DarkerAlmostWhite}"/>
+        <Setter Property="Background" Value="{StaticResource DarkerAlmostAccent}"/>
         <Setter Property="Foreground" Value="{StaticResource OppositeAccent}"/>
         <Setter Property="FontSize" Value="16"/>
         <Setter Property="Template">
@@ -73,7 +73,7 @@
     <!-- CalendarButton (year and month) -->
     <Style Selector="CalendarButton">
         <Setter Property="RenderTransform" Value="scale(1)"/>
-        <Setter Property="Background" Value="{StaticResource DarkerAlmostWhite}"/>
+        <Setter Property="Background" Value="{StaticResource DarkerAlmostAccent}"/>
         <Setter Property="Foreground" Value="{StaticResource OppositeAccent}"/>
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="Template">

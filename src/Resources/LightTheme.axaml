@@ -9,6 +9,14 @@
         <SolidColorBrush x:Key="ElementBackground" Color="#C7CAD1"/>
         <SolidColorBrush x:Key="VariantElementBackground" Color="#B8BABF"/>
         
+        <SolidColorBrush x:Key="StandardGrey" Color="#808080"/>
+        <SolidColorBrush x:Key="VariantStandardGrey" Color="#919191"/>
+        <SolidColorBrush x:Key="DarkGrey" Color="#666666"/>
+        <SolidColorBrush x:Key="AlmostAccent" Color="#E6E6E6"/>
+        <SolidColorBrush x:Key="DarkerAlmostAccent" Color="#D4D4D4"/>
+        <SolidColorBrush x:Key="DarkenedDialogBackground" Color="#66000000"/>
+        <SolidColorBrush x:Key="InfoButtonGrey" Color="#8B8D92"/>
+        
         <SolidColorBrush x:Key="CalendarDayButtonHover" Color="#DCDCDC"/>
         <SolidColorBrush x:Key="CalendarDayButtonInactive" Color="#C9C9C9"/>
         <SolidColorBrush x:Key="CalendarDayButtonInactiveHover" Color="#D1D1D1"/>
