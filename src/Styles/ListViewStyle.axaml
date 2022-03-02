@@ -27,6 +27,9 @@
     <Style Selector="Button.element-button-list:pointerover">
         <Setter Property="RenderTransform" Value="scale(0.985)"/>
     </Style>
+    <Style Selector="Button.element-button-list:pressed">
+        <Setter Property="RenderTransform" Value="scale(0.96)"/>
+    </Style>
 
     <!-- "No Elements" text -->
 
