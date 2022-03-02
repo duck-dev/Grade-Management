@@ -31,11 +31,6 @@
         <Setter Property="Height" Value="40"/>
         <Setter Property="Margin" Value="30,7.5"/>
         <Setter Property="CornerRadius" Value="5"/>
-        <Setter Property="RenderTransform" Value="scale(1)"/>
-    </Style>
-    <Style Selector="Button.dialog-button:pointerover">
-        <Setter Property="Cursor" Value="Hand"/>
-        <Setter Property="RenderTransform" Value="scale(0.95)"/>
     </Style>
 
     <Style Selector="CheckBox.dialog-checkbox">

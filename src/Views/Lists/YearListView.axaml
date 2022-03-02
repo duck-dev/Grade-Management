@@ -172,20 +172,9 @@
                     <DataTemplate x:Key="YearItemTemplate">
                         <Button Command="{Binding $parent[Window].DataContext.OpenYear}"
                                 CommandParameter="{Binding}"
-                                Classes="element-button" Background="{Binding BackgroundBrush}"
+                                Classes="element-button selectable-button-effect" Background="{Binding BackgroundBrush}"
                                 Classes.grade-year-element-button="{Binding $parent[UserControl].DataContext.IsViewGrid}"
                                 Classes.element-button-list="{Binding !$parent[UserControl].DataContext.IsViewGrid}">
-                            <Button.Transitions>
-                                <Transitions>
-                                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
-                                </Transitions>
-                            </Button.Transitions>
-                            <!-- <Button.Background> -->
-                            <!--     <LinearGradientBrush StartPoint="0%,100%" EndPoint="100%,0%"> -->
-                            <!--         <GradientStop Color="{Binding ElementColor}" Offset="0.0"/> -->
-                            <!--         <GradientStop Color="{StaticResource ElementBackground}" Offset="1.0"/> -->
-                            <!--     </LinearGradientBrush> -->
-                            <!-- </Button.Background> -->
                             <Button.Styles>
                                 <Style Selector="Button.element-button:pointerover /template/ ContentPresenter">
                                     <Setter Property="Background" Value="{Binding BackgroundBrushHover}"/>

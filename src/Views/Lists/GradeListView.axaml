@@ -245,14 +245,9 @@
                     <DataTemplate x:Key="GradeItemTemplate">
                         <Button Command="{Binding $parent[Window].DataContext.EditGrade}"
                                 CommandParameter="{Binding}"
-                                Classes="element-button"
+                                Classes="element-button selectable-button-effect"
                                 Classes.grade-year-element-button="{Binding $parent[UserControl].DataContext.IsViewGrid}"
                                 Classes.element-button-list="{Binding !$parent[UserControl].DataContext.IsViewGrid}">
-                            <Button.Transitions>
-                                <Transitions>
-                                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
-                                </Transitions>
-                            </Button.Transitions>
                             <Button.ContextMenu>
                                 <ContextMenu>
                                     <MenuItem Header="Edit Grade"

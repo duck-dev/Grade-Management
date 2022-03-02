@@ -14,7 +14,6 @@
     </Design.DataContext>
 
     <Window.Styles>
-        <StyleInclude Source="/src/Styles/MainStyle.axaml"/>
         <StyleInclude Source="/src/Styles/MainWindowStyle.axaml"/>
     </Window.Styles>
 
@@ -35,14 +34,14 @@
                                                PointerPressed="OnSubjectPressed"/>
                                 </Grid>
                             </Viewbox>
-                            <Button Classes="info-button"/>
+                            <Button Classes="info-button selectable-button-effect"/>
                         </Panel>
                     </Border>
                 </Panel>
                 <Panel DockPanel.Dock="Bottom" HorizontalAlignment="Stretch" Height="50" Margin="0, 17.5">
                     <Grid ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center" VerticalAlignment="Stretch">
                         <Border Grid.Column="0" Margin="0,0,10,0">
-                            <Button Classes="change-view-button"
+                            <Button Classes="change-view-button selectable-button"
                                     Classes.change-view-button-selected="{Binding Content.IsViewGrid}"
                                     Command="{Binding ChangeView}" CommandParameter="true">
                                 <Grid ColumnDefinitions="Auto,*">
@@ -54,7 +53,7 @@
                             </Button>
                         </Border>
                         <Border Grid.Column="1" Margin="10, 0, 0, 0">
-                            <Button Classes="change-view-button"
+                            <Button Classes="change-view-button selectable-button"
                                     Classes.change-view-button-selected="{Binding !Content.IsViewGrid}"
                                     Command="{Binding ChangeView}" CommandParameter="false">
                                 <Grid ColumnDefinitions="Auto,*">
@@ -85,7 +84,7 @@
             <Panel>
                 <UserControl Content="{Binding Content}"
                              VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-                <Button Classes="add-button" Command="{Binding OpenAddPage}"/>
+                <Button Classes="add-button selectable-button-effect" Command="{Binding OpenAddPage}"/>
             </Panel>
         </DockPanel>
 

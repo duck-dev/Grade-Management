@@ -34,9 +34,6 @@
     <Style Selector="Button.change-view-button /template/ ContentPresenter">
         <Setter Property="CornerRadius" Value="10"/>
     </Style>
-    <Style Selector="Button.change-view-button:pointerover">
-        <Setter Property="Cursor" Value="Hand"/>
-    </Style>
     <Style Selector="Button.change-view-button:pressed /template/ ContentPresenter">
         <Setter Property="Background" Value="{StaticResource VariantElementBackground}"/>
     </Style>
@@ -81,18 +78,6 @@
         <Setter Property="VerticalAlignment" Value="Bottom"/>
         <Setter Property="HorizontalAlignment" Value="Right"/>
         <Setter Property="Margin" Value="0,0,37.5,20"/> <!-- Bottom-Margin + top-margin of bottom bar (currently 17.5)-->
-        <Setter Property="Transitions">
-            <Transitions>
-                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
-            </Transitions>
-        </Setter>
-    </Style>
-    <Style Selector="Button.add-button:pointerover">
-        <Setter Property="Cursor" Value="Hand"/>
-        <Setter Property="RenderTransform" Value="scale(0.95)"/>
-    </Style>
-    <Style Selector="Button.add-button:pressed">
-        <Setter Property="RenderTransform" Value="scale(0.90)"/>
     </Style>
 
     <!-- Info-Button (later: Settings-Button)-->
@@ -112,14 +97,8 @@
                 </Grid>
             </ControlTemplate>
         </Setter>
-        <Setter Property="Transitions">
-            <Transitions>
-                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
-            </Transitions>
-        </Setter>
     </Style>
     <Style Selector="Button.info-button:pointerover">
-        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="RenderTransform" Value="scale(0.925)"/>
     </Style>
     <Style Selector="Button.info-button:pressed">

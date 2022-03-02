@@ -12,6 +12,7 @@
 
     <Application.Styles>
         <FluentTheme Mode="Light"/>
+        <StyleInclude Source="/src/Styles/MainStyle.axaml"/>
         <StyleInclude Source="/src/Resources/BaseResources.axaml"/>
     </Application.Styles>
 </Application>

@@ -16,7 +16,6 @@
     </Design.DataContext>
 
     <Window.Styles>
-        <StyleInclude Source="/src/Styles/MainStyle.axaml"/>
         <StyleInclude Source="/src/Styles/AddPagesStyle.axaml"/>
     </Window.Styles>
 
@@ -53,16 +52,11 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Button Classes="color-button" Classes.color-button-selected="{Binding Selected}"
+                                <Button Classes="color-button selectable-button-effect" 
+                                        Classes.color-button-selected="{Binding Selected}"
                                         Background="{Binding ElementColorBrush}"
                                         Command="{Binding $parent[Window].DataContext.ChangeColor}"
                                         CommandParameter="{Binding}">
-                                    <Button.Transitions>
-                                        <Transitions>
-                                            <TransformOperationsTransition Property="RenderTransform"
-                                                                           Duration="0:0:0.2"/>
-                                        </Transitions>
-                                    </Button.Transitions>
                                     <Button.Styles>
                                         <Style Selector="Button.color-button:pointerover /template/ ContentPresenter">
                                             <Setter Property="Background" Value="{Binding ElementColorBrush}"/>
@@ -78,7 +72,7 @@
                           Content="Count subject for year's average?" Margin="0,15,0,0"
                           VerticalAlignment="Center"/>
             </Grid>
-            <Button Grid.Row="2" Classes="add-page-button" Command="{Binding CreateElement}"
+            <Button Grid.Row="2" Classes="add-page-button selectable-button" Command="{Binding CreateElement}"
                     IsEnabled="{Binding DataComplete}"
                     Content="{Binding ButtonText}"/> <!-- Had Margin="0,0,0,30" -->
         </Grid>

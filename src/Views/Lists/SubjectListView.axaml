@@ -249,25 +249,14 @@
                     <DataTemplate x:Key="SubjectItemTemplate">
                         <Button Command="{Binding $parent[Window].DataContext.OpenSubject}"
                                 CommandParameter="{Binding}"
-                                Classes="element-button" Background="{Binding BackgroundBrush}"
+                                Classes="element-button selectable-button-effect" Background="{Binding BackgroundBrush}"
                                 Classes.subject-element-button="{Binding $parent[UserControl].DataContext.IsViewGrid}"
                                 Classes.element-button-list="{Binding !$parent[UserControl].DataContext.IsViewGrid}">
-                            <!-- <Button.Background> -->
-                            <!--     <LinearGradientBrush StartPoint="0%,100%" EndPoint="100%,0%"> -->
-                            <!--         <GradientStop Color="{Binding ElementColor}" Offset="0.0"/> -->
-                            <!--         <GradientStop Color="{StaticResource ElementBackground}" Offset="1.0"/> -->
-                            <!--     </LinearGradientBrush> -->
-                            <!-- </Button.Background> -->
                             <Button.Styles>
                                 <Style Selector="Button.element-button:pointerover /template/ ContentPresenter">
                                     <Setter Property="Background" Value="{Binding BackgroundBrushHover}"/>
                                 </Style>
                             </Button.Styles>
-                            <Button.Transitions>
-                                <Transitions>
-                                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2"/>
-                                </Transitions>
-                            </Button.Transitions>
                             <Button.ContextMenu>
                                 <ContextMenu>
                                     <MenuItem Header="Edit Subject"

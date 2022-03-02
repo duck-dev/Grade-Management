@@ -58,7 +58,6 @@
     </Style>
     <Style Selector="Button.add-page-button:pointerover /template/ ContentPresenter">
         <Setter Property="Background" Value="{StaticResource VariantAppGreen}"/>
-        <Setter Property="Cursor" Value="Hand"/>
     </Style>
 
     <Style Selector="Button.add-page-button-grey:pointerover /template/ ContentPresenter">
@@ -112,8 +111,10 @@
         <Setter Property="RenderTransform" Value="scale(1)"/>
     </Style>
     <Style Selector="Button.color-button:pointerover">
-        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="RenderTransform" Value="scale(0.90)"/>
+    </Style>
+    <Style Selector="Button.color-button:pressed">
+        <Setter Property="RenderTransform" Value="scale(0.85)"/>
     </Style>
 
     <Style Selector="Button.color-button-selected /template/ ContentPresenter">

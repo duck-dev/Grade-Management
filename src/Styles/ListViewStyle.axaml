@@ -7,13 +7,8 @@
         <Setter Property="Background" Value="{StaticResource ElementBackground}"/>
         <Setter Property="Margin" Value="30,17.5"/>
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="RenderTransform" Value="scale(1)"/>
         <Setter Property="Height" Value="300"/>
         <Setter Property="CornerRadius" Value="20"/>
-    </Style>
-    <Style Selector="Button.element-button:pointerover">
-        <Setter Property="Cursor" Value="Hand"/>
-        <Setter Property="RenderTransform" Value="scale(0.95)"/>
     </Style>
 
     <Style Selector="Button.grade-year-element-button">
