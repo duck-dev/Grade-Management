@@ -41,7 +41,7 @@
 
     <Style Selector="Button.add-page-button">
         <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="VerticalAlignment" Value="Bottom"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Margin" Value="0,30"/>
         <Setter Property="Background" Value="{StaticResource AppGreen}"/>
         <Setter Property="Width" Value="250"/>
@@ -69,6 +69,7 @@
 
     <Style Selector="CheckBox.add-page-checkbox">
         <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="BorderBrush" Value="{StaticResource AppGreen}"/>
     </Style>
     <Style Selector="CheckBox.add-page-checkbox /template/ ContentPresenter">

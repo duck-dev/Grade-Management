@@ -29,7 +29,7 @@
 
     <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid RowDefinitions="*,*,*,*,*,*,*">
-            <Viewbox Grid.Row="0" Height="30" VerticalAlignment="Center">
+            <Viewbox Grid.Row="0" Height="30" VerticalAlignment="Center" Margin="30,0">
                 <TextBlock Classes="add-page-title-text" Text="{Binding Title}"
                            TextAlignment="Center" TextWrapping="Wrap"/>
             </Viewbox>
@@ -41,7 +41,7 @@
             <TextBox Grid.Row="1" Classes="add-page-text-box" Watermark="Name of the Grade" MaxLength="35"
                      Text="{Binding ElementName}"
                      HorizontalContentAlignment="Left" BorderBrush="{Binding BorderBrushes[0]}"/>
-            <Grid Grid.Row="2" ColumnDefinitions="440,60" Width="500" Height="60" VerticalAlignment="Top">
+            <Grid Grid.Row="2" ColumnDefinitions="440,60" Width="500" Height="60" VerticalAlignment="Center">
                 <Border Grid.Column="0" BorderBrush="{StaticResource AppGreen}">
                     <Grid ColumnDefinitions="Auto,Auto,Auto" HorizontalAlignment="Center">
                         <TextBox Grid.Column="0"
