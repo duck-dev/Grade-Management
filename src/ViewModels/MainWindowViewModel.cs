@@ -94,19 +94,19 @@ namespace GradeManagement.ViewModels
         
         private void EditGrade(Grade grade) // I wish I could use a generic method here :(
         {
-            var window = ShowAddPage<AddGradeWindow, AddGradeViewModel>(out var viewModel);
+            var window = Utilities.ShowAddPage<AddGradeWindow, AddGradeViewModel>(out var viewModel, MainWindowInstance);
             EditElement(grade, viewModel, window);
         }
 
         private void EditSubject(Subject subject) // I wish I could use a generic method here :(
         {
-            var window = ShowAddPage<AddSubjectWindow, AddSubjectViewModel>(out var viewModel);
+            var window = Utilities.ShowAddPage<AddSubjectWindow, AddSubjectViewModel>(out var viewModel, MainWindowInstance);
             EditElement(subject, viewModel, window);
         }
 
         private void EditYear(SchoolYear year) // I wish I could use a generic method here :(
         {
-            var window = ShowAddPage<AddYearWindow, AddYearViewModel>(out var viewModel);
+            var window = Utilities.ShowAddPage<AddYearWindow, AddYearViewModel>(out var viewModel, MainWindowInstance);
             EditElement(year, viewModel, window);
         }
 
@@ -137,33 +137,9 @@ namespace GradeManagement.ViewModels
 
         private void OpenAddPage()
         {
-            var window = ShowAddPage(_content.AddPageType, _content.AddViewModelType);
+            var window = Utilities.ShowAddPage(_content.AddPageType, _content.AddViewModelType, MainWindowInstance);
             if (window?.DataContext is AddViewModelBase viewModel)
                 viewModel.EditPageText(AddPageAction.Create, _content.AddViewModelType!);
-        }
-
-        private TWindow? ShowAddPage<TWindow, TViewModel>(out TViewModel? viewModel) where TWindow : Window, new() 
-                                                        where TViewModel : AddViewModelBase, new()
-        {
-            var window = new TWindow();
-            viewModel = new TViewModel();
-            
-            window.DataContext = viewModel;
-            viewModel.CurrentAddWindow = window;
-
-            return ShowDialog(window, MainWindowInstance, this);
-        }
-
-        private Window? ShowAddPage(Type? windowType, Type? viewModelType)
-        {
-            if (windowType is null || viewModelType is null || Activator.CreateInstance(windowType) is not Window window)
-                return null;
-            
-            var viewModel = (AddViewModelBase)Activator.CreateInstance(viewModelType)!;
-            window.DataContext = viewModel;
-            viewModel.CurrentAddWindow = window;
-
-            return ShowDialog(window, MainWindowInstance, this);
         }
 
         private void ChangeView(bool isGrid)

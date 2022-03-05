@@ -5,6 +5,7 @@ using GradeManagement.Enums;
 using GradeManagement.Interfaces;
 using GradeManagement.Models.Elements;
 using GradeManagement.Models.Settings;
+using GradeManagement.UtilityCollection;
 using GradeManagement.ViewModels.AddPages;
 using GradeManagement.ViewModels.BaseClasses;
 using GradeManagement.ViewModels.TargetGrade;
@@ -93,7 +94,7 @@ namespace GradeManagement.ViewModels.Lists
             _targetGradeWindowModel.ConfigureViewModels(Items);
             window.DataContext = _targetGradeWindowModel;
             
-            ShowDialog(window, MainWindowInstance, this);
+            Utilities.ShowDialog(window, MainWindowInstance);
         }
     }
 }

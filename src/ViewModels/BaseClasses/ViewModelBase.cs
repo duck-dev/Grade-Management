@@ -1,6 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using Avalonia.Controls;
+﻿using Avalonia.Controls;
 using GradeManagement.Models;
 using GradeManagement.Models.Settings;
 using GradeManagement.Views;
@@ -33,32 +31,8 @@ namespace GradeManagement.ViewModels.BaseClasses
             CloseAddWindow();
             DataManager.SaveData();
         }
-        
-        protected T? ShowDialog<T>(T window, Window? parentWindow, ViewModelBase callerViewModel)
-            where T : Window
-        {
-            if (parentWindow is null)
-                return null;
-            window.ShowDialog(parentWindow);
-            CatchClosingWindow(window, callerViewModel);
-            return window;
-        }
-        
-        protected internal virtual void EraseData() { }
 
-        private static void CatchClosingWindow(Window window, ViewModelBase callerViewModel)
-        {
-            EventHandler<CancelEventArgs>? closingDel = null;
-            closingDel = delegate
-            {
-                window.Closing -= closingDel;
-                if (window.DataContext is not ViewModelBase viewModel)
-                    return;
-                
-                viewModel.EraseData();
-            };
-            window.Closing += closingDel;
-        }
+        protected internal virtual void EraseData() { }
 
         private void CloseAddWindow()
         {
