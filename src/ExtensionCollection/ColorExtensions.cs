@@ -34,9 +34,7 @@ namespace GradeManagement.ExtensionCollection
         ///                         Default value: 110</param>
         /// <returns>The adjusted foreground color.</returns>
         public static Color AdjustForegroundBrightness(this Color backgroundColor, Color darkColor, Color lightColor, int threshold = 110)
-        {
-            return ((PerceivedBrightness(backgroundColor) > threshold) ? darkColor : lightColor);
-        }
+            => ((PerceivedBrightness(backgroundColor) > threshold) ? darkColor : lightColor);
 
         /// <summary>
         /// Calculate the brightness of a color.

@@ -9,7 +9,7 @@ namespace GradeManagement.ViewModels.BaseClasses
     public abstract class DialogBase : ViewModelBase
     {
         private static readonly Color _darkBorder = Color.Parse("#696969");
-        private static readonly Color _lightBorder = Color.Parse("#9c9c9c");
+        private static readonly Color _lightBorder = Color.Parse("#9C9C9C");
         
         protected DialogBase(string title,
             IEnumerable<SolidColorBrush> buttonColors,

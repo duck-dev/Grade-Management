@@ -45,7 +45,7 @@ namespace GradeManagement.ViewModels.BaseClasses
             get
             {
                 var fallbackColor = Color.Parse("#D64045");
-                if (Application.Current is not { } application)
+                if (Application.Current is not { })
                     return fallbackColor;
                 
                 var brush = Utilities.GetResourceFromStyle<SolidColorBrush, Application>
@@ -59,7 +59,7 @@ namespace GradeManagement.ViewModels.BaseClasses
             get
             {
                 var fallbackColor = Color.Parse("#009B72");
-                if (Application.Current is not { } application)
+                if (Application.Current is not { })
                     return fallbackColor;
                 
                 var brush = Utilities.GetResourceFromStyle<SolidColorBrush, Application>

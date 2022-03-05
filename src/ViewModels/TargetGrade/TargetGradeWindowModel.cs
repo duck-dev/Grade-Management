@@ -20,7 +20,7 @@ namespace GradeManagement.ViewModels.TargetGrade
         private static readonly Color _whiteColor = new(255, 255, 255, 255);
         private static readonly Color _blackColor = new(255, 0, 0, 0);
         private static readonly Color _darkerGreenColor = _greenColor.DarkenColor(0.075f);
-        private static readonly Color _darkerDefaultColor = Color.Parse("#d8dde6").DarkenColor(0.075f);
+        private static readonly Color _darkerDefaultColor = Color.Parse("#D8DDE6").DarkenColor(0.075f);
 
         private readonly List<ViewModelBase> _viewModels = new();
         private ViewModelBase? _content;
