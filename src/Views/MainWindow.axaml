@@ -34,7 +34,7 @@
                                                PointerPressed="OnSubjectPressed"/>
                                 </Grid>
                             </Viewbox>
-                            <Button Classes="info-button selectable-button-effect"/>
+                            <!-- <Button Classes="info-button selectable-button-effect"/> -->
                         </Panel>
                     </Border>
                 </Panel>
