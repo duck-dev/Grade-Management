@@ -5,7 +5,7 @@
         xmlns:addPages="clr-namespace:GradeManagement.ViewModels.AddPages"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="GradeManagement.Views.AddPages.AddYearWindow"
-        Title="Add a new school year"
+        Title="New School Year"
         WindowStartupLocation="CenterOwner"
         Width="800"
         Height="600"

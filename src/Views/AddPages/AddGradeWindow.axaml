@@ -6,7 +6,7 @@
         xmlns:converter="clr-namespace:GradeManagement.Converters"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="GradeManagement.Views.AddPages.AddGradeWindow"
-        Title="Add a new grade"
+        Title="New Grade"
         WindowStartupLocation="CenterOwner"
         Width="750"
         Height="550"
