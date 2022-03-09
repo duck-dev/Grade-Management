@@ -223,13 +223,13 @@
     </UserControl.ContextMenu>
 
     <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <Viewbox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" StretchDirection="DownOnly" Margin="20,0">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"
-                        IsEnabled="{Binding EmptyCollection}"
-                        IsVisible="{Binding EmptyCollection}">
-                <TextBlock Classes="no-elements-text" Margin="0,0,8,0">
-                    This year doesn't yet contain subjects. You can add a new subject with the green button
-                </TextBlock>
+        <WrapPanel Classes="no-elements-panel"
+                   IsEnabled="{Binding EmptyCollection}"
+                   IsVisible="{Binding EmptyCollection}">
+            <TextBlock Classes="no-elements-text" Margin="0,0,8,0" HorizontalAlignment="Center">
+                This year doesn't yet contain subjects. You can add a new subject with the green button
+            </TextBlock>
+            <StackPanel Classes="no-elements-panel">
                 <Viewbox Width="40" Height="40" VerticalAlignment="Center">
                     <Grid Width="24" Height="24">
                         <Ellipse Stroke="{StaticResource AppGreen}" StrokeThickness="1.333"
@@ -241,7 +241,7 @@
                 </Viewbox>
                 <TextBlock Classes="no-elements-text" Margin="8,0,0,0" Text="in the bottom-right corner."/>
             </StackPanel>
-        </Viewbox>
+        </WrapPanel>
 
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
             <ContentControl Content="{Binding IsViewGrid}">
