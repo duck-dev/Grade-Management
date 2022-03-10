@@ -1,4 +1,5 @@
 # <span style="color:#009B72">Grade Management</span>
+<img src="Assets/Images/Logo.png" width="10%"></img>
 
 A modern, highly customizable and extraordinarily feature-rich solution for storing, organizing and managing your school grades.
 This distinguishes it enormously from equivalent products. And... it's 100% **free** and **open-source**!
