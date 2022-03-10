@@ -49,3 +49,14 @@ application without any hidden or visible data transfers. Solely your semesters/
 
 ## Development
 This tool is being developed with the open-source .NET XAML UI-framework [Avalonia](https://avaloniaui.net/) and C#.
+
+## Gallery
+
+<img src="https://user-images.githubusercontent.com/61479436/157672689-d78c627d-b439-46b9-bdfa-55e2e8cfe610.png" width="23%"></img> 
+<img src="https://user-images.githubusercontent.com/61479436/157672835-1c4aeef5-f93b-4bbd-9d44-b09bfa678503.png" width="23%"></img> 
+<img src="https://user-images.githubusercontent.com/61479436/157672854-3f776feb-ece7-4da9-9b74-cadc0f138ba2.png" width="23%"></img> 
+<img src="https://user-images.githubusercontent.com/61479436/157672867-25618568-cd41-4e0b-a491-905cdbfc2b1f.png" width="23%"></img> 
+<img src="https://user-images.githubusercontent.com/61479436/157672894-89bb5d48-2c34-498e-adcb-bc2b6d075347.png" width="23%"></img> 
+<img src="https://user-images.githubusercontent.com/61479436/157672908-ca1b5783-cdaf-494d-9ae1-3ac09b9ef67c.png" width="23%"></img> 
+<img src="https://user-images.githubusercontent.com/61479436/157672917-a0a16ec1-6fce-4c91-bbbb-b44177f2856c.png" width="23%"></img> 
+<img src="https://user-images.githubusercontent.com/61479436/157672942-4a49dd95-3a26-4b6e-89f3-c4db13ab806a.png" width="23%"></img> 
