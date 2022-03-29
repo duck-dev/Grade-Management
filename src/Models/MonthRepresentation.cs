@@ -27,7 +27,7 @@ namespace GradeManagement.Models
             get => _monthName!;
             private init
             {
-                if (!MonthConverter.TryConvertMonth(value, out int monthNumber))
+                if (!MonthConverter.TryParseMonth(value, out int monthNumber))
                 {
                     _monthName = string.Empty;
                     _month = 0;

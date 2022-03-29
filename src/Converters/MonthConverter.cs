@@ -26,15 +26,15 @@ namespace GradeManagement.Converters
             int monthNumber;
             if (int.TryParse(monthName, out monthNumber))
             {
-                if (!Utilities.ValidateDate(1, monthNumber, Utilities.TodaysYear, out var protocol)
+                if (!Utilities.ValidateDate(1, monthNumber, Utilities.TodaysYear, out var protocol) // Day and year aren't important
                     && protocol.CustomHasFlag(DateType.Month))
                 {
                     return ConversionFailed();
                 }
                 return new MonthRepresentation(monthNumber);
             } 
-            else if (TryConvertMonth(monthName, out monthNumber) &&
-                     Utilities.ValidateDate(1, monthNumber, Utilities.TodaysYear, out _))
+            else if (TryParseMonth(monthName, out monthNumber) &&
+                     Utilities.ValidateDate(1, monthNumber, Utilities.TodaysYear, out _)) // Day and year aren't important
                 return new MonthRepresentation(monthName);
 
             return ConversionFailed();
@@ -42,12 +42,12 @@ namespace GradeManagement.Converters
 
         internal static string ConvertMonth(int month)
         {
-            var date = new DateTime(Utilities.TodaysYear, month, Utilities.TodaysDay);
+            var date = new DateTime(Utilities.TodaysYear, month, 1); // Day and year aren't important
             // TODO: Use currently selected language as culture once it has been implemented
             return date.ToString("MMMM", CultureInfo.CurrentCulture);
         }
 
-        internal static bool TryConvertMonth(string month, out int monthNumber)
+        internal static bool TryParseMonth(string month, out int monthNumber)
         {
             monthNumber = 0;
             // TODO: Use currently selected language as culture once it has been implemented
