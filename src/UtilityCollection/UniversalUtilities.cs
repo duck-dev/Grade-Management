@@ -73,11 +73,11 @@ namespace GradeManagement.UtilityCollection
         /// <typeparam name="TElement">The type of the element to retrieve the resource from.
         /// This type must implement <see cref="IResourceNode"/>.</typeparam>
         /// <returns>The resource as it's actual type.</returns>
-        public static TResource? GetResourceFromStyle<TResource, TElement>(TElement element, string resourceName, int styleIndex)
+        public static TResource? GetResourceFromStyle<TResource, TElement>(TElement? element, string resourceName, int styleIndex)
             where TResource : class
             where TElement : IStyleHost, IResourceNode
         {
-            var styleInclude = element.Styles[styleIndex] as StyleInclude;
+            var styleInclude = element?.Styles[styleIndex] as StyleInclude;
             return (styleInclude?.Loaded is Style style ? GetResource<TResource>(style, resourceName) : null);
         }
     }
