@@ -30,6 +30,14 @@
     <Style Selector="Button.element-button-list:pressed">
         <Setter Property="RenderTransform" Value="scale(0.96)"/>
     </Style>
+    
+    <Style Selector="Border.grey-out-border">
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="CornerRadius" Value="20"/>
+        <Setter Property="Opacity" Value="0.4"/>
+        <Setter Property="Background" Value="{StaticResource StandardGrey}"/>
+    </Style>
 
     <!-- "No Elements" panel/text -->
     

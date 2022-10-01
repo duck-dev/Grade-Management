@@ -16,10 +16,14 @@ namespace GradeManagement.Models.Elements
     public class Subject : ColorableElement, IElement, ICloneable
     {
         private const int MaxNameLength = 25;
+        private const double EnabledOpacity = 1.0;
+        private const double DisabledOpacity = 0.6;
+        private const double DisabledOpacityGrade = 0.4;
         
         private string _name = string.Empty;
         private List<Grade> _grades = new();
         private float _weighting;
+        private bool _counts;
         private ButtonStyleBase? _buttonStyle;
 
         public Subject(string name, float weighting, string elementColorHex, bool counts) : base(elementColorHex)
@@ -71,7 +75,16 @@ namespace GradeManagement.Models.Elements
         }
         
         [JsonInclude]
-        public bool Counts { get; private set; } // TODO: Update UI
+        public bool Counts
+        {
+            get => _counts;
+            private set
+            {
+                this.RaiseAndSetIfChanged(ref _counts, value);
+                this.RaisePropertyChanged(nameof(ElementsOpacity));
+                this.RaisePropertyChanged(nameof(GradeTextOpacity));
+            }
+        }
 
         [JsonIgnore]
         public float GradeValue => Utilities.GetAverage(Grades, false);
@@ -90,6 +103,8 @@ namespace GradeManagement.Models.Elements
         protected override int ListThresholdAdditionalInfo => 135;
         
         internal float RoundedAverage => Utilities.GetAverage(Grades, true);
+        internal double ElementsOpacity => Counts ? EnabledOpacity : DisabledOpacity;
+        internal double GradeTextOpacity => Counts ? EnabledOpacity : DisabledOpacityGrade;
 
         public T? Duplicate<T>(bool save = true) where T : class, IElement
         {

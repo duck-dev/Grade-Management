@@ -52,7 +52,7 @@
                     </Grid>
                 </Grid>
                 <Panel Grid.Row="2" VerticalAlignment="Stretch">
-                    <TextBlock Text="{Binding GradeRef.RoundedGrade}"
+                    <TextBlock Text="{Binding GradeRef.RoundedGrade}" Opacity="{Binding GradeRef.GradeTextOpacity}"
                                TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"
                                Foreground="{StaticResource OppositeAccent}" FontSize="46" FontWeight="Bold">
                     </TextBlock>
@@ -151,8 +151,9 @@
                     </Grid>
                 </Grid>
                 <TextBlock Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"
-                           Text="{Binding GradeRef.RoundedGrade}"
-                           FontSize="42" FontWeight="Bold" Foreground="{StaticResource OppositeAccent}" Margin="0,0,10,0"/>
+                           Text="{Binding GradeRef.RoundedGrade}" FontSize="42" FontWeight="Bold" 
+                           Foreground="{StaticResource OppositeAccent}" Margin="0,0,10,0"
+                           Opacity="{Binding GradeRef.GradeTextOpacity}"/>
             </Grid>
         </DataTemplate>
     </UserControl.DataTemplates>
@@ -247,7 +248,8 @@
                                 CommandParameter="{Binding}"
                                 Classes="element-button selectable-button-effect"
                                 Classes.grade-year-element-button="{Binding $parent[UserControl].DataContext.IsViewGrid}"
-                                Classes.element-button-list="{Binding !$parent[UserControl].DataContext.IsViewGrid}">
+                                Classes.element-button-list="{Binding !$parent[UserControl].DataContext.IsViewGrid}"
+                                Opacity="{Binding ElementsOpacity}" Padding="0">
                             <Button.ContextMenu>
                                 <ContextMenu>
                                     <MenuItem Header="Edit Grade"
@@ -276,7 +278,10 @@
                                     </MenuItem>
                                 </ContextMenu>
                             </Button.ContextMenu>
-                            <ContentControl Content="{Binding ButtonStyle}"/>
+                            <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <ContentControl Content="{Binding ButtonStyle}"/>
+                                <Border Classes="grey-out-border" IsVisible="{Binding !Counts}"/>
+                            </Panel>
                         </Button>
                     </DataTemplate>
                 </ContentControl.Resources>

@@ -13,12 +13,15 @@ namespace GradeManagement.Models.Elements
     public class Grade : ReactiveObject, IElement, ICloneable
     {
         private const int MaxNameLength = 35;
+        private const double EnabledOpacity = 1.0;
+        private const double DisabledOpacity = 0.4;
+        private const double DisabledOpacityGrade = 0.4;
         
         private string _name = string.Empty;
         private float _gradeValue;
         private float _weighting;
         private DateTime _date;
-        //private bool _counts; TODO: Will be used once there is a UI representation of this bool on the element
+        private bool _counts;
         private ButtonStyleBase? _buttonStyle;
         
         [JsonConstructor]
@@ -77,7 +80,16 @@ namespace GradeManagement.Models.Elements
         }
         
         [JsonInclude]
-        public bool Counts { get; private set; } // TODO: Update UI
+        public bool Counts
+        {
+            get => _counts;
+            private set
+            {
+                this.RaiseAndSetIfChanged(ref _counts, value);
+                this.RaisePropertyChanged(nameof(ElementsOpacity));
+                this.RaisePropertyChanged(nameof(GradeTextOpacity));
+            }
+        }
 
         [JsonIgnore] 
         public int ElementCount => 1; // TODO: When partial grades are implemented, return count of grades
@@ -91,6 +103,8 @@ namespace GradeManagement.Models.Elements
 
         internal float RoundedGrade => (float)Math.Round(GradeValue, 2);
         internal string DateString => Date.ToString("dd.MM.yyyy", CultureInfo.CurrentCulture);
+        internal double ElementsOpacity => Counts ? EnabledOpacity : DisabledOpacity;
+        internal double GradeTextOpacity => Counts ? EnabledOpacity : DisabledOpacityGrade;
 
         public T? Duplicate<T>(bool save = true) where T : class, IElement
         {
