@@ -229,6 +229,7 @@ namespace GradeManagement.ViewModels
                 return;
             viewModel.Items?.Add(element);
             element.Save<T>();
+            UpdateAverage();
             
             CopiedElement = element.Duplicate<T>(false);
         }
