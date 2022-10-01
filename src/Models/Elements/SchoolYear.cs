@@ -11,7 +11,7 @@ using ReactiveUI;
 
 namespace GradeManagement.Models.Elements
 {
-    public class SchoolYear : ColorableElement, IElement, IGradable
+    public class SchoolYear : ColorableElement, IElement
     {
         private const int MaxNameLength = 25;
         

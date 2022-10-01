@@ -2,7 +2,7 @@ using GradeManagement.Views.Lists.ElementButtonControls;
 
 namespace GradeManagement.Interfaces
 {
-    public interface IElement
+    public interface IElement : IGradable
     {
         string Name { get; }
         ButtonStyleBase? ButtonStyle { get; set; }
