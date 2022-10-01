@@ -13,16 +13,14 @@ namespace GradeManagement
 {
     public class App : Application
     {
-        private static readonly string _resourcesPath 
-            = Path.Combine(("avares:" + Path.DirectorySeparatorChar + Path.DirectorySeparatorChar + "GradeManagement"), "src", "Resources");
-        
+        private const string ResourcesPath = "avares://GradeManagement/src/Resources/";
+
         private ThemeMode _theme;
-        private Uri? _themeSource;
         private StyleInclude? _currentThemeStyle;
         private readonly Dictionary<ThemeMode, Uri> _themeSourcesCollection = new()
         {
-            { ThemeMode.Light, new Uri(Path.Combine(_resourcesPath, "LightTheme.axaml")) },
-            { ThemeMode.Dark, new Uri(Path.Combine(_resourcesPath, "DarkTheme.axaml")) }
+            { ThemeMode.Light, new Uri(Path.Combine(ResourcesPath, "LightTheme.axaml")) },
+            { ThemeMode.Dark, new Uri(Path.Combine(ResourcesPath, "DarkTheme.axaml")) }
         };
 
         public App() => SetTheme(ThemeMode.Light); // TODO: Get from saved settings
@@ -38,7 +36,7 @@ namespace GradeManagement
             {
                 desktop.MainWindow = new MainWindow
                 {
-                    DataContext = new MainWindowViewModel() { AppInstance = this }
+                    DataContext = new MainWindowViewModel { AppInstance = this }
                 };
             }
 
@@ -47,8 +45,9 @@ namespace GradeManagement
 
         internal void SetTheme(ThemeMode theme)
         {
+            if (theme == _theme)
+                return;
             _theme = theme;
-            _themeSource = _themeSourcesCollection[theme];
 
             if (_currentThemeStyle is not null)
                 this.Styles.Remove(_currentThemeStyle);
