@@ -15,7 +15,7 @@ namespace GradeManagement.Models.Elements
 {
     public class Subject : ColorableElement, IElement, ICloneable
     {
-        private const int MaxNameLength = 25;
+        private const int MaxNameLength = 64;
         private const double EnabledOpacity = 1.0;
         private const double DisabledOpacity = 0.6;
         private const double DisabledOpacityGrade = 0.4;

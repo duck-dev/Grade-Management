@@ -30,8 +30,7 @@
             <!--         </Button.Content> -->
             <!-- </Button> TODO: Set up back-button!!!-->
             <Grid Grid.Row="1" RowDefinitions="Auto,Auto,Auto,Auto" VerticalAlignment="Center">
-                <TextBox Grid.Row="0" Classes="add-page-text-box"
-                         Watermark="Name of the Subject" MaxLength="25"
+                <TextBox Grid.Row="0" Classes="add-page-text-box" Watermark="Name of the Subject" MaxLength="64"
                          Text="{Binding ElementName}"
                          HorizontalContentAlignment="Left" Margin="0,0,0,15"
                          BorderBrush="{Binding BorderBrushes[0]}"/>
