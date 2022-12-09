@@ -12,7 +12,7 @@ namespace GradeManagement.Models.Elements
 {
     public class Grade : ReactiveObject, IElement, ICloneable
     {
-        private const int MaxNameLength = 35;
+        private const int MaxNameLength = 64;
         private const double EnabledOpacity = 1.0;
         private const double DisabledOpacity = 0.4;
         private const double DisabledOpacityGrade = 0.4;
