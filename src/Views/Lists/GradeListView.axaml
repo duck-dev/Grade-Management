@@ -23,12 +23,12 @@
 
     <UserControl.DataTemplates>
         <DataTemplate DataType="elementButtonControls:GridButton">
-            <Grid VerticalAlignment="Stretch" RowDefinitions="*,*,*">
-                <Panel Grid.Row="0" VerticalAlignment="Stretch">
-                    <Viewbox HorizontalAlignment="Center" VerticalAlignment="Stretch" Height="46">
-                        <TextBlock Text="{Binding GradeRef.Name}"
-                                   FontWeight="Bold" Foreground="{StaticResource OppositeAccent}" Margin="10 0 0 0"
-                                   HorizontalAlignment="Center" TextAlignment="Center"/>
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RowDefinitions="*,*,*">
+                <Panel Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MaxHeight="62" Margin="10,0">
+                    <Viewbox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" StretchDirection="UpOnly">
+                        <TextBlock Text="{Binding GradeRef.Name}" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"
+                                   FontWeight="Bold" Foreground="{StaticResource OppositeAccent}" TextAlignment="Center"
+                                   HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="18"/>
                     </Viewbox>
                 </Panel>
                 <Grid Grid.Row="1" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center" VerticalAlignment="Top">
@@ -125,11 +125,11 @@
             <!-- Design C
                  (additional information next to title, vertically aligned below each other)-->
             <Grid ColumnDefinitions="*,Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <Grid Grid.Column="0" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Left" Margin="10,0,0,0">
-                    <TextBlock Grid.Column="0" Text="{Binding GradeRef.Name}"
-                               FontSize="36" FontWeight="Bold" Foreground="{StaticResource OppositeAccent}"
-                               HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                    <Grid Grid.Column="1" RowDefinitions="*, *" Margin="60,0,0,0">
+                <Grid Grid.Column="0" ColumnDefinitions="2*,1*" HorizontalAlignment="Left" Margin="10,0,0,0">
+                    <TextBlock Grid.Column="0" Text="{Binding GradeRef.Name}" FontSize="36" FontWeight="Bold"
+                               Foreground="{StaticResource OppositeAccent}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                               TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/>
+                    <Grid Grid.Column="1" RowDefinitions="*, *" Margin="60,0,0,0" HorizontalAlignment="Right">
                         <Grid Grid.Row="0" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Image Grid.Column="0" Source="/Assets/Images/Dark/Date-Dark.png"
                                    Margin="0,0,10,0" Width="28" Height="28"
@@ -279,7 +279,7 @@
                                 </ContextMenu>
                             </Button.ContextMenu>
                             <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                <ContentControl Content="{Binding ButtonStyle}"/>
+                                <ContentControl HorizontalAlignment="Stretch" Content="{Binding ButtonStyle}"/>
                                 <Border Classes="grey-out-border" IsVisible="{Binding !Counts}"/>
                             </Panel>
                         </Button>
