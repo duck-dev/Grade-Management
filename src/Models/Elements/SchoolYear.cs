@@ -13,7 +13,7 @@ namespace GradeManagement.Models.Elements
 {
     public class SchoolYear : ColorableElement, IElement
     {
-        private const int MaxNameLength = 25;
+        private const int MaxNameLength = 64;
         
         private string _name = string.Empty;
         private List<Subject> _subjects = new();

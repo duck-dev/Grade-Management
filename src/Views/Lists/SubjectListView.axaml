@@ -23,7 +23,7 @@
                 <Panel Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MaxHeight="62" Margin="10,0">
                     <Viewbox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" StretchDirection="UpOnly">
                         <TextBlock Text="{Binding SubjectRef.Name}" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"
-                                   FontWeight="Bold" Foreground="{Binding SubjectRef.TitleBrush}"
+                                   FontWeight="Bold" Foreground="{Binding SubjectRef.TitleBrush}" FontSize="18"
                                    HorizontalAlignment="Stretch" VerticalAlignment="Center" TextAlignment="Center"/>
                     </Viewbox>
                 </Panel>

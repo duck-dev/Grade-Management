@@ -18,12 +18,14 @@
 
     <UserControl.DataTemplates>
         <DataTemplate DataType="elementButtonControls:GridButton">
-            <Grid VerticalAlignment="Stretch" RowDefinitions="*,*">
-                <Panel Grid.Row="0" VerticalAlignment="Stretch">
-                    <TextBlock Text="{Binding YearRef.Name}"
-                               FontWeight="Bold" Foreground="{Binding YearRef.TitleBrush}" FontSize="40"
-                               HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
-                               TextWrapping="Wrap" Margin="10,0,0,0"/>
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RowDefinitions="*,*">
+                <Panel Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MaxHeight="62" Margin="10,0">
+                    <Viewbox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" StretchDirection="UpOnly">
+                        <TextBlock Text="{Binding YearRef.Name}" FontSize="18" FontWeight="Bold"
+                                   Foreground="{Binding YearRef.TitleBrush}"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
+                                   TextTrimming="CharacterEllipsis" TextWrapping="Wrap" MaxLines="2"/>
+                    </Viewbox>
                 </Panel>
                 <Panel Grid.Row="1" VerticalAlignment="Stretch">
                     <Grid ColumnDefinitions="Auto,Auto" VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -76,10 +78,11 @@
             <!-- Design B & C
                  (additional information next to title)-->
             <Grid ColumnDefinitions="*,Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <Grid Grid.Column="0" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Left" Margin="10,0,0,0">
-                    <TextBlock Grid.Column="0" Text="{Binding YearRef.Name}"
-                               FontSize="36" FontWeight="Bold" Foreground="{Binding YearRef.TitleBrush}"
-                               VerticalAlignment="Center"/>
+                <Grid Grid.Column="0" ColumnDefinitions="2*,1*" HorizontalAlignment="Left" Margin="10,0,0,0">
+                    <TextBlock Grid.Column="0" Text="{Binding YearRef.Name}" FontSize="36" FontWeight="Bold"
+                               Foreground="{Binding YearRef.TitleBrush}"
+                               HorizontalAlignment="Left" VerticalAlignment="Center" 
+                               TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/>
                     <Grid Grid.Column="1" ColumnDefinitions="Auto,Auto" VerticalAlignment="Center"
                           Margin="60,0,0,0">
                         <Image Grid.Column="0" Source="/Assets/Images/Dark/List-Dark-Filled.png" 
@@ -212,7 +215,7 @@
                                               IsEnabled="False"/> <!-- TODO: Enable when logic has been implemented -->
                                 </ContextMenu>
                             </Button.ContextMenu>
-                            <ContentControl Content="{Binding ButtonStyle}"/>
+                            <ContentControl HorizontalAlignment="Stretch" Content="{Binding ButtonStyle}"/>
                         </Button>
                     </DataTemplate>
                 </ContentControl.Resources>
