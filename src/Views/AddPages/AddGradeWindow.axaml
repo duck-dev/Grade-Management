@@ -38,28 +38,19 @@
             <!--         </Button.Content> -->
             <!-- </Button> TODO: Set up back-button!!!-->
             <TextBox Grid.Row="1" Classes="add-page-text-box" Watermark="Name of the Grade" MaxLength="64"
-                     Text="{Binding ElementName}"
-                     HorizontalContentAlignment="Left" BorderBrush="{Binding BorderBrushes[0]}"/>
+                     HorizontalContentAlignment="Left" BorderBrush="{Binding BorderBrushes[0]}"
+                     Text="{Binding ElementName}"/>
             <Grid Grid.Row="2" ColumnDefinitions="440,60" Width="500" Height="60" VerticalAlignment="Center">
                 <Border Grid.Column="0" BorderBrush="{StaticResource AppGreen}">
                     <Grid ColumnDefinitions="Auto,Auto,Auto" HorizontalAlignment="Center">
-                        <TextBox Grid.Column="0"
-                                 Classes="add-page-date-picker-textbox"
-                                 Text="{Binding SelectedDay, 
-                                                                        Converter={StaticResource IntConverter}}"
-                                 Width="90" MaxLength="2" Watermark="Day"
+                        <TextBox Grid.Column="0" Classes="add-page-date-picker-textbox" Width="90" MaxLength="2" Watermark="Day"
+                                 Text="{Binding SelectedDay, Converter={StaticResource IntConverter}}"
                                  BorderBrush="{Binding BorderBrushes[1]}"/>
-                        <TextBox Grid.Column="1"
-                                 Classes="add-page-date-picker-textbox"
-                                 Text="{Binding SelectedMonth, 
-                                                                        Converter={StaticResource MonthConverter},
-                                                                        ConverterParameter={Binding}}"
-                                 Width="200" Watermark="Month" BorderBrush="{Binding BorderBrushes[2]}"/>
-                        <TextBox Grid.Column="2"
-                                 Classes="add-page-date-picker-textbox"
-                                 Text="{Binding SelectedYear, 
-                                                                        Converter={StaticResource IntConverter}}"
-                                 Width="150" MaxLength="4" Watermark="Year"
+                        <TextBox Grid.Column="1" Classes="add-page-date-picker-textbox" Width="200" Watermark="Month"
+                                 Text="{Binding SelectedMonth, Converter={StaticResource MonthConverter}, ConverterParameter={Binding}}"
+                                 BorderBrush="{Binding BorderBrushes[2]}"/>
+                        <TextBox Grid.Column="2" Classes="add-page-date-picker-textbox" Width="150" MaxLength="4" Watermark="Year"
+                                 Text="{Binding SelectedYear, Converter={StaticResource IntConverter}}"
                                  BorderBrush="{Binding BorderBrushes[3]}"/>
                     </Grid>
                 </Border>
@@ -72,44 +63,33 @@
                     </Button.Template>
                 </Button>
             </Grid>
-            <TextBox Grid.Row="3" Classes="add-page-text-box"
-                     Width="100" Height="60" Watermark="Grade" MaxLength="5" HorizontalContentAlignment="Center"
-                     Text="{Binding ElementGradeString}"
+            <TextBox Grid.Row="3" Classes="add-page-text-box" Width="100" Height="60" Watermark="Grade" MaxLength="5" 
+                     HorizontalContentAlignment="Center" Text="{Binding ElementGradeString}"
                      BorderBrush="{Binding BorderBrushes[4]}"/>
-            <TextBox Grid.Row="4" Classes="add-page-text-box"
-                     Width="100" Height="60" Watermark="Weighting" MaxLength="5" HorizontalContentAlignment="Center"
-                     Text="{Binding ElementWeightingString}"
+            <TextBox Grid.Row="4" Classes="add-page-text-box" Width="100" Height="60" Watermark="Weighting" MaxLength="5" 
+                     HorizontalContentAlignment="Center" Text="{Binding ElementWeightingString}"
                      BorderBrush="{Binding BorderBrushes[5]}"/>
-            <CheckBox Grid.Row="5" Classes="add-page-checkbox" IsChecked="{Binding ElementCounts}">
-                Grade counts?
-            </CheckBox>
+            <CheckBox Grid.Row="5" Classes="add-page-checkbox" IsChecked="{Binding ElementCounts}"
+                      Content="Grade counts?"/>
             <Button Grid.Row="6" Classes="add-page-button selectable-button" Command="{Binding CreateElement}"
-                    IsEnabled="{Binding DataComplete}"
-                    Content="{Binding ButtonText}" HotKey="Enter"/>
+                    IsEnabled="{Binding DataComplete}" Content="{Binding ButtonText}" 
+                    HotKey="Enter"/>
         </Grid>
         <Panel Opacity="0.6" Background="{StaticResource OppositeAccent}" 
-               HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-               IsEnabled="{Binding CalendarOpen}"
-               IsVisible="{Binding CalendarOpen}"/>
-        <Grid RowDefinitions="Auto,*" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-              IsEnabled="{Binding CalendarOpen}"
-              IsVisible="{Binding CalendarOpen}">
-            <Calendar Grid.Row="0" Classes="add-page-calendar"
-                      IsEnabled="{Binding CalendarOpen}"
+               IsEnabled="{Binding CalendarOpen}" IsVisible="{Binding CalendarOpen}"
+               HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Grid RowDefinitions="Auto,*" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+              IsEnabled="{Binding CalendarOpen}" IsVisible="{Binding CalendarOpen}">
+            <Calendar Grid.Row="0" Classes="add-page-calendar" IsEnabled="{Binding CalendarOpen}"
                       IsVisible="{Binding CalendarOpen}"
                       SelectedDate="{Binding TempSelectedDate}"
                       SelectedDatesChanged="DisplayDateChanged">
             </Calendar>
             <Grid Grid.Row="1" ColumnDefinitions="*,*">
-                <Button Grid.Column="0" Classes="add-page-button add-page-button-grey selectable-button"
-                        Background="{StaticResource StandardGrey}"
-                        Command="{Binding ToggleCalendar}">
-                    Cancel
-                </Button>
-                <Button Grid.Column="1" Classes="add-page-button selectable-button"
-                        Command="{Binding SaveCalendar}">
-                    Save Date
-                </Button>
+                <Button Grid.Column="0" Classes="add-page-button add-page-button-grey selectable-button" Content="Cancel"
+                        Background="{StaticResource StandardGrey}" Command="{Binding ToggleCalendar}"/>
+                <Button Grid.Column="1" Classes="add-page-button selectable-button" Command="{Binding SaveCalendar}"
+                        Content="Save Date"/>
             </Grid>
         </Grid>
     </Panel>
