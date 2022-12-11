@@ -56,27 +56,6 @@
             </Grid>
         </DataTemplate>
         <DataTemplate DataType="elementButtonControls:ListButton">
-
-            <!-- Design A
-                 (additional information below title)-->
-
-            <!-- <Grid ColumnDefinitions="*,Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"> -->
-            <!--     <Grid Grid.Column="0" RowDefinitions="*,*" HorizontalAlignment="Left" Margin="10,0,0,0"> -->
-            <!--         <TextBlock Grid.Row="0" Text="{Binding YearRef.Name}" -->
-            <!--                    FontSize="36" FontWeight="Bold" Foreground="{StaticResource Black}" -->
-            <!--                    HorizontalAlignment="Left" VerticalAlignment="Center"/> -->
-            <!--         <TextBlock Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" -->
-            <!--                    Text="{Binding Path=YearRef.Subjects.Count, StringFormat='=  {0}'}" -->
-            <!--                    Foreground="{StaticResource StandardGrey}" FontSize="28"/> -->
-            <!--     </Grid> -->
-            <!--     <TextBlock Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" -->
-            <!--                Text="{Binding YearRef.GradeValue}" -->
-            <!--                FontSize="42" FontWeight="Bold" Foreground="{StaticResource Black}" -->
-            <!--                Margin="0,0,10,0"/> -->
-            <!-- </Grid> -->
-
-            <!-- Design B & C
-                 (additional information next to title)-->
             <Grid ColumnDefinitions="*,Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid Grid.Column="0" ColumnDefinitions="2*,1*" HorizontalAlignment="Left" Margin="10,0,0,0">
                     <TextBlock Grid.Column="0" Text="{Binding YearRef.Name}" FontSize="36" FontWeight="Bold"

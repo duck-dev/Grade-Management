@@ -67,59 +67,6 @@
             </Grid>
         </DataTemplate>
         <DataTemplate DataType="elementButtonControls:ListButton">
-
-            <!-- Design A
-                 (additional information below title)-->
-
-            <!-- <Grid ColumnDefinitions="*,Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"> -->
-            <!--     <Grid Grid.Column="0" RowDefinitions="*,*" HorizontalAlignment="Left" Margin="10,0,0,0"> -->
-            <!--         <TextBlock Grid.Row="0" Text="{Binding SubjectRef.Name}" -->
-            <!--                    FontSize="36" FontWeight="Bold" Foreground="{StaticResource Black}" -->
-            <!--                    HorizontalAlignment="Left" VerticalAlignment="Center"/> -->
-            <!--         <Grid Grid.Row="1" ColumnDefinitions="Auto, Auto"> -->
-            <!--             <TextBlock Grid.Column="0" VerticalAlignment="Center" -->
-            <!--                        Text="{Binding Path=SubjectRef.Grades.Count, StringFormat='=  {0}'}" -->
-            <!--                        Foreground="{Binding SubjectRef.AdditionalInfoColor}" -->
-            <!--                        FontSize="28" Margin="0,0,25,0"/> -->
-            <!--             <TextBlock Grid.Column="1" VerticalAlignment="Center" -->
-            <!--                        Text="{Binding Path=SubjectRef.Weighting, StringFormat='W  {0}'}" -->
-            <!--                        Foreground="{Binding SubjectRef.AdditionalInfoColor}" -->
-            <!--                        FontSize="28" Margin="25, 0, 0, 0"/> -->
-            <!--         </Grid> -->
-            <!--     </Grid> -->
-            <!--     <TextBlock Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" -->
-            <!--                Text="{Binding SubjectRef.RoundedAverage}" -->
-            <!--                FontSize="42" FontWeight="Bold" Foreground="{StaticResource Black}" -->
-            <!--                Margin="0,0,10,0"/> -->
-            <!-- </Grid> -->
-
-            <!-- Design B
-                 (additional information next to title, horizontally aligned next to each other)-->
-
-            <!-- <Grid ColumnDefinitions="*,Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"> -->
-            <!--     <Grid Grid.Column="0" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Left" Margin="10,0,0,0"> -->
-            <!--         <TextBlock Grid.Column="0" Text="{Binding SubjectRef.Name}" -->
-            <!--                    FontSize="36" FontWeight="Bold" Foreground="{StaticResource Black}" -->
-            <!--                    HorizontalAlignment="Left" VerticalAlignment="Center"/> -->
-            <!--         <Grid Grid.Column="1" ColumnDefinitions="Auto, Auto" Margin="60,0,0,0"> -->
-            <!--             <TextBlock Grid.Column="0" VerticalAlignment="Center" -->
-            <!--                        Text="{Binding Path=SubjectRef.Grades.Count, StringFormat='=  {0}'}" -->
-            <!--                        Foreground="{Binding SubjectRef.AdditionalInfoColor}" -->
-            <!--                        FontSize="28" Margin="0,0,20,0"/> -->
-            <!--             <TextBlock Grid.Column="1" VerticalAlignment="Center" -->
-            <!--                        Text="{Binding Path=SubjectRef.Weighting, StringFormat='W  {0}'}" -->
-            <!--                        Foreground="{Binding SubjectRef.AdditionalInfoColor}" -->
-            <!--                        FontSize="28" Margin="20, 0, 0, 0"/> -->
-            <!--         </Grid> -->
-            <!--     </Grid> -->
-            <!--     <TextBlock Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" -->
-            <!--                Text="{Binding SubjectRef.RoundedAverage}" -->
-            <!--                FontSize="42" FontWeight="Bold" Foreground="{StaticResource Black}" -->
-            <!--                Margin="0,0,10,0"/> -->
-            <!-- </Grid> -->
-
-            <!-- Design C
-                 (additional information next to title, vertically aligned below each other)-->
             <Grid ColumnDefinitions="*,Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid Grid.Column="0" ColumnDefinitions="2*, 1*" HorizontalAlignment="Left" Margin="10,0,0,0">
                     <TextBlock Grid.Column="0" Text="{Binding SubjectRef.Name}" FontSize="36" FontWeight="Bold"
