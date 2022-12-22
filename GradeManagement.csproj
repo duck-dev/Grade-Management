@@ -4,6 +4,9 @@
         <TargetFramework>net5.0</TargetFramework>
         <Nullable>enable</Nullable>
     </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <DebugType>none</DebugType>
+    </PropertyGroup>
     <ItemGroup>
         <AvaloniaResource Include="Assets\**" />
     </ItemGroup>
