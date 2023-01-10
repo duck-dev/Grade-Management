@@ -70,7 +70,7 @@
                      HorizontalContentAlignment="Center" Text="{Binding ElementWeightingString}"
                      BorderBrush="{Binding BorderBrushes[5]}"/>
             <CheckBox Grid.Row="5" Classes="add-page-checkbox" IsChecked="{Binding ElementCounts}"
-                      Content="Grade counts?"/>
+                      Content="Grade counts"/>
             <Button Grid.Row="6" Classes="add-page-button selectable-button" Command="{Binding CreateElement}"
                     IsEnabled="{Binding DataComplete}" Content="{Binding ButtonText}" 
                     HotKey="Enter"/>
