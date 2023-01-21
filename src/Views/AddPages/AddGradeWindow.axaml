@@ -9,7 +9,7 @@
         Title="New Grade"
         WindowStartupLocation="CenterOwner"
         Width="750"
-        Height="550"
+        Height="605"
         CanResize="False">
 
     <Design.DataContext>
@@ -27,22 +27,17 @@
     </Window.Resources>
 
     <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <Grid RowDefinitions="*,*,*,*,*,*,*">
-            <Viewbox Grid.Row="0" Height="30" VerticalAlignment="Center" Margin="30,0">
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,*" Margin="75,0">
+            <Viewbox Grid.Row="0" Height="30" Margin="30,30,30,15">
                 <TextBlock Classes="add-page-title-text" Text="{Binding Title}"
                            TextAlignment="Center" TextWrapping="Wrap"/>
             </Viewbox>
-            <!-- <Button Grid.Row="0" Classes="add-page-back-button"> -->
-            <!--         <Button.Content> -->
-            <!--                 <Image Source="/Assets/Images/back-button-arrow.png"/> -->
-            <!--         </Button.Content> -->
-            <!-- </Button> TODO: Set up back-button!!!-->
-            <TextBox Grid.Row="1" Classes="add-page-text-box" Watermark="Name of the Grade" MaxLength="64"
+            <TextBox Grid.Row="1" Classes="add-page-object add-page-text-box" Watermark="Name of the Grade"
                      HorizontalContentAlignment="Left" BorderBrush="{Binding BorderBrushes[0]}"
-                     Text="{Binding ElementName}"/>
-            <Grid Grid.Row="2" ColumnDefinitions="440,60" Width="500" Height="60" VerticalAlignment="Center">
+                     Text="{Binding ElementName}" HorizontalAlignment="Stretch" MaxLength="64"/>
+            <Grid Grid.Row="2" Classes="add-page-object" ColumnDefinitions="Auto,*" HorizontalAlignment="Center">
                 <Border Grid.Column="0" BorderBrush="{StaticResource AppGreen}">
-                    <Grid ColumnDefinitions="Auto,Auto,Auto" HorizontalAlignment="Center">
+                    <Grid ColumnDefinitions="Auto,Auto,Auto">
                         <TextBox Grid.Column="0" Classes="add-page-date-picker-textbox" Width="90" MaxLength="2" Watermark="Day"
                                  Text="{Binding SelectedDay, Converter={StaticResource IntConverter}}"
                                  BorderBrush="{Binding BorderBrushes[1]}"/>
@@ -54,8 +49,8 @@
                                  BorderBrush="{Binding BorderBrushes[3]}"/>
                     </Grid>
                 </Border>
-                <Button Grid.Column="1" Classes="selectable-button-effect" Width="50" Height="50" HorizontalAlignment="Center"
-                        Command="{Binding ToggleCalendar}">
+                <Button Grid.Column="1" Classes="selectable-button-effect" Width="50" Height="50" Margin="10,0,0,0"
+                        HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding ToggleCalendar}">
                     <Button.Template>
                         <ControlTemplate>
                             <Image Source="/Assets/Images/Dark/Date-Dark.png" Width="50" Height="50"/> <!-- TODO: Consider themes when implemented -->
@@ -63,19 +58,19 @@
                     </Button.Template>
                 </Button>
             </Grid>
-            <TextBox Grid.Row="3" Classes="add-page-text-box" Width="100" Height="60" Watermark="Grade" MaxLength="5" 
-                     HorizontalContentAlignment="Center" Text="{Binding ElementGradeString}"
+            <TextBox Grid.Row="3" Classes="add-page-object add-page-text-box" Width="100" Watermark="Grade" 
+                     HorizontalContentAlignment="Center" Text="{Binding ElementGradeString}" MaxLength="5"
                      BorderBrush="{Binding BorderBrushes[4]}"/>
-            <TextBox Grid.Row="4" Classes="add-page-text-box" Width="100" Height="60" Watermark="Weighting" MaxLength="5" 
-                     HorizontalContentAlignment="Center" Text="{Binding ElementWeightingString}"
+            <TextBox Grid.Row="4" Classes="add-page-object add-page-text-box" Width="100" Watermark="Weighting" 
+                     HorizontalContentAlignment="Center" Text="{Binding ElementWeightingString}" MaxLength="5"
                      BorderBrush="{Binding BorderBrushes[5]}"/>
             <CheckBox Grid.Row="5" Classes="add-page-checkbox" IsChecked="{Binding ElementCounts}"
-                      Content="Grade counts"/>
+                      Content="Grade counts" Margin="0,5,0,3"/>
             <Button Grid.Row="6" Classes="add-page-button selectable-button" Command="{Binding CreateElement}"
                     IsEnabled="{Binding DataComplete}" Content="{Binding ButtonText}" 
                     HotKey="Enter"/>
         </Grid>
-        <Panel Opacity="0.6" Background="{StaticResource OppositeAccent}" 
+        <Panel Opacity="0.6" Background="{StaticResource OppositeAccent}"
                IsEnabled="{Binding CalendarOpen}" IsVisible="{Binding CalendarOpen}"
                HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         <Grid RowDefinitions="Auto,*" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
