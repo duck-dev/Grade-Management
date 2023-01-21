@@ -72,11 +72,9 @@
                     IsEnabled="{Binding DataComplete}" Content="{Binding ButtonText}" 
                     HotKey="Enter"/>
         </Grid>
-        <Panel Opacity="0.6" Background="{StaticResource OppositeAccent}"
-               IsEnabled="{Binding CalendarOpen}" IsVisible="{Binding CalendarOpen}"
-               HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-        <Grid RowDefinitions="Auto,*" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
-              IsEnabled="{Binding CalendarOpen}" IsVisible="{Binding CalendarOpen}">
+        <Grid RowDefinitions="Auto,*" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+              IsEnabled="{Binding CalendarOpen}" IsVisible="{Binding CalendarOpen}"
+              Background="{StaticResource HighlyDarkenedBackground}">
             <Calendar Grid.Row="0" Classes="add-page-calendar" IsEnabled="{Binding CalendarOpen}"
                       IsVisible="{Binding CalendarOpen}"
                       SelectedDate="{Binding TempSelectedDate}"
