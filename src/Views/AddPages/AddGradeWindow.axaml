@@ -82,11 +82,12 @@
                       SelectedDate="{Binding TempSelectedDate}"
                       SelectedDatesChanged="DisplayDateChanged">
             </Calendar>
-            <Grid Grid.Row="1" ColumnDefinitions="*,*">
+            <Grid Grid.Row="1" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center">
                 <Button Grid.Column="0" Classes="add-page-button add-page-button-grey selectable-button" Content="Cancel"
-                        Background="{StaticResource StandardGrey}" Command="{Binding ToggleCalendar}"/>
+                        Background="{StaticResource StandardGrey}" Command="{Binding ToggleCalendar}"
+                        Margin="20,30"/>
                 <Button Grid.Column="1" Classes="add-page-button selectable-button" Command="{Binding SaveCalendar}"
-                        Content="Save Date"/>
+                        Content="Save Date" Margin="20,30"/>
             </Grid>
         </Grid>
     </Panel>
