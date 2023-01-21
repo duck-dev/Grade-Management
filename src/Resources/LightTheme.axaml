@@ -15,6 +15,7 @@
         <SolidColorBrush x:Key="AlmostAccent" Color="#E6E6E6"/>
         <SolidColorBrush x:Key="DarkerAlmostAccent" Color="#D4D4D4"/>
         <SolidColorBrush x:Key="DarkenedDialogBackground" Color="#66000000"/>
+        <SolidColorBrush x:Key="HighlyDarkenedBackground" Color="#99000000"/>
         <SolidColorBrush x:Key="InfoButtonGrey" Color="#8B8D92"/>
         
         <SolidColorBrush x:Key="CalendarDayButtonHover" Color="#DCDCDC"/>

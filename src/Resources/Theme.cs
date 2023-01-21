@@ -21,6 +21,7 @@ namespace GradeManagement.ResourcesNamespace
         protected internal SolidColorBrush AlmostAccentBrush { get; protected set; } = null!;
         protected internal SolidColorBrush DarkerAlmostAccentBrush { get; protected set; } = null!;
         protected internal SolidColorBrush DarkenedDialogBackgroundBrush { get; protected set; } = null!;
+        protected internal SolidColorBrush HighlyDarkenedBackgroundBrush { get; protected set; } = null!;
         protected internal SolidColorBrush InfoButtonGreyBrush { get; protected set; } = null!;
         
         protected internal SolidColorBrush CalendarDayButtonHoverBrush { get; protected set; } = null!;
@@ -42,6 +43,7 @@ namespace GradeManagement.ResourcesNamespace
         protected internal Color AlmostAccent => AlmostAccentBrush.Color;
         protected internal Color DarkerAlmostAccent => DarkerAlmostAccentBrush.Color;
         protected internal Color DarkenedDialogBackground => DarkenedDialogBackgroundBrush.Color;
+        protected internal Color HighlyDarkenedBackground => HighlyDarkenedBackgroundBrush.Color;
         protected internal Color InfoButtonGrey => InfoButtonGreyBrush.Color;
         
         protected internal Color CalendarDayButtonHover => CalendarDayButtonHoverBrush.Color;

@@ -48,6 +48,9 @@ namespace GradeManagement.ResourcesNamespace
             DarkenedDialogBackgroundBrush = 
                 Utilities.GetResourceFromStyle<SolidColorBrush, Application>(Application.Current, "DarkenedDialogBackground", StyleIndex) 
                 ?? new SolidColorBrush(Color.Parse("#66000000"));
+            HighlyDarkenedBackgroundBrush =
+                Utilities.GetResourceFromStyle<SolidColorBrush, Application>(Application.Current, "HighlyDarkenedBackground", StyleIndex)
+                ?? new SolidColorBrush(Color.Parse("#99000000"));
             InfoButtonGreyBrush = 
                 Utilities.GetResourceFromStyle<SolidColorBrush, Application>(Application.Current, "InfoButtonGrey", StyleIndex) 
                 ?? new SolidColorBrush(Color.Parse("#8B8D92"));
