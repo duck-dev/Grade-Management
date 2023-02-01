@@ -18,7 +18,7 @@ namespace GradeManagement.Models.Elements
         private const double DisabledOpacityGrade = 0.4;
         
         private string _name = string.Empty;
-        private float _gradeValue;
+        private float _gradeValue = float.NaN;
         private float _weighting;
         private DateTime _date;
         private bool _counts;
@@ -47,7 +47,7 @@ namespace GradeManagement.Models.Elements
         }
 
         [JsonInclude]
-        public float GradeValue
+        public virtual float GradeValue
         {
             get => _gradeValue;
             private set
@@ -92,7 +92,7 @@ namespace GradeManagement.Models.Elements
         }
 
         [JsonIgnore] 
-        public int ElementCount => 1; // TODO: When partial grades are implemented, return count of grades
+        public virtual int ElementCount => 1;
 
         [JsonIgnore]
         public ButtonStyleBase? ButtonStyle
@@ -105,6 +105,8 @@ namespace GradeManagement.Models.Elements
         internal string DateString => Date.ToString("dd.MM.yyyy", CultureInfo.CurrentCulture);
         internal double ElementsOpacity => Counts ? EnabledOpacity : DisabledOpacity;
         internal double GradeTextOpacity => Counts ? EnabledOpacity : DisabledOpacityGrade;
+
+        internal bool IsMultiGrade => this is GradeGroup;
 
         public T? Duplicate<T>(bool save = true) where T : class, IElement
         {
