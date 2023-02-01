@@ -60,14 +60,14 @@
             </Grid>
             <TextBox Grid.Row="3" Classes="add-page-object add-page-text-box" Width="100" Watermark="Grade" 
                      HorizontalContentAlignment="Center" Text="{Binding ElementGradeString}" MaxLength="5"
-                     BorderBrush="{Binding BorderBrushes[4]}"/>
+                     BorderBrush="{Binding BorderBrushes[4]}" IsEnabled="{Binding !IsMultiGrade}"/>
             <TextBox Grid.Row="4" Classes="add-page-object add-page-text-box" Width="100" Watermark="Weighting" 
                      HorizontalContentAlignment="Center" Text="{Binding ElementWeightingString}" MaxLength="5"
                      BorderBrush="{Binding BorderBrushes[5]}"/>
             <CheckBox Grid.Row="5" Classes="add-page-checkbox" IsChecked="{Binding ElementCounts}"
                       Content="Grade counts" Margin="0,5,0,3"/>
             <CheckBox Grid.Row="6" Classes="add-page-checkbox" IsChecked="{Binding IsMultiGrade}"
-                      Content="Partial grades" Margin="0,3,0,0"/>
+                      Content="Partial grades" Margin="0,3,0,0" IsVisible="{Binding !IsEditing}"/>
             <Button Grid.Row="7" Classes="add-page-button selectable-button" Command="{Binding CreateElement}"
                     IsEnabled="{Binding DataComplete}" Content="{Binding ButtonText}" 
                     HotKey="Enter"/>

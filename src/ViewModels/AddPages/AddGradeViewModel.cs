@@ -17,6 +17,8 @@ namespace GradeManagement.ViewModels.AddPages
 {
     public class AddGradeViewModel : AddViewModelBase, IAddViewModel<Grade>
     {
+        private bool _isEditing;
+        
         // Date
         private int _selectedDay = Utilities.TodaysDay;
         private MonthRepresentation _selectedMonth = new(Utilities.TodaysMonth);
@@ -27,8 +29,9 @@ namespace GradeManagement.ViewModels.AddPages
         private bool _calendarOpen;
         
         // Other parameters
-        private float _elementGrade;
+        private float _elementGrade = float.NaN;
         private string? _elementGradeStr;
+        private bool _isMultiGrade;
 
         public AddGradeViewModel()
         {
@@ -49,12 +52,12 @@ namespace GradeManagement.ViewModels.AddPages
         internal static AddGradeViewModel? Instance { get; private set; }
 
         protected override bool DataComplete => !string.IsNullOrEmpty(ElementName) && !string.IsNullOrWhiteSpace(ElementName)
-                                                && !float.IsNaN(_elementGrade)
+                                                && (IsMultiGrade || !float.IsNaN(_elementGrade))
                                                 && !float.IsNaN(ElementWeighting)
                                                 && Utilities.ValidateDate(_selectedDay, _selectedMonth.Month, _selectedYear, out _)
                                                 && DataChanged();
 
-        internal int SelectedDay
+        private int SelectedDay
         {
             get => _selectedDay;
             set
@@ -113,7 +116,7 @@ namespace GradeManagement.ViewModels.AddPages
                 SetDate(newDate.Day, value.Month, newDate.Year);
             }
         }
-        internal int SelectedYear
+        private int SelectedYear
         {
             get => _selectedYear;
             set
@@ -146,7 +149,7 @@ namespace GradeManagement.ViewModels.AddPages
             }
         }
         
-        internal string? ElementGradeString
+        private string? ElementGradeString
         {
             get => _elementGradeStr;
             set
@@ -165,7 +168,23 @@ namespace GradeManagement.ViewModels.AddPages
             }
         }
         
+        private bool IsMultiGrade
+        {
+            get => _isMultiGrade;
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _isMultiGrade, value);
+                this.RaisePropertyChanged(nameof(DataComplete));
+            }
+        }
+
         private Grade? EditedGrade { get; set; }
+
+        private bool IsEditing
+        {
+            get => _isEditing; 
+            set => this.RaiseAndSetIfChanged(ref _isEditing, value);
+        }
         
         internal void DateChanged(object? sender, SelectionChangedEventArgs args)
         {
@@ -209,12 +228,14 @@ namespace GradeManagement.ViewModels.AddPages
         public void EditElement(Grade grade)
         {
             EditedGrade = grade;
+            IsEditing = true;
             EditPageText(AddPageAction.Edit, "Grade", grade.Name);
 
             ElementName = grade.Name;
-            ElementGradeString = grade.GradeValue.ToString(CultureInfo.CurrentCulture); // TODO: Change culture to selected
-            ElementWeightingString = grade.Weighting.ToString(CultureInfo.CurrentCulture); // TODO: Change culture to selected
+            ElementGradeString = grade.IsMultiGrade ? string.Empty : grade.GradeValue.ToString(CultureInfo.CurrentCulture);
+            ElementWeightingString = grade.Weighting.ToString(CultureInfo.CurrentCulture);
             ElementCounts = grade.Counts;
+            IsMultiGrade = grade.IsMultiGrade;
             
             SelectedDay = grade.Date.Day;
             SelectedMonth = new MonthRepresentation(grade.Date.Month);
@@ -224,19 +245,20 @@ namespace GradeManagement.ViewModels.AddPages
         private void CreateElement()
         {
             var currentSubject = MainWindowViewModel.CurrentSubject;
-            if (ElementName is null || _tempSelectedDate is null || currentSubject is null)
+            if (ElementName is null || TempSelectedDate is null || currentSubject is null)
                 return;
             
             if (EditedGrade is null)
             {
                 var viewModel = GradeListViewModel.Instance;
-                var grade = new Grade(ElementName, _elementGrade, ElementWeighting, _tempSelectedDate.Value, ElementCounts);
+                Grade grade = IsMultiGrade ? new GradeGroup(ElementName, Array.Empty<Grade>(), ElementWeighting, TempSelectedDate.Value, ElementCounts) 
+                                           : new Grade(ElementName, _elementGrade, ElementWeighting, TempSelectedDate.Value, ElementCounts);
                 
                 currentSubject.Grades.Add(grade);
                 viewModel?.Items?.Add(grade);
             }
             else
-                EditedGrade.Edit(ElementName, _elementGrade, ElementWeighting, _tempSelectedDate.Value, ElementCounts);
+                EditedGrade.Edit(ElementName, _elementGrade, ElementWeighting, TempSelectedDate.Value, ElementCounts);
             
             UpdateVisualOnChange();
             EditedGrade = null;
@@ -248,11 +270,12 @@ namespace GradeManagement.ViewModels.AddPages
                 return true;
             
             var date = EditedGrade.Date;
-            return ElementName is not null && (!ElementName.Trim().Equals(EditedGrade.Name.Trim()) 
+            return ElementName is not null && (!ElementName.Trim().Equals(EditedGrade.Name.Trim())
                                                || !ElementWeighting.Equals(EditedGrade.Weighting)
-                                               || !_elementGrade.Equals(EditedGrade.GradeValue)
-                                               || _selectedDay != date.Day || _selectedMonth.Month != date.Month || 
-                                               _selectedYear != date.Year 
+                                               || (!IsMultiGrade && !_elementGrade.Equals(EditedGrade.GradeValue))
+                                               || _selectedDay != date.Day
+                                               || _selectedMonth.Month != date.Month
+                                               || _selectedYear != date.Year
                                                || ElementCounts != EditedGrade.Counts);
         }
 
