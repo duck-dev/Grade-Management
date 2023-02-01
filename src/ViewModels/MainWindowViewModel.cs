@@ -110,6 +110,14 @@ namespace GradeManagement.ViewModels
             EditElement(year, viewModel, window);
         }
 
+        private void OpenGrade(Grade grade)
+        {
+            if (grade is GradeGroup gradeGroup) // Group of partial grades
+                SwitchPage<GradeListViewModel, Grade>(gradeGroup.Grades);
+            else // Single grade
+                EditGrade(grade);
+        }
+
         private void OpenSubject(Subject subject)
         {
             AdjustTopbarText(subject, 2);
@@ -193,13 +201,13 @@ namespace GradeManagement.ViewModels
             switch (element)
             {
                 case SchoolYear year:
-                    CopyElement<SchoolYear>(year);
+                    CopyElement(year);
                     break;
                 case Subject subject:
-                    CopyElement<Subject>(subject);
+                    CopyElement(subject);
                     break;
                 case Grade grade:
-                    CopyElement<Grade>(grade);
+                    CopyElement(grade);
                     break;
             } 
         }

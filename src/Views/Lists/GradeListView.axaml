@@ -180,7 +180,7 @@
             <ContentControl Content="{Binding IsViewGrid}">
                 <ContentControl.Resources>
                     <DataTemplate x:Key="GradeItemTemplate">
-                        <Button Command="{Binding $parent[Window].DataContext.EditGrade}"
+                        <Button Command="{Binding $parent[Window].DataContext.OpenGrade}"
                                 CommandParameter="{Binding}"
                                 Classes="element-button selectable-button-effect"
                                 Classes.grade-year-element-button="{Binding $parent[UserControl].DataContext.IsViewGrid}"
