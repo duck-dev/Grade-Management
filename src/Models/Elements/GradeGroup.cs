@@ -9,7 +9,13 @@ namespace GradeManagement.Models.Elements
     public class GradeGroup : Grade
     {
         [JsonConstructor]
-        public GradeGroup(string name, IEnumerable<Grade> grades, float weighting, DateTime date, bool counts) 
+        public GradeGroup(string name, List<Grade> grades, float weighting, DateTime date, bool counts) 
+            : base(name, Utilities.GetAverage(grades, false), weighting, date, counts)
+        {
+            this.Grades = grades;
+        }
+
+        public GradeGroup(string name, ICollection<Grade> grades, float weighting, DateTime date, bool counts)
             : base(name, Utilities.GetAverage(grades, false), weighting, date, counts)
         {
             this.Grades = grades.ToList();
@@ -18,7 +24,7 @@ namespace GradeManagement.Models.Elements
         [JsonInclude]
         public List<Grade> Grades { get; set; }
 
-        [JsonInclude]
+        [JsonIgnore]
         public override float GradeValue => Utilities.GetAverage(Grades, true);
 
         [JsonIgnore]
