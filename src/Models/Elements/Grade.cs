@@ -10,6 +10,9 @@ using ReactiveUI;
 
 namespace GradeManagement.Models.Elements
 {
+    [JsonPolymorphic(UnknownDerivedTypeHandling = JsonUnknownDerivedTypeHandling.FallBackToNearestAncestor)]
+    [JsonDerivedType(typeof(Grade), "grade")]
+    [JsonDerivedType(typeof(GradeGroup), "gradeGroup")]
     public class Grade : ReactiveObject, IElement, ICloneable
     {
         private const int MaxNameLength = 64;
