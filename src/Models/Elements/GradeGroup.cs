@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
+using GradeManagement.Interfaces;
 using GradeManagement.UtilityCollection;
 
 namespace GradeManagement.Models.Elements
 {
-    public class GradeGroup : Grade
+    public class GradeGroup : Grade, IGradesContainer
     {
         [JsonConstructor]
         public GradeGroup(string name, List<Grade> grades, float weighting, DateTime date, bool counts) 

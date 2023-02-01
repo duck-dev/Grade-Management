@@ -13,7 +13,7 @@ using ReactiveUI;
 
 namespace GradeManagement.Models.Elements
 {
-    public class Subject : ColorableElement, IElement, ICloneable
+    public class Subject : ColorableElement, IElement, ICloneable, IGradesContainer
     {
         private const int MaxNameLength = 64;
         private const double EnabledOpacity = 1.0;
