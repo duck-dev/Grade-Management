@@ -60,6 +60,8 @@ namespace GradeManagement.ViewModels.Lists
         
         public bool EmptyCollection => Items?.Count == 0;
         
+        internal IGradesContainer? GradesContainer { get; set; }
+        
         internal static GradeListViewModel? Instance { get; private set; }
 
         public void Duplicate(IElement element) 

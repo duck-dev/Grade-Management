@@ -64,14 +64,16 @@ namespace GradeManagement.ViewModels
         private bool HasCopiedElement => CopiedElement is not null 
                                          && CopiedElement.GetType() == Content.ElementType;
 
-        internal void SwitchPage<T, TItems>(IEnumerable<TItems> items) where T : ListViewModelBase, IListViewModel<TItems> 
+        internal T SwitchPage<T, TItems>(IEnumerable<TItems> items) where T : ListViewModelBase, IListViewModel<TItems> 
             where TItems : class, IElement, IGradable
         {
-            Content = (Activator.CreateInstance(typeof(T), items) as T)!;
-            _content.ChangeTopbar();
+            T content = (Activator.CreateInstance(typeof(T), items) as T)!;
+            Content = content;
+            Content.ChangeTopbar();
 
             _currentGradables = items;
             UpdateAverage();
+            return content;
         }
 
         internal void UpdateAverage() => this.RaisePropertyChanged(nameof(CurrentAverage));
@@ -112,16 +114,22 @@ namespace GradeManagement.ViewModels
 
         private void OpenGrade(Grade grade)
         {
-            if (grade is GradeGroup gradeGroup) // Group of partial grades
-                SwitchPage<GradeListViewModel, Grade>(gradeGroup.Grades);
-            else // Single grade
+            if (grade is not GradeGroup gradeGroup) // Single grade
+            {
                 EditGrade(grade);
+                return;
+            } 
+            
+            // Group of partial grades
+            GradeListViewModel viewModel = SwitchPage<GradeListViewModel, Grade>(gradeGroup.Grades);
+            viewModel.GradesContainer = gradeGroup;
         }
 
         private void OpenSubject(Subject subject)
         {
             AdjustTopbarText(subject, 2);
-            SwitchPage<GradeListViewModel, Grade>(subject.Grades);
+            GradeListViewModel viewModel = SwitchPage<GradeListViewModel, Grade>(subject.Grades);
+            viewModel.GradesContainer = subject;
             CurrentSubject = subject;
         }
         
@@ -145,9 +153,10 @@ namespace GradeManagement.ViewModels
 
         private void OpenAddPage()
         {
-            var window = Utilities.ShowAddPage(_content.AddPageType, _content.AddViewModelType, MainWindowInstance);
-            if (window?.DataContext is AddViewModelBase viewModel)
-                viewModel.EditPageText(AddPageAction.Create, _content.AddViewModelType!);
+            Utilities.ShowAddPage(Content.AddPageType, Content.AddViewModelType, MainWindowInstance, out var addViewModel);
+            if (addViewModel is AddGradeViewModel addGradeViewModel && Content is GradeListViewModel gradeList)
+                addGradeViewModel.GradesContainer = gradeList.GradesContainer;
+            addViewModel?.EditPageText(AddPageAction.Create, Content.AddViewModelType!);
         }
 
         private void ChangeView(bool isGrid)

@@ -56,6 +56,8 @@ namespace GradeManagement.ViewModels.AddPages
                                                 && !float.IsNaN(ElementWeighting)
                                                 && Utilities.ValidateDate(_selectedDay, _selectedMonth.Month, _selectedYear, out _)
                                                 && DataChanged();
+        
+        internal IGradesContainer? GradesContainer { get; set; }
 
         private int SelectedDay
         {
@@ -244,8 +246,7 @@ namespace GradeManagement.ViewModels.AddPages
 
         private void CreateElement()
         {
-            var currentSubject = MainWindowViewModel.CurrentSubject;
-            if (ElementName is null || TempSelectedDate is null || currentSubject is null)
+            if (ElementName is null || TempSelectedDate is null || GradesContainer is null)
                 return;
             
             if (EditedGrade is null)
@@ -254,7 +255,7 @@ namespace GradeManagement.ViewModels.AddPages
                 Grade grade = IsMultiGrade ? new GradeGroup(ElementName, Array.Empty<Grade>(), ElementWeighting, TempSelectedDate.Value, ElementCounts) 
                                            : new Grade(ElementName, _elementGrade, ElementWeighting, TempSelectedDate.Value, ElementCounts);
                 
-                currentSubject.Grades.Add(grade);
+                GradesContainer.Grades.Add(grade);
                 viewModel?.Items?.Add(grade);
             }
             else

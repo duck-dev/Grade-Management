@@ -20,12 +20,14 @@ namespace GradeManagement.UtilityCollection
             return ShowDialog(window, parentWindow);
         }
         
-        public static Window? ShowAddPage(Type? windowType, Type? viewModelType, Window? parentWindow)
+        public static Window? ShowAddPage(Type? windowType, Type? viewModelType, Window? parentWindow, out AddViewModelBase? addViewModel)
         {
+            addViewModel = null;
             if (windowType is null || viewModelType is null || Activator.CreateInstance(windowType) is not Window window)
                 return null;
             
             var viewModel = (AddViewModelBase)Activator.CreateInstance(viewModelType)!;
+            addViewModel = viewModel;
             window.DataContext = viewModel;
             viewModel.CurrentAddWindow = window;
         
