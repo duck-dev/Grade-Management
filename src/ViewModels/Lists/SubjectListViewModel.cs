@@ -17,9 +17,7 @@ namespace GradeManagement.ViewModels.Lists
         private readonly bool[] _elementsVisibilities = { true, false, false };
         private ObservableCollection<Subject>? _items;
 
-        [Obsolete("Do NOT use this constructor, because it leaves the collection of subjects uninitialized " +
-                  "and this leads to exceptions and unintended behaviour")]
-        public SubjectListViewModel()
+        public SubjectListViewModel(IEnumerable<Subject> items)
         {
             Instance = this;
             AddPageType = typeof(AddSubjectWindow);
@@ -28,14 +26,8 @@ namespace GradeManagement.ViewModels.Lists
             
             bool isGrid = SettingsManager.Settings?.SubjectButtonStyle == SelectedButtonStyle.Grid;
             ChangeButtonView(isGrid);
-        }
-
-#pragma warning disable 618
-        public SubjectListViewModel(IEnumerable<Subject> items) : this()
-#pragma warning restore 618
-        {
-            var mainInstance = MainWindowViewModel.Instance;
             
+            var mainInstance = MainWindowViewModel.Instance;
             Items = new ObservableCollection<Subject>(items);
             Items.CollectionChanged += (sender, args) =>
             {

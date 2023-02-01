@@ -26,10 +26,6 @@ namespace GradeManagement.ViewModels.TargetGrade
         private ViewModelBase? _content;
         private string _windowTitle = TargetGradeTitle;
         private int _currentButton;
-        
-        [Obsolete("Do NOT use this constructor, because it leaves the collection of grades uninitialized " +
-                  "and this leads to exceptions and unintended behaviour.")]
-        public TargetGradeWindowModel() { }
 
         public TargetGradeWindowModel(IEnumerable<Grade> grades)
         {

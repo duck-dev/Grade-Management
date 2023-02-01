@@ -16,10 +16,6 @@ namespace GradeManagement.ViewModels.TargetGrade
         private float _weighting = float.NaN;
 
         public IEnumerable<Grade>? Grades { get; set; }
-        
-        [Obsolete("Do NOT use this constructor, because it leaves the collection of grades uninitialized " +
-                  "and this leads to exceptions and unintended behaviour.")]
-        public TargetGradeViewModel() { }
 
         public TargetGradeViewModel(IEnumerable<Grade> grades) 
             => this.Grades = grades;

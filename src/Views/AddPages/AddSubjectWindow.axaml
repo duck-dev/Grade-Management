@@ -2,7 +2,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:addPages="clr-namespace:GradeManagement.ViewModels.AddPages"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="GradeManagement.Views.AddPages.AddSubjectWindow"
         Title="New Subject"
@@ -10,10 +9,6 @@
         Width="800"
         Height="600"
         CanResize="False">
-
-    <Design.DataContext>
-        <addPages:AddSubjectViewModel/>
-    </Design.DataContext>
 
     <Window.Styles>
         <StyleInclude Source="/src/Styles/AddPagesStyle.axaml"/>
@@ -72,8 +67,7 @@
                           VerticalAlignment="Center"/>
             </Grid>
             <Button Grid.Row="2" Classes="add-page-button selectable-button" Command="{Binding CreateElement}"
-                    IsEnabled="{Binding DataComplete}"
-                    Content="{Binding ButtonText}"/> <!-- Had Margin="0,0,0,30" -->
+                    IsEnabled="{Binding DataComplete}" Content="{Binding ButtonText}"/> <!-- Had Margin="0,0,0,30" -->
         </Grid>
     </Panel>
 </Window>

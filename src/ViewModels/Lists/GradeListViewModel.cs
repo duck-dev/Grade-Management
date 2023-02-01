@@ -20,9 +20,7 @@ namespace GradeManagement.ViewModels.Lists
         private ObservableCollection<Grade>? _items;
         private TargetGradeWindowModel? _targetGradeWindowModel;
         
-        [Obsolete("Do NOT use this constructor, because it leaves the collection of grades uninitialized " +
-                  "and this leads to exceptions and unintended behaviour.")]
-        public GradeListViewModel()
+        public GradeListViewModel(IEnumerable<Grade> items)
         {
             Instance = this;
             AddPageType = typeof(AddGradeWindow);
@@ -31,14 +29,8 @@ namespace GradeManagement.ViewModels.Lists
             
             bool isGrid = SettingsManager.Settings?.GradeButtonStyle == SelectedButtonStyle.Grid;
             ChangeButtonView(isGrid);
-        }
-        
-#pragma warning disable 618
-        public GradeListViewModel(IEnumerable<Grade> items) : this()
-#pragma warning restore 618
-        {
-            var mainInstance = MainWindowViewModel.Instance;
             
+            var mainInstance = MainWindowViewModel.Instance;
             Items = new ObservableCollection<Grade>(items);
             Items.CollectionChanged += (sender, args) =>
             {

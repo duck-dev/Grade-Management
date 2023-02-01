@@ -17,9 +17,7 @@ namespace GradeManagement.ViewModels.Lists
     {
         private ObservableCollection<SchoolYear>? _items;
         
-        [Obsolete("Do NOT use this constructor, because it leaves the collection of school years uninitialized " +
-                  "and this leads to exceptions and unintended behaviour")]
-        public YearListViewModel()
+        public YearListViewModel(IEnumerable<SchoolYear> years)
         {
             Instance = this;
             AddPageType = typeof(AddYearWindow);
@@ -28,14 +26,8 @@ namespace GradeManagement.ViewModels.Lists
             
             bool isGrid = SettingsManager.Settings?.YearButtonStyle == SelectedButtonStyle.Grid;
             ChangeButtonView(isGrid);
-        }
-        
-#pragma warning disable 618
-        public YearListViewModel(IEnumerable<SchoolYear> years) : this()
-#pragma warning restore 618
-        {
-            var mainInstance = MainWindowViewModel.Instance;
             
+            var mainInstance = MainWindowViewModel.Instance;
             Items = new ObservableCollection<SchoolYear>(years);
             Items.CollectionChanged += (sender, args) =>
             {

@@ -2,12 +2,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:dialogs="clr-namespace:GradeManagement.ViewModels.Dialogs"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="GradeManagement.Views.Dialogs.ConfirmationDialogView">
-    <Design.DataContext>
-        <dialogs:ConfirmationDialogViewModel/>
-    </Design.DataContext>
 
     <UserControl.Styles>
         <StyleInclude Source="/src/Styles/DialogStyle.axaml"/>
@@ -34,8 +30,7 @@
                         </Button>
                         <Button Grid.Row="1" Classes="dialog-button selectable-button-effect"
                                 Background="{Binding ButtonColors[1]}"
-                                Command="{Binding Command}"
-                                CommandParameter="Cancel">
+                                Command="{Binding Command}" CommandParameter="Cancel">
                             <Button.Styles>
                                 <Style Selector="Button.dialog-button:pointerover /template/ ContentPresenter">
                                     <Setter Property="Background" Value="{Binding ButtonColorsHover[1]}"/>
