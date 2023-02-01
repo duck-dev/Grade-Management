@@ -1,10 +1,9 @@
 using System;
 using System.Collections.ObjectModel;
-using Avalonia;
 using Avalonia.Media;
 using GradeManagement.Enums;
 using GradeManagement.Models;
-using GradeManagement.UtilityCollection;
+using GradeManagement.ResourcesNamespace;
 using GradeManagement.ViewModels.AddPages;
 using ReactiveUI;
 
@@ -12,7 +11,6 @@ namespace GradeManagement.ViewModels.BaseClasses
 {
     public abstract class AddViewModelBase : ViewModelBase
     {
-        private static readonly Color _defaultElementColor = Color.Parse("#C7CAD1");
         private string? _elementName;
         private string? _elementWeightingStr;
         private string? _buttonText;
@@ -40,33 +38,9 @@ namespace GradeManagement.ViewModels.BaseClasses
         }
         
         // Colors for border (incomplete/complete selection)
-        protected static Color IncompleteColor
-        {
-            get
-            {
-                var fallbackColor = Color.Parse("#D64045");
-                if (Application.Current is not { })
-                    return fallbackColor;
-                
-                var brush = Utilities.GetResourceFromStyle<SolidColorBrush, Application>
-                    (Application.Current, "InvalidColor", 1);
-                return brush?.Color ?? fallbackColor;
-            }
-        }
+        protected static Color IncompleteColor => Resources.InvalidColor;
 
-        protected static Color NormalColor
-        {
-            get
-            {
-                var fallbackColor = Color.Parse("#009B72");
-                if (Application.Current is not { })
-                    return fallbackColor;
-                
-                var brush = Utilities.GetResourceFromStyle<SolidColorBrush, Application>
-                    (Application.Current, "AppGreen", 1);
-                return brush?.Color ?? fallbackColor;
-            }
-        }
+        protected static Color NormalColor => Resources.AppGreen;
 
         protected virtual bool DataComplete { get; }
         protected SolidColorBrush[]? BorderBrushes { get; init; }
@@ -144,18 +118,7 @@ namespace GradeManagement.ViewModels.BaseClasses
             }
         }
 
-        private static Color DefaultElementColor
-        {
-            get
-            {
-                if (Application.Current is not { } application)
-                    return _defaultElementColor;
-                
-                var brush = Utilities.GetResourceFromStyle<SolidColorBrush, Application>
-                            (Application.Current, "ElementBackground", 0);
-                return brush?.Color ?? _defaultElementColor;
-            }
-        }
+        private static Color DefaultElementColor => Resources.CurrentTheme.ElementBackground;
         
         protected internal override void EraseData()
         {
@@ -170,13 +133,6 @@ namespace GradeManagement.ViewModels.BaseClasses
             SelectedColor.Selected = false;
             colorRepresentation.Selected = true;
             SelectedColor = colorRepresentation;
-        }
-        
-        protected void RandomColor() // TODO: Create button for that and connect it to this method 
-        {
-            var random = new Random();
-            int randomColor = random.Next(0, ElementColorsCollection.Count);
-            ChangeColor(ElementColorsCollection[randomColor]);
         }
 
         internal void EditPageText(AddPageAction action, Type pageType, string suffix = "")
