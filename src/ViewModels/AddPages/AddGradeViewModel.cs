@@ -246,17 +246,20 @@ namespace GradeManagement.ViewModels.AddPages
 
         private void CreateElement()
         {
-            if (ElementName is null || TempSelectedDate is null || GradesContainer is null)
+            if (ElementName is null || TempSelectedDate is null)
                 return;
             
             if (EditedGrade is null)
             {
-                var viewModel = GradeListViewModel.Instance;
-                Grade grade = IsMultiGrade ? new GradeGroup(ElementName, Array.Empty<Grade>(), ElementWeighting, TempSelectedDate.Value, ElementCounts) 
-                                           : new Grade(ElementName, _elementGrade, ElementWeighting, TempSelectedDate.Value, ElementCounts);
+                if (GradesContainer != null)
+                {
+                    var viewModel = GradeListViewModel.Instance;
+                    Grade grade = IsMultiGrade ? new GradeGroup(ElementName, Array.Empty<Grade>(), ElementWeighting, TempSelectedDate.Value, ElementCounts) 
+                        : new Grade(ElementName, _elementGrade, ElementWeighting, TempSelectedDate.Value, ElementCounts);
                 
-                GradesContainer.Grades.Add(grade);
-                viewModel?.Items?.Add(grade);
+                    GradesContainer?.Grades.Add(grade);
+                    viewModel?.Items?.Add(grade);
+                }
             }
             else
                 EditedGrade.Edit(ElementName, _elementGrade, ElementWeighting, TempSelectedDate.Value, ElementCounts);
