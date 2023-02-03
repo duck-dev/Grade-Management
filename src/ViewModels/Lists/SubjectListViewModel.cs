@@ -14,7 +14,7 @@ namespace GradeManagement.ViewModels.Lists
 {
     public class SubjectListViewModel : ListViewModelBase, IListViewModel<Subject>
     {
-        private readonly bool[] _elementsVisibilities = { true, false, false };
+        private readonly bool[] _elementsVisibilities = { true, false, false, false, false, false, false };
         private ObservableCollection<Subject>? _items;
 
         public SubjectListViewModel(IEnumerable<Subject> items)

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using Avalonia.Controls;
 using GradeManagement.Enums;
 using GradeManagement.Interfaces;
 using GradeManagement.Models.Elements;
@@ -20,12 +22,13 @@ namespace GradeManagement.ViewModels.Lists
         private ObservableCollection<Grade>? _items;
         private TargetGradeWindowModel? _targetGradeWindowModel;
         
-        public GradeListViewModel(IEnumerable<Grade> items)
+        public GradeListViewModel(IEnumerable<Grade> items, IGradesContainer gradesContainer)
         {
             Instance = this;
             AddPageType = typeof(AddGradeWindow);
             AddViewModelType = typeof(AddGradeViewModel);
             ElementType = typeof(Grade);
+            GradesContainer = gradesContainer;
             
             bool isGrid = SettingsManager.Settings?.GradeButtonStyle == SelectedButtonStyle.Grid;
             ChangeButtonView(isGrid);
@@ -62,8 +65,20 @@ namespace GradeManagement.ViewModels.Lists
         protected internal override void ChangeTopbar()
         {
             base.ChangeTopbar();
-            foreach (var grade in TopbarTexts!)
-                grade.IsVisible = true;
+            
+            int[] additionalGradesIndices = {3, 4};
+            const int gradeBorder = 3;
+            bool parentIsGrade = GradesContainer?.ParentContainer is GradeGroup;
+            bool containerIsGrade = GradesContainer is GradeGroup;
+            for (int i = 0; i < TopbarTexts!.Count; i++)
+            {
+                IControl control = TopbarTexts[i];
+                control.IsVisible = true;
+                if (i >= gradeBorder)
+                    control.IsVisible = containerIsGrade;
+                if (additionalGradesIndices.Contains(i))
+                    control.IsVisible = parentIsGrade;
+            }
         }
 
         private void RemoveElement(Grade grade)

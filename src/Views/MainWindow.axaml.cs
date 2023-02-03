@@ -44,14 +44,19 @@ namespace GradeManagement.Views
             MainWindowViewModel.CurrentSubject = null;
         }
 
-        private void SwitchPage<TViewModel, TElement>(IEnumerable<TElement> elements)
+        private void OnGradePressed(object? sender, PointerPressedEventArgs e)
+        {
+            // ReSharper disable once MergeIntoPattern
+            if (MainWindowViewModel.Instance?.Content is GradeListViewModel viewModel && viewModel.GradesContainer?.ParentContainer != null)
+                SwitchPage<GradeListViewModel, Grade>(viewModel.GradesContainer.ParentContainer.Grades, viewModel.GradesContainer.ParentContainer);
+        }
+
+        private void SwitchPage<TViewModel, TElement>(IEnumerable<TElement> elements, IGradesContainer? gradesContainer = null)
             where TViewModel : ListViewModelBase, IListViewModel<TElement> 
             where TElement : class, IElement, IGradable
         {
             _mainWindowModel ??= this.DataContext as MainWindowViewModel;
-            if (_mainWindowModel!.Content is TViewModel)
-                return;
-            _mainWindowModel!.SwitchPage<TViewModel, TElement>(elements);
+            _mainWindowModel!.SwitchPage<TViewModel, TElement>(elements, gradesContainer);
         }
     }
 }

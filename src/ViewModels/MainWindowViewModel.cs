@@ -32,7 +32,7 @@ namespace GradeManagement.ViewModels
             InitializeTopbarElements();
             
             _content = Content = new YearListViewModel(DataManager.SchoolYears);
-            _content.ChangeTopbar();
+            Content.ChangeTopbar();
             
             _currentGradables = DataManager.SchoolYears;
         }
@@ -64,10 +64,12 @@ namespace GradeManagement.ViewModels
         private bool HasCopiedElement => CopiedElement is not null 
                                          && CopiedElement.GetType() == Content.ElementType;
 
-        internal T SwitchPage<T, TItems>(IEnumerable<TItems> items) where T : ListViewModelBase, IListViewModel<TItems> 
+        internal T SwitchPage<T, TItems>(IEnumerable<TItems> items, IGradesContainer? gradesContainer = null) 
+            where T : ListViewModelBase, IListViewModel<TItems> 
             where TItems : class, IElement, IGradable
         {
-            T content = (Activator.CreateInstance(typeof(T), items) as T)!;
+            object?[] parameters = typeof(T) == typeof(GradeListViewModel) ? new object?[] {items, gradesContainer } : new object?[] { items };
+            T content = (Activator.CreateInstance(typeof(T), parameters) as T)!;
             Content = content;
             Content.ChangeTopbar();
 
@@ -118,18 +120,21 @@ namespace GradeManagement.ViewModels
             {
                 EditGrade(grade);
                 return;
-            } 
+            }
+
+            if (this.Content is not GradeListViewModel oldContentViewModel)
+                throw new Exception("Content is not a GradeListViewModel");
+            gradeGroup.ParentContainer = oldContentViewModel.GradesContainer;
+            AdjustTopbarText(grade, 6);
             
             // Group of partial grades
-            GradeListViewModel viewModel = SwitchPage<GradeListViewModel, Grade>(gradeGroup.Grades);
-            viewModel.GradesContainer = gradeGroup;
+            GradeListViewModel viewModel = SwitchPage<GradeListViewModel, Grade>(gradeGroup.Grades, gradeGroup);
         }
 
         private void OpenSubject(Subject subject)
         {
             AdjustTopbarText(subject, 2);
-            GradeListViewModel viewModel = SwitchPage<GradeListViewModel, Grade>(subject.Grades);
-            viewModel.GradesContainer = subject;
+            GradeListViewModel viewModel = SwitchPage<GradeListViewModel, Grade>(subject.Grades, subject);
             CurrentSubject = subject;
         }
         
@@ -140,12 +145,18 @@ namespace GradeManagement.ViewModels
             CurrentYear = year;
         }
 
-        private void AdjustTopbarText<T>(T element, int index) where T : ColorableElement, IElement
+        private void AdjustTopbarText<T>(T element, int index) where T : IElement
         {
             if (TopbarTexts?[index] is not TextBlock textBlock) 
                 return;
             textBlock.Text = element.Name;
 
+            if(element is ColorableElement colorable)
+                AdjustTopbarColor(colorable, textBlock);
+        }
+
+        private void AdjustTopbarColor(ColorableElement element, TextBlock textBlock)
+        {
             const float darkenFactor = 0.1f;
             var color = element.ElementColor.DarkenColor(darkenFactor);
             textBlock.Foreground = new SolidColorBrush(color);

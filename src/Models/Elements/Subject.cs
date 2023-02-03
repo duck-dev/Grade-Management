@@ -53,6 +53,9 @@ namespace GradeManagement.Models.Elements
             private set => this.RaiseAndSetIfChanged(ref _name, value);
         }
 
+        [JsonIgnore]
+        public IGradesContainer? ParentContainer { get; }
+
         [JsonInclude]
         public List<Grade> Grades
         {
