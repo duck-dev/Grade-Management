@@ -129,6 +129,8 @@ namespace GradeManagement.Models.Elements
 
         internal bool IsMultiGrade => this is GradeGroup;
 
+        internal bool PointsSpecified => !IsMultiGrade && ScoredPoints != null && MaxPoints != null;
+
         public T? Duplicate<T>(bool save = true) where T : class, IElement
         {
             if (this.Clone() is not Grade duplicate)
