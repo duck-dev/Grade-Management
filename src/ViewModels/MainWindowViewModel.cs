@@ -8,6 +8,7 @@ using GradeManagement.Interfaces;
 using GradeManagement.Models;
 using GradeManagement.Models.Elements;
 using GradeManagement.Models.Settings;
+using GradeManagement.ResourcesNamespace;
 using GradeManagement.UtilityCollection;
 using GradeManagement.ViewModels.AddPages;
 using GradeManagement.ViewModels.BaseClasses;
@@ -151,14 +152,14 @@ namespace GradeManagement.ViewModels
                 return;
             textBlock.Text = element.Name;
 
-            if(element is ColorableElement colorable)
-                AdjustTopbarColor(colorable, textBlock);
+            ColorableElement? colorable = element as ColorableElement;
+            AdjustTopbarColor(textBlock, colorable);
         }
 
-        private void AdjustTopbarColor(ColorableElement element, TextBlock textBlock)
+        private void AdjustTopbarColor(TextBlock textBlock, ColorableElement? element)
         {
-            const float darkenFactor = 0.1f;
-            var color = element.ElementColor.DarkenColor(darkenFactor);
+            const float darkenFactor = 0.2f;
+            var color = (element?.ElementColor ?? Resources.CurrentTheme.ElementBackground).DarkenColor(darkenFactor);
             textBlock.Foreground = new SolidColorBrush(color);
         }
 
