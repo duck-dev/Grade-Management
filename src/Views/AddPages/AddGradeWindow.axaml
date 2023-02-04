@@ -8,7 +8,7 @@
         Title="New Grade"
         WindowStartupLocation="CenterOwner"
         Width="750"
-        Height="605"
+        Height="683"
         CanResize="False">
 
     <Window.Styles>
@@ -22,7 +22,7 @@
     </Window.Resources>
 
     <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,*" Margin="75,0">
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,*" Margin="75,0">
             <Viewbox Grid.Row="0" Height="30" Margin="30,30,30,15">
                 <TextBlock Classes="add-page-title-text" Text="{Binding Title}" TextAlignment="Center" 
                            TextWrapping="Wrap"/>
@@ -59,11 +59,24 @@
             <TextBox Grid.Row="4" Classes="add-page-object add-page-text-box" Width="100" Watermark="Weighting" 
                      HorizontalContentAlignment="Center" Text="{Binding ElementWeightingString}" MaxLength="5"
                      BorderBrush="{Binding BorderBrushes[5]}"/>
-            <CheckBox Grid.Row="5" Classes="add-page-checkbox" IsChecked="{Binding ElementCounts}"
+            <Grid Grid.Row="5" ColumnDefinitions="Auto,Auto,Auto,Auto" Classes="add-page-object" HorizontalAlignment="Center"
+                  IsVisible="{Binding !IsMultiGrade}">
+                <CheckBox Grid.Column="0" Classes="add-page-checkbox" IsChecked="{Binding SpecifyPoints}"
+                          Margin="0,5,20,5" Content="Specify points"/>
+                <TextBox Grid.Column="1" Classes="add-page-text-box" Width="80" Height="40" Watermark="Scored"
+                         HorizontalContentAlignment="Center" Text="{Binding ElementScoredPointsString}"
+                         MaxLength="4" BorderBrush="{Binding BorderBrushes[6]}" IsEnabled="{Binding SpecifyPoints}"/>
+                <TextBlock Grid.Column="2" Foreground="{StaticResource StandardGrey}" FontSize="48"
+                           Text="/" Margin="10,0"/>
+                <TextBox Grid.Column="3" Classes="add-page-text-box" Width="80" Height="40" Watermark="Max"
+                         HorizontalContentAlignment="Center" Text="{Binding ElementMaxPointsString}"
+                         MaxLength="4" BorderBrush="{Binding BorderBrushes[7]}" IsEnabled="{Binding SpecifyPoints}"/>
+            </Grid>
+            <CheckBox Grid.Row="6" Classes="add-page-checkbox" IsChecked="{Binding ElementCounts}"
                       Content="Grade counts" Margin="0,5,0,3"/>
-            <CheckBox Grid.Row="6" Classes="add-page-checkbox" IsChecked="{Binding IsMultiGrade}"
+            <CheckBox Grid.Row="7" Classes="add-page-checkbox" IsChecked="{Binding IsMultiGrade}"
                       Content="Partial grades" Margin="0,3,0,0" IsVisible="{Binding !IsEditing}"/>
-            <Button Grid.Row="7" Classes="add-page-button selectable-button" Command="{Binding CreateElement}"
+            <Button Grid.Row="8" Classes="add-page-button selectable-button" Command="{Binding CreateElement}"
                     IsEnabled="{Binding DataComplete}" Content="{Binding ButtonText}" 
                     HotKey="Enter"/>
         </Grid>

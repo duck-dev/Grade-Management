@@ -11,13 +11,13 @@ namespace GradeManagement.Models.Elements
     {
         [JsonConstructor]
         public GradeGroup(string name, List<Grade> grades, float weighting, DateTime date, bool counts) 
-            : base(name, Utilities.GetAverage(grades, false), weighting, date, counts)
+            : base(name, Utilities.GetAverage(grades, false), null, null, weighting, date, counts)
         {
             this.Grades = grades;
         }
 
         public GradeGroup(string name, ICollection<Grade> grades, float weighting, DateTime date, bool counts)
-            : base(name, Utilities.GetAverage(grades, false), weighting, date, counts)
+            : base(name, Utilities.GetAverage(grades, false), null, null, weighting, date, counts)
         {
             this.Grades = grades.ToList();
         }

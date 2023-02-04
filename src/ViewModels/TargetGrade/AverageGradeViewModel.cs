@@ -52,9 +52,9 @@ namespace GradeManagement.ViewModels.TargetGrade
                 
                 var newGrades = new List<Grade>(Grades)
                 {
-                    new Grade("[TempGrade]", _grade, _weighting, DateTime.Today, true)
+                    new Grade("[TempGrade]", _grade, null, null, _weighting, DateTime.Today, true)
                 };
-                var result = Utilities.GetAverage(newGrades, true);
+                float result = Utilities.GetAverage(newGrades, true);
                 return float.IsNaN(result) ? "-" : result.ToString(CultureInfo.InvariantCulture);
             }
         }

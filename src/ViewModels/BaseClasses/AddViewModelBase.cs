@@ -42,6 +42,8 @@ namespace GradeManagement.ViewModels.BaseClasses
 
         protected static Color NormalColor => Resources.AppGreen;
 
+        protected static Color InactiveColor => Resources.CurrentTheme.StandardGrey;
+
         protected virtual bool DataComplete { get; }
         protected SolidColorBrush[]? BorderBrushes { get; init; }
         

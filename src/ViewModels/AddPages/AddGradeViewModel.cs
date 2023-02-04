@@ -30,7 +30,14 @@ namespace GradeManagement.ViewModels.AddPages
         
         // Other parameters
         private float _elementGrade = float.NaN;
+        private int? _elementScoredPoints;
+        private int? _elementMaxPoints;
+        
         private string? _elementGradeStr;
+        private string? _elementScoredPointsStr;
+        private string? _elementMaxPointsStr;
+
+        private bool _specifyPoints;
         private bool _isMultiGrade;
 
         public AddGradeViewModel()
@@ -41,7 +48,8 @@ namespace GradeManagement.ViewModels.AddPages
                 new(IncompleteColor),
                 new(NormalColor), new(NormalColor), new(NormalColor),
                 new(IncompleteColor),
-                new(IncompleteColor)
+                new(IncompleteColor),
+                new(InactiveColor), new(InactiveColor)
             };
             NameIndex = 0;
             WeightingIndex = 5;
@@ -54,6 +62,7 @@ namespace GradeManagement.ViewModels.AddPages
         protected override bool DataComplete => !string.IsNullOrEmpty(ElementName) && !string.IsNullOrWhiteSpace(ElementName)
                                                 && (IsMultiGrade || !float.IsNaN(_elementGrade))
                                                 && !float.IsNaN(ElementWeighting)
+                                                && (!SpecifyPoints || _elementScoredPoints <= _elementMaxPoints)
                                                 && Utilities.ValidateDate(_selectedDay, _selectedMonth.Month, _selectedYear, out _)
                                                 && DataChanged();
         
@@ -169,6 +178,36 @@ namespace GradeManagement.ViewModels.AddPages
                 this.RaisePropertyChanged(nameof(DataComplete));
             }
         }
+
+        private string? ElementScoredPointsString
+        {
+            get => _elementScoredPointsStr;
+            set => HandlePointsChange(value, nameof(ElementScoredPointsString), 6, ref _elementScoredPointsStr, ref _elementScoredPoints);
+        }
+
+        private string? ElementMaxPointsString
+        {
+            get => _elementMaxPointsStr;
+            set => HandlePointsChange(value, nameof(ElementMaxPointsString), 7, ref _elementMaxPointsStr, ref _elementMaxPoints);
+        }
+
+        private bool SpecifyPoints
+        {
+            get => _specifyPoints;
+            set
+            {
+                if (_specifyPoints == true && value == false) // Prevent erasing saved values at the beginning (only erase if changing from true to false, which can only be done manually)
+                {
+                    ElementScoredPointsString = string.Empty;
+                    ElementMaxPointsString = string.Empty;
+                }
+                BorderBrushes![6].Color = value == true ? IncompleteColor : InactiveColor;
+                BorderBrushes![7].Color = value == true ? IncompleteColor : InactiveColor;
+                
+                this.RaiseAndSetIfChanged(ref _specifyPoints, value);
+                this.RaisePropertyChanged(nameof(DataComplete));
+            }
+        }
         
         private bool IsMultiGrade
         {
@@ -200,6 +239,7 @@ namespace GradeManagement.ViewModels.AddPages
         {
             base.EraseData();
             ElementGradeString = string.Empty;
+            SpecifyPoints = false;
 
             var today = DateTime.Today;
             TempSelectedDate = DateTime.Today;
@@ -235,6 +275,9 @@ namespace GradeManagement.ViewModels.AddPages
 
             ElementName = grade.Name;
             ElementGradeString = grade.IsMultiGrade ? string.Empty : grade.GradeValue.ToString(CultureInfo.CurrentCulture);
+            SpecifyPoints = grade.ScoredPoints != null && grade.MaxPoints != null;
+            ElementScoredPointsString = grade.ScoredPoints.ToString();
+            ElementMaxPointsString = grade.MaxPoints.ToString();
             ElementWeightingString = grade.Weighting.ToString(CultureInfo.CurrentCulture);
             ElementCounts = grade.Counts;
             IsMultiGrade = grade.IsMultiGrade;
@@ -255,14 +298,14 @@ namespace GradeManagement.ViewModels.AddPages
                 {
                     var viewModel = GradeListViewModel.Instance;
                     Grade grade = IsMultiGrade ? new GradeGroup(ElementName, Array.Empty<Grade>(), ElementWeighting, TempSelectedDate.Value, ElementCounts) 
-                        : new Grade(ElementName, _elementGrade, ElementWeighting, TempSelectedDate.Value, ElementCounts);
+                        : new Grade(ElementName, _elementGrade, _elementScoredPoints, _elementMaxPoints, ElementWeighting, TempSelectedDate.Value, ElementCounts);
                 
                     GradesContainer?.Grades.Add(grade);
                     viewModel?.Items?.Add(grade);
                 }
             }
             else
-                EditedGrade.Edit(ElementName, _elementGrade, ElementWeighting, TempSelectedDate.Value, ElementCounts);
+                EditedGrade.Edit(ElementName, _elementGrade, _elementScoredPoints, _elementMaxPoints, ElementWeighting, TempSelectedDate.Value, ElementCounts);
             
             UpdateVisualOnChange();
             EditedGrade = null;
@@ -277,6 +320,8 @@ namespace GradeManagement.ViewModels.AddPages
             return ElementName is not null && (!ElementName.Trim().Equals(EditedGrade.Name.Trim())
                                                || !ElementWeighting.Equals(EditedGrade.Weighting)
                                                || (!IsMultiGrade && !_elementGrade.Equals(EditedGrade.GradeValue))
+                                               || _elementScoredPoints != EditedGrade.ScoredPoints
+                                               || _elementMaxPoints != EditedGrade.MaxPoints
                                                || _selectedDay != date.Day
                                                || _selectedMonth.Month != date.Month
                                                || _selectedYear != date.Year
@@ -318,6 +363,34 @@ namespace GradeManagement.ViewModels.AddPages
             if (!Utilities.ValidateDate(day, month, year, out _))
                 return;
             TempSelectedDate = new DateTime(year, month, day);
+        }
+
+        private void HandlePointsChange(string? strValue, string propertyName, int brushIndex, ref string? strVariable, ref int? intVariable)
+        {
+            if (!SpecifyPoints)
+                return;
+
+            if (strValue != strVariable)
+            {
+                strVariable = strValue;
+                this.RaisePropertyChanged(propertyName);
+            }
+            
+            intVariable = null;
+            BorderBrushes![brushIndex].Color = NormalColor;
+
+            bool parsed = int.TryParse(strValue, out int max);
+            if (parsed)
+                intVariable = max;
+            else
+                BorderBrushes[brushIndex].Color = IncompleteColor;
+
+            bool valueSizeCondition = _elementScoredPoints > _elementMaxPoints;
+            BorderBrushes[6].Color = _elementScoredPoints is null || valueSizeCondition ? IncompleteColor : NormalColor;
+            BorderBrushes[7].Color = _elementMaxPoints is null || valueSizeCondition ? IncompleteColor : NormalColor;
+                
+            this.RaisePropertyChanged(nameof(BorderBrushes));
+            this.RaisePropertyChanged(nameof(DataComplete));
         }
     }
 }

@@ -22,18 +22,22 @@ namespace GradeManagement.Models.Elements
         
         private string _name = string.Empty;
         private float _gradeValue = float.NaN;
+        private int? _scoredPoints;
+        private int? _maxPoints;
         private float _weighting;
         private DateTime _date;
         private bool _counts;
         private ButtonStyleBase? _buttonStyle;
         
         [JsonConstructor]
-        public Grade(string name, float gradeValue, float weighting, DateTime date, bool counts)
+        public Grade(string name, float gradeValue, int? scoredPoints, int? maxPoints, float weighting, DateTime date, bool counts)
         {
             if (name.Length > MaxNameLength)
                 name = name.Substring(0, MaxNameLength);
             this.Name = name;
             this.GradeValue = gradeValue;
+            this.ScoredPoints = scoredPoints;
+            this.MaxPoints = maxPoints;
             this.Weighting = weighting;
             this.Date = date;
             this.Counts = counts;
@@ -60,6 +64,20 @@ namespace GradeManagement.Models.Elements
                 _gradeValue = value;
                 this.RaisePropertyChanged(nameof(RoundedGrade));
             }
+        }
+
+        [JsonInclude]
+        public int? ScoredPoints
+        {
+            get => _scoredPoints;
+            private set => this.RaiseAndSetIfChanged(ref _scoredPoints, value);
+        }
+        
+        [JsonInclude]
+        public int? MaxPoints
+        {
+            get => _maxPoints;
+            private set => this.RaiseAndSetIfChanged(ref _maxPoints, value);
         }
 
         [JsonInclude]
@@ -129,9 +147,10 @@ namespace GradeManagement.Models.Elements
             currentSubject?.Grades.Add(grade);
         }
         
-        public object Clone() => new Grade(_name, _gradeValue, _weighting, _date, Counts);
+        public object Clone() => new Grade(_name, _gradeValue, _scoredPoints, _maxPoints, _weighting, _date, Counts);
 
-        internal void Edit(string newName, float newGrade, float newWeighting, DateTime newDate, bool counts)
+        internal void Edit(string newName, float newGrade, int? _newScoredPoints, int? _nexMaxPoints, float newWeighting, 
+            DateTime newDate, bool counts)
         {
             var oldGrade = this.GradeValue;
             var oldCounts = this.Counts;
@@ -139,6 +158,8 @@ namespace GradeManagement.Models.Elements
             
             this.Name = newName;
             this.GradeValue = newGrade;
+            this.ScoredPoints = _newScoredPoints;
+            this.MaxPoints = _nexMaxPoints;
             this.Weighting = newWeighting;
             this.Date = newDate;
             this.Counts = counts;
