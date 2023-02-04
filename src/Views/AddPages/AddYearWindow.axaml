@@ -7,24 +7,26 @@
         Title="New School Year"
         WindowStartupLocation="CenterOwner"
         Width="800"
-        Height="600"
+        Height="400"
         CanResize="False">
 
     <Window.Styles>
         <StyleInclude Source="/src/Styles/AddPagesStyle.axaml"/>
+        <Style Selector=":is(Layoutable).add-page-object">
+            <Setter Property="Margin" Value="0,15"/>
+        </Style>
     </Window.Styles>
 
     <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <Grid RowDefinitions="*,*,*,*">
-            <Viewbox Grid.Row="0" Height="30" VerticalAlignment="Center" Margin="30,0">
-                <TextBlock Classes="add-page-title-text" Text="{Binding Title}"
-                           TextAlignment="Center" TextWrapping="Wrap"/>
+        <Grid RowDefinitions="Auto,Auto,Auto,*" Margin="75,0">
+            <Viewbox Grid.Row="0" Height="30" Margin="30,30,30,15">
+                <TextBlock Classes="add-page-title-text" Text="{Binding Title}" TextAlignment="Center" 
+                           TextWrapping="Wrap"/>
             </Viewbox>
-            <TextBox Grid.Row="1" Classes="add-page-text-box" Watermark="Name of the School Year" MaxLength="64"
-                     Text="{Binding ElementName}"
-                     HorizontalContentAlignment="Left" BorderBrush="{Binding BorderBrushes[0]}"
-                     VerticalAlignment="Bottom" Margin="0,0,0,25"/>
-            <Grid Grid.Row="2" RowDefinitions="Auto,Auto" Margin="0,25,0,0" VerticalAlignment="Top">
+            <TextBox Grid.Row="1" Classes="add-page-object add-page-text-box" Watermark="Name of the School Year" MaxLength="64"
+                     Text="{Binding ElementName}" HorizontalContentAlignment="Left" HorizontalAlignment="Stretch" 
+                     BorderBrush="{Binding BorderBrushes[0]}"/>
+            <Grid Grid.Row="2" Classes="add-page-object" RowDefinitions="Auto,Auto" HorizontalAlignment="Center">
                 <TextBlock Grid.Row="0" FontSize="14" Foreground="{StaticResource OppositeAccent}" FontWeight="Bold"
                            Text="Pick a color for the School Year:" HorizontalAlignment="Center" Margin="0,0,0,7.5"/>
                 <ItemsControl Grid.Row="1" Items="{Binding ElementColorsCollection}">
