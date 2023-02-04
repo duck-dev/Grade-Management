@@ -7,67 +7,59 @@
         Title="New Subject"
         WindowStartupLocation="CenterOwner"
         Width="800"
-        Height="600"
+        Height="537"
         CanResize="False">
 
     <Window.Styles>
         <StyleInclude Source="/src/Styles/AddPagesStyle.axaml"/>
+        <Style Selector=":is(Layoutable).add-page-object">
+            <Setter Property="Margin" Value="0,15"/>
+        </Style>
     </Window.Styles>
 
     <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <Grid RowDefinitions="*,Auto,*">
-            <Viewbox Grid.Row="0" Height="30" VerticalAlignment="Center" Margin="30, 0">
-                <TextBlock Classes="add-page-title-text" Text="{Binding Title}"/>
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,*" Margin="75,0">
+            <Viewbox Grid.Row="0" Height="30" Margin="30,30,30,15">
+                <TextBlock Classes="add-page-title-text" Text="{Binding Title}" TextAlignment="Center"
+                           TextWrapping="Wrap"/>
             </Viewbox>
-            <!-- <Button Grid.Row="0" Classes="add-page-back-button"> -->
-            <!--         <Button.Content> -->
-            <!--                 <Image Source="/Assets/Images/back-button-arrow.png"/> -->
-            <!--         </Button.Content> -->
-            <!-- </Button> TODO: Set up back-button!!!-->
-            <Grid Grid.Row="1" RowDefinitions="Auto,Auto,Auto,Auto" VerticalAlignment="Center">
-                <TextBox Grid.Row="0" Classes="add-page-text-box" Watermark="Name of the Subject" MaxLength="64"
-                         Text="{Binding ElementName}"
-                         HorizontalContentAlignment="Left" Margin="0,0,0,15"
-                         BorderBrush="{Binding BorderBrushes[0]}"/>
-                <TextBox Grid.Row="1" Classes="add-page-text-box"
-                         Width="100" Height="60" Watermark="Weighting" MaxLength="5"
-                         HorizontalContentAlignment="Center" Margin="0,15"
-                         Text="{Binding ElementWeightingString}"
-                         BorderBrush="{Binding BorderBrushes[1]}"/>
-                <Grid Grid.Row="2" RowDefinitions="Auto,Auto" Margin="0,15" VerticalAlignment="Center">
-                    <TextBlock Grid.Row="0" FontSize="14" Foreground="{StaticResource OppositeAccent}" FontWeight="Bold"
-                               Text="Pick a color for the Subject:" HorizontalAlignment="Center" Margin="0,0,0,7.5"/>
-                    <ItemsControl Grid.Row="1" Items="{Binding ElementColorsCollection}">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Button Classes="color-button selectable-button-effect" 
-                                        Classes.color-button-selected="{Binding Selected}"
-                                        Background="{Binding ElementColorBrush}"
-                                        Command="{Binding $parent[Window].DataContext.ChangeColor}"
-                                        CommandParameter="{Binding}">
-                                    <Button.Styles>
-                                        <Style Selector="Button.color-button:pointerover /template/ ContentPresenter">
-                                            <Setter Property="Background" Value="{Binding ElementColorBrush}"/>
-                                        </Style>
-                                    </Button.Styles>
-                                </Button>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </Grid>
-                <CheckBox Grid.Row="3" Classes="add-page-checkbox"
-                          IsChecked="{Binding ElementCounts}"
-                          Content="Count subject for year's average?" Margin="0,15,0,0"
-                          VerticalAlignment="Center"/>
+            <TextBox Grid.Row="1" Classes="add-page-object add-page-text-box" Watermark="Name of the Subject" MaxLength="64"
+                     Text="{Binding ElementName}" HorizontalContentAlignment="Left" HorizontalAlignment="Stretch"
+                     BorderBrush="{Binding BorderBrushes[0]}"/>
+            <TextBox Grid.Row="2" Classes="add-page-object add-page-text-box" Width="100" Watermark="Weighting" MaxLength="5"
+                     HorizontalContentAlignment="Center" Text="{Binding ElementWeightingString}"
+                     BorderBrush="{Binding BorderBrushes[1]}"/>
+            <Grid Grid.Row="3" Classes="add-page-object" RowDefinitions="Auto,Auto" HorizontalAlignment="Center">
+                <TextBlock Grid.Row="0" FontSize="14" Foreground="{StaticResource OppositeAccent}" FontWeight="Bold"
+                           Text="Pick a color for the Subject:" HorizontalAlignment="Center" Margin="0,0,0,7.5"/>
+                <ItemsControl Grid.Row="1" Items="{Binding ElementColorsCollection}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Classes="color-button selectable-button-effect"
+                                    Classes.color-button-selected="{Binding Selected}"
+                                    Background="{Binding ElementColorBrush}"
+                                    Command="{Binding $parent[Window].DataContext.ChangeColor}"
+                                    CommandParameter="{Binding}">
+                                <Button.Styles>
+                                    <Style Selector="Button.color-button:pointerover /template/ ContentPresenter">
+                                        <Setter Property="Background" Value="{Binding ElementColorBrush}"/>
+                                    </Style>
+                                </Button.Styles>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </Grid>
-            <Button Grid.Row="2" Classes="add-page-button selectable-button" Command="{Binding CreateElement}"
-                    IsEnabled="{Binding DataComplete}" Content="{Binding ButtonText}"/> <!-- Had Margin="0,0,0,30" -->
+            <CheckBox Grid.Row="4" Classes="add-page-object add-page-checkbox" IsChecked="{Binding ElementCounts}"
+                      Content="Subject counts for the semester average" VerticalAlignment="Center" Margin="0,15,0,0"/>
+            <Button Grid.Row="5" Classes="add-page-button selectable-button" Command="{Binding CreateElement}"
+                    IsEnabled="{Binding DataComplete}" Content="{Binding ButtonText}" HotKey="Enter"/>
         </Grid>
     </Panel>
 </Window>

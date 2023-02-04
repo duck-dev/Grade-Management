@@ -24,8 +24,8 @@
     <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,*" Margin="75,0">
             <Viewbox Grid.Row="0" Height="30" Margin="30,30,30,15">
-                <TextBlock Classes="add-page-title-text" Text="{Binding Title}"
-                           TextAlignment="Center" TextWrapping="Wrap"/>
+                <TextBlock Classes="add-page-title-text" Text="{Binding Title}" TextAlignment="Center" 
+                           TextWrapping="Wrap"/>
             </Viewbox>
             <TextBox Grid.Row="1" Classes="add-page-object add-page-text-box" Watermark="Name of the Grade"
                      HorizontalContentAlignment="Left" BorderBrush="{Binding BorderBrushes[0]}"
