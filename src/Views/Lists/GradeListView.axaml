@@ -71,8 +71,10 @@
                     <TextBlock Grid.Column="0" Text="{Binding GradeRef.Name}" FontSize="36" FontWeight="Bold"
                                Foreground="{StaticResource OppositeAccent}" HorizontalAlignment="Left" VerticalAlignment="Center"
                                TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/>
-                    <Grid Grid.Column="1" RowDefinitions="*, *" Margin="60,0,0,0" HorizontalAlignment="Right">
-                        <Grid Grid.Row="0" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Grid Grid.Column="1" RowDefinitions="*,*" ColumnDefinitions="Auto,Auto" Margin="60,0,0,0" 
+                          HorizontalAlignment="Right">
+                        <Grid Grid.Column="0" Grid.Row="0" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center" 
+                              VerticalAlignment="Center">
                             <Image Grid.Column="0" Source="/Assets/Images/Dark/Date-Dark.png"
                                    Margin="0,0,10,0" Width="28" Height="28"
                                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -83,13 +85,24 @@
                                        HorizontalAlignment="Center" VerticalAlignment="Center" Margin="8, 0, 25, 0"/>
                             <!--TODO: Consider culture-->
                         </Grid>
-                        <Grid Grid.Row="1" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Grid Grid.Column="0" Grid.Row="1" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center" 
+                              VerticalAlignment="Center">
                             <Image Grid.Column="0" Source="/Assets/Images/Dark/Weighting-Dark.png" Width="30" Height="30"
                                    Margin="0,0,10,0"/> <!-- TODO: Consider themes when implemented -->
                             <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
                                        Text="{Binding Path=GradeRef.Weighting}"
                                        Foreground="{StaticResource StandardGrey}" FontSize="28"/>
                         </Grid>
+                        <TextBlock Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                   FontSize="26" Foreground="{StaticResource StandardGrey}" Margin="20,0,0,0" 
+                                   IsVisible="{Binding GradeRef.PointsSpecified}">
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="\{0\}/\{1\}">
+                                    <Binding Path="GradeRef.ScoredPoints"/>
+                                    <Binding Path="GradeRef.MaxPoints"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
                     </Grid>
                 </Grid>
                 <TextBlock Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"
