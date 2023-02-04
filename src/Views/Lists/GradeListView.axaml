@@ -47,6 +47,14 @@
                                        FontSize="30" Text="{Binding Path=GradeRef.Weighting}"/>
                         </Grid>
                     </Grid>
+                    <Grid Grid.Row="1" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center" Margin="0,15,0,0"
+                          IsVisible="{Binding GradeRef.IsMultiGrade}">
+                        <Image Grid.Column="0" Source="/Assets/Images/Dark/List-Dark-Filled.png" Width="28" Height="28" 
+                               Margin="0,0,10,0"/>
+                        <TextBlock Grid.Column="1" TextAlignment="Center" FontSize="30"
+                                   Text="{Binding Path=GradeRef.Grades.Count}"
+                                   Foreground="{StaticResource StandardGrey}"/>
+                    </Grid>
                     <TextBlock Grid.Row="1" HorizontalAlignment="Center" FontSize="26" Foreground="{StaticResource StandardGrey}"
                                Margin="0,15,0,0" IsVisible="{Binding GradeRef.PointsSpecified}">
                         <TextBlock.Text>
@@ -92,6 +100,15 @@
                             <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
                                        Text="{Binding Path=GradeRef.Weighting}"
                                        Foreground="{StaticResource StandardGrey}" FontSize="28"/>
+                        </Grid>
+                        <Grid Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" ColumnDefinitions="Auto,Auto" 
+                              HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0,0,0"
+                              IsVisible="{Binding GradeRef.IsMultiGrade}">
+                            <Image Grid.Column="0" Source="/Assets/Images/Dark/List-Dark-Filled.png" Width="28" Height="28" 
+                                   Margin="0,0,10,0" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="1" TextAlignment="Center" FontSize="30" VerticalAlignment="Center"
+                                       Text="{Binding Path=GradeRef.Grades.Count}"
+                                       Foreground="{StaticResource StandardGrey}"/>
                         </Grid>
                         <TextBlock Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" 
                                    FontSize="26" Foreground="{StaticResource StandardGrey}" Margin="20,0,0,0" 
