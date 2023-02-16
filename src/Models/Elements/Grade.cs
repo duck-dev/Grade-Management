@@ -5,6 +5,7 @@ using GradeManagement.Enums;
 using GradeManagement.Interfaces;
 using GradeManagement.Models.Settings;
 using GradeManagement.ViewModels;
+using GradeManagement.ViewModels.Lists;
 using GradeManagement.Views.Lists.ElementButtonControls;
 using ReactiveUI;
 
@@ -145,8 +146,10 @@ namespace GradeManagement.Models.Elements
         public void Save<T>(T? element = null) where T : class, IElement
         {
             Grade grade = element as Grade ?? this;
-            var currentSubject = MainWindowViewModel.CurrentSubject;
-            currentSubject?.Grades.Add(grade);
+            IGradesContainer? container = null;
+            if (MainWindowViewModel.Instance?.Content is GradeListViewModel viewModel)
+                container = viewModel.GradesContainer;
+            container?.Grades.Add(grade);
         }
         
         public object Clone() => new Grade(_name, _gradeValue, _scoredPoints, _maxPoints, _weighting, _date, Counts);

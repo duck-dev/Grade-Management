@@ -227,6 +227,9 @@ namespace GradeManagement.ViewModels
                 case Subject subject:
                     CopyElement(subject);
                     break;
+                case GradeGroup gradeGroup:
+                    CopyElement(gradeGroup);
+                    break;
                 case Grade grade:
                     CopyElement(grade);
                     break;
