@@ -41,7 +41,6 @@ namespace GradeManagement.Views
         private void OnSubjectPressed(object? sender, PointerPressedEventArgs e)
         {
             SwitchPage<SubjectListViewModel, Subject>(MainWindowViewModel.CurrentYear!.Subjects);
-            MainWindowViewModel.CurrentSubject = null;
         }
 
         private void OnGradePressed(object? sender, PointerPressedEventArgs e)
