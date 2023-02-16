@@ -30,8 +30,8 @@ namespace GradeManagement.ViewModels.AddPages
         
         // Other parameters
         private float _elementGrade = float.NaN;
-        private int? _elementScoredPoints;
-        private int? _elementMaxPoints;
+        private float? _elementScoredPoints;
+        private float? _elementMaxPoints;
         
         private string? _elementGradeStr;
         private string? _elementScoredPointsStr;
@@ -320,8 +320,8 @@ namespace GradeManagement.ViewModels.AddPages
             return ElementName is not null && (!ElementName.Trim().Equals(EditedGrade.Name.Trim())
                                                || !ElementWeighting.Equals(EditedGrade.Weighting)
                                                || (!IsMultiGrade && !_elementGrade.Equals(EditedGrade.GradeValue))
-                                               || _elementScoredPoints != EditedGrade.ScoredPoints
-                                               || _elementMaxPoints != EditedGrade.MaxPoints
+                                               || !_elementScoredPoints.AlmostEquals(EditedGrade.ScoredPoints, Utilities.EqualityTolerance)
+                                               || !_elementMaxPoints.AlmostEquals(EditedGrade.MaxPoints, Utilities.EqualityTolerance)
                                                || _selectedDay != date.Day
                                                || _selectedMonth.Month != date.Month
                                                || _selectedYear != date.Year
@@ -365,7 +365,7 @@ namespace GradeManagement.ViewModels.AddPages
             TempSelectedDate = new DateTime(year, month, day);
         }
 
-        private void HandlePointsChange(string? strValue, string propertyName, int brushIndex, ref string? strVariable, ref int? intVariable)
+        private void HandlePointsChange(string? strValue, string propertyName, int brushIndex, ref string? strVariable, ref float? floatVariable)
         {
             if (!SpecifyPoints)
                 return;
@@ -376,12 +376,12 @@ namespace GradeManagement.ViewModels.AddPages
                 this.RaisePropertyChanged(propertyName);
             }
             
-            intVariable = null;
+            floatVariable = null;
             BorderBrushes![brushIndex].Color = NormalColor;
 
-            bool parsed = int.TryParse(strValue, out int max);
+            bool parsed = float.TryParse(strValue, CultureInfo.InvariantCulture, out float max);
             if (parsed)
-                intVariable = max;
+                floatVariable = max;
             else
                 BorderBrushes[brushIndex].Color = IncompleteColor;
 

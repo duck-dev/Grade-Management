@@ -63,14 +63,14 @@
                   IsVisible="{Binding !IsMultiGrade}">
                 <CheckBox Grid.Column="0" Classes="add-page-checkbox" IsChecked="{Binding SpecifyPoints}"
                           Margin="0,5,20,5" Content="Specify points"/>
-                <TextBox Grid.Column="1" Classes="add-page-text-box" Width="80" Height="40" Watermark="Scored"
+                <TextBox Grid.Column="1" Classes="add-page-text-box" Width="100" Height="40" Watermark="Scored"
                          HorizontalContentAlignment="Center" Text="{Binding ElementScoredPointsString}"
-                         MaxLength="4" BorderBrush="{Binding BorderBrushes[6]}" IsEnabled="{Binding SpecifyPoints}"/>
+                         MaxLength="7" BorderBrush="{Binding BorderBrushes[6]}" IsEnabled="{Binding SpecifyPoints}"/>
                 <TextBlock Grid.Column="2" Foreground="{StaticResource StandardGrey}" FontSize="48"
                            Text="/" Margin="10,0"/>
-                <TextBox Grid.Column="3" Classes="add-page-text-box" Width="80" Height="40" Watermark="Max"
+                <TextBox Grid.Column="3" Classes="add-page-text-box" Width="100" Height="40" Watermark="Max"
                          HorizontalContentAlignment="Center" Text="{Binding ElementMaxPointsString}"
-                         MaxLength="4" BorderBrush="{Binding BorderBrushes[7]}" IsEnabled="{Binding SpecifyPoints}"/>
+                         MaxLength="7" BorderBrush="{Binding BorderBrushes[7]}" IsEnabled="{Binding SpecifyPoints}"/>
             </Grid>
             <CheckBox Grid.Row="6" Classes="add-page-checkbox" IsChecked="{Binding ElementCounts}"
                       Content="Grade counts" Margin="0,5,0,3"/>

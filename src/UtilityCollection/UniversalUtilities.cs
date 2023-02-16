@@ -23,6 +23,8 @@ namespace GradeManagement.UtilityCollection
                 return directory ?? throw new Exception("Directory name of the currently executing assembly is null.");
             }
         }
+
+        public const float EqualityTolerance = 0.000001f;
         
         /// <summary>
         /// Calculate the average of several grades with a weighting factor for each grade.

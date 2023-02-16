@@ -22,15 +22,15 @@ namespace GradeManagement.Models.Elements
         
         private string _name = string.Empty;
         private float _gradeValue = float.NaN;
-        private int? _scoredPoints;
-        private int? _maxPoints;
+        private float? _scoredPoints;
+        private float? _maxPoints;
         private float _weighting;
         private DateTime _date;
         private bool _counts;
         private ButtonStyleBase? _buttonStyle;
         
         [JsonConstructor]
-        public Grade(string name, float gradeValue, int? scoredPoints, int? maxPoints, float weighting, DateTime date, bool counts)
+        public Grade(string name, float gradeValue, float? scoredPoints, float? maxPoints, float weighting, DateTime date, bool counts)
         {
             if (name.Length > MaxNameLength)
                 name = name.Substring(0, MaxNameLength);
@@ -67,14 +67,14 @@ namespace GradeManagement.Models.Elements
         }
 
         [JsonInclude]
-        public int? ScoredPoints
+        public float? ScoredPoints
         {
             get => _scoredPoints;
             private set => this.RaiseAndSetIfChanged(ref _scoredPoints, value);
         }
         
         [JsonInclude]
-        public int? MaxPoints
+        public float? MaxPoints
         {
             get => _maxPoints;
             private set => this.RaiseAndSetIfChanged(ref _maxPoints, value);
@@ -151,7 +151,7 @@ namespace GradeManagement.Models.Elements
         
         public object Clone() => new Grade(_name, _gradeValue, _scoredPoints, _maxPoints, _weighting, _date, Counts);
 
-        internal void Edit(string newName, float newGrade, int? newScoredPoints, int? newMaxPoints, float newWeighting, 
+        internal void Edit(string newName, float newGrade, float? newScoredPoints, float? newMaxPoints, float newWeighting, 
             DateTime newDate, bool counts)
         {
             var oldGrade = this.GradeValue;
