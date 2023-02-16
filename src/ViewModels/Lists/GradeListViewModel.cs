@@ -59,8 +59,13 @@ namespace GradeManagement.ViewModels.Lists
         
         internal static GradeListViewModel? Instance { get; private set; }
 
-        public void Duplicate(IElement element) 
-            => DuplicateElement<Grade>(element);
+        public void Duplicate(IElement element)
+        {
+            if(element is GradeGroup)
+                DuplicateElement<GradeGroup>(element);
+            else
+                DuplicateElement<Grade>(element);
+        }
 
         protected internal override void ChangeTopbar()
         {
@@ -83,10 +88,9 @@ namespace GradeManagement.ViewModels.Lists
 
         private void RemoveElement(Grade grade)
         {
-            var currentSubject = MainWindowViewModel.CurrentSubject;
             Action action = () =>
             {
-                currentSubject?.Grades.Remove(grade);
+                GradesContainer?.Grades.Remove(grade);
                 Items?.Remove(grade);
                 UpdateVisualOnChange();
             };
