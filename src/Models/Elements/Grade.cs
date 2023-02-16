@@ -165,6 +165,7 @@ namespace GradeManagement.Models.Elements
             this.Weighting = newWeighting;
             this.Date = newDate;
             this.Counts = counts;
+            this.RaisePropertyChanged(nameof(PointsSpecified));
             
             if (oldCounts == counts && Math.Abs(oldWeighting - newWeighting) < 0.001f && Math.Abs(oldGrade - newGrade) < 0.001f) 
                 return;
