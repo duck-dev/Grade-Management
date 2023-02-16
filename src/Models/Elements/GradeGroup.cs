@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
+using GradeManagement.ExtensionCollection;
 using GradeManagement.Interfaces;
 using GradeManagement.UtilityCollection;
 using GradeManagement.ViewModels;
@@ -36,7 +37,7 @@ namespace GradeManagement.Models.Elements
         [JsonIgnore]
         public override int ElementCount => Grades.Count;
 
-        public new object Clone() => new GradeGroup(Name, Grades, Weighting, Date, Counts);
+        public new object Clone() => new GradeGroup(Name, Grades.Clone().ToList(), Weighting, Date, Counts);
 
         public new T? Duplicate<T>(bool save = true) where T : class, IElement
         {

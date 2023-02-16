@@ -35,14 +35,19 @@ namespace GradeManagement.ViewModels.BaseClasses
             var instance = MainWindowViewModel.Instance;
             if (instance is null)
                 return;
-
-            var content = instance.Content;
+            
             var duplicate = element.Duplicate<T>();
-            content.UpdateVisualOnChange();
+            UpdateVisualOnChange();
 
             if (duplicate is null)
                 return;
-            var viewModel = content as IListViewModel<T>;
+
+            if (typeof(T) == typeof(GradeGroup))
+            {
+                (this as IListViewModel<Grade>)?.Items?.Add((duplicate as Grade)!);
+                return;
+            }
+            var viewModel = this as IListViewModel<T>;
             viewModel?.Items?.Add(duplicate);
         }
 
