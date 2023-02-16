@@ -151,7 +151,7 @@ namespace GradeManagement.Models.Elements
         
         public object Clone() => new Grade(_name, _gradeValue, _scoredPoints, _maxPoints, _weighting, _date, Counts);
 
-        internal void Edit(string newName, float newGrade, int? _newScoredPoints, int? _nexMaxPoints, float newWeighting, 
+        internal void Edit(string newName, float newGrade, int? newScoredPoints, int? newMaxPoints, float newWeighting, 
             DateTime newDate, bool counts)
         {
             var oldGrade = this.GradeValue;
@@ -160,8 +160,8 @@ namespace GradeManagement.Models.Elements
             
             this.Name = newName;
             this.GradeValue = newGrade;
-            this.ScoredPoints = _newScoredPoints;
-            this.MaxPoints = _nexMaxPoints;
+            this.ScoredPoints = newScoredPoints;
+            this.MaxPoints = newMaxPoints;
             this.Weighting = newWeighting;
             this.Date = newDate;
             this.Counts = counts;
