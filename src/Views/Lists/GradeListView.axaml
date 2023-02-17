@@ -19,7 +19,7 @@
     <UserControl.DataTemplates>
         <DataTemplate DataType="elementButtonControls:GridButton">
             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RowDefinitions="*,*,*">
-                <Panel Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MaxHeight="62" Margin="10,0">
+                <Panel Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MaxHeight="52" Margin="10,0">
                     <Viewbox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" StretchDirection="UpOnly">
                         <TextBlock Text="{Binding GradeRef.Name}" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"
                                    FontWeight="Bold" Foreground="{StaticResource OppositeAccent}" TextAlignment="Center"
