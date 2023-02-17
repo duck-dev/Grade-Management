@@ -62,13 +62,13 @@ namespace GradeManagement.ViewModels
         }
 
         private bool HasCopiedElement => CopiedElement is not null 
-                                         && CopiedElement.GetType() == Content.ElementType;
+                                         && CopiedElement.GetType().IsAssignableTo(Content.ElementType);
 
         internal T SwitchPage<T, TItems>(IEnumerable<TItems> items, IGradesContainer? gradesContainer = null) 
             where T : ListViewModelBase, IListViewModel<TItems> 
             where TItems : class, IElement, IGradable
         {
-            object?[] parameters = typeof(T) == typeof(GradeListViewModel) ? new object?[] {items, gradesContainer } : new object?[] { items };
+            object?[] parameters = typeof(T) == typeof(GradeListViewModel) ? new object?[] { items, gradesContainer } : new object?[] { items };
             T content = (Activator.CreateInstance(typeof(T), parameters) as T)!;
             Content = content;
             Content.ChangeTopbar();
