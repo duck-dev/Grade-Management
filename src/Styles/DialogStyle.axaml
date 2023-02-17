@@ -22,8 +22,10 @@
         <Setter Property="Foreground" Value="{StaticResource OppositeAccent}"/>
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="MaxLines" Value="3"/>
+        <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
         <Setter Property="TextAlignment" Value="Center"/>
-        <Setter Property="Margin" Value="30, 30, 30, 0"/>
+        <Setter Property="Margin" Value="30, 20, 30, 0"/>
     </Style>
 
     <Style Selector="Button.dialog-button">
