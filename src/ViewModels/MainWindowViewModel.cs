@@ -40,7 +40,9 @@ namespace GradeManagement.ViewModels
 
         internal static MainWindowViewModel? Instance { get; private set; }
         internal static SchoolYear? CurrentYear { get; set; }
-        
+
+        internal static bool IsElementDragged { get; set; }
+
         internal App? AppInstance { get; init; }
 
         internal ListViewModelBase Content
@@ -116,6 +118,12 @@ namespace GradeManagement.ViewModels
 
         private void OpenGrade(Grade grade)
         {
+            if (IsElementDragged)
+            {
+                IsElementDragged = false;
+                return;
+            }
+            
             if (grade is not GradeGroup gradeGroup) // Single grade
             {
                 EditGrade(grade);
@@ -133,12 +141,24 @@ namespace GradeManagement.ViewModels
 
         private void OpenSubject(Subject subject)
         {
+            if (IsElementDragged)
+            {
+                IsElementDragged = false;
+                return;
+            }
+            
             AdjustTopbarText(subject, 2);
             GradeListViewModel viewModel = SwitchPage<GradeListViewModel, Grade>(subject.Grades, subject);
         }
         
         private void OpenYear(SchoolYear year)
         {
+            if (IsElementDragged)
+            {
+                IsElementDragged = false;
+                return;
+            }
+            
             AdjustTopbarText(year, 0);
             SwitchPage<SubjectListViewModel, Subject>(year.Subjects);
             CurrentYear = year;
