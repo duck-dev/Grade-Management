@@ -1,9 +1,9 @@
-﻿using Avalonia.Markup.Xaml;
-using GradeManagement.Models;
+﻿using Avalonia.Controls;
+using Avalonia.Markup.Xaml;
 
 namespace GradeManagement.Views.Lists
 {
-    public class SubjectListView : DragControl
+    public class SubjectListView : UserControl
     {
         public SubjectListView()
         {
