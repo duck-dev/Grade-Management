@@ -215,10 +215,10 @@
             <ContentControl Content="{Binding IsViewGrid}">
                 <ContentControl.Resources>
                     <DataTemplate x:Key="GradeItemTemplate">
-                        <customControls:CustomDragPanel Classes="element-drag-panel">
+                        <customControls:CustomDragPanel Classes="element-drag-panel"
+                                                        Classes.element-drag-panel-list="{Binding !$parent[UserControl].DataContext.IsViewGrid}">
                             <Button Command="{Binding $parent[Window].DataContext.OpenGrade}"
-                                    CommandParameter="{Binding}"
-                                    Classes="element-button selectable-button-effect"
+                                    CommandParameter="{Binding}" Classes="element-button selectable-button-effect"
                                     Classes.grade-year-element-button="{Binding $parent[UserControl].DataContext.IsViewGrid}"
                                     Classes.element-button-list="{Binding !$parent[UserControl].DataContext.IsViewGrid}"
                                     Opacity="{Binding ElementsOpacity}" Padding="0">

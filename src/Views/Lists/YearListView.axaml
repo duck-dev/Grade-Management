@@ -149,7 +149,8 @@
             <ContentControl Content="{Binding IsViewGrid}">
                 <ContentControl.Resources>
                     <DataTemplate x:Key="YearItemTemplate">
-                        <customControls:CustomDragPanel Classes="element-drag-panel">
+                        <customControls:CustomDragPanel Classes="element-drag-panel"
+                                                        Classes.element-drag-panel-list="{Binding !$parent[UserControl].DataContext.IsViewGrid}">
                             <Button Command="{Binding $parent[Window].DataContext.OpenYear}"
                                     CommandParameter="{Binding}"
                                     Classes="element-button selectable-button-effect" Background="{Binding BackgroundBrush}"

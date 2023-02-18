@@ -6,6 +6,10 @@
     <Style Selector="Panel.element-drag-panel">
         <Setter Property="Margin" Value="30,17.5"/>
     </Style>
+    
+    <Style Selector="Panel.element-drag-panel-list">
+        <Setter Property="Margin" Value="100,17.5"/>
+    </Style>
 
     <Style Selector="Button.element-button">
         <Setter Property="Background" Value="{StaticResource ElementBackground}"/>
@@ -25,7 +29,6 @@
     <Style Selector="Button.element-button-list">
         <Setter Property="Height" Value="100"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
-        <Setter Property="Margin" Value="100,17.5"/>
     </Style>
     <Style Selector="Button.element-button-list:pointerover">
         <Setter Property="RenderTransform" Value="scale(0.985)"/>
