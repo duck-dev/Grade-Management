@@ -2,10 +2,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!-- Element-Buttons -->
+    
+    <Style Selector="Panel.element-drag-panel">
+        <Setter Property="Margin" Value="30,17.5"/>
+    </Style>
 
     <Style Selector="Button.element-button">
         <Setter Property="Background" Value="{StaticResource ElementBackground}"/>
-        <Setter Property="Margin" Value="30,17.5"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Height" Value="300"/>
         <Setter Property="CornerRadius" Value="20"/>

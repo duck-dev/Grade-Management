@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:elementButtonControls="clr-namespace:GradeManagement.Views.Lists.ElementButtonControls"
              xmlns:customSelectors="clr-namespace:GradeManagement.CustomSelectors"
+             xmlns:customControls="clr-namespace:GradeManagement.Views.CustomControls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="GradeManagement.Views.Lists.GradeListView">
 
@@ -49,7 +50,7 @@
                     </Grid>
                     <Grid Grid.Row="1" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center" Margin="0,15,0,0"
                           IsVisible="{Binding GradeRef.IsMultiGrade}">
-                        <Image Grid.Column="0" Source="/Assets/Images/Dark/List-Dark-Filled.png" Width="28" Height="28" 
+                        <Image Grid.Column="0" Source="/Assets/Images/Dark/List-Dark-Filled.png" Width="28" Height="28"
                                Margin="0,0,10,0"/>
                         <TextBlock Grid.Column="1" TextAlignment="Center" FontSize="30"
                                    Text="{Binding Path=GradeRef.Grades.Count}"
@@ -79,21 +80,20 @@
                     <TextBlock Grid.Column="0" Text="{Binding GradeRef.Name}" FontSize="36" FontWeight="Bold"
                                Foreground="{StaticResource OppositeAccent}" HorizontalAlignment="Left" VerticalAlignment="Center"
                                TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/>
-                    <Grid Grid.Column="1" RowDefinitions="*,*" ColumnDefinitions="Auto,Auto" Margin="60,0,0,0" 
+                    <Grid Grid.Column="1" RowDefinitions="*,*" ColumnDefinitions="Auto,Auto" Margin="60,0,0,0"
                           HorizontalAlignment="Right">
-                        <Grid Grid.Column="0" Grid.Row="0" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center" 
+                        <Grid Grid.Column="0" Grid.Row="0" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center"
                               VerticalAlignment="Center">
                             <Image Grid.Column="0" Source="/Assets/Images/Dark/Date-Dark.png"
                                    Margin="0,0,10,0" Width="28" Height="28"
                                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <!-- TODO: Consider themes when implemented -->
-                            <TextBlock Grid.Column="1" TextAlignment="Center"
-                                       Text="{Binding GradeRef.DateString}"
+                            <TextBlock Grid.Column="1" TextAlignment="Center" Text="{Binding GradeRef.DateString}"
                                        Foreground="{StaticResource StandardGrey}" FontSize="26"
                                        HorizontalAlignment="Center" VerticalAlignment="Center" Margin="8, 0, 25, 0"/>
                             <!--TODO: Consider culture-->
                         </Grid>
-                        <Grid Grid.Column="0" Grid.Row="1" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center" 
+                        <Grid Grid.Column="0" Grid.Row="1" ColumnDefinitions="Auto,Auto" HorizontalAlignment="Center"
                               VerticalAlignment="Center">
                             <Image Grid.Column="0" Source="/Assets/Images/Dark/Weighting-Dark.png" Width="30" Height="30"
                                    Margin="0,0,10,0"/> <!-- TODO: Consider themes when implemented -->
@@ -101,17 +101,17 @@
                                        Text="{Binding Path=GradeRef.Weighting}"
                                        Foreground="{StaticResource StandardGrey}" FontSize="28"/>
                         </Grid>
-                        <Grid Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" ColumnDefinitions="Auto,Auto" 
+                        <Grid Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" ColumnDefinitions="Auto,Auto"
                               HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0,0,0"
                               IsVisible="{Binding GradeRef.IsMultiGrade}">
-                            <Image Grid.Column="0" Source="/Assets/Images/Dark/List-Dark-Filled.png" Width="28" Height="28" 
+                            <Image Grid.Column="0" Source="/Assets/Images/Dark/List-Dark-Filled.png" Width="28" Height="28"
                                    Margin="0,0,10,0" VerticalAlignment="Center"/>
                             <TextBlock Grid.Column="1" TextAlignment="Center" FontSize="30" VerticalAlignment="Center"
                                        Text="{Binding Path=GradeRef.Grades.Count}"
                                        Foreground="{StaticResource StandardGrey}"/>
                         </Grid>
-                        <TextBlock Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" 
-                                   FontSize="26" Foreground="{StaticResource StandardGrey}" Margin="20,0,0,0" 
+                        <TextBlock Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   FontSize="26" Foreground="{StaticResource StandardGrey}" Margin="20,0,0,0"
                                    IsVisible="{Binding GradeRef.PointsSpecified}">
                             <TextBlock.Text>
                                 <MultiBinding StringFormat="\{0\}/\{1\}">
@@ -123,7 +123,7 @@
                     </Grid>
                 </Grid>
                 <TextBlock Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"
-                           Text="{Binding GradeRef.RoundedGrade}" FontSize="42" FontWeight="Bold" 
+                           Text="{Binding GradeRef.RoundedGrade}" FontSize="42" FontWeight="Bold"
                            Foreground="{StaticResource OppositeAccent}" Margin="0,0,10,0"
                            Opacity="{Binding GradeRef.GradeTextOpacity}"/>
             </Grid>
@@ -192,8 +192,7 @@
     </UserControl.ContextMenu>
 
     <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <WrapPanel Classes="no-elements-panel"
-                   IsEnabled="{Binding EmptyCollection}"
+        <WrapPanel Classes="no-elements-panel" IsEnabled="{Binding EmptyCollection}"
                    IsVisible="{Binding EmptyCollection}">
             <TextBlock Classes="no-elements-text" Margin="0,0,8,0">
                 This subject doesn't yet contain grades. You can add a new grade with the green button
@@ -216,45 +215,47 @@
             <ContentControl Content="{Binding IsViewGrid}">
                 <ContentControl.Resources>
                     <DataTemplate x:Key="GradeItemTemplate">
-                        <Button Command="{Binding $parent[Window].DataContext.OpenGrade}"
-                                CommandParameter="{Binding}"
-                                Classes="element-button selectable-button-effect"
-                                Classes.grade-year-element-button="{Binding $parent[UserControl].DataContext.IsViewGrid}"
-                                Classes.element-button-list="{Binding !$parent[UserControl].DataContext.IsViewGrid}"
-                                Opacity="{Binding ElementsOpacity}" Padding="0">
-                            <Button.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Header="Edit Grade"
-                                              Command="{Binding $parent[Window].DataContext.EditGrade}"
-                                              CommandParameter="{Binding}"/>
-                                    <MenuItem Header="Copy Grade"
-                                              Command="{Binding $parent[Window].DataContext.CopyElement}"
-                                              CommandParameter="{Binding}"/>
-                                    <MenuItem Header="Duplicate Grade"
-                                              Command="{Binding $parent[UserControl].DataContext.Duplicate}"
-                                              CommandParameter="{Binding}">
-                                    </MenuItem>
-                                    <MenuItem Header="Remove Grade"
-                                              Command="{Binding $parent[UserControl].DataContext.RemoveElement}"
-                                              CommandParameter="{Binding}">
-                                        <MenuItem.Styles>
-                                            <Style Selector="MenuItem:pointerover /template/ Border">
-                                                <Setter Property="Background"
-                                                        Value="{StaticResource LightRedContextMenu}"/>
-                                            </Style>
-                                            <Style Selector="MenuItem:pressed /template/ Border">
-                                                <Setter Property="Background"
-                                                        Value="{StaticResource DarkerLightRedContextMenu}"/>
-                                            </Style>
-                                        </MenuItem.Styles>
-                                    </MenuItem>
-                                </ContextMenu>
-                            </Button.ContextMenu>
-                            <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                <ContentControl HorizontalAlignment="Stretch" Content="{Binding ButtonStyle}"/>
-                                <Border Classes="grey-out-border" IsVisible="{Binding !Counts}"/>
-                            </Panel>
-                        </Button>
+                        <customControls:CustomDragPanel Classes="element-drag-panel">
+                            <Button Command="{Binding $parent[Window].DataContext.OpenGrade}"
+                                    CommandParameter="{Binding}"
+                                    Classes="element-button selectable-button-effect"
+                                    Classes.grade-year-element-button="{Binding $parent[UserControl].DataContext.IsViewGrid}"
+                                    Classes.element-button-list="{Binding !$parent[UserControl].DataContext.IsViewGrid}"
+                                    Opacity="{Binding ElementsOpacity}" Padding="0">
+                                <Button.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Edit Grade"
+                                                  Command="{Binding $parent[Window].DataContext.EditGrade}"
+                                                  CommandParameter="{Binding}"/>
+                                        <MenuItem Header="Copy Grade"
+                                                  Command="{Binding $parent[Window].DataContext.CopyElement}"
+                                                  CommandParameter="{Binding}"/>
+                                        <MenuItem Header="Duplicate Grade"
+                                                  Command="{Binding $parent[UserControl].DataContext.Duplicate}"
+                                                  CommandParameter="{Binding}">
+                                        </MenuItem>
+                                        <MenuItem Header="Remove Grade"
+                                                  Command="{Binding $parent[UserControl].DataContext.RemoveElement}"
+                                                  CommandParameter="{Binding}">
+                                            <MenuItem.Styles>
+                                                <Style Selector="MenuItem:pointerover /template/ Border">
+                                                    <Setter Property="Background"
+                                                            Value="{StaticResource LightRedContextMenu}"/>
+                                                </Style>
+                                                <Style Selector="MenuItem:pressed /template/ Border">
+                                                    <Setter Property="Background"
+                                                            Value="{StaticResource DarkerLightRedContextMenu}"/>
+                                                </Style>
+                                            </MenuItem.Styles>
+                                        </MenuItem>
+                                    </ContextMenu>
+                                </Button.ContextMenu>
+                                <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <ContentControl HorizontalAlignment="Stretch" Content="{Binding ButtonStyle}"/>
+                                    <Border Classes="grey-out-border" IsVisible="{Binding !Counts}"/>
+                                </Panel>
+                            </Button>
+                        </customControls:CustomDragPanel>
                     </DataTemplate>
                 </ContentControl.Resources>
                 <ContentControl.DataTemplates>

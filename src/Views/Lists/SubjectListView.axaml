@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:elementButtonControls="clr-namespace:GradeManagement.Views.Lists.ElementButtonControls"
              xmlns:customSelectors="clr-namespace:GradeManagement.CustomSelectors"
+             xmlns:customControls="clr-namespace:GradeManagement.Views.CustomControls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="GradeManagement.Views.Lists.SubjectListView">
 
@@ -189,50 +190,52 @@
             <ContentControl Content="{Binding IsViewGrid}">
                 <ContentControl.Resources>
                     <DataTemplate x:Key="SubjectItemTemplate">
-                        <Button Command="{Binding $parent[Window].DataContext.OpenSubject}"
-                                CommandParameter="{Binding}"
-                                Classes="element-button selectable-button-effect" Background="{Binding BackgroundBrush}"
-                                Classes.subject-element-button="{Binding $parent[UserControl].DataContext.IsViewGrid}"
-                                Classes.element-button-list="{Binding !$parent[UserControl].DataContext.IsViewGrid}"
-                                Opacity="{Binding ElementsOpacity}" Padding="0">
-                            <Button.Styles>
-                                <Style Selector="Button.element-button:pointerover /template/ ContentPresenter">
-                                    <Setter Property="Background" Value="{Binding BackgroundBrushHover}"/>
-                                </Style>
-                            </Button.Styles>
-                            <Button.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Header="Edit Subject"
-                                              Command="{Binding $parent[Window].DataContext.EditSubject}"
-                                              CommandParameter="{Binding}"/>
-                                    <MenuItem Header="Copy Subject"
-                                              Command="{Binding $parent[Window].DataContext.CopyElement}"
-                                              CommandParameter="{Binding}"/>
-                                    <MenuItem Header="Duplicate Subject"
-                                              Command="{Binding $parent[UserControl].DataContext.Duplicate}"
-                                              CommandParameter="{Binding}">
-                                    </MenuItem>
-                                    <MenuItem Header="Remove Subject"
-                                              Command="{Binding $parent[UserControl].DataContext.RemoveElement}"
-                                              CommandParameter="{Binding}">
-                                        <MenuItem.Styles>
-                                            <Style Selector="MenuItem:pointerover /template/ Border">
-                                                <Setter Property="Background"
-                                                        Value="{StaticResource LightRedContextMenu}"/>
-                                            </Style>
-                                            <Style Selector="MenuItem:pressed /template/ Border">
-                                                <Setter Property="Background"
-                                                        Value="{StaticResource DarkerLightRedContextMenu}"/>
-                                            </Style>
-                                        </MenuItem.Styles>
-                                    </MenuItem>
-                                </ContextMenu>
-                            </Button.ContextMenu>
-                            <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                <ContentControl Content="{Binding ButtonStyle}"/>
-                                <Border Classes="grey-out-border" IsVisible="{Binding !Counts}"/>
-                            </Panel>
-                        </Button>
+                        <customControls:CustomDragPanel Classes="element-drag-panel">
+                            <Button Command="{Binding $parent[Window].DataContext.OpenSubject}"
+                                    CommandParameter="{Binding}"
+                                    Classes="element-button selectable-button-effect" Background="{Binding BackgroundBrush}"
+                                    Classes.subject-element-button="{Binding $parent[UserControl].DataContext.IsViewGrid}"
+                                    Classes.element-button-list="{Binding !$parent[UserControl].DataContext.IsViewGrid}"
+                                    Opacity="{Binding ElementsOpacity}" Padding="0">
+                                <Button.Styles>
+                                    <Style Selector="Button.element-button:pointerover /template/ ContentPresenter">
+                                        <Setter Property="Background" Value="{Binding BackgroundBrushHover}"/>
+                                    </Style>
+                                </Button.Styles>
+                                <Button.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Edit Subject"
+                                                  Command="{Binding $parent[Window].DataContext.EditSubject}"
+                                                  CommandParameter="{Binding}"/>
+                                        <MenuItem Header="Copy Subject"
+                                                  Command="{Binding $parent[Window].DataContext.CopyElement}"
+                                                  CommandParameter="{Binding}"/>
+                                        <MenuItem Header="Duplicate Subject"
+                                                  Command="{Binding $parent[UserControl].DataContext.Duplicate}"
+                                                  CommandParameter="{Binding}">
+                                        </MenuItem>
+                                        <MenuItem Header="Remove Subject"
+                                                  Command="{Binding $parent[UserControl].DataContext.RemoveElement}"
+                                                  CommandParameter="{Binding}">
+                                            <MenuItem.Styles>
+                                                <Style Selector="MenuItem:pointerover /template/ Border">
+                                                    <Setter Property="Background"
+                                                            Value="{StaticResource LightRedContextMenu}"/>
+                                                </Style>
+                                                <Style Selector="MenuItem:pressed /template/ Border">
+                                                    <Setter Property="Background"
+                                                            Value="{StaticResource DarkerLightRedContextMenu}"/>
+                                                </Style>
+                                            </MenuItem.Styles>
+                                        </MenuItem>
+                                    </ContextMenu>
+                                </Button.ContextMenu>
+                                <Panel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                    <ContentControl Content="{Binding ButtonStyle}"/>
+                                    <Border Classes="grey-out-border" IsVisible="{Binding !Counts}"/>
+                                </Panel>
+                            </Button>
+                        </customControls:CustomDragPanel>
                     </DataTemplate>
                 </ContentControl.Resources>
                 <ContentControl.DataTemplates>

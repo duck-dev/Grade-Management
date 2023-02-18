@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:customSelectors="clr-namespace:GradeManagement.CustomSelectors"
              xmlns:elementButtonControls="clr-namespace:GradeManagement.Views.Lists.ElementButtonControls"
+             xmlns:customControls="clr-namespace:GradeManagement.Views.CustomControls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="GradeManagement.Views.Lists.YearListView">
 
@@ -148,50 +149,52 @@
             <ContentControl Content="{Binding IsViewGrid}">
                 <ContentControl.Resources>
                     <DataTemplate x:Key="YearItemTemplate">
-                        <Button Command="{Binding $parent[Window].DataContext.OpenYear}"
-                                CommandParameter="{Binding}"
-                                Classes="element-button selectable-button-effect" Background="{Binding BackgroundBrush}"
-                                Classes.grade-year-element-button="{Binding $parent[UserControl].DataContext.IsViewGrid}"
-                                Classes.element-button-list="{Binding !$parent[UserControl].DataContext.IsViewGrid}">
-                            <Button.Styles>
-                                <Style Selector="Button.element-button:pointerover /template/ ContentPresenter">
-                                    <Setter Property="Background" Value="{Binding BackgroundBrushHover}"/>
-                                </Style>
-                            </Button.Styles>
-                            <Button.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem Header="Edit School Year"
-                                              Command="{Binding $parent[Window].DataContext.EditYear}"
-                                              CommandParameter="{Binding}"/>
-                                    <MenuItem Header="Copy School Year"
-                                              Command="{Binding $parent[Window].DataContext.CopyElement}"
-                                              CommandParameter="{Binding}"/>
-                                    <MenuItem Header="Duplicate School Year"
-                                              Command="{Binding $parent[UserControl].DataContext.Duplicate}"
-                                              CommandParameter="{Binding}">
-                                    </MenuItem>
-                                    <MenuItem Header="Remove School Year"
-                                              Command="{Binding $parent[UserControl].DataContext.RemoveElement}"
-                                              CommandParameter="{Binding}">
-                                        <MenuItem.Styles>
-                                            <Style Selector="MenuItem:pointerover /template/ Border">
-                                                <Setter Property="Background"
-                                                        Value="{StaticResource LightRedContextMenu}"/>
-                                            </Style>
-                                            <Style Selector="MenuItem:pressed /template/ Border">
-                                                <Setter Property="Background"
-                                                        Value="{StaticResource DarkerLightRedContextMenu}"/>
-                                            </Style>
-                                        </MenuItem.Styles>
-                                    </MenuItem>
-                                    <MenuItem Header="Create Year-Template"
-                                              Command="{Binding $parent[UserControl].DataContext.CreateTemplate}"
-                                              CommandParameter="{Binding}"
-                                              IsEnabled="False"/> <!-- TODO: Enable when logic has been implemented -->
-                                </ContextMenu>
-                            </Button.ContextMenu>
-                            <ContentControl HorizontalAlignment="Stretch" Content="{Binding ButtonStyle}"/>
-                        </Button>
+                        <customControls:CustomDragPanel Classes="element-drag-panel">
+                            <Button Command="{Binding $parent[Window].DataContext.OpenYear}"
+                                    CommandParameter="{Binding}"
+                                    Classes="element-button selectable-button-effect" Background="{Binding BackgroundBrush}"
+                                    Classes.grade-year-element-button="{Binding $parent[UserControl].DataContext.IsViewGrid}"
+                                    Classes.element-button-list="{Binding !$parent[UserControl].DataContext.IsViewGrid}">
+                                <Button.Styles>
+                                    <Style Selector="Button.element-button:pointerover /template/ ContentPresenter">
+                                        <Setter Property="Background" Value="{Binding BackgroundBrushHover}"/>
+                                    </Style>
+                                </Button.Styles>
+                                <Button.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Edit School Year"
+                                                  Command="{Binding $parent[Window].DataContext.EditYear}"
+                                                  CommandParameter="{Binding}"/>
+                                        <MenuItem Header="Copy School Year"
+                                                  Command="{Binding $parent[Window].DataContext.CopyElement}"
+                                                  CommandParameter="{Binding}"/>
+                                        <MenuItem Header="Duplicate School Year"
+                                                  Command="{Binding $parent[UserControl].DataContext.Duplicate}"
+                                                  CommandParameter="{Binding}">
+                                        </MenuItem>
+                                        <MenuItem Header="Remove School Year"
+                                                  Command="{Binding $parent[UserControl].DataContext.RemoveElement}"
+                                                  CommandParameter="{Binding}">
+                                            <MenuItem.Styles>
+                                                <Style Selector="MenuItem:pointerover /template/ Border">
+                                                    <Setter Property="Background"
+                                                            Value="{StaticResource LightRedContextMenu}"/>
+                                                </Style>
+                                                <Style Selector="MenuItem:pressed /template/ Border">
+                                                    <Setter Property="Background"
+                                                            Value="{StaticResource DarkerLightRedContextMenu}"/>
+                                                </Style>
+                                            </MenuItem.Styles>
+                                        </MenuItem>
+                                        <MenuItem Header="Create Year-Template"
+                                                  Command="{Binding $parent[UserControl].DataContext.CreateTemplate}"
+                                                  CommandParameter="{Binding}"
+                                                  IsEnabled="False"/> <!-- TODO: Enable when logic has been implemented -->
+                                    </ContextMenu>
+                                </Button.ContextMenu>
+                                <ContentControl HorizontalAlignment="Stretch" Content="{Binding ButtonStyle}"/>
+                            </Button>
+                        </customControls:CustomDragPanel>
                     </DataTemplate>
                 </ContentControl.Resources>
                 <ContentControl.DataTemplates>
