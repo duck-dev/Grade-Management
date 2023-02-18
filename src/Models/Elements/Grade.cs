@@ -14,51 +14,32 @@ namespace GradeManagement.Models.Elements
     [JsonPolymorphic(UnknownDerivedTypeHandling = JsonUnknownDerivedTypeHandling.FallBackToNearestAncestor)]
     [JsonDerivedType(typeof(Grade), "grade")]
     [JsonDerivedType(typeof(GradeGroup), "gradeGroup")]
-    public class Grade : ReactiveObject, IElement, ICloneable
+    public class Grade : Element, ICloneable
     {
-        private const int MaxNameLength = 64;
-        private const double EnabledOpacity = 1.0;
-        private const double DisabledOpacity = 0.4;
-        private const double DisabledOpacityGrade = 0.4;
-        
-        private string _name = string.Empty;
         private float _gradeValue = float.NaN;
         private float? _scoredPoints;
         private float? _maxPoints;
-        private float _weighting;
         private DateTime _date;
-        private bool _counts;
-        private ButtonStyleBase? _buttonStyle;
         
         [JsonConstructor]
-        public Grade(string name, float gradeValue, float? scoredPoints, float? maxPoints, float weighting, DateTime date, bool counts)
+        public Grade(string name, float gradeValue, float? scoredPoints, float? maxPoints, float weighting, DateTime date, bool counts) 
+            : base(name, weighting, counts)
         {
-            if (name.Length > MaxNameLength)
-                name = name.Substring(0, MaxNameLength);
-            this.Name = name;
+            // ReSharper disable once VirtualMemberCallInConstructor
             this.GradeValue = gradeValue;
             this.ScoredPoints = scoredPoints;
             this.MaxPoints = maxPoints;
-            this.Weighting = weighting;
             this.Date = date;
-            this.Counts = counts;
             
             var isGrid = SettingsManager.Settings?.GradeButtonStyle == SelectedButtonStyle.Grid;
             this.ButtonStyle = isGrid ? new GridButton(this) : new ListButton(this);
         }
 
         [JsonInclude]
-        public string Name
-        {
-            get => _name; 
-            private set => this.RaiseAndSetIfChanged(ref _name, value);
-        }
-
-        [JsonInclude]
-        public virtual float GradeValue
+        public override float GradeValue
         {
             get => _gradeValue;
-            private set
+            protected set
             {
                 if (value.Equals(_gradeValue))
                     return;
@@ -82,13 +63,6 @@ namespace GradeManagement.Models.Elements
         }
 
         [JsonInclude]
-        public float Weighting
-        {
-            get => _weighting; 
-            private set => this.RaiseAndSetIfChanged(ref _weighting, value);
-        }
-
-        [JsonInclude]
         public DateTime Date
         {
             get => _date;
@@ -100,50 +74,18 @@ namespace GradeManagement.Models.Elements
                 this.RaisePropertyChanged(nameof(DateString));
             }
         }
-        
-        [JsonInclude]
-        public bool Counts
-        {
-            get => _counts;
-            private set
-            {
-                this.RaiseAndSetIfChanged(ref _counts, value);
-                this.RaisePropertyChanged(nameof(ElementsOpacity));
-                this.RaisePropertyChanged(nameof(GradeTextOpacity));
-            }
-        }
 
         [JsonIgnore] 
-        public virtual int ElementCount => 1;
-
-        [JsonIgnore]
-        public ButtonStyleBase? ButtonStyle
-        {
-            get => _buttonStyle;
-            set => this.RaiseAndSetIfChanged(ref _buttonStyle, value);
-        }
+        public override int ElementCount => 1;
 
         internal float RoundedGrade => (float)Math.Round(GradeValue, 2);
         internal string DateString => Date.ToString("dd.MM.yyyy", CultureInfo.CurrentCulture);
-        internal double ElementsOpacity => Counts ? EnabledOpacity : DisabledOpacity;
-        internal double GradeTextOpacity => Counts ? EnabledOpacity : DisabledOpacityGrade;
 
         internal bool IsMultiGrade => this is GradeGroup;
 
         internal bool PointsSpecified => !IsMultiGrade && ScoredPoints != null && MaxPoints != null;
 
-        public T? Duplicate<T>(bool save = true) where T : class, IElement
-        {
-            if (this.Clone() is not Grade duplicate)
-                return null;
-            
-            if(save)
-                Save(duplicate);
-
-            return duplicate as T;
-        }
-        
-        public void Save<T>(T? element = null) where T : class, IElement
+        protected internal override void Save<T>(T? element = null) where T : class
         {
             Grade grade = element as Grade ?? this;
             IGradesContainer? container = null;
@@ -152,7 +94,7 @@ namespace GradeManagement.Models.Elements
             container?.Grades.Add(grade);
         }
         
-        public object Clone() => new Grade(_name, _gradeValue, _scoredPoints, _maxPoints, _weighting, _date, Counts);
+        public override object Clone() => new Grade(Name, GradeValue, ScoredPoints, MaxPoints, Weighting, Date, Counts);
 
         internal void Edit(string newName, float newGrade, float? newScoredPoints, float? newMaxPoints, float newWeighting, 
             DateTime newDate, bool counts)

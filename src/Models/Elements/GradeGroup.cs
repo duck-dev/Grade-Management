@@ -10,7 +10,7 @@ using GradeManagement.ViewModels.Lists;
 
 namespace GradeManagement.Models.Elements
 {
-    public class GradeGroup : Grade, IElement, IGradesContainer, ICloneable
+    public class GradeGroup : Grade, IGradesContainer, ICloneable
     {
         [JsonConstructor]
         public GradeGroup(string name, List<Grade> grades, float weighting, DateTime date, bool counts) 
@@ -39,17 +39,7 @@ namespace GradeManagement.Models.Elements
 
         public new object Clone() => new GradeGroup(Name, Grades.Clone().ToList(), Weighting, Date, Counts);
 
-        public new T? Duplicate<T>(bool save = true) where T : class, IElement
-        {
-            if (this.Clone() is not GradeGroup duplicate)
-                return null;
-            
-            if(save)
-                Save(duplicate);
-            return duplicate as T;
-        }
-
-        public new void Save<T>(T? element = null) where T : class, IElement
+        public new void Save<T>(T? element = null) where T : Element
         {
             GradeGroup grade = element as GradeGroup ?? this;
             IGradesContainer? container = null;

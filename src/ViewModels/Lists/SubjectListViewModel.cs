@@ -51,7 +51,7 @@ namespace GradeManagement.ViewModels.Lists
         
         internal static SubjectListViewModel? Instance { get; private set; }
 
-        public void Duplicate(IElement element) 
+        public void Duplicate(Element element) 
             => DuplicateElement<Subject>(element);
 
         protected internal override void ChangeTopbar()

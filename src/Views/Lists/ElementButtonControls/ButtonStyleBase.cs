@@ -1,11 +1,10 @@
-using GradeManagement.Interfaces;
 using GradeManagement.Models.Elements;
 
 namespace GradeManagement.Views.Lists.ElementButtonControls
 {
     public abstract class ButtonStyleBase
     {
-        protected ButtonStyleBase(IElement element)
+        protected ButtonStyleBase(Element element)
         {
             switch (element)
             {

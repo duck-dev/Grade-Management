@@ -23,7 +23,7 @@ namespace GradeManagement.ViewModels
     {
         private ListViewModelBase _content;
         private IEnumerable<IGradable> _currentGradables;
-        private IElement? _copiedElement;
+        private Element? _copiedElement;
 
         public MainWindowViewModel()
         {
@@ -53,7 +53,7 @@ namespace GradeManagement.ViewModels
 
         private float CurrentAverage => Utilities.GetAverage(_currentGradables, true);
         
-        private IElement? CopiedElement
+        private Element? CopiedElement
         {
             get => _copiedElement;
             set
@@ -68,7 +68,7 @@ namespace GradeManagement.ViewModels
 
         internal T SwitchPage<T, TItems>(IEnumerable<TItems> items, IGradesContainer? gradesContainer = null) 
             where T : ListViewModelBase, IListViewModel<TItems> 
-            where TItems : class, IElement, IGradable
+            where TItems : Element, IGradable
         {
             object?[] parameters = typeof(T) == typeof(GradeListViewModel) ? new object?[] { items, gradesContainer } : new object?[] { items };
             T content = (Activator.CreateInstance(typeof(T), parameters) as T)!;
@@ -83,7 +83,7 @@ namespace GradeManagement.ViewModels
         internal void UpdateAverage() => this.RaisePropertyChanged(nameof(CurrentAverage));
         
         private static void EditElement<TElement, TViewModel>(TElement element, TViewModel? viewModel, Window? window) 
-            where TElement : IElement where TViewModel : AddViewModelBase, IAddViewModel<TElement>
+            where TElement : Element where TViewModel : AddViewModelBase, IAddViewModel<TElement>
         {
             if (window is null)
                 return;
@@ -164,7 +164,7 @@ namespace GradeManagement.ViewModels
             CurrentYear = year;
         }
 
-        private void AdjustTopbarText<T>(T element, int index) where T : IElement
+        private void AdjustTopbarText<T>(T element, int index) where T : Element
         {
             if (TopbarTexts?[index] is not TextBlock textBlock) 
                 return;
@@ -220,7 +220,7 @@ namespace GradeManagement.ViewModels
             SettingsManager.SaveSettings();
         }
 
-        private void ChangeViewGeneric<T>(bool isGrid) where T : class, IElement
+        private void ChangeViewGeneric<T>(bool isGrid) where T : Element
         {
             if (_content is not IListViewModel<T> viewModelInterface)
                 return;
@@ -235,7 +235,7 @@ namespace GradeManagement.ViewModels
                 item.ButtonStyle = isGrid ? new GridButton(item) : new ListButton(item);
         }
 
-        private void CopyElement(IElement element)
+        private void CopyElement(Element element)
         {
             switch (element)
             {
@@ -254,7 +254,7 @@ namespace GradeManagement.ViewModels
             } 
         }
         
-        private void CopyElement<T>(T element) where T : class, IElement 
+        private void CopyElement<T>(T element) where T : Element 
             => CopiedElement = element.Duplicate<T>(false);
 
         private void PasteCopiedElement()
@@ -273,7 +273,7 @@ namespace GradeManagement.ViewModels
             }
         }
 
-        private void PasteCopiedElement<T>() where T : class, IElement
+        private void PasteCopiedElement<T>() where T : Element
         {
             if (_content is not IListViewModel<T> viewModel || CopiedElement is not T element) 
                 return;

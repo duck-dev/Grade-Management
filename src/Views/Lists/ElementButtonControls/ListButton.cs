@@ -1,9 +1,9 @@
-using GradeManagement.Interfaces;
+using GradeManagement.Models.Elements;
 
 namespace GradeManagement.Views.Lists.ElementButtonControls
 {
     public class ListButton : ButtonStyleBase
     {
-        public ListButton(IElement element) : base(element) { }
+        public ListButton(Element element) : base(element) { }
     }
 }

@@ -9,7 +9,7 @@ using ReactiveUI;
 // ReSharper disable once CheckNamespace
 namespace GradeManagement.Models.Elements
 {
-    public class ColorableElement : ReactiveObject
+    public abstract class ColorableElement : Element
     {
         private const float TitleDarkenFactor = 0.3f;
         private const float TitleBrightenFactor = 0.5f;
@@ -36,7 +36,8 @@ namespace GradeManagement.Models.Elements
         
         private bool _darkSymbols;
 
-        protected ColorableElement(string elementColorHex) => this.ElementColorHex = elementColorHex;
+        protected ColorableElement(string elementColorHex, string name, float weighting = 1f, bool counts = true) : base(name, weighting, counts) 
+            => this.ElementColorHex = elementColorHex;
 
         [JsonInclude]
         public string ElementColorHex
@@ -82,8 +83,19 @@ namespace GradeManagement.Models.Elements
         
         private Color AdditionalInfoDark => _additionalInfoBaseColor.DarkenColor(AdditionalInfoDarkenFactor);
         private Color AdditionalInfoLight => _additionalInfoBaseColor.BrightenColor(AdditionalInfoBrightenFactor);
+        
+        internal void AdjustTextColors(bool isGrid, bool changeButtonStyle = true)
+        {
+            if(changeButtonStyle)
+                _buttonStyle = isGrid ? SelectedButtonStyle.Grid : SelectedButtonStyle.List;
+            AdditionalInfoColor = isGrid ? _additionalInfoGrid : _additionalInfoList;
+            TitleBrush = isGrid ? _titleBrushGrid : _titleBrushList;
+            
+            int threshold = isGrid ? GridThresholdAdditionalInfo : ListThresholdAdditionalInfo;
+            DarkSymbols = ElementColor.PerceivedBrightness() > threshold;
+        }
 
-        protected virtual void ApplyChangedColor()
+        private void ApplyChangedColor()
         {
             ElementColor = Color.Parse(_elementColorHex);
 
@@ -102,17 +114,6 @@ namespace GradeManagement.Models.Elements
             BackgroundBrushHover = backgroundGradientHover;
             
             SetAdditionalInfoColor();
-        }
-
-        internal void AdjustTextColors(bool isGrid, bool changeButtonStyle = true)
-        {
-            if(changeButtonStyle)
-                _buttonStyle = isGrid ? SelectedButtonStyle.Grid : SelectedButtonStyle.List;
-            AdditionalInfoColor = isGrid ? _additionalInfoGrid : _additionalInfoList;
-            TitleBrush = isGrid ? _titleBrushGrid : _titleBrushList;
-            
-            int threshold = isGrid ? GridThresholdAdditionalInfo : ListThresholdAdditionalInfo;
-            DarkSymbols = ElementColor.PerceivedBrightness() > threshold;
         }
 
         private void SetAdditionalInfoColor()

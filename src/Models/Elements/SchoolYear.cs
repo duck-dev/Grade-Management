@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
 using GradeManagement.Enums;
 using GradeManagement.ExtensionCollection;
-using GradeManagement.Interfaces;
 using GradeManagement.Models.Settings;
 using GradeManagement.UtilityCollection;
 using GradeManagement.Views.Lists.ElementButtonControls;
@@ -11,20 +11,12 @@ using ReactiveUI;
 
 namespace GradeManagement.Models.Elements
 {
-    public class SchoolYear : ColorableElement, IElement
+    public class SchoolYear : ColorableElement, ICloneable
     {
-        private const int MaxNameLength = 64;
-        
-        private string _name = string.Empty;
         private List<Subject> _subjects = new();
-        private ButtonStyleBase? _buttonStyle;
 
-        public SchoolYear(string name, string elementColorHex) : base(elementColorHex)
+        public SchoolYear(string name, string elementColorHex) : base(elementColorHex, name)
         {
-            if (name.Length > MaxNameLength)
-                name = name.Substring(0, MaxNameLength);
-            this.Name = name;
-
             var isGrid = SettingsManager.Settings?.YearButtonStyle == SelectedButtonStyle.Grid;
             this.ButtonStyle = isGrid ? new GridButton(this) : new ListButton(this);
             AdjustTextColors(isGrid);
@@ -34,13 +26,6 @@ namespace GradeManagement.Models.Elements
         public SchoolYear(string name, string elementColorHex, List<Subject> subjects) : this(name, elementColorHex)
         {
             this.Subjects = subjects;
-        }
-
-        [JsonInclude]
-        public string Name
-        {
-            get => _name; 
-            private set => this.RaiseAndSetIfChanged(ref _name, value);
         }
 
         [JsonInclude]
@@ -56,35 +41,19 @@ namespace GradeManagement.Models.Elements
             }
         }
 
-        [JsonIgnore]
-        public ButtonStyleBase? ButtonStyle
-        {
-            get => _buttonStyle;
-            set => this.RaiseAndSetIfChanged(ref _buttonStyle, value);
-        }
-
         [JsonIgnore] 
-        public float GradeValue => Utilities.GetAverage(Subjects, true);
+        public override float GradeValue => Utilities.GetAverage(Subjects, true);
 
         [JsonIgnore]
-        public float Weighting => 1;
+        public override float Weighting => 1;
 
         [JsonIgnore] 
-        public bool Counts => true;
+        public override bool Counts => true;
 
         [JsonIgnore] 
-        public int ElementCount => Subjects.Count;
+        public override int ElementCount => Subjects.Count;
 
-        public T? Duplicate<T>(bool save = true) where T : class, IElement
-        {
-            var duplicate = this.Clone();
-            if(save)
-                Save(duplicate);
-
-            return duplicate as T;
-        }
-        
-        public void Save<T>(T? element = null) where T : class, IElement
+        protected internal override void Save<T>(T? element = null) where T : class
         {
             SchoolYear year = element as SchoolYear ?? this;
             DataManager.SchoolYears.Add(year);
@@ -96,6 +65,6 @@ namespace GradeManagement.Models.Elements
             this.ElementColorHex = colorHex;
         }
         
-        private SchoolYear Clone() => new(_name, ElementColorHex, _subjects.Clone().ToList());
+        public override object Clone() => new SchoolYear(Name, ElementColorHex, Subjects.Clone().ToList());
     }
 }

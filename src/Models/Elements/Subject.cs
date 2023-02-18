@@ -14,27 +14,12 @@ using ReactiveUI;
 
 namespace GradeManagement.Models.Elements
 {
-    public class Subject : ColorableElement, IElement, ICloneable, IGradesContainer
+    public class Subject : ColorableElement, ICloneable, IGradesContainer
     {
-        private const int MaxNameLength = 64;
-        private const double EnabledOpacity = 1.0;
-        private const double DisabledOpacity = 0.6;
-        private const double DisabledOpacityGrade = 0.4;
-        
-        private string _name = string.Empty;
         private List<Grade> _grades = new();
-        private float _weighting;
-        private bool _counts;
-        private ButtonStyleBase? _buttonStyle;
 
-        public Subject(string name, float weighting, string elementColorHex, bool counts) : base(elementColorHex)
+        public Subject(string name, float weighting, string elementColorHex, bool counts) : base(elementColorHex, name, weighting, counts)
         {
-            if (name.Length > MaxNameLength)
-                name = name.Substring(0, MaxNameLength);
-            this.Name = name;
-            this.Weighting = weighting;
-            this.Counts = counts;
-
             var isGrid = SettingsManager.Settings?.SubjectButtonStyle == SelectedButtonStyle.Grid;
             this.ButtonStyle = isGrid ? new GridButton(this) : new ListButton(this);
             AdjustTextColors(isGrid);
@@ -45,13 +30,6 @@ namespace GradeManagement.Models.Elements
             : this(name, weighting, elementColorHex, counts)
         {
             this.Grades = grades;
-        }
-
-        [JsonInclude]
-        public string Name
-        {
-            get => _name; 
-            private set => this.RaiseAndSetIfChanged(ref _name, value);
         }
 
         [JsonIgnore] [UsedImplicitly] 
@@ -71,61 +49,22 @@ namespace GradeManagement.Models.Elements
             }
         }
 
-        [JsonInclude]
-        public float Weighting
-        {
-            get => _weighting; 
-            private set => this.RaiseAndSetIfChanged(ref _weighting, value);
-        }
-        
-        [JsonInclude]
-        public bool Counts
-        {
-            get => _counts;
-            private set
-            {
-                this.RaiseAndSetIfChanged(ref _counts, value);
-                this.RaisePropertyChanged(nameof(ElementsOpacity));
-                this.RaisePropertyChanged(nameof(GradeTextOpacity));
-            }
-        }
+        [JsonIgnore]
+        public override float GradeValue => Utilities.GetAverage(Grades, false);
 
         [JsonIgnore]
-        public float GradeValue => Utilities.GetAverage(Grades, false);
-
-        [JsonIgnore]
-        public int ElementCount => Grades.Count;
-        
-        [JsonIgnore]
-        public ButtonStyleBase? ButtonStyle
-        {
-            get => _buttonStyle;
-            set => this.RaiseAndSetIfChanged(ref _buttonStyle, value);
-        }
+        public override int ElementCount => Grades.Count;
         
         internal float RoundedAverage => Utilities.GetAverage(Grades, true);
-        internal double ElementsOpacity => Counts ? EnabledOpacity : DisabledOpacity;
-        internal double GradeTextOpacity => Counts ? EnabledOpacity : DisabledOpacityGrade;
 
-        public T? Duplicate<T>(bool save = true) where T : class, IElement
-        {
-            if (Clone() is not Subject duplicate)
-                return null;
-
-            if (save)
-                Save(duplicate);
-
-            return duplicate as T;
-        }
-
-        public void Save<T>(T? element = null) where T : class, IElement
+        protected internal override void Save<T>(T? element = null) where T : class
         {
             Subject subject = element as Subject ?? this;
             var currentYear = MainWindowViewModel.CurrentYear;
             currentYear?.Subjects.Add(subject);
         }
 
-        public object Clone() => new Subject(_name, _weighting, ElementColorHex, _grades.Clone().ToList(), Counts);
+        public override object Clone() => new Subject(Name, Weighting, ElementColorHex, Grades.Clone().ToList(), Counts);
 
         internal void Edit(string newName, float newWeighting, string newSubjectColorHex, bool counts)
         {

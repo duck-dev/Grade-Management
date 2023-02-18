@@ -59,7 +59,7 @@ namespace GradeManagement.ViewModels.Lists
         
         internal static GradeListViewModel? Instance { get; private set; }
 
-        public void Duplicate(IElement element)
+        public void Duplicate(Element element)
         {
             if(element is GradeGroup)
                 DuplicateElement<GradeGroup>(element);

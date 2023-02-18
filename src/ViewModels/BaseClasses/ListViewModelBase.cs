@@ -30,7 +30,7 @@ namespace GradeManagement.ViewModels.BaseClasses
             set => this.RaiseAndSetIfChanged(ref _currentDialog, value);
         }
 
-        protected void DuplicateElement<T>(IElement element) where T : class, IElement
+        protected void DuplicateElement<T>(Element element) where T : Element
         {
             var instance = MainWindowViewModel.Instance;
             if (instance is null)
@@ -51,7 +51,7 @@ namespace GradeManagement.ViewModels.BaseClasses
             viewModel?.Items?.Add(duplicate);
         }
 
-        protected void RemoveElement(IElement element, ElementType elementType, Action confirmAction)
+        protected void RemoveElement(Element element, ElementType elementType, Action confirmAction)
         {
             if (SettingsRef is not null && !SettingsRef.ShowRemoveConfirmation)
             {

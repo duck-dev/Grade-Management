@@ -51,7 +51,7 @@ namespace GradeManagement.ViewModels.Lists
         
         internal static YearListViewModel? Instance { get; private set; }
 
-        public void Duplicate(IElement element) 
+        public void Duplicate(Element element) 
             => DuplicateElement<SchoolYear>(element);
 
         protected internal override void ChangeTopbar()
