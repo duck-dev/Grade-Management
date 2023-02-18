@@ -136,7 +136,7 @@ namespace GradeManagement.ViewModels
             AdjustTopbarText(grade, 6);
             
             // Group of partial grades
-            GradeListViewModel viewModel = SwitchPage<GradeListViewModel, Grade>(gradeGroup.Grades, gradeGroup);
+            SwitchPage<GradeListViewModel, Grade>(gradeGroup.Grades, gradeGroup);
         }
 
         private void OpenSubject(Subject subject)
@@ -148,7 +148,7 @@ namespace GradeManagement.ViewModels
             }
             
             AdjustTopbarText(subject, 2);
-            GradeListViewModel viewModel = SwitchPage<GradeListViewModel, Grade>(subject.Grades, subject);
+            SwitchPage<GradeListViewModel, Grade>(subject.Grades, subject);
         }
         
         private void OpenYear(SchoolYear year)

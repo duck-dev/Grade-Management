@@ -18,6 +18,9 @@ namespace GradeManagement.Models.Elements
         
         private const int GridThresholdTitle = 110;
         private const int ListThresholdTitle = 135;
+
+        private const int GridThresholdAdditionalInfo = 120;
+        private const int ListThresholdAdditionalInfo = 135;
         
         private readonly Color _additionalInfoBaseColor = Color.Parse("#999999");
         private readonly Color _lightBackground = Color.Parse("#c7cad1");
@@ -53,9 +56,6 @@ namespace GradeManagement.Models.Elements
                 this.RaisePropertyChanged(nameof(AdditionalInfoColor));
             }
         }
-
-        protected virtual int GridThresholdAdditionalInfo { get; }
-        protected virtual int ListThresholdAdditionalInfo { get; }
 
         internal Color ElementColor { get; private set; }
 

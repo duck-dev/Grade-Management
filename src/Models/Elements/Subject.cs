@@ -9,6 +9,7 @@ using GradeManagement.Models.Settings;
 using GradeManagement.UtilityCollection;
 using GradeManagement.ViewModels;
 using GradeManagement.Views.Lists.ElementButtonControls;
+using JetBrains.Annotations;
 using ReactiveUI;
 
 namespace GradeManagement.Models.Elements
@@ -53,7 +54,7 @@ namespace GradeManagement.Models.Elements
             private set => this.RaiseAndSetIfChanged(ref _name, value);
         }
 
-        [JsonIgnore]
+        [JsonIgnore] [UsedImplicitly] 
         public IGradesContainer? ParentContainer { get; }
 
         [JsonInclude]
@@ -101,9 +102,6 @@ namespace GradeManagement.Models.Elements
             get => _buttonStyle;
             set => this.RaiseAndSetIfChanged(ref _buttonStyle, value);
         }
-        
-        protected override int GridThresholdAdditionalInfo => 120;
-        protected override int ListThresholdAdditionalInfo => 135;
         
         internal float RoundedAverage => Utilities.GetAverage(Grades, true);
         internal double ElementsOpacity => Counts ? EnabledOpacity : DisabledOpacity;
