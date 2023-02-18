@@ -3,7 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Templates;
 using Avalonia.Metadata;
 
-namespace GradeManagement.CustomControls
+namespace GradeManagement.CustomSelectors
 {
     public class PanelTemplateSelector : IDataTemplate
     {

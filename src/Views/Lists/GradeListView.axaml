@@ -3,7 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:elementButtonControls="clr-namespace:GradeManagement.Views.Lists.ElementButtonControls"
-             xmlns:customControls="clr-namespace:GradeManagement.CustomControls"
+             xmlns:customSelectors="clr-namespace:GradeManagement.CustomSelectors"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="GradeManagement.Views.Lists.GradeListView">
 
@@ -258,7 +258,7 @@
                     </DataTemplate>
                 </ContentControl.Resources>
                 <ContentControl.DataTemplates>
-                    <customControls:PanelTemplateSelector>
+                    <customSelectors:PanelTemplateSelector>
                         <DataTemplate x:Key="True">
                             <ItemsControl Items="{Binding Items}"
                                           ItemTemplate="{StaticResource ResourceKey=GradeItemTemplate}"
@@ -281,7 +281,7 @@
                                 </ItemsControl.ItemsPanel>
                             </ItemsControl>
                         </DataTemplate>
-                    </customControls:PanelTemplateSelector>
+                    </customSelectors:PanelTemplateSelector>
                 </ContentControl.DataTemplates>
             </ContentControl>
         </ScrollViewer>
