@@ -1,11 +1,13 @@
 using System;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Presenters;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Styling;
+using Avalonia.VisualTree;
 using GradeManagement.ViewModels;
 
 namespace GradeManagement.Views.CustomControls;
@@ -18,6 +20,7 @@ public class CustomDragPanel : Panel, IStyleable
     private Point _previousPosition;
     private Point? _initialPosition;
     private TranslateTransform? _transform;
+    private ContentPresenter? _visualParent; // Set ZIndex of ContentPresenter, otherwise it will have no effect
 
     public CustomDragPanel()
     {
@@ -31,7 +34,11 @@ public class CustomDragPanel : Panel, IStyleable
         AddHandler(PointerPressedEvent, OnPointerPressed, RoutingStrategies.Tunnel, true);
         AddHandler(PointerMovedEvent, OnPointerMoved, RoutingStrategies.Tunnel, true);
         AddHandler(PointerReleasedEvent, OnPointerReleased, RoutingStrategies.Tunnel, true);
-        this.Initialized += (sender, args) => _initialPosition = Bounds.Position;
+        this.Initialized += (sender, args) =>
+        {
+            _initialPosition = Bounds.Position;
+            _visualParent = this.GetVisualParent<ContentPresenter>();
+        };
     }
 
     Type IStyleable.StyleKey => typeof(Panel);
@@ -45,6 +52,8 @@ public class CustomDragPanel : Panel, IStyleable
         Point currentPos = e.GetPosition(Parent);
         _isPressed = true;
         MainWindowViewModel.IsElementDragged = false;
+        if(_visualParent != null)
+            _visualParent.ZIndex = int.MaxValue;
         _previousPosition = currentPos;
         if (_transform != null)
             _previousPosition = new Point(_previousPosition.X - _transform.X, _previousPosition.Y - _transform.Y);
@@ -71,6 +80,8 @@ public class CustomDragPanel : Panel, IStyleable
     private void OnPointerReleased(object? sender, PointerReleasedEventArgs e)
     {
         _isPressed = false;
+        if(_visualParent != null)
+            _visualParent.ZIndex = 0;
         SetTransform(_initialPosition!.Value.X, _initialPosition.Value.Y); // Reset position
         base.OnPointerReleased(e);
     }
